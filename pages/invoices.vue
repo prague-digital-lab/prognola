@@ -5,8 +5,19 @@
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Tržby</h2>
       </div>
       <div class="mt-4 flex md:ml-4 md:mt-0">
-        <input type="date" v-model="from">
-        <input type="date" v-model="to">
+        <div class="me-2">
+<!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
+          <div class="mt-2">
+            <input type="date" v-model="from" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+          </div>
+        </div>
+
+        <div>
+<!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
+          <div class="mt-2">
+            <input type="date" v-model="to" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+          </div>
+        </div>
       </div>
     </div>
 
@@ -54,6 +65,15 @@ export default {
 
   mounted() {
     this.fetchData()
+  },
+
+  watch: {
+    from: function(newVal, oldVal) {
+      this.fetchData()
+    },
+    to: function(newVal, oldVal) {
+      this.fetchData()
+    }
   },
 
   methods: {
