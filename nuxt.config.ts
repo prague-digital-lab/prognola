@@ -14,7 +14,15 @@ export default defineNuxtConfig({
         public: {
             apiBase: 'http://valasskapevnost.cz.test/api', // NUXT_PUBLIC_API_BASE env
             sanctum: {
-                baseUrl: 'http://valasskapevnost.cz.test/api', // NUXT_PUBLIC_SANCTUM_BASE_URL=
+                baseUrl: 'http://valasskapevnost.cz.test/', // NUXT_PUBLIC_SANCTUM_BASE_URL=
+                redirect: {
+                    onLogin: '/', // Custom route after successful login
+                    onAuthOnly: '/login',
+                    onGuestOnly: '/',
+                },
+                globalMiddleware: {
+                    enabled: true,
+                },
             },
         }
     },
