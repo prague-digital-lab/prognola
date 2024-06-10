@@ -21,6 +21,7 @@ export default defineNuxtConfig({
                     onLogin: '/', // Custom route after successful login
                     onAuthOnly: '/login',
                     onGuestOnly: '/',
+                    onLogout: '/login',
                 },
                 globalMiddleware: {
                     enabled: true,
