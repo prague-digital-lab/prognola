@@ -81,7 +81,7 @@ export default {
       const config = useRuntimeConfig()
 
       console.log(config.public.apiBase + `/stats/income?from=${this.from}&to=${this.to}`)
-      const data = await $fetch(`http://valasskapevnost.cz.test/api/stats/income?from=${this.from}&to=${this.to}`)
+      const data = await $fetch(config.public.apiBase + `/stats/income?from=${this.from}&to=${this.to}`)
 
       this.chartData = {
         labels: toRaw(data.chart_labels),
