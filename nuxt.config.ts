@@ -8,4 +8,9 @@ export default defineNuxtConfig({
             autoprefixer: {},
         },
     },
+    runtimeConfig: {
+        public: {
+            apiBase: 'http://valasskapevnost.cz.test/api' // NUXT_PUBLIC_API_BASE env
+        }
+    },
 })

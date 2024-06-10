@@ -78,7 +78,7 @@ export default {
 
   methods: {
     async fetchData() {
-      console.log(`http://valasskapevnost.cz.test/api/stats/income?from=${this.from}&to=${this.to}`)
+      console.log(`/stats/income?from=${this.from}&to=${this.to}`)
       const data = await $fetch(`http://valasskapevnost.cz.test/api/stats/income?from=${this.from}&to=${this.to}`)
 
       this.chartData = {
