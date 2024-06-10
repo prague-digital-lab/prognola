@@ -84,7 +84,9 @@ export default {
       this.chartData = {
         labels: toRaw(data.chart_labels),
         datasets: [{
-          data: toRaw(data.chart_data_price)
+          data: toRaw(data.chart_data_price),
+          label: 'Tržby v Kč',
+          borderColor: 'indigo'
         }],
       }
 
