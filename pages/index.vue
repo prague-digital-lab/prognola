@@ -29,11 +29,11 @@
       <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Tržby</dt>
-          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(whole_income) }} Kč</dd>
+          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(income_sum) }} Kč</dd>
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Výdaje</dt>
-          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(average_weekly) }} Kč</dd>
+          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(expense_sum) }} Kč</dd>
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Zisk</dt>
@@ -100,9 +100,9 @@ export default {
         }
       },
 
-      whole_income: '',
-      average_daily: '',
-      average_weekly: '',
+      income_sum: 0,
+      expense_sum: 0,
+      profit_sum: 0,
     }
   },
 
@@ -214,9 +214,9 @@ export default {
         ]
       }
 
-      this.whole_income = data.value.whole_income
-      this.average_weekly = data.value.average_weekly
-      this.average_daily = data.value.average_daily
+      this.income_sum = data.value.income_sum
+      this.expense_sum = data.value.expense_sum
+      this.profit_sum = data.value.profit_sum
 
       this.loaded = true
     },
