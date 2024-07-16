@@ -86,7 +86,7 @@ export default {
       loaded: false,
 
       from: '2024-01-01',
-      to: '2024-06-30',
+      to: '2024-12-31',
 
       chartData: {},
       chartOptions: {
