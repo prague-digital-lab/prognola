@@ -84,7 +84,7 @@ export default {
     async fetchData() {
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('users', () =>
+      const data = await useAsyncData('users', () =>
           client('/api/stats/income', {
             method: 'GET',
             params: {
