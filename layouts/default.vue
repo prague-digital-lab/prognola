@@ -242,8 +242,7 @@ const teams = [
   {id: 3, name: 'Workcation', href: '#', initial: 'W', current: false},
 ]
 const userNavigation = [
-  {name: 'Your profile', href: '#'},
-  {name: 'Sign out', href: '#'},
+  {name: 'Profil', href: '#'},
 ]
 
 const sidebarOpen = ref(false)
