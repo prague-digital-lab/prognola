@@ -82,7 +82,7 @@ export default {
       chartOptions: {
         responsive: true,
         scales: {
-          yAxes: [{
+          xAxes: [{
             ticks: {
               beginAtZero: true
             }
