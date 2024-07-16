@@ -28,16 +28,16 @@
     <div class="mb-5">
       <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-          <dt class="truncate text-sm font-medium text-gray-500">Tržby</dt>
-          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(income_sum) }} Kč</dd>
+          <dt class="truncate text-sm font-medium text-gray-500">Příjmy</dt>
+          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(income_sum) }} Kč</dd>
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Výdaje</dt>
-          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(expense_sum) }} Kč</dd>
+          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(expense_sum) }} Kč</dd>
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-          <dt class="truncate text-sm font-medium text-gray-500">Zisk</dt>
-          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(profit_sum) }} Kč</dd>
+          <dt class="truncate text-sm font-medium text-gray-500">Výsledek</dt>
+          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(profit_sum) }} Kč</dd>
         </div>
       </dl>
     </div>
