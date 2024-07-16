@@ -37,7 +37,7 @@
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Zisk</dt>
-          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(average_daily) }} Kč</dd>
+          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ formatPrice(profit_sum) }} Kč</dd>
         </div>
       </dl>
     </div>
