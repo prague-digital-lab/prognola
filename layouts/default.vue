@@ -242,7 +242,7 @@ const teams = [
   {id: 3, name: 'Workcation', href: '#', initial: 'W', current: false},
 ]
 const userNavigation = [
-  {name: 'Profil', href: '#'},
+  {name: 'Recepce', href: 'https://valasskapevnost.cz/admin/recepce'},
 ]
 
 const sidebarOpen = ref(false)
