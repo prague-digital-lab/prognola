@@ -80,7 +80,14 @@ export default {
 
       chartData: {},
       chartOptions: {
-        responsive: true
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       },
 
       whole_income: '',
