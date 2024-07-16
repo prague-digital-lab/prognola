@@ -84,7 +84,7 @@ export default {
     async fetchData() {
       const client = useSanctumClient();
 
-      const data = await useAsyncData('users', () =>
+      const {data} = await useAsyncData('income', () =>
           client('/api/stats/income', {
             method: 'GET',
             params: {
@@ -97,9 +97,9 @@ export default {
       // const data = await $fetch(`/api/stats/income?from=${this.from}&to=${this.to}`)
 
       this.chartData = {
-        labels: toRaw(data.chart_labels),
+        labels: data.value.chart_labels,
         datasets: [{
-          data: toRaw(data.chart_data_price),
+          data: data.value.chart_data_price,
           label: 'Tržby v Kč',
           borderColor: 'indigo'
         }],
