@@ -1,34 +1,39 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    devtools: {enabled: true},
-    css: ['~/assets/scss/app.scss'],
+  devtools: {enabled: true},
+  css: ['~/assets/scss/app.scss'],
+  ssr: true,
 
-    ssr: true,
+  postcss: {
+      plugins: {
+          tailwindcss: {},
+          autoprefixer: {},
+      },
+  },
 
-    postcss: {
-        plugins: {
-            tailwindcss: {},
-            autoprefixer: {},
-        },
-    },
+  runtimeConfig: {
+      public: {
+          sanctum: {
+              baseUrl: 'http://localhost:8000',
+              redirect: {
+                  onLogin: '/', // Custom route after successful login
+                  onAuthOnly: '/login',
+                  onGuestOnly: '/',
+                  onLogout: '/login',
+              },
+              endpoints: {
+                  login: '/api/login',
+                  logout: '/api/logout',
+                  user: '/api/user',
+              },
+              globalMiddleware: {
+                  enabled: true,
+              },
+              mode: 'token'
+          },
+      }
+  },
 
-    runtimeConfig: {
-        public: {
-            apiBase: 'http://valasskapevnost.cz.test/api', // NUXT_PUBLIC_API_BASE env
-            sanctum: {
-                baseUrl: 'http://valasskapevnost.cz.test/', // NUXT_PUBLIC_SANCTUM_BASE_URL=
-                redirect: {
-                    onLogin: '/', // Custom route after successful login
-                    onAuthOnly: '/login',
-                    onGuestOnly: '/',
-                    onLogout: '/login',
-                },
-                globalMiddleware: {
-                    enabled: true,
-                },
-            },
-        }
-    },
-
-    modules: ["nuxt-auth-sanctum"]
+  modules: ["nuxt-auth-sanctum"],
+  compatibilityDate: '2024-07-16'
 })
