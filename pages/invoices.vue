@@ -25,6 +25,24 @@
       </div>
     </div>
 
+    <div class="mb-5">
+      <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+          <dt class="truncate text-sm font-medium text-gray-500">Tržby</dt>
+          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{formatPrice(whole_income)}} Kč</dd>
+        </div>
+        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+          <dt class="truncate text-sm font-medium text-gray-500">Průměrně týdně</dt>
+          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{formatPrice(average_weekly)}} Kč</dd>
+        </div>
+        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+          <dt class="truncate text-sm font-medium text-gray-500">Průměrně denně</dt>
+          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{formatPrice(average_daily)}} Kč</dd>
+        </div>
+      </dl>
+    </div>
+
+
 
     <div v-if="loaded">
       <Line
@@ -63,7 +81,11 @@ export default {
       chartData: {},
       chartOptions: {
         responsive: true
-      }
+      },
+
+      whole_income: '',
+      average_daily: '',
+      average_weekly: '',
     }
   },
 
@@ -105,7 +127,16 @@ export default {
         }],
       }
 
+      this.whole_income = data.value.whole_income
+      this.average_weekly = data.value.average_weekly
+      this.average_daily = data.value.average_daily
+
       this.loaded = true
+    },
+
+    formatPrice(value) {
+      let val = (value/1).toFixed(0).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
     }
   }
 }
