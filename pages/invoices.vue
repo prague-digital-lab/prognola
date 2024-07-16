@@ -6,16 +6,20 @@
       </div>
       <div class="mt-4 flex md:ml-4 md:mt-0">
         <div class="me-2">
-<!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
+          <!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
           <div class="mt-2">
-            <input type="date" v-model="from" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+            <input type="date" v-model="from"
+                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                   placeholder="you@example.com"/>
           </div>
         </div>
 
         <div>
-<!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
+          <!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
           <div class="mt-2">
-            <input type="date" v-model="to" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+            <input type="date" v-model="to"
+                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                   placeholder="you@example.com"/>
           </div>
         </div>
       </div>
@@ -68,20 +72,29 @@ export default {
   },
 
   watch: {
-    from: function(newVal, oldVal) {
+    from: function (newVal, oldVal) {
       this.fetchData()
     },
-    to: function(newVal, oldVal) {
+    to: function (newVal, oldVal) {
       this.fetchData()
     }
   },
 
   methods: {
     async fetchData() {
-      const config = useRuntimeConfig()
+      const client = useSanctumClient();
 
-      console.log(config.public.apiBase + `/stats/income?from=${this.from}&to=${this.to}`)
-      const data = await $fetch(config.public.apiBase + `/stats/income?from=${this.from}&to=${this.to}`)
+      const {data} = await useAsyncData('users', () =>
+          client('/api/stats/income', {
+            method: 'GET',
+            params: {
+              from: this.from,
+              to: this.to
+            },
+          })
+      )
+
+      // const data = await $fetch(`/api/stats/income?from=${this.from}&to=${this.to}`)
 
       this.chartData = {
         labels: toRaw(data.chart_labels),
