@@ -44,7 +44,7 @@
 
 
     <div v-if="loaded">
-      <Line
+      <Bar
           id="my-chart-id"
           :options="chartOptions"
           :data="chartData"
@@ -54,13 +54,24 @@
 </template>
 
 <script>
-import {CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip} from 'chart.js'
-import {Line} from 'vue-chartjs'
+import {
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip
+} from 'chart.js'
+import {Bar} from 'vue-chartjs'
 
 ChartJS.register(
     CategoryScale,
     LinearScale,
     PointElement,
+    BarElement,
     LineElement,
     Title,
     Tooltip,
@@ -68,7 +79,7 @@ ChartJS.register(
 )
 
 export default {
-  components: {Line},
+  components: {Bar},
 
   data() {
     return {
