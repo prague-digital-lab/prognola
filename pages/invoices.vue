@@ -75,7 +75,7 @@ export default {
     return {
       loaded: false,
 
-      from: '2023-01-01',
+      from: '2024-01-01',
       to: '2024-06-30',
 
       chartData: {},
