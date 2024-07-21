@@ -230,7 +230,9 @@ import {ChevronDownIcon, MagnifyingGlassIcon} from '@heroicons/vue/20/solid'
 
 const navigation = [
   {name: 'Nástěnka', href: '/', icon: HomeIcon, current: true},
-  {name: 'Tržby', href: '/invoices', icon: UsersIcon, current: false},
+  {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
+  {name: 'Výdaje', href: '/expenses', icon: DocumentDuplicateIcon, current: false},
+  {name: 'Report tržeb', href: '/invoices', icon: UsersIcon, current: false},
   // {name: 'Projects', href: '#', icon: FolderIcon, current: false},
   // {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
   // {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},
