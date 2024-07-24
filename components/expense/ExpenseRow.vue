@@ -6,19 +6,25 @@
     </div>
 
     <div class="text-sm text-slate-600 font-light">
-      {{expense.price}}
+      {{ formatPrice(expense.price) }} Kč
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import {defineComponent} from 'vue'
 
 export default defineComponent({
   name: "ExpenseRow",
   props: [
     'expense'
-  ]
+  ],
+  methods: {
+    formatPrice(value) {
+      let val = (value / 1).toFixed(0).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+    }
+  }
 })
 </script>
 
