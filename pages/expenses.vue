@@ -1,47 +1,29 @@
 <template>
   <div>
-    <div class="md:flex md:items-center md:justify-between">
+    <div class="md:flex md:items-center md:justify-between mb-4">
       <div class="min-w-0 flex-1">
-        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Výdaje</h2>
+        <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight">Výdaje</h4>
       </div>
       <div class="mt-4 flex md:ml-4 md:mt-0">
         <div class="me-2">
-          <!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
           <div class="mt-2">
             <input type="date" v-model="from"
-                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                   placeholder="you@example.com"/>
+                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
-          <!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
           <div class="mt-2">
             <input type="date" v-model="to"
-                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                   placeholder="you@example.com"/>
+                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="mb-5">
-      <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-          <dt class="truncate text-sm font-medium text-gray-500">Celkem</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(whole_income) }} Kč</dd>
-        </div>
-        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-          <dt class="truncate text-sm font-medium text-gray-500">Průměrně týdně</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(average_weekly) }} Kč</dd>
-        </div>
-        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-          <dt class="truncate text-sm font-medium text-gray-500">Průměrně denně</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(average_daily) }} Kč</dd>
-        </div>
-      </dl>
+    <div class="border border-gray-200 rounded divide-gray-200 divide-y">
+        <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
     </div>
-
 
   </div>
 </template>
@@ -53,21 +35,9 @@ export default {
       loaded: false,
 
       from: '2024-01-01',
-      to: '2024-06-30',
+      to: '2024-07-30',
 
-      chartData: {},
-      chartOptions: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      },
-
-      whole_income: '',
-      average_daily: '',
-      average_weekly: '',
+      expenses: [],
     }
   },
 
@@ -89,7 +59,7 @@ export default {
       const client = useSanctumClient();
 
       const {data} = await useAsyncData('income', () =>
-          client('/api/stats/income', {
+          client('/api/expenses', {
             method: 'GET',
             params: {
               from: this.from,
@@ -98,16 +68,7 @@ export default {
           })
       )
 
-      // const data = await $fetch(`/api/stats/income?from=${this.from}&to=${this.to}`)
-
-      this.chartData = {
-        labels: data.value.chart_labels,
-        datasets: [{
-          data: data.value.chart_data_price,
-          label: 'Tržby v Kč',
-          borderColor: 'indigo'
-        }],
-      }
+      this.expenses = data.value
 
       this.whole_income = data.value.whole_income
       this.average_weekly = data.value.average_weekly

@@ -61,12 +61,12 @@
                       </ul>
                     </li>
                     <li class="mt-auto">
-                      <NuxtLink href="#"
-                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
-                        <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                                       aria-hidden="true"/>
-                        Settings
-                      </NuxtLink>
+<!--                      <NuxtLink href="#"-->
+<!--                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">-->
+<!--                        <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"-->
+<!--                                       aria-hidden="true"/>-->
+<!--                        Settings-->
+<!--                      </NuxtLink>-->
                     </li>
                   </ul>
                 </nav>
@@ -115,11 +115,11 @@
               </ul>
             </li>
             <li class="mt-auto">
-              <NuxtLink href="#"
-                        class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
-                <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600" aria-hidden="true"/>
-                Settings
-              </NuxtLink>
+<!--              <NuxtLink href="#"-->
+<!--                        class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">-->
+<!--                <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600" aria-hidden="true"/>-->
+<!--                Settings-->
+<!--              </NuxtLink>-->
             </li>
           </ul>
         </nav>
