@@ -5,8 +5,9 @@
       <p class="w-[400px]">{{ expense.description }}</p>
     </div>
 
-    <div class="text-sm text-slate-600 font-light">
-      {{ formatPrice(expense.price) }} Kč
+    <div class="text-sm text-slate-600 font-light flex">
+      <p class="pe-2">{{expense.paid_at}}</p>
+      <p class="w-[70px] text-end">{{ formatPrice(expense.price) }} Kč</p>
     </div>
   </div>
 </template>
