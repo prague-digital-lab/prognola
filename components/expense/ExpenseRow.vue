@@ -64,7 +64,7 @@ export default defineComponent({
 
       let formatted = DateTime.fromISO(date)
 
-      return formatted.toFormat('d.L.yyyy')
+      return formatted.toFormat('d.M.yyyy')
     }
   }
 })
