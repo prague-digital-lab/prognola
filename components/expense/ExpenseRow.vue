@@ -21,12 +21,12 @@
 
 
       <div v-if="expense.payment_status === 'paid'" class="w-[120px]">
-        <p class="text-end me-2 font-bold">
+        <p class="text-end me-2">
           {{ formatPrice(expense.price) }} Kč</p>
       </div>
 
       <div v-else class="w-[120px]">
-        <p class="text-end text-red-800 font-bold me-2">{{ formatPrice(expense.price) }} Kč</p>
+        <p class="text-end text-red-600 font-bold me-2">{{ formatPrice(expense.price) }} Kč</p>
       </div>
 
 
