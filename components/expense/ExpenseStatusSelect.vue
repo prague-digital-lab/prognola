@@ -33,7 +33,7 @@ export default {
 </script>
 
 <template>
-  <div class="text-sm py-1 rounded text-gray-700 hover:bg-gray-100 mb-4 relative" >
+  <div class="text-sm py-1 rounded text-gray-700 mb-4 relative hover:bg-gray-100">
     <Transition>
     <div v-if="select_expanded"
          class="absolute left-[-150px] top-[-5px] w-[147px] pe-2 bg-white border-slate-200 border shadow rounded p-2">
