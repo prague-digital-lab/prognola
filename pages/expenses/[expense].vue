@@ -1,15 +1,22 @@
 <template>
   <div v-if="loaded">
     <div class="md:flex md:justify-between mb-4 divide-x divide-slate-100 h-auto">
-      <div class="w-full">
+      <div class="w-full me-5">
         <input type="text"
                class="p-0 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-3 border-none focus:ring-0"
                placeholder="Název výdaje" v-model="input_description">
 
         <p class="text-gray-500 text-sm mb-5">Výdaj V-{{ expense.id }}</p>
 
-        <textarea v-model="input_internal_note" class="border-none focus:ring-0 p-0 text-sm text-slate-700 w-full"
+        <textarea v-model="input_internal_note" class="border-none focus:ring-0 p-0 text-sm text-slate-700 w-full mb-5"
                   placeholder="Přidat popis..."></textarea>
+
+        <p class="text-sm text-gray-600 mb-2">Doklady</p>
+
+        <div class="border border-slate-200 rounded divide-y divide-slate-200">
+        <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>
+        <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>
+        </div>
       </div>
 
       <div class="w-[250px] ps-4">
