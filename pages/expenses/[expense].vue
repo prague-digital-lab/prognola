@@ -3,7 +3,7 @@
     <div class="md:flex md:justify-between mb-4 divide-x divide-slate-100 h-auto">
       <div class="w-full me-5">
         <input type="text"
-               class="p-0 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-3 border-none focus:ring-0"
+               class="p-0 w-full text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-3 border-none focus:ring-0"
                placeholder="Název výdaje" v-model="input_description">
 
         <p class="text-gray-500 text-sm mb-5">Výdaj V-{{ expense.id }}</p>
