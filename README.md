@@ -1,3 +1,9 @@
-# Valašská pevnost - Finance
+Uživatelský frontend webové aplikace Gentletask.com.
 
-Interní Nuxt SPA aplikace pro řízení financí DIGAMENT s.r.o.
+## Instrukce pro lokální vývoj
+
+Spuštění dev serveru:
+
+```bash
+npm run dev
+```

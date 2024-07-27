@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Inter";
+    src: url("../assets/Inter/Inter.ttf");
+  }
+
+@layer base {
+  body {
+    @apply bg-brown-background;
+   }
+}
