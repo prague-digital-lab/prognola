@@ -21,9 +21,29 @@
       </div>
     </div>
 
-    <div class="border border-gray-200 rounded divide-gray-200 divide-y">
-        <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
+    <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4">
+      <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
+
+      <div v-if="expenses.length === 0" class="w-full flex items-center justify-center h-[400px]">
+        <p class="text-gray-600">Žádné odpovídající výdaje.</p>
+      </div>
     </div>
+
+    <div class="rounded border border-gray-200 px-4 py-2">
+      <p class="text-gray-600 mb-2">Nový výdaj</p>
+
+      <div class="flex">
+        <form @submit.prevent="createExpense">
+          <input v-model="new_expense_name"
+                 placeholder="Název výdaje"
+                 required
+                 class="rounded border border-gray-200 me-2">
+
+          <button type="submit" class="bg-gray-100 hover:bg-gray-200 transition rounded p-2">Přidat</button>
+        </form>
+      </div>
+    </div>
+
 
   </div>
 </template>
@@ -38,6 +58,8 @@ export default {
       to: '2024-07-30',
 
       expenses: [],
+
+      new_expense_name: '',
     }
   },
 
@@ -80,6 +102,28 @@ export default {
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace('.', ',')
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+    },
+
+    async createExpense() {
+
+
+      const client = useSanctumClient();
+
+      const {data} = await useAsyncData('expense', () =>
+          client('/api/expenses', {
+            method: 'POST',
+            body: {
+              description: this.new_expense_name,
+              price: 0
+            }
+          })
+      )
+
+      let id = data.value.id
+
+      await navigateTo('/expenses/' + id)
+
+
     }
   }
 }
