@@ -167,8 +167,6 @@ export default {
             method: 'PATCH',
             body: {
               internal_note: this.input_internal_note,
-              received_at: this.from,
-              paid_at: this.from
             }
           })
       )

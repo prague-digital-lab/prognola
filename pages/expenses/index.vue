@@ -29,19 +29,17 @@
       </div>
     </div>
 
-    <div class="rounded border border-gray-200 px-4 py-2">
-      <div class="flex">
-        <form @submit.prevent="createExpense">
-          <input v-model="new_expense_name"
-                 placeholder="Nový výdaj..."
-                 required
-                 class="rounded border border-gray-200 me-2 py-1">
+    <div class="flex justify-end">
+      <form @submit.prevent="createExpense">
+        <input v-model="new_expense_name"
+               placeholder="Nový výdaj..."
+               required
+               class="rounded border border-gray-200 me-2 py-1">
 
-          <button type="submit" class="bg-indigo-700 hover:bg-indigo-900 transition rounded px-3 py-1 text-gray-100">
-            Přidat
-          </button>
-        </form>
-      </div>
+        <button type="submit" class="bg-indigo-700 hover:bg-indigo-900 transition rounded px-3 py-1 text-gray-100">
+          Přidat
+        </button>
+      </form>
     </div>
 
 
@@ -106,7 +104,6 @@ export default {
 
     async createExpense() {
 
-
       const client = useSanctumClient();
 
       const {data} = await useAsyncData('expense', () =>
@@ -114,7 +111,8 @@ export default {
             method: 'POST',
             body: {
               description: this.new_expense_name,
-              price: 0
+              price: 0,
+              paid_at: this.from
             }
           })
       )
