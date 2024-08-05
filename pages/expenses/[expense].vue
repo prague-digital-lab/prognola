@@ -4,18 +4,18 @@
       <div class="w-full me-5">
         <input type="text"
                class="p-0 w-full text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-3 border-none focus:ring-0"
-               placeholder="Název výdaje" v-model="input_description">
+               placeholder="Název výdaje" v-model="input_description" v-on:blur="updateDescription">
 
         <p class="text-gray-500 text-sm mb-5">Výdaj V-{{ expense.id }}</p>
 
         <textarea v-model="input_internal_note" class="border-none focus:ring-0 p-0 text-sm text-slate-700 w-full mb-5"
-                  placeholder="Přidat popis..."></textarea>
+                  placeholder="Přidat popis..." v-on:blur="updateInternalNote"></textarea>
 
         <p class="text-sm text-gray-600 mb-2">Doklady</p>
 
         <div class="border border-slate-200 rounded divide-y divide-slate-200">
-        <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>
-        <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>
+          <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>
+          <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>
         </div>
       </div>
 
@@ -28,7 +28,7 @@
                   d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/>
           </svg>
 
-          {{formatPrice(expense.price)}} Kč
+          {{ formatPrice(expense.price) }} Kč
         </p>
 
         <expense-status-select :expense="expense"></expense-status-select>
@@ -92,7 +92,7 @@
                   clip-rule="evenodd"/>
           </svg>
 
-         -543 Kč
+          -543 Kč
         </p>
 
       </div>
@@ -143,6 +143,32 @@ export default {
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace('.', ',')
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+    },
+
+    async updateDescription() {
+      const client = useSanctumClient();
+
+      const {data} = await useAsyncData('expense', () =>
+          client('/api/expenses/' + this.route.params.expense, {
+            method: 'PATCH',
+            body: {
+              description: this.input_description
+            }
+          })
+      )
+    },
+
+    async updateInternalNote() {
+      const client = useSanctumClient();
+
+      const {data} = await useAsyncData('expense', () =>
+          client('/api/expenses/' + this.route.params.expense, {
+            method: 'PATCH',
+            body: {
+              internal_note: this.input_internal_note
+            }
+          })
+      )
     }
   }
 }
