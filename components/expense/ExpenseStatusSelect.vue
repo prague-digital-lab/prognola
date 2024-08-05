@@ -72,7 +72,7 @@ export default {
       </div>
     </Transition>
 
-    <div @click="expandSelect">
+    <div @click="expandSelect" class="py-1 px-1">
       <div v-if="status === 'draft'">
         <expense-status-icon payment_status="draft"/>
 

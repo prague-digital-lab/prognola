@@ -21,7 +21,7 @@
 
       <div class="w-[250px] ps-4">
 
-        <p class="text-sm py-1 rounded text-gray-700 hover:bg-gray-100 mb-4">
+        <p class="text-sm py-1 px-1 rounded text-gray-700 hover:bg-gray-100 mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor" class="size-5 inline-block me-2">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -33,7 +33,7 @@
 
         <expense-status-select :expense="expense"></expense-status-select>
 
-        <p class="text-sm py-1 rounded text-gray-700 hover:bg-gray-100 mb-4" v-if="expense.organisation">
+        <p class="text-sm py-1 px-1 rounded text-gray-700 hover:bg-gray-100 mb-4" v-if="expense.organisation">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor"
                class="size-5 inline-block me-2">
@@ -44,7 +44,7 @@
           {{ expense.organisation.name }}
         </p>
 
-        <p class="text-sm py-1 rounded text-gray-500 hover:bg-gray-100 mb-7" v-else>
+        <p class="text-sm py-1 px-1 rounded text-gray-500 hover:bg-gray-100 mb-7" v-else>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor"
                class="size-5 inline-block me-2">
@@ -55,9 +55,9 @@
           zvolit organizaci
         </p>
 
-        <p class="text-xs font-medium text-gray-500 mb-2">Kategorie výdaje</p>
+        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Kategorie výdaje</p>
 
-        <p class="text-xs py-1 rounded text-gray-800 hover:bg-gray-100 mb-7">
+        <p class="text-xs px-1 py-1 rounded text-gray-800 hover:bg-gray-100 mb-7">
 
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                class="size-5 text-green-600 inline-block me-2">
@@ -71,9 +71,9 @@
           PPC reklama
         </p>
 
-        <p class="text-xs font-medium text-gray-500 mb-2">Platby</p>
+        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Platby</p>
 
-        <p class="text-xs py-1 rounded text-gray-800 hover:bg-gray-100 mb-1">
+        <p class="text-xs py-1 px-1 rounded text-gray-800 hover:bg-gray-100 mb-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                class="size-5 text-black inline-block me-2">
             <path fill-rule="evenodd"
@@ -84,7 +84,7 @@
           -2000 Kč
         </p>
 
-        <p class="text-xs py-1 rounded text-gray-800 hover:bg-gray-100 mb-1">
+        <p class="text-xs py-1 px-1 rounded text-gray-800 hover:bg-gray-100 mb-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                class="size-5 text-black inline-block me-2">
             <path fill-rule="evenodd"
