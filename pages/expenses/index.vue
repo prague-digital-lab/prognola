@@ -34,7 +34,7 @@ export default {
     return {
       loaded: false,
 
-      from: '2024-01-01',
+      from: '2024-07-01',
       to: '2024-07-30',
 
       expenses: [],
