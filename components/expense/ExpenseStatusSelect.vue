@@ -44,27 +44,27 @@ export default {
 </script>
 
 <template>
-  <div class="text-sm py-1 rounded text-gray-700 mb-4 relative hover:bg-gray-100">
+  <div class="text-sm rounded text-gray-700 mb-4 relative hover:bg-gray-100">
     <Transition>
       <div v-if="select_expanded"
-           class="absolute left-[-150px] top-[-5px] w-[147px] pe-2 bg-white border-slate-200 border shadow rounded p-2">
+           class="absolute left-[-150px] top-[-5px] w-[147px] pe-2 bg-white border-slate-200 border shadow rounded px-1 py-1">
 
-        <div class="mb-2" @click="setStatus('draft')">
+        <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('draft')">
           <expense-status-icon payment_status="draft"/>
 
           Ke zpracování
         </div>
-        <div class="mb-2" @click="setStatus('plan')">
+        <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('plan')">
           <expense-status-icon payment_status="plan"/>
 
           Odhad
         </div>
-        <div class="mb-2" @click="setStatus('pending')">
+        <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('pending')">
           <expense-status-icon payment_status="pending"/>
 
           K úhradě
         </div>
-        <div @click="setStatus('paid')">
+        <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('paid')">
           <expense-status-icon payment_status="paid"/>
 
           Uhrazeno
