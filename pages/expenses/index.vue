@@ -62,15 +62,29 @@ export default {
   },
 
   mounted() {
+    if (localStorage.getItem('from')) {
+      this.from = localStorage.getItem('from')
+    } else {
+      this.from = '2024-07-01';
+    }
+
+    if (localStorage.getItem('to')) {
+      this.to = localStorage.getItem('to')
+    } else {
+      this.to = '2024-07-30';
+    }
+
     this.fetchData()
   },
 
   watch: {
     from: function (newVal, oldVal) {
       this.fetchData()
+      localStorage.setItem('from', newVal)
     },
     to: function (newVal, oldVal) {
       this.fetchData()
+      localStorage.setItem('to', newVal)
     }
   },
 

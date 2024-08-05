@@ -25,6 +25,16 @@
           {{ formatPrice(expense.price) }} Kč</p>
       </div>
 
+      <div v-else-if="expense.payment_status === 'draft'" class="w-[120px]">
+        <p class="text-end me-2 text-purple-800 font-semibold">
+          ke zpracování</p>
+      </div>
+
+      <div v-else-if="expense.payment_status === 'plan'" class="w-[120px]">
+        <p class="text-end me-2 text-yellow-500 font-semibold">
+          ~{{ formatPrice(expense.price) }} Kč</p>
+      </div>
+
       <div v-else class="w-[120px]">
         <p class="text-end text-orange-400 font-bold me-2">{{ formatPrice(expense.price) }} Kč</p>
       </div>
