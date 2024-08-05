@@ -37,7 +37,9 @@
                  required
                  class="rounded border border-gray-200 me-2 py-1">
 
-          <button type="submit" class="bg-gray-100 hover:bg-gray-200 transition rounded px-3 py-1">Přidat</button>
+          <button type="submit" class="bg-indigo-700 hover:bg-indigo-900 transition rounded px-3 py-1 text-gray-100">
+            Přidat
+          </button>
         </form>
       </div>
     </div>
