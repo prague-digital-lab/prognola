@@ -44,10 +44,10 @@ export default {
 </script>
 
 <template>
-  <div class="text-sm rounded text-gray-700 mb-4 relative hover:bg-gray-100">
+  <div class="text-sm rounded text-gray-700 mb-3 relative hover:bg-gray-100">
     <Transition>
       <div v-if="select_expanded"
-           class="absolute left-[-150px] top-[-5px] w-[147px] pe-2 bg-white border-slate-200 border shadow rounded px-1 py-1">
+           class="absolute left-[-150px] top-[-5px] w-[147px] bg-white border-slate-200 border shadow rounded px-1 py-1">
 
         <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('draft')">
           <expense-status-icon payment_status="draft"/>

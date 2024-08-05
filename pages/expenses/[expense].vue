@@ -21,7 +21,7 @@
 
       <div class="w-[250px] ps-4">
 
-        <p class="text-sm py-1 px-1 rounded text-gray-700 hover:bg-gray-100 mb-4">
+        <p class="text-sm py-1 px-1 rounded text-gray-700 hover:bg-gray-100 mb-3">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor" class="size-5 inline-block me-2">
             <path stroke-linecap="round" stroke-linejoin="round"
