@@ -2,7 +2,9 @@
   <div>
     <div class="md:flex md:items-center md:justify-between mb-4">
       <div class="min-w-0 flex-1">
-        <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight">Výdaje</h4>
+        <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-4">Výdaje</h4>
+
+        <p class="text-gray-600 text-sm">Výdaje celkem: {{formatPrice(price_sum)}} Kč</p>
       </div>
       <div class="mt-4 flex md:ml-4 md:mt-0">
         <div class="me-2">
@@ -56,6 +58,7 @@ export default {
       to: '2024-07-30',
 
       expenses: [],
+      price_sum: 0,
 
       new_expense_name: '',
     }
@@ -102,11 +105,8 @@ export default {
           })
       )
 
-      this.expenses = data.value
-
-      this.whole_income = data.value.whole_income
-      this.average_weekly = data.value.average_weekly
-      this.average_daily = data.value.average_daily
+      this.expenses = data.value.data
+      this.price_sum = data.value.price_sum
 
       this.loaded = true
     },
