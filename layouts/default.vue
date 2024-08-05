@@ -90,10 +90,11 @@
               <ul role="list" class="-mx-2 space-y-1">
                 <li v-for="item in navigation" :key="item.name">
                   <NuxtLink :href="item.href"
-                            :class="[item.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
+                            class="text-gray-700 hover:bg-gray-50 hover:text-indigo-600 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6"
+                            :active-class="'bg-gray-50 text-indigo-600'">
                     <component :is="item.icon"
-                               :class="[item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600', 'h-6 w-6 shrink-0']"
-                               aria-hidden="true"/>
+                               class="group-hover:text-indigo-600 h-5 w-5 shrink-0"
+                               :active-class="'text-indigo-600'"/>
                     {{ item.name }}
                   </NuxtLink>
                 </li>
@@ -219,7 +220,7 @@ import {BanknotesIcon, Bars3Icon, BellIcon, ChartBarIcon, UsersIcon, XMarkIcon} 
 import {ChevronDownIcon, MagnifyingGlassIcon} from '@heroicons/vue/20/solid'
 
 const navigation = [
-  {name: 'Cashflow', href: '/', icon: ChartBarIcon, current: true},
+  {name: 'Cashflow', href: '/', icon: ChartBarIcon, current: false},
   // {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
   {name: 'Výdaje', href: '/expenses', icon: BanknotesIcon, current: false},
   {name: 'Report tržeb', href: '/invoices', icon: UsersIcon, current: false},
