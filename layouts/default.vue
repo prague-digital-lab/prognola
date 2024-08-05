@@ -216,8 +216,8 @@ import {
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue'
-import {BanknotesIcon, Bars3Icon, BellIcon, ChartBarIcon, UsersIcon, XMarkIcon} from '@heroicons/vue/24/outline'
-import {ChevronDownIcon, MagnifyingGlassIcon} from '@heroicons/vue/20/solid'
+import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/vue/24/outline'
+import {BanknotesIcon, ChartBarIcon, ChevronDownIcon, MagnifyingGlassIcon, UsersIcon} from '@heroicons/vue/20/solid'
 
 const navigation = [
   {name: 'Cashflow', href: '/', icon: ChartBarIcon, current: false},
