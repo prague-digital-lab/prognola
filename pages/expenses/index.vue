@@ -30,16 +30,14 @@
     </div>
 
     <div class="rounded border border-gray-200 px-4 py-2">
-      <p class="text-gray-600 mb-2">Nový výdaj</p>
-
       <div class="flex">
         <form @submit.prevent="createExpense">
           <input v-model="new_expense_name"
-                 placeholder="Název výdaje"
+                 placeholder="Nový výdaj..."
                  required
-                 class="rounded border border-gray-200 me-2">
+                 class="rounded border border-gray-200 me-2 py-1">
 
-          <button type="submit" class="bg-gray-100 hover:bg-gray-200 transition rounded p-2">Přidat</button>
+          <button type="submit" class="bg-gray-100 hover:bg-gray-200 transition rounded px-3 py-1">Přidat</button>
         </form>
       </div>
     </div>
