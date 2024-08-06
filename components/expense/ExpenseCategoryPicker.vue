@@ -1,6 +1,4 @@
 <script>
-import {DateTime} from 'luxon'
-import expense from "~/pages/expenses/[expense].vue";
 
 export default {
   props: ['expense'],
@@ -9,14 +7,18 @@ export default {
     return {
       expanded: false,
 
+      expense_categories: [],
       selected_expense_category: null,
     }
   },
 
   mounted() {
     if (this.expense.expense_category_id) {
+      // consonle.log('Je tu kategoria')
       this.selected_expense_category = this.expense.expense_category
     }
+
+    this.loadExpenseCategories()
   },
 
   methods: {
@@ -28,7 +30,7 @@ export default {
       this.expanded = false
     },
 
-    async updateExpenseCategory(expense_category) {
+    async selectCategory(expense_category) {
       this.expanded = false
       this.selected_expense_category = expense_category
 
@@ -42,6 +44,18 @@ export default {
             }
           })
       )
+    },
+
+    async loadExpenseCategories() {
+      const client = useSanctumClient();
+
+      const {data} = await useAsyncData('expense', () =>
+          client('/api/expense-categories', {
+            method: 'GET'
+          })
+      )
+
+      this.expense_categories = data.value
     }
   }
 }
@@ -49,7 +63,7 @@ export default {
 
 <template>
   <div class="relative">
-    <p class="text-xs px-1 py-1 rounded text-gray-800 hover:bg-gray-100 mb-7" @click="expand">
+    <p class="text-xs px-1 py-1 rounded text-gray-800 hover:bg-gray-100 mb-7" @click="expanded ? close() : expand()">
 
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
            class="size-5 text-gray-600 inline-block me-2">
@@ -58,18 +72,23 @@ export default {
               clip-rule="evenodd"/>
       </svg>
 
-      Marketing <span class="mx-1 text-slate-400">></span>
-      {{ selected_expense_category ?  selected_expense_category.name : 'přidat kategorii' }}
+
+      {{ selected_expense_category ? selected_expense_category.department.name : '' }}
+
+      <span class="mx-1 text-slate-400" v-if="selected_expense_category">></span>
+
+      {{ selected_expense_category ? selected_expense_category.name : 'přidat kategorii' }}
     </p>
 
 
     <Transition>
       <div v-if="expanded"
-           class="absolute left-[-150px] top-[-5px] w-[147px] bg-white border-slate-200 border shadow rounded px-1 py-1">
+           class="absolute left-[-200px] top-[-5px] w-[197px] bg-white border-slate-200 border shadow rounded px-1 py-1 scroll-auto">
 
+        <input class="rounded w-full mb-2" type="text" placeholder="Název kategorie...">
 
-        <p class="ms-2 text-sm text-gray-500">Datum úhrady</p>
-
+        <p class="px-2 py-1 hover:bg-gray-100" v-for="category in expense_categories" @click="selectCategory(category)">
+          {{ category.name }}</p>
       </div>
     </Transition>
 
