@@ -77,7 +77,7 @@ export default {
 
       <span class="mx-1 text-slate-400" v-if="selected_expense_category">></span>
 
-      {{ selected_expense_category ? selected_expense_category.name : 'přidat kategorii' }}
+      {{ selected_expense_category ? selected_expense_category.name : 'zvolit kategorii' }}
     </p>
 
 
