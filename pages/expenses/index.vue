@@ -11,8 +11,8 @@
         <div class="me-2">
           <div class="mt-2">
             <select v-model="grouped_by"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-              <option :value="null">Seskupit podle</option>
+                    class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <option :value="null">Seskupit</option>
               <option value="expense_category">Kategorie</option>
             </select>
           </div>
@@ -42,12 +42,14 @@
       </div>
     </div>
 
-    <div v-if="grouped_by === 'expense_category'" class="border border-gray-200 rounded divide-gray-200 divide-y mb-4">
+    <div v-if="grouped_by === 'expense_category'" class="border border-gray-200 rounded mb-4">
 
-      <div class=""
+      <div class="divide-gray-200 divide-y"
            v-for="category in expenses_by_category">
 
-        <div class="w-full bg-gray-200 ps-3 py-2 text-sm text-gray-600">{{ category[0].expense_category ? category[0].expense_category.name : 'Výdaje bez kategorie'}}</div>
+        <div class="w-full bg-slate-100 ps-3 py-2 text-sm text-gray-600">
+          {{ category[0].expense_category ? category[0].expense_category.name : 'Výdaje bez kategorie' }}
+        </div>
         <expense-row v-for="expense in category" :expense="expense"></expense-row>
       </div>
 
@@ -107,6 +109,13 @@ export default {
       this.to = '2024-07-30';
     }
 
+    console.log(localStorage.getItem('expenses.grouped_by'))
+    if (localStorage.getItem('expenses.grouped_by')) {
+      this.grouped_by = localStorage.getItem('expenses.grouped_by')
+    } else {
+      this.grouped_by = null
+    }
+
     this.fetchData()
   },
 
@@ -128,6 +137,13 @@ export default {
     to: function (newVal, oldVal) {
       this.fetchData()
       localStorage.setItem('to', newVal)
+    },
+    grouped_by: function (newVal, oldVal) {
+      localStorage.setItem('expenses.grouped_by', newVal)
+
+      if (newVal === null) {
+        localStorage.removeItem('expenses.grouped_by')
+      }
     }
   },
 
