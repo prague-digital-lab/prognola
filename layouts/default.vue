@@ -28,7 +28,9 @@
               <!-- Sidebar component, swap this element with another sidebar if you like -->
               <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                 <div class="flex h-16 shrink-0 items-center">
-                  <img class="h-8 w-auto" src="/img/logo_horizontal_sm.webp" alt="Your Company"/>
+                  <nuxt-link href="/">
+                    <img class="h-8 w-auto" src="/img/logo_horizontal_sm.webp" alt="Finance"/>
+                  </nuxt-link>
                 </div>
                 <nav class="flex flex-1 flex-col">
                   <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -82,7 +84,9 @@
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div class="flex grow bg-slate-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
-          <img class="h-8 w-auto" src="/img/logo_horizontal_sm.webp" alt="Your Company"/>
+          <nuxt-link href="/" class="cursor-default">
+            <img class="h-8 w-auto" src="/img/logo_horizontal_sm.webp" alt="Your Company"/>
+          </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -90,8 +94,8 @@
               <ul role="list" class="-mx-2 space-y-1">
                 <li v-for="item in navigation" :key="item.name">
                   <NuxtLink :href="item.href"
-                            class="text-gray-700 hover:bg-gray-50 hover:text-indigo-600 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6"
-                            :active-class="'bg-gray-50 text-indigo-600'">
+                            class="text-gray-700 hover:bg-gray-100 hover:text-indigo-600 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6"
+                            :active-class="'bg-gray-100 text-indigo-600'">
                     <component :is="item.icon"
                                class="group-hover:text-indigo-600 h-5 w-5 shrink-0"
                                :active-class="'text-indigo-600'"/>
@@ -141,11 +145,11 @@
         <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
           <form class="relative flex flex-1" action="#" method="GET">
             <label for="search-field" class="sr-only">Search</label>
-<!--            <MagnifyingGlassIcon class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"-->
-<!--                                 aria-hidden="true"/>-->
-<!--            <input id="search-field"-->
-<!--                   class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"-->
-<!--                   placeholder="Vyhledávání" type="search" name="search"/>-->
+            <!--            <MagnifyingGlassIcon class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"-->
+            <!--                                 aria-hidden="true"/>-->
+            <!--            <input id="search-field"-->
+            <!--                   class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"-->
+            <!--                   placeholder="Vyhledávání" type="search" name="search"/>-->
           </form>
           <div class="flex items-center gap-x-4 lg:gap-x-6">
             <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
@@ -164,7 +168,7 @@
                      :src="user.profile_photo_url"
                      alt=""/>
                 <span class="hidden lg:flex lg:items-center">
-                  <span class="ml-4 text-sm font-semibold leading-6 text-gray-900"
+                  <span class="ml-4 text-sm leading-6 text-gray-900"
                         aria-hidden="true">{{ user.name }}</span>
                   <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true"/>
                 </span>
@@ -217,7 +221,7 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/vue/24/outline'
-import {BanknotesIcon, ChartBarIcon, ChevronDownIcon, MagnifyingGlassIcon, UsersIcon} from '@heroicons/vue/20/solid'
+import {BanknotesIcon, ChartBarIcon, ChevronDownIcon, UsersIcon} from '@heroicons/vue/20/solid'
 
 const navigation = [
   {name: 'Cashflow', href: '/', icon: ChartBarIcon, current: false},
