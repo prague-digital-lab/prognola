@@ -87,7 +87,7 @@ export default {
 
         <input class="rounded w-full mb-2" type="text" placeholder="Název kategorie...">
 
-        <p class="px-2 py-1 hover:bg-gray-100" v-for="category in expense_categories" @click="selectCategory(category)">
+        <p class="px-2 py-1 hover:bg-gray-100 text-gray-700 text-sm" v-for="category in expense_categories" @click="selectCategory(category)">
           {{ category.name }}</p>
       </div>
     </Transition>
