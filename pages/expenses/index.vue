@@ -4,9 +4,20 @@
       <div class="min-w-0 flex-1">
         <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-4">Výdaje</h4>
 
-        <p class="text-gray-600 text-sm">Výdaje celkem: {{formatPrice(price_sum)}} Kč</p>
+        <p class="text-gray-500 text-sm">Celkem: {{ formatPrice(price_sum) }} Kč</p>
       </div>
+
       <div class="mt-4 flex md:ml-4 md:mt-0">
+        <div class="me-2">
+          <div class="mt-2">
+            <select v-model="grouped_by"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <option :value="null">Seskupit podle</option>
+              <option value="expense_category">Kategorie</option>
+            </select>
+          </div>
+        </div>
+
         <div class="me-2">
           <div class="mt-2">
             <input type="date" v-model="from"
@@ -23,8 +34,22 @@
       </div>
     </div>
 
-    <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4">
+    <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4" v-if="grouped_by === null">
       <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
+
+      <div v-if="expenses.length === 0" class="w-full flex items-center justify-center h-[400px]">
+        <p class="text-gray-600">Žádné odpovídající výdaje.</p>
+      </div>
+    </div>
+
+    <div v-if="grouped_by === 'expense_category'" class="border border-gray-200 rounded divide-gray-200 divide-y mb-4">
+
+      <div class=""
+           v-for="category in expenses_by_category">
+
+        <div class="w-full bg-gray-200 ps-3 py-2 text-sm text-gray-600">{{ category[0].expense_category ? category[0].expense_category.name : 'Výdaje bez kategorie'}}</div>
+        <expense-row v-for="expense in category" :expense="expense"></expense-row>
+      </div>
 
       <div v-if="expenses.length === 0" class="w-full flex items-center justify-center h-[400px]">
         <p class="text-gray-600">Žádné odpovídající výdaje.</p>
@@ -52,15 +77,20 @@
 export default {
   data() {
     return {
+      // Page UI data
       loaded: false,
+      new_expense_name: '',
 
+      // Data table params
       from: '2024-07-01',
       to: '2024-07-30',
+      grouped_by: null,
+      filter_category_id: null,
+      filter_organisation_id: null,
 
+      // Data
       expenses: [],
       price_sum: 0,
-
-      new_expense_name: '',
     }
   },
 
@@ -78,6 +108,16 @@ export default {
     }
 
     this.fetchData()
+  },
+
+  computed: {
+    expenses_by_category() {
+      return this.expenses.reduce(function (r, expense) {
+        r[expense.expense_category_id] = r[expense.expense_category_id] || [];
+        r[expense.expense_category_id].push(expense);
+        return r;
+      }, Object.create(null))
+    }
   },
 
   watch: {
