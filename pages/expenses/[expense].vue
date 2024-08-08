@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>{{ title }}</Title>
+  </Head>
+
   <div v-if="loaded">
     <div class="md:flex md:justify-between mb-4 divide-x divide-slate-100 h-auto">
       <div class="w-full me-5">
@@ -121,6 +125,12 @@ export default {
     this.route = useRoute()
 
     this.fetchData()
+  },
+
+  computed: {
+    title() {
+      return this.expense ? this.expense.description + ' - Finance' : 'Detail výdaje - Finance'
+    }
   },
 
   methods: {
