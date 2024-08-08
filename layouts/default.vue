@@ -221,11 +221,11 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/vue/24/outline'
-import {BanknotesIcon, ChartBarIcon, ChevronDownIcon, UsersIcon} from '@heroicons/vue/20/solid'
+import {BanknotesIcon, ChartBarIcon, ChevronDownIcon, UsersIcon, DocumentDuplicateIcon} from '@heroicons/vue/20/solid'
 
 const navigation = [
   {name: 'Cashflow', href: '/', icon: ChartBarIcon, current: false},
-  // {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
+  {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
   {name: 'Výdaje', href: '/expenses', icon: BanknotesIcon, current: false},
   {name: 'Report tržeb', href: '/invoices', icon: UsersIcon, current: false},
   // {name: 'Projects', href: '#', icon: FolderIcon, current: false},
