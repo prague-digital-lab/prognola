@@ -6,6 +6,7 @@ export default {
   data: () => {
     return {
       expanded: false,
+      category_name_filter: null,
 
       expense_categories: [],
       selected_expense_category: null,
@@ -14,7 +15,6 @@ export default {
 
   mounted() {
     if (this.expense.expense_category_id) {
-      // consonle.log('Je tu kategoria')
       this.selected_expense_category = this.expense.expense_category
     }
 
@@ -57,6 +57,15 @@ export default {
 
       this.expense_categories = data.value
     }
+  },
+
+  computed: {
+    filtered_categories() {
+      return this.expense_categories.filter( category => {
+        // console.log(category.name, this.category_name_filter)
+        return !this.category_name_filter || category.name.toLowerCase().indexOf(this.category_name_filter.toLowerCase()) > -1
+      })
+    }
   }
 }
 </script>
@@ -85,9 +94,10 @@ export default {
       <div v-if="expanded"
            class="absolute left-[-200px] top-[-5px] w-[197px] bg-white border-slate-200 border shadow rounded px-1 py-1 scroll-auto">
 
-        <input class="rounded w-full mb-2" type="text" placeholder="Název kategorie...">
+        <input class="rounded w-full mb-2" type="text" placeholder="Název kategorie..." v-model="category_name_filter">
 
-        <p class="px-2 py-1 hover:bg-gray-100 text-gray-700 text-sm" v-for="category in expense_categories" @click="selectCategory(category)">
+        <p class="px-2 py-1 hover:bg-gray-100 text-gray-700 text-sm" v-for="category in filtered_categories"
+           @click="selectCategory(category)">
           {{ category.name }}</p>
       </div>
     </Transition>
