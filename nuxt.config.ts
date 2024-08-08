@@ -4,12 +4,12 @@ export default defineNuxtConfig({
     css: ['~/assets/scss/app.scss'],
     ssr: false,
 
-  postcss: {
-      plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-      },
-  },
+    postcss: {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+        },
+    },
 
     runtimeConfig: {
         public: {
