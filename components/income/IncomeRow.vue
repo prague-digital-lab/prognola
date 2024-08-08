@@ -2,7 +2,7 @@
   <div class="px-3 py-2 hover:bg-slate-50 flex justify-between items-center" @click="navigateToIncome">
     <div class="text-sm flex">
       <p class="text-gray-500 w-[60px] font-light">V-{{ income.id }}</p>
-      <p class="w-[400px]">{{ income.description }}</p>
+      <p class="w-[400px]">{{ income.name }}</p>
     </div>
 
     <div class="text-sm text-slate-600 font-light flex items-center">
@@ -22,7 +22,7 @@
 
       <div v-if="income.payment_status === 'paid'" class="w-[120px]">
         <p class="text-end me-2">
-          {{ formatPrice(income.price) }} Kč</p>
+          {{ formatPrice(income.amount) }} Kč</p>
       </div>
 
       <div v-else-if="income.payment_status === 'draft'" class="w-[120px]">
