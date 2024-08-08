@@ -90,9 +90,7 @@ export default {
       </svg>
 
 
-      {{ selected_expense_category ? selected_expense_category.department.name : '' }}
-
-      <span class="mx-1 text-slate-400" v-if="selected_expense_category">></span>
+      <span class="">{{ selected_expense_category ? selected_expense_category.department.name + ':' : '' }}</span>
 
       {{ selected_expense_category ? selected_expense_category.name : 'zvolit kategorii' }}
     </p>
