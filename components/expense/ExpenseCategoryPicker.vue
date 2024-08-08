@@ -102,7 +102,7 @@ export default {
       <div v-if="expanded"
            class="absolute left-[-200px] top-[-5px] w-[197px]  bg-white border-slate-200 border shadow rounded px-1 py-1 scroll-auto">
 
-        <input class="rounded w-full mb-2" type="text" placeholder="Název kategorie..." v-model="category_name_filter">
+        <input class="rounded w-full mb-2 border-gray-200 focus:ring-0 focus:border-gray-200 text-gray-700 py-1" type="text" placeholder="Název kategorie..." v-model="category_name_filter">
 
         <div class="max-h-[50vh] overflow-auto">
           <div v-for="department in filtered_categories_grouped_by_department">
