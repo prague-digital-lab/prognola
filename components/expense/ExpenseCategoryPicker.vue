@@ -92,13 +92,15 @@ export default {
 
     <Transition>
       <div v-if="expanded"
-           class="absolute left-[-200px] top-[-5px] w-[197px] bg-white border-slate-200 border shadow rounded px-1 py-1 scroll-auto">
+           class="absolute left-[-200px] top-[-5px] w-[197px]  bg-white border-slate-200 border shadow rounded px-1 py-1 scroll-auto">
 
         <input class="rounded w-full mb-2" type="text" placeholder="Název kategorie..." v-model="category_name_filter">
 
+        <div class="max-h-[50vh] overflow-auto">
         <p class="px-2 py-1 hover:bg-gray-100 text-gray-700 text-sm" v-for="category in filtered_categories"
            @click="selectCategory(category)">
           {{ category.name }}</p>
+        </div>
       </div>
     </Transition>
 
