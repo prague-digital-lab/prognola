@@ -48,7 +48,7 @@
                       </ul>
                     </li>
                     <li>
-                      <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
+<!--                      <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
                       <ul role="list" class="-mx-2 mt-2 space-y-1">
                         <li v-for="team in teams" :key="team.name">
                           <NuxtLink :href="team.href"
@@ -105,7 +105,7 @@
               </ul>
             </li>
             <li>
-              <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
+<!--              <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
               <ul role="list" class="-mx-2 mt-2 space-y-1">
                 <li v-for="team in teams" :key="team.name">
                   <NuxtLink :href="team.href"
