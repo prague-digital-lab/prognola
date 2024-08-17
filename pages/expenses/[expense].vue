@@ -63,6 +63,8 @@
           zvolit organizaci
         </p>
 
+        <expense-organisation-picker :expense="expense" />
+
         <p class="text-xs px-1 font-medium text-gray-500 mb-2">Kategorie výdaje</p>
 
         <expense-category-picker :expense="expense"/>
