@@ -231,7 +231,7 @@ import {
 } from '@heroicons/vue/20/solid'
 
 const navigation = [
-  {name: 'Schránka', href: '/inbox', icon: InboxIcon, current: false},
+  {name: 'Ke zpracování', href: '/inbox', icon: InboxIcon, current: false},
   {name: 'Cashflow', href: '/', icon: ChartBarIcon, current: false},
   {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
   {name: 'Výdaje', href: '/expenses', icon: BanknotesIcon, current: false},

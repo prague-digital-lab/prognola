@@ -2,11 +2,11 @@
   <div class="px-3 py-2 hover:bg-slate-50 flex justify-between items-center" @click="navigateToExpense">
     <div class="text-sm flex">
       <p class="text-gray-500 w-[60px] font-light">V-{{ expense.id }}</p>
-      <p class="w-[400px]">{{ expense.description }}</p>
+      <p class="w-[400px]">{{ expense.description ? expense.description : 'nový výdaj' }}</p>
     </div>
 
     <div class="text-sm text-slate-600 font-light flex items-center">
-      <div v-if="expense.organisation" class="me-5 rounded-[20px] border border-gray-200 px-3 py-1 flex items-center">
+      <div v-if="expense.organisation" class="rounded-[20px] border border-gray-200 px-3 py-1 flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
              class="size-4 inline-block me-2">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -17,11 +17,11 @@
         {{ expense.organisation.name }}
       </div>
 
-      <p class="pe-2">{{ formatDate(expense.paid_at) }}</p>
+      <p class="ps-2" v-if="expense.paid_at">{{ formatDate(expense.paid_at) }}</p>
 
 
       <div v-if="expense.payment_status === 'paid'" class="w-[120px]">
-        <p class="text-end me-2">
+        <p class="text-end ms-2">
           {{ formatPrice(expense.price) }} Kč</p>
       </div>
 
@@ -31,16 +31,16 @@
       </div>
 
       <div v-else-if="expense.payment_status === 'plan'" class="w-[120px]">
-        <p class="text-end me-2 text-yellow-500 font-semibold">
+        <p class="text-end ms-2 text-yellow-500 font-semibold">
           ~{{ formatPrice(expense.price) }} Kč</p>
       </div>
 
       <div v-else class="w-[120px]">
-        <p class="text-end text-orange-400 font-bold me-2">{{ formatPrice(expense.price) }} Kč</p>
+        <p class="text-end text-orange-400 font-bold ms-2">{{ formatPrice(expense.price) }} Kč</p>
       </div>
 
 
-      <div>
+      <div class="ms-2">
         <expense-status-icon :payment_status="expense.payment_status" />
       </div>
     </div>
