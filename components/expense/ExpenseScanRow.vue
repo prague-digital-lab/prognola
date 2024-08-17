@@ -41,7 +41,7 @@ export default {
     <div v-if="expanded" class="mt-3">
       <object :data="scan.file_url"
               type="application/pdf"
-              class="w-2/3 h-[800px]">
+              class="md:w-1/2 h-[800px]">
         <p>Unable to display PDF file.
           <a href="">Download</a>instead.</p>
       </object>
