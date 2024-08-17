@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <NuxtPage :keepalive="true"/>
+    <NuxtPage :keepalive="false"/>
   </NuxtLayout>
 </template>
 
