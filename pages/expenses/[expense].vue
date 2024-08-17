@@ -71,6 +71,10 @@
         <!--          -543 Kč-->
         <!--        </p>-->
 
+
+        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Datum přijetí</p>
+        <expense-received-at-input :expense="expense"/>
+
         <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="expense.payment_status === 'paid'">Uhrazeno</p>
         <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="expense.payment_status === 'plan'">Plánovaná
           úhrada</p>
@@ -80,6 +84,7 @@
           úhrada</p>
 
         <expense-paid-at-input :expense="expense"/>
+
 
       </div>
 
