@@ -25,10 +25,17 @@
         <p class="text-sm text-gray-600 mb-2">Doklady</p>
 
         <div class="border border-slate-200 rounded divide-y divide-slate-200">
-          <!--          <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>-->
-          <a :href="'https://valasskapevnost.cz/admin/invoicing/received_invoices/' + expense.id" target="_blank">
-            <div class="w-full px-5 py-3 text-sm text-slate-600">Zobrazit v IS</div>
-          </a>
+          <div class="w-full px-5 py-3 text-sm text-slate-600" v-for="scan in expense.scans">
+            <a :href="'https://valasskapevnost.cz/admin/invoicing/received_invoices/' + expense.id" target="_blank">
+              {{ scan.title }}
+            </a>
+          </div>
+
+          <div>
+            <a :href="'https://valasskapevnost.cz/admin/invoicing/received_invoices/' + expense.id" target="_blank">
+              <div class="w-full px-5 py-3 text-sm text-slate-600">Zobrazit v IS</div>
+            </a>
+          </div>
         </div>
       </div>
 

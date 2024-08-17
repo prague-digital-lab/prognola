@@ -51,7 +51,11 @@ export default {
       <div v-if="expanded"
            class="absolute left-[-150px] top-[-5px] w-[147px] bg-white border-slate-200 border shadow rounded px-1 py-1">
 
-        <p class="p-2 hover:bg-gray-100 text-red-600" @click="deleteExpense">Odstranit výdaj</p>
+        <a :href="'https://valasskapevnost.cz/admin/invoicing/received_invoices/' + expense.id" target="_blank">
+          <div class="w-full p-2 text-sm text-slate-600 hover:bg-gray-100">Zobrazit v IS</div>
+        </a>
+
+        <p class=" text-sm p-2 hover:bg-gray-100 text-red-600" @click="deleteExpense">Odstranit výdaj</p>
       </div>
     </Transition>
 
