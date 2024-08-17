@@ -4,8 +4,8 @@
   </Head>
 
   <div v-if="loaded">
-    <div class="md:flex md:justify-between mb-4 divide-x divide-slate-100 h-auto">
-      <div class="w-full me-5">
+    <div class="md:flex md:justify-between mb-4 divide-x divide-slate-100 h-screen">
+      <div class="w-full me-5 overflow-scroll">
         <div class="flex justify-between">
           <input type="text"
                  class="p-0 w-full text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-3 border-none focus:ring-0"
@@ -41,7 +41,7 @@
 
         <expense-status-select :expense="expense"/>
 
-        <expense-organisation-picker :expense="expense" />
+        <expense-organisation-picker :expense="expense"/>
 
         <p class="text-xs px-1 font-medium text-gray-500 mb-2">Kategorie výdaje</p>
 
