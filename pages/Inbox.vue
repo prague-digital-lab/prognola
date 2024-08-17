@@ -12,7 +12,7 @@
       <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
 
       <div v-if="expenses.length === 0" class="w-full flex items-center justify-center h-[400px]">
-        <p class="text-gray-600">Žádné odpovídající výdaje.</p>
+        <p class="text-gray-600">Všechny výdaje jsou zpracované. ✅<br>Tak se to musí!</p>
       </div>
     </div>
 
