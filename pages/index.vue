@@ -45,7 +45,7 @@
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Výsledek</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(profit_sum) }} Kč</dd>
+          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(profit_sum + profit_plan_sum) }} Kč</dd>
         </div>
       </dl>
     </div>
@@ -113,6 +113,7 @@ export default {
       expense_sum: 0,
       expense_plan_sum: 0,
       profit_sum: 0,
+      profit_plan_sum: 0,
     }
   },
 
@@ -225,6 +226,7 @@ export default {
       this.expense_sum = data.value.expense_sum
       this.expense_plan_sum = data.value.expense_plan_sum
       this.profit_sum = data.value.profit_sum
+      this.profit_plan_sum = data.value.profit_plan_sum
 
       this.loaded = true
     },
