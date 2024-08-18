@@ -27,13 +27,19 @@
       <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Příjmy</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(income_sum) }} Kč</dd>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-400">{{ formatPrice(income_plan_sum) }} Kč</dd>
+          <dd class="mt-1 text-xl font-semibold tracking-tight text-blue-700">
+            {{ formatPrice(income_sum) }} Kč
+            <span class="mt-1 ms-1 text-xl font-semibold tracking-tight text-blue-400"> + {{ formatPrice(income_plan_sum) }} Kč</span>
+          </dd>
+
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Výdaje</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(expense_sum) }} Kč</dd>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-400">{{ formatPrice(expense_plan_sum) }} Kč</dd>
+          <dd class="mt-1 text-xl font-semibold tracking-tight text-red-700">
+            {{ formatPrice(expense_sum) }} Kč
+            <span class="mt-1 ms-1 text-xl font-semibold tracking-tight text-red-400">
+            + {{ formatPrice(expense_plan_sum) }} Kč</span>
+          </dd>
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Výsledek</dt>
