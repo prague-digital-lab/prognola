@@ -29,7 +29,9 @@
           <dt class="truncate text-sm font-medium text-gray-500">Příjmy</dt>
           <dd class="mt-1 text-xl font-semibold tracking-tight text-blue-700">
             {{ formatPrice(income_sum) }} Kč
-            <span class="mt-1 ms-1 text-xl font-semibold tracking-tight text-blue-400"> + {{ formatPrice(income_plan_sum) }} Kč</span>
+            <span class="mt-1 ms-1 text-xl font-semibold tracking-tight text-blue-400"> + {{
+                formatPrice(income_plan_sum)
+              }} Kč</span>
           </dd>
 
         </div>
@@ -158,7 +160,24 @@ export default {
             borderWidth: 3,
             hidden: false,
             cubicInterpolationMode: 'monotone',
-            tension: 0.1
+            tension: 0.1,
+            stack: 'stack 0',
+          },
+
+          {
+            label: 'Plán příjmů',
+            data: data.value.chart_data_income_plan,
+            backgroundColor: [
+              'rgb(167,185,255)',
+            ],
+            borderColor: [
+              'rgb(95,148,189)',
+            ],
+            borderWidth: 3,
+            hidden: false,
+            cubicInterpolationMode: 'monotone',
+            tension: 0.1,
+            stack: 'stack 0',
           },
 
           {
@@ -172,14 +191,29 @@ export default {
                 [
                   'rgb(208,3,3)',
                 ],
-            borderWidth:
-                3,
-            hidden:
-                false,
-            cubicInterpolationMode:
-                'monotone',
-            tension:
-                0.1
+            borderWidth: 3,
+            hidden: false,
+            cubicInterpolationMode: 'monotone',
+            tension: 0.1,
+            stack: 'stack 1',
+          },
+
+          {
+            label: 'Plán výdajů',
+            data: data.value.chart_data_expense_plan,
+            backgroundColor:
+                [
+                  'rgba(255,0,0,0.56)',
+                ],
+            borderColor:
+                [
+                  'rgb(208,3,3)',
+                ],
+            borderWidth: 3,
+            hidden: false,
+            cubicInterpolationMode: 'monotone',
+            tension: 0.1,
+            stack: 'stack 1',
           },
 
           {
