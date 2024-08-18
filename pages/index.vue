@@ -187,7 +187,7 @@ export default {
             data: data.value.chart_data_expense,
             backgroundColor:
                 [
-                  'rgba(255,0,0,0.56)',
+                  'rgba(185,28,28)',
                 ],
             borderColor:
                 [
