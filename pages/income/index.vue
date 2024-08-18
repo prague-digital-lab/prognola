@@ -48,13 +48,13 @@
            v-for="category in incomes_by_category">
 
         <div class="w-full bg-slate-100 ps-3 py-2 text-sm text-gray-600">
-          {{ category[0].income_category ? category[0].income_category.name : 'Výdaje bez kategorie' }}
+          {{ category[0].income_category ? category[0].income_category.name : 'Příjmy bez kategorie' }}
         </div>
         <income-row v-for="income in category" :income="income"></income-row>
       </div>
 
       <div v-if="incomes.length === 0" class="w-full flex items-center justify-center h-[400px]">
-        <p class="text-gray-600">Žádné odpovídající výdaje.</p>
+        <p class="text-gray-600">Žádné odpovídající příjmy.</p>
       </div>
     </div>
 

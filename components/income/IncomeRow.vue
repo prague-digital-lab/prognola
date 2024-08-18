@@ -1,7 +1,7 @@
 <template>
   <div class="px-3 py-2 hover:bg-slate-50 flex justify-between items-center" @click="navigateToIncome">
     <div class="text-sm flex">
-      <p class="text-gray-500 w-[60px] font-light">V-{{ income.id }}</p>
+      <p class="text-gray-500 w-[60px] font-light">P-{{ income.id }}</p>
       <p class="w-[400px]">{{ income.name }}</p>
     </div>
 
