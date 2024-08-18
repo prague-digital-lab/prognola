@@ -152,7 +152,7 @@ export default {
             label: 'Příjmy',
             data: data.value.chart_data_income,
             backgroundColor: [
-              'rgb(29,78,216)',
+              'rgb(114,143,252)',
             ],
             borderColor: [
               'rgb(4,87,147)',
