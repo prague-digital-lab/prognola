@@ -85,7 +85,7 @@
       <div class="flex grow bg-slate-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link href="/" class="cursor-default">
-            <img class="h-8 w-auto" src="/img/logo_horizontal_sm.webp" alt="Your Company"/>
+            <p class="font-bold text-slate-800 tracking-wide">Cashflow a finance</p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
@@ -94,10 +94,10 @@
               <ul role="list" class="-mx-2 space-y-1">
                 <li v-for="item in navigation" :key="item.name">
                   <NuxtLink :href="item.href"
-                            class="text-gray-700 hover:bg-gray-100 hover:text-indigo-600 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6"
+                            class="text-gray-700 hover:bg-gray-100 hover:text-indigo-600 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-4"
                             :active-class="'bg-gray-100 text-indigo-600'">
                     <component :is="item.icon"
-                               class="group-hover:text-indigo-600 h-5 w-5 shrink-0"
+                               class="group-hover:text-indigo-600 h-4 w-4 shrink-0"
                                :active-class="'text-indigo-600'"/>
                     {{ item.name }}
                   </NuxtLink>
