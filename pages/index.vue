@@ -169,10 +169,6 @@ export default {
             backgroundColor: [
               'rgb(167,185,255)',
             ],
-            borderColor: [
-              'rgb(95,148,189)',
-            ],
-            borderWidth: 1,
             hidden: false,
             cubicInterpolationMode: 'monotone',
             tension: 0.1,
@@ -187,11 +183,6 @@ export default {
                 [
                   'rgba(255,0,0,0.56)',
                 ],
-            borderColor:
-                [
-                  'rgb(208,3,3)',
-                ],
-            borderWidth: 1,
             hidden: false,
             cubicInterpolationMode: 'monotone',
             tension: 0.1,
@@ -206,11 +197,6 @@ export default {
                 [
                   'rgba(250,152,152,0.56)',
                 ],
-            borderColor:
-                [
-                  'rgb(223,82,82)',
-                ],
-            borderWidth: 1,
             hidden: false,
             cubicInterpolationMode: 'monotone',
             tension: 0.1,
@@ -226,12 +212,6 @@ export default {
                 [
                   'rgba(0,0,0,0.56)',
                 ],
-            borderColor:
-                [
-                  'rgb(9,9,9)',
-                ],
-            borderWidth:
-                3,
             hidden:
                 false,
             cubicInterpolationMode:
