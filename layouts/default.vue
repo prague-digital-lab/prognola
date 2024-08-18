@@ -82,10 +82,10 @@
     <!-- Static sidebar for desktop -->
     <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
       <!-- Sidebar component, swap this element with another sidebar if you like -->
-      <div class="flex grow bg-slate-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
+      <div class="flex grow bg-zinc-100 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link href="/" class="cursor-default">
-            <p class="font-semibold text-slate-800 tracking-wide">Finanční řízení</p>
+            <p class="font-semibold text-zinc-700 tracking-wide">Finanční řízení</p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
@@ -131,9 +131,10 @@
       </div>
     </div>
 
+    <!-- Top navbar -->
     <div class="lg:pl-72">
       <div
-          class="sticky top-0 z-40 flex h-14 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-slate-50 px-4 sm:gap-x-6 sm:px-6 lg:px-8">
+          class="sticky top-0 z-40 flex h-14 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-zinc-50 px-4 sm:gap-x-6 sm:px-6 lg:px-8">
         <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = true">
           <span class="sr-only">Open sidebar</span>
           <Bars3Icon class="h-6 w-6" aria-hidden="true"/>
