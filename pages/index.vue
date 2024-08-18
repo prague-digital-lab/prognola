@@ -143,8 +143,6 @@ export default {
           })
       )
 
-      // const data = await $fetch(`/api/stats/income?from=${this.from}&to=${this.to}`)
-
       this.chartData = {
         labels: data.value.chart_labels,
         datasets: [
