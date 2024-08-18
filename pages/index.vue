@@ -152,10 +152,6 @@ export default {
             backgroundColor: [
               'rgb(114,143,252)',
             ],
-            borderColor: [
-              'rgb(4,87,147)',
-            ],
-            borderWidth: 1,
             hidden: false,
             cubicInterpolationMode: 'monotone',
             tension: 0.1,
