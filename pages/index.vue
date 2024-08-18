@@ -169,7 +169,7 @@ export default {
             label: 'Plán příjmů',
             data: data.value.chart_data_income_plan,
             backgroundColor: [
-              'rgb(96,165,250)',
+              'rgb(167,185,255)',
             ],
             borderColor: [
               'rgb(95,148,189)',
@@ -187,7 +187,7 @@ export default {
             data: data.value.chart_data_expense,
             backgroundColor:
                 [
-                  'rgba(185,28,28)',
+                  'rgba(255,0,0,0.56)',
                 ],
             borderColor:
                 [
