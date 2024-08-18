@@ -203,11 +203,11 @@ export default {
             data: data.value.chart_data_expense_plan,
             backgroundColor:
                 [
-                  'rgba(255,0,0,0.56)',
+                  'rgba(250,152,152,0.56)',
                 ],
             borderColor:
                 [
-                  'rgb(208,3,3)',
+                  'rgb(223,82,82)',
                 ],
             borderWidth: 3,
             hidden: false,
