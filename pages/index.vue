@@ -28,10 +28,12 @@
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Příjmy</dt>
           <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(income_sum) }} Kč</dd>
+          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-400">{{ formatPrice(income_plan_sum) }} Kč</dd>
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Výdaje</dt>
           <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(expense_sum) }} Kč</dd>
+          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-400">{{ formatPrice(expense_plan_sum) }} Kč</dd>
         </div>
         <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
           <dt class="truncate text-sm font-medium text-gray-500">Výsledek</dt>
@@ -99,7 +101,9 @@ export default {
       },
 
       income_sum: 0,
+      income_plan_sum: 0,
       expense_sum: 0,
+      expense_plan_sum: 0,
       profit_sum: 0,
     }
   },
@@ -213,7 +217,9 @@ export default {
       }
 
       this.income_sum = data.value.income_sum
+      this.income_plan_sum = data.value.income_plan_sum
       this.expense_sum = data.value.expense_sum
+      this.expense_plan_sum = data.value.expense_plan_sum
       this.profit_sum = data.value.profit_sum
 
       this.loaded = true
