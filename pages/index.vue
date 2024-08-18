@@ -141,20 +141,6 @@ export default {
         labels: data.value.chart_labels,
         datasets: [
           {
-            label: 'Odhad příjmů',
-            data: data.value.chart_data_income_prognosis,
-            backgroundColor: [
-              'rgba(51,169,255,0.48)',
-            ],
-            borderColor: [
-              'rgb(3,99,208)',
-            ],
-            borderWidth: 3,
-            hidden: false,
-            cubicInterpolationMode: 'monotone',
-            tension: 0.1
-          },
-          {
             label: 'Příjmy',
             data: data.value.chart_data_income,
             backgroundColor: [
