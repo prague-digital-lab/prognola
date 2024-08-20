@@ -6,7 +6,7 @@
     </div>
 
     <div class="text-sm text-slate-600 font-light flex items-center">
-
+      <p class="font-bold">{{formatPrice(bank_account.current_amount)}} Kč</p>
     </div>
   </div>
 </template>
