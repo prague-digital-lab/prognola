@@ -228,12 +228,13 @@ import {
   ChevronDownIcon,
   UsersIcon,
   DocumentDuplicateIcon,
-  InboxIcon
+  InboxIcon, WalletIcon
 } from '@heroicons/vue/20/solid'
 
 const navigation = [
   {name: 'Ke zpracování', href: '/inbox', icon: InboxIcon, current: false},
   {name: 'Cashflow', href: '/', icon: ChartBarIcon, current: false},
+  {name: 'Účty', href: '/bank_accounts', icon: WalletIcon, current: false},
   {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
   {name: 'Výdaje', href: '/expenses', icon: BanknotesIcon, current: false},
   {name: 'Report tržeb', href: '/invoices', icon: UsersIcon, current: false},
