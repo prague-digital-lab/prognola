@@ -11,10 +11,14 @@
                  class="p-0 w-full text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-3 border-none focus:ring-0"
                  placeholder="Název účtu" v-model="input_name" v-on:blur="updateName">
 
-
           <div>
-            <!--            <bank_account-options :bank_account="bank_account"/>-->
+            <bank-account-options :bank_account="bank_account"/>
           </div>
+
+
+<!--          <div>-->
+<!--            &lt;!&ndash;            <bank_account-options :bank_account="bank_account"/>&ndash;&gt;-->
+<!--          </div>-->
 
           <div class="mt-4 flex md:ml-4 md:mt-0">
                        <div class="me-2">
