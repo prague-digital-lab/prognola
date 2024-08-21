@@ -35,7 +35,7 @@ export default {
       <div v-if="expanded"
            class="absolute left-[-150px] top-[-5px] w-[147px] bg-white border-slate-200 border shadow rounded px-1 py-1">
 
-        <nuxt-link :href="'/bank_accounts/' + bank_account.id + '/import-kb-csv'">
+        <nuxt-link :href="'/bank_accounts/' + bank_account.id + '/import-kb-csv'" v-if="bank_account.bank === 'komercni_banka_csv'">
           <div class="w-full p-2 text-sm text-slate-600 hover:bg-gray-100">Importovat transakce z CSV</div>
         </nuxt-link>
       </div>

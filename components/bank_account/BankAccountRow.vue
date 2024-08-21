@@ -3,6 +3,7 @@
     <div class="text-sm flex">
       <p class="text-gray-500 w-[60px] font-light">{{ bank_account.id }}</p>
       <p class="w-[400px]">{{ bank_account.name }}</p>
+      <p class="w-[400px] italic">{{ bank_account.bank }}</p>
     </div>
 
     <div class="text-sm text-slate-600 font-light flex items-center">
