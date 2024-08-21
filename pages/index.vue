@@ -1,63 +1,82 @@
 <template>
   <div>
-    <div class="md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
-        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate  sm:tracking-tight">Cashflow</h2>
-      </div>
-      <div class="mt-4 flex md:ml-4 md:mt-0">
-        <div class="me-2">
-          <div class="mt-2">
-            <input type="date" v-model="from"
-                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                   placeholder="you@example.com"/>
-          </div>
-        </div>
-
-        <div>
-          <div class="mt-2">
-            <input type="date" v-model="to"
-                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                   placeholder="you@example.com"/>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mb-5">
-      <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-          <dt class="truncate text-sm font-medium text-gray-500">Příjmy</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-blue-700">
-            {{ formatPrice(income_sum) }} Kč
-            <span class="mt-1 ms-1 text-xl font-semibold tracking-tight text-blue-400"> + {{
-                formatPrice(income_plan_sum)
-              }} Kč</span>
-          </dd>
-
-        </div>
-        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-          <dt class="truncate text-sm font-medium text-gray-500">Výdaje</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-red-700">
-            {{ formatPrice(expense_sum) }} Kč
-            <span class="mt-1 ms-1 text-xl font-semibold tracking-tight text-red-400">
-            + {{ formatPrice(expense_plan_sum) }} Kč</span>
-          </dd>
-        </div>
-        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-          <dt class="truncate text-sm font-medium text-gray-500">Výsledek</dt>
-          <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">{{ formatPrice(profit_sum + profit_plan_sum) }} Kč</dd>
-        </div>
-      </dl>
-    </div>
-
-
     <div v-if="loaded">
+      <div class="md:flex md:items-center md:justify-between">
+        <div class="min-w-0 flex-1">
+          <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate  sm:tracking-tight">Cashflow</h2>
+        </div>
+        <div class="mt-4 flex md:ml-4 md:mt-0">
+          <div class="me-2">
+            <div class="mt-2">
+              <input type="date" v-model="from"
+                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                     placeholder="you@example.com"/>
+            </div>
+          </div>
+
+
+          <div>
+            <div class="mt-2">
+              <input type="date" v-model="to"
+                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                     placeholder="you@example.com"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="mb-5">
+        <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+            <dt class="truncate text-sm font-medium text-gray-500">Příjmy</dt>
+            <dd class="mt-1 text-xl font-semibold tracking-tight text-blue-700">
+              {{ formatPrice(income_sum) }} Kč
+              <span class="mt-1 ms-1 text-xl font-semibold tracking-tight text-blue-400"> + {{
+                  formatPrice(income_plan_sum)
+                }} Kč</span>
+            </dd>
+
+          </div>
+          <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+            <dt class="truncate text-sm font-medium text-gray-500">Výdaje</dt>
+            <dd class="mt-1 text-xl font-semibold tracking-tight text-red-700">
+              {{ formatPrice(expense_sum) }} Kč
+              <span class="mt-1 ms-1 text-xl font-semibold tracking-tight text-red-400">
+            + {{ formatPrice(expense_plan_sum) }} Kč</span>
+            </dd>
+          </div>
+          <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+            <dt class="truncate text-sm font-medium text-gray-500">Výsledek</dt>
+            <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">
+              {{ formatPrice(profit_sum + profit_plan_sum) }} Kč
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+
       <Bar
           id="my-chart-id"
           :options="chartOptions"
           :data="chartData"
       />
     </div>
+
+    <div v-else class="flex justify-center h-[600px] items-center">
+      <div class="atom-spinner">
+        <div class="spinner-inner">
+          <div class="spinner-line"></div>
+          <div class="spinner-line"></div>
+          <div class="spinner-line"></div>
+          <!--Chrome renders little circles malformed :(-->
+          <div class="spinner-circle">
+            &#9679;
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -239,3 +258,79 @@ export default {
 }
 
 </script>
+
+<style>
+.atom-spinner, .atom-spinner * {
+  box-sizing: border-box;
+}
+
+.atom-spinner {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+}
+
+.atom-spinner .spinner-inner {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.atom-spinner .spinner-circle {
+  display: block;
+  position: absolute;
+  color: #717171;
+  font-size: calc(60px * 0.24);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.atom-spinner .spinner-line {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation-duration: 1s;
+  border-left-width: calc(60px / 25);
+  border-top-width: calc(60px / 25);
+  border-left-color: #bfbfbf;
+  border-left-style: solid;
+  border-top-style: solid;
+  border-top-color: transparent;
+}
+
+.atom-spinner .spinner-line:nth-child(1) {
+  animation: atom-spinner-animation-1 1s linear infinite;
+  transform: rotateZ(120deg) rotateX(66deg) rotateZ(0deg);
+}
+
+.atom-spinner .spinner-line:nth-child(2) {
+  animation: atom-spinner-animation-2 1s linear infinite;
+  transform: rotateZ(240deg) rotateX(66deg) rotateZ(0deg);
+}
+
+.atom-spinner .spinner-line:nth-child(3) {
+  animation: atom-spinner-animation-3 1s linear infinite;
+  transform: rotateZ(360deg) rotateX(66deg) rotateZ(0deg);
+}
+
+@keyframes atom-spinner-animation-1 {
+  100% {
+    transform: rotateZ(120deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes atom-spinner-animation-2 {
+  100% {
+    transform: rotateZ(240deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes atom-spinner-animation-3 {
+  100% {
+    transform: rotateZ(360deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+</style>
