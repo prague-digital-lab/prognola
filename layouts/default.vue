@@ -249,7 +249,7 @@ const teams = [
   // {id: 3, name: 'Workcation', href: '#', initial: 'W', current: false},
 ]
 const userNavigation = [
-  {name: 'Recepce', href: 'https://valasskapevnost.cz/admin/recepce'},
+  // {name: 'Recepce', href: 'https://valasskapevnost.cz/admin/recepce'},
 ]
 
 const {user} = useSanctumAuth();
