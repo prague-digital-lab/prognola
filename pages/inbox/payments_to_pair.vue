@@ -51,7 +51,7 @@ export default {
           client('/api/bank_payments', {
             method: 'GET',
             params: {
-              date_from: '2024-01-01',
+              from: '2024-01-01',
               not_paired: true
             },
           })
