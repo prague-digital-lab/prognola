@@ -129,7 +129,7 @@ export default {
 
   computed: {
     title() {
-      return this.income ? this.income.name + ' - Finance' : 'Detail příjmu - Finance'
+      return this.income ? this.income.name + ' - Prognosol' : 'Detail příjmu - Prognosol'
     }
   },
 

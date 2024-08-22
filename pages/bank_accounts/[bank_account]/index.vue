@@ -108,7 +108,7 @@ export default {
 
   computed: {
     title() {
-      return this.bank_account ? this.bank_account.name + ' - Finance' : 'Detail platby - Prognosol Finance'
+      return this.bank_account ? this.bank_account.name + ' - Prognosol' : 'Detail platby - Prognosol'
     }
   },
 
