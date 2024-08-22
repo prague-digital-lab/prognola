@@ -2,14 +2,15 @@
   <div>
     <div class="md:flex md:items-center md:justify-between mb-4">
       <div class="min-w-0 flex-1">
-        <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-4">Platby ke spárování</h4>
+        <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-4">Platby ke
+          spárování</h4>
 
-        <p class="text-gray-500 text-sm" v-if="loaded">Celkem plateb ke spárování: {{payments.length}}</p>
+        <p class="text-gray-500 text-sm" v-if="loaded">Celkem plateb ke spárování: {{ payments.length }}</p>
       </div>
     </div>
 
     <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4" v-if="loaded">
-      <bank-payment-row v-for="payment in payments" :bank_payment="payment" />
+      <bank-payment-row v-for="payment in payments" :bank_payment="payment"/>
 
       <div v-if="payments.length === 0" class="w-full flex items-center justify-center h-[400px]">
         <p class="text-gray-600 text-center">Všechny úhrady jsou spárované. ✅
@@ -52,7 +53,8 @@ export default {
             method: 'GET',
             params: {
               from: '2024-01-01',
-              not_paired: true
+              not_paired: true,
+              type: 'expense'
             },
           })
       )
