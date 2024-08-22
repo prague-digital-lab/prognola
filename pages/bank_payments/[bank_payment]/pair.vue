@@ -85,7 +85,16 @@
         </div>
       </div>
 
-      <h2 class="mb-2 mt-4 text-gray-700 font-semibold text-sm">Vyhledávání výdaje ke spárování</h2>
+
+      <div class="flex items-center justify-between">
+        <h2 class="mb-2 mt-4 text-gray-700 font-semibold text-sm">Vyhledávání výdaje ke spárování</h2>
+
+        <a type="button"
+           class="rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+           @click="createNewExpense">
+          Vytvořit nový výdaj
+        </a>
+      </div>
 
       <div class="overflow-hidden bg-white shadow sm:rounded-lg border border-gray-100 sm:px-6 mb-4 py-2">
         <input placeholder="Název výdaje" class="me-4 rounded" v-model="name_query">
@@ -96,7 +105,7 @@
 
 
       <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4" v-if="expenses_loaded">
-        <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
+        <expense-row v-for="expense in expenses" :expense="expense" @click="pairExpense(expense)"></expense-row>
 
         <div v-if="expenses.length === 0" class="w-full flex items-center justify-center h-[100px]">
           <p class="text-gray-600">Žádné odpovídající výdaje ke spárování.</p>
@@ -179,6 +188,69 @@ export default {
 
       this.expenses = data.value.data
       this.expenses_loaded = true;
+    },
+
+    async createNewExpense() {
+
+      const client = useSanctumClient();
+
+      const {data} = await useAsyncData('expense', () =>
+          client('/api/expenses', {
+            method: 'POST',
+            body: {
+              description: 'Výdaj vytvořený podle platby',
+              price: this.bank_payment.amount * -1,
+              payment_status: 'paid',
+              received_at: this.bank_payment.issued_at,
+              paid_at: this.bank_payment.issued_at,
+            }
+          })
+      )
+
+      let id = data.value.id
+
+      const pairing_data = await useAsyncData('expense', () =>
+          client('/api/expenses/' + id + '/bank_payments', {
+            method: 'POST',
+            body: {
+              bank_payment_id: this.bank_payment.id
+            }
+          })
+      )
+
+      await navigateTo('/expenses/' + id)
+
+      // $expense = new ReceivedInvoice();
+      // $expense->description = $this->new_expense_name;
+      // $expense->price = abs($this->bank_payment->amount);
+      // $expense->payment_status = ReceivedInvoice::PAYMENT_STATUS_PAID;
+      // $expense->received_at = $this->bank_payment->issued_at;
+      // $expense->due_at = $this->bank_payment->issued_at;
+      // $expense->created_by_user_id = Auth::id();
+      // $expense->internal_note = 'Výdaj byl nagenerován podle bankovní platby s ID ' . $this->bank_payment->id . '.';
+      // $expense->save();
+      //
+      // $expense->bank_payments()->attach($this->bank_payment, ['bank_payment_received_invoice.amount' => abs($this->bank_payment->amount)]);
+      //
+      // (new ReceivedInvoiceController)->recountPairedState($expense);
+      //
+      // $this->redirectRoute('admin.received_invoices.show', $expense);
+
+    },
+
+    async pairExpense(expense) {
+      const client = useSanctumClient();
+
+      const pairing_data = await useAsyncData('expense', () =>
+          client('/api/expenses/' + expense.id + '/bank_payments', {
+            method: 'POST',
+            body: {
+              bank_payment_id: this.bank_payment.id
+            }
+          })
+      )
+
+      await navigateTo('/inbox/payments_to_pair');
     }
   }
 }
