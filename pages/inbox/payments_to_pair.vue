@@ -60,7 +60,6 @@ export default {
       )
 
       this.payments = data.value
-
       this.loaded = true
     },
 
