@@ -22,7 +22,7 @@
           <dl class="divide-y divide-gray-100">
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Částka</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <dd class="mt-1 text-sm leading-6 text-red-700 font-bold sm:col-span-2 sm:mt-0">
                 {{ formatPrice(bank_payment.amount) }} Kč
               </dd>
             </div>
@@ -85,17 +85,17 @@
         </div>
       </div>
 
-      <h2>Vyhledávání výdaje ke spárování</h2>
+      <h2 class="mb-2 mt-4 text-gray-700 font-semibold text-sm">Vyhledávání výdaje ke spárování</h2>
 
-      <div class="overflow-hidden bg-white shadow sm:rounded-lg border border-gray-100 sm:px-6 mb-4">
-        <input placeholder="Název výdaje" v-model="name_query">
-        <input placeholder="Částka" v-model="price_query">
+      <div class="overflow-hidden bg-white shadow sm:rounded-lg border border-gray-100 sm:px-6 mb-4 py-2">
+        <input placeholder="Název výdaje" class="me-4 rounded" v-model="name_query">
+        <input placeholder="Částka" class="me-4 rounded" v-model="price_query">
 
-        <a @click="searchExpenses">Vyhledat výdaje</a>
+        <a @click="searchExpenses" class="cursor-pointer">Vyhledat výdaje</a>
       </div>
 
 
-      <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4">
+      <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4" v-if="expenses_loaded">
         <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
 
         <div v-if="expenses.length === 0" class="w-full flex items-center justify-center h-[100px]">
@@ -123,6 +123,7 @@ export default {
       name_query: '',
 
       expenses: [],
+      expenses_loaded: false,
     }
   },
 
@@ -133,6 +134,7 @@ export default {
 
   methods: {
     formatDate,
+
     async fetchBankPayment() {
       const client = useSanctumClient();
 
@@ -143,6 +145,7 @@ export default {
       )
 
       this.bank_payment = data.value
+      this.price_query = this.bank_payment.amount * -1
       this.loaded = true
 
     },
@@ -155,18 +158,27 @@ export default {
     async searchExpenses() {
       const client = useSanctumClient();
 
+      let params = {
+        is_paired: false,
+      }
+
+      if (this.name_query) {
+        params.query = this.name_query
+      }
+
+      if (this.price_query) {
+        params.price = this.price_query
+      }
+
       const {data} = await useAsyncData('bank_payment_pairing_expenses', () =>
           client('/api/expenses', {
             method: 'GET',
-            params: {
-              is_paired: false,
-              query: this.name_query,
-              price: this.price_query
-            },
+            params: params
           })
       )
 
       this.expenses = data.value.data
+      this.expenses_loaded = true;
     }
   }
 }
