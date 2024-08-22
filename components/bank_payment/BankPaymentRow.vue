@@ -10,7 +10,7 @@
 <!--    </div>-->
 
     <table class="w-full text-sm">
-      <tr @click="navigateToBankPayment">
+      <tr>
         <td class="w-[10%]">{{ formatDate(bank_payment.issued_at) }}</td>
         <td class="w-[30%]">
           <a class="text-dark text-decoration-none">{{ bank_payment.description }}</a>

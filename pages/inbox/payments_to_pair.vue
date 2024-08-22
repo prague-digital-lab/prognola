@@ -10,7 +10,7 @@
     </div>
 
     <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4" v-if="loaded">
-      <bank-payment-row v-for="payment in payments" :bank_payment="payment"/>
+      <bank-payment-row v-for="payment in payments" :bank_payment="payment" @click="pairPayment(payment)"/>
 
       <div v-if="payments.length === 0" class="w-full flex items-center justify-center h-[400px]">
         <p class="text-gray-600 text-center">Všechny úhrady jsou spárované. ✅
@@ -67,6 +67,10 @@ export default {
       let val = (value / 1).toFixed(0).replace('.', ',')
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
     },
+
+    async pairPayment(payment) {
+      await navigateTo('/bank_payments/' + payment.id + '/pair')
+    }
   }
 }
 
