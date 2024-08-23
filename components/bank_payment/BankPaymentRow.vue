@@ -60,10 +60,6 @@ export default defineComponent({
 
       return formatted.toFormat('d.M.yyyy')
     },
-
-    async navigateToBankPayment() {
-      await navigateTo('/bank_payments/' + this.bank_account.id)
-    }
   }
 })
 </script>

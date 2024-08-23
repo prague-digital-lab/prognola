@@ -43,7 +43,7 @@
         <p class="text-gray-500 text-sm mb-5">Účet</p>
 
         <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4">
-          <bank-payment-row v-for="bank_payment in bank_payments" :bank_payment="bank_payment"/>
+          <bank-payment-row v-for="bank_payment in bank_payments" @click="navigateToPayment(bank_payment)" :bank_payment="bank_payment"/>
 
           <div v-if="bank_payments.length === 0" class="w-full flex items-center justify-center h-[400px]">
             <p class="text-gray-600">Žádné odpovídající platby.</p>
@@ -59,6 +59,8 @@
 <script>
 // import bank_accountStatusSelect from "~/components/bank_account/bank_accountStatusSelect.vue";
 // import bank_accountPaidAtInput from "~/components/bank_account/bank_accountPaidAtInput.vue";
+
+import bank_payment from "~/pages/bank_payments/[bank_payment]/index.vue";
 
 export default {
   // components: {bank_accountPaidAtInput, bank_accountStatusSelect},
@@ -107,12 +109,19 @@ export default {
   },
 
   computed: {
+    bank_payment() {
+      return bank_payment
+    },
     title() {
       return this.bank_account ? this.bank_account.name + ' - Prognosol' : 'Detail platby - Prognosol'
     }
   },
 
   methods: {
+    async navigateToPayment(payment){
+      await navigateTo('/bank_payments/'+ payment.id);
+    },
+
     async fetchData() {
       const client = useSanctumClient();
 

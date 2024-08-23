@@ -7,6 +7,10 @@ export default {
       let val = (value / 1).toFixed(0).replace('.', ',')
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
     },
+
+    async navigateToPayment(payment){
+      await navigateTo('/bank_payments/'+ payment.id);
+    },
   }
 }
 </script>
@@ -20,7 +24,7 @@ export default {
     </div>
 
 
-    <p class="text-xs py-1 px-1 rounded text-gray-800 hover:bg-gray-100 mb-1" v-for="payment in expense.bank_payments">
+    <p class="text-xs py-1 px-1 rounded text-gray-800 hover:bg-gray-100 mb-1" v-for="payment in expense.bank_payments" @click="navigateToPayment(payment)">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
            class="size-5 text-gray-600 inline-block me-2">
         <path fill-rule="evenodd"
