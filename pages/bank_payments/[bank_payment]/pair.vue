@@ -105,7 +105,7 @@
 
 
       <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4" v-if="expenses_loaded">
-        <expense-row v-for="expense in expenses" :expense="expense" @click="pairExpense(expense)"></expense-row>
+        <expense-row-pair v-for="expense in expenses" :expense="expense" @click="pairExpense(expense)"></expense-row-pair>
 
         <div v-if="expenses.length === 0" class="w-full flex items-center justify-center h-[100px]">
           <p class="text-gray-600">Žádné odpovídající výdaje ke spárování.</p>
