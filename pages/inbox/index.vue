@@ -6,10 +6,17 @@
       </div>
     </div>
 
-    <nuxt-link href="/inbox/expense_drafts">Výdaje ke zpracování</nuxt-link>
-    <br>
-    <nuxt-link href="/inbox/payments_to_pair">Platby ke spárování</nuxt-link>
-    <br>
+    <div class="mb-4 divide-y divide-gray-200 h-auto rounded border-gray-200 border">
+      <nuxt-link href="/inbox/expense_drafts">
+        <div class="px-3 py-2 hover:bg-slate-50 text-gray-700 text-sm">
+          Výdaje ke zpracování
+        </div>
+      </nuxt-link>
+
+      <div class="px-3 py-2 hover:bg-slate-50 text-gray-700 text-sm">
+        <nuxt-link href="/inbox/payments_to_pair">Platby ke spárování</nuxt-link>
+      </div>
+    </div>
 
   </div>
 </template>
