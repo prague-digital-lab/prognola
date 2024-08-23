@@ -198,7 +198,7 @@ export default {
           client('/api/expenses', {
             method: 'POST',
             body: {
-              description: 'Výdaj vytvořený podle platby',
+              description: this.bank_payment.description,
               price: this.bank_payment.amount * -1,
               payment_status: 'paid',
               received_at: this.bank_payment.issued_at,
@@ -219,23 +219,6 @@ export default {
       )
 
       await navigateTo('/expenses/' + id)
-
-      // $expense = new ReceivedInvoice();
-      // $expense->description = $this->new_expense_name;
-      // $expense->price = abs($this->bank_payment->amount);
-      // $expense->payment_status = ReceivedInvoice::PAYMENT_STATUS_PAID;
-      // $expense->received_at = $this->bank_payment->issued_at;
-      // $expense->due_at = $this->bank_payment->issued_at;
-      // $expense->created_by_user_id = Auth::id();
-      // $expense->internal_note = 'Výdaj byl nagenerován podle bankovní platby s ID ' . $this->bank_payment->id . '.';
-      // $expense->save();
-      //
-      // $expense->bank_payments()->attach($this->bank_payment, ['bank_payment_received_invoice.amount' => abs($this->bank_payment->amount)]);
-      //
-      // (new ReceivedInvoiceController)->recountPairedState($expense);
-      //
-      // $this->redirectRoute('admin.received_invoices.show', $expense);
-
     },
 
     async pairExpense(expense) {
