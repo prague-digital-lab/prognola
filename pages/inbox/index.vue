@@ -13,9 +13,11 @@
         </div>
       </nuxt-link>
 
-      <div class="px-3 py-2 hover:bg-slate-50 text-gray-700 text-sm">
-        <nuxt-link href="/inbox/payments_to_pair">Platby ke spárování</nuxt-link>
-      </div>
+      <nuxt-link href="/inbox/payments_to_pair">
+        <div class="px-3 py-2 hover:bg-slate-50 text-gray-700 text-sm">
+          Platby ke spárování
+        </div>
+      </nuxt-link>
     </div>
 
   </div>
