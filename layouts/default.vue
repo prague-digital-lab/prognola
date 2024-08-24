@@ -85,7 +85,7 @@
       <div class="flex grow bg-zinc-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link href="/" class="cursor-default">
-            <p class="font-semibold tracking-widest text-zinc-700 uppercase">Prognosol</p>
+            <p class="font-semibold tracking-widest text-zinc-500 uppercase text-lg">[<span class="text-indigo-600">Progno</span>sol<span class="text-indigo-600">]</span> </p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
@@ -238,6 +238,7 @@ const navigation = [
   {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
   {name: 'Výdaje', href: '/expenses', icon: BanknotesIcon, current: false},
   {name: 'Report tržeb', href: '/invoices', icon: UsersIcon, current: false},
+  // {name: 'Osoby', href: '/organisations', icon: UsersIcon, current: false},
   // {name: 'Projects', href: '#', icon: FolderIcon, current: false},
   // {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
   // {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},
