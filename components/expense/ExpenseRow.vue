@@ -6,7 +6,8 @@
     </div>
 
     <div class="text-sm text-slate-600 font-light flex items-center">
-      <div v-if="expense.organisation" class="rounded-[20px] border border-gray-200 px-3 py-1 flex items-center" @click="navigateToOrganisation(expense.organisation)">
+      <div v-if="expense.organisation" class="rounded-[20px] border border-gray-200 px-3 py-1 flex items-center"
+           @click="navigateToOrganisation(expense.organisation)">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
              class="size-4 inline-block me-2">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -17,32 +18,37 @@
         {{ expense.organisation.name }}
       </div>
 
-      <p class="ps-2" v-if="expense.paid_at">{{ formatDate(expense.paid_at) }}</p>
+      <p class="ps-4 w-[90px]" v-if="expense.received_at">{{ formatDate(expense.received_at) }}</p>
+      <p class="ps-2 w-[90px]" v-if="expense.paid_at">{{ formatDate(expense.paid_at) }}</p>
 
 
-      <div v-if="expense.payment_status === 'paid'" class="w-[120px]">
-        <p class="text-end ms-2">
-          {{ formatPrice(expense.price) }} Kč</p>
+      <div class="w-[90px]">
+        <div v-if="expense.payment_status === 'paid'">
+          <p class="text-end text-slate-700 font-semibold ms-2">
+            {{ formatPrice(expense.price) }} Kč</p>
+        </div>
+
+        <div v-else-if="expense.payment_status === 'draft'">
+          <p class="text-end me-2 text-purple-800 font-semibold">
+            ke zpracování</p>
+        </div>
+
+        <div v-else-if="expense.payment_status === 'plan'">
+          <p class="text-end ms-2 text-yellow-500 font-semibold">
+            ~{{ formatPrice(expense.price) }} Kč</p>
+        </div>
+
+        <div v-else>
+          <p class="text-end text-orange-400 font-bold ms-2">{{ formatPrice(expense.price) }} Kč</p>
+        </div>
+
       </div>
-
-      <div v-else-if="expense.payment_status === 'draft'" class="w-[120px]">
-        <p class="text-end me-2 text-purple-800 font-semibold">
-          ke zpracování</p>
-      </div>
-
-      <div v-else-if="expense.payment_status === 'plan'" class="w-[120px]">
-        <p class="text-end ms-2 text-yellow-500 font-semibold">
-          ~{{ formatPrice(expense.price) }} Kč</p>
-      </div>
-
-      <div v-else class="w-[120px]">
-        <p class="text-end text-orange-400 font-bold ms-2">{{ formatPrice(expense.price) }} Kč</p>
-      </div>
-
 
       <div class="ms-2">
-        <expense-status-icon :payment_status="expense.payment_status" />
+        <expense-status-icon :payment_status="expense.payment_status"/>
       </div>
+
+
     </div>
   </div>
 </template>
