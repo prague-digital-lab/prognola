@@ -280,7 +280,7 @@ export default {
 .atom-spinner .spinner-circle {
   display: block;
   position: absolute;
-  color: #717171;
+  color: rgb(79 70 229);
   font-size: calc(60px * 0.24);
   top: 50%;
   left: 50%;
@@ -295,24 +295,24 @@ export default {
   animation-duration: 1s;
   border-left-width: calc(60px / 25);
   border-top-width: calc(60px / 25);
-  border-left-color: #bfbfbf;
+  border-left-color: rgb(79 70 229);;
   border-left-style: solid;
   border-top-style: solid;
   border-top-color: transparent;
 }
 
 .atom-spinner .spinner-line:nth-child(1) {
-  animation: atom-spinner-animation-1 1s linear infinite;
+  animation: atom-spinner-animation-1 2s linear infinite;
   transform: rotateZ(120deg) rotateX(66deg) rotateZ(0deg);
 }
 
 .atom-spinner .spinner-line:nth-child(2) {
-  animation: atom-spinner-animation-2 1s linear infinite;
+  animation: atom-spinner-animation-2 2s linear infinite;
   transform: rotateZ(240deg) rotateX(66deg) rotateZ(0deg);
 }
 
 .atom-spinner .spinner-line:nth-child(3) {
-  animation: atom-spinner-animation-3 1s linear infinite;
+  animation: atom-spinner-animation-3 2s linear infinite;
   transform: rotateZ(360deg) rotateX(66deg) rotateZ(0deg);
 }
 
