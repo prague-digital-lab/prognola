@@ -6,7 +6,7 @@
     </div>
 
     <div class="text-sm text-slate-600 font-light flex items-center">
-      <div v-if="expense.organisation" class="rounded-[20px] border border-gray-200 px-3 py-1 flex items-center">
+      <div v-if="expense.organisation" class="rounded-[20px] border border-gray-200 px-3 py-1 flex items-center" @click="navigateToOrganisation(expense.organisation)">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
              class="size-4 inline-block me-2">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -70,6 +70,10 @@ export default defineComponent({
 
     async navigateToExpense() {
       await navigateTo('/expenses/' + this.expense.id)
+    },
+
+    async navigateToOrganisation(organisation) {
+      await navigateTo('/organisations/' + organisation.id)
     }
   }
 })
