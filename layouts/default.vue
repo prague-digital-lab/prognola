@@ -237,7 +237,7 @@ const navigation = [
   {name: 'Účty', href: '/bank_accounts', icon: WalletIcon, current: false},
   {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
   {name: 'Výdaje', href: '/expenses', icon: BanknotesIcon, current: false},
-  {name: 'Osoby', href: '/organisations', icon: UsersIcon, current: false},
+  {name: 'Adresář', href: '/organisations', icon: UsersIcon, current: false},
   {name: 'Report tržeb', href: '/invoices', icon: UsersIcon, current: false},
   // {name: 'Projects', href: '#', icon: FolderIcon, current: false},
   // {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
