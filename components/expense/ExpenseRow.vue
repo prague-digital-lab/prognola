@@ -22,7 +22,7 @@
       <p class="ps-2 w-[90px]" v-if="expense.paid_at">{{ formatDate(expense.paid_at) }}</p>
 
 
-      <div class="w-[90px]">
+      <div class="w-[120px]">
         <div v-if="expense.payment_status === 'paid'">
           <p class="text-end text-slate-700 font-semibold ms-2">
             {{ formatPrice(expense.price) }} Kč</p>
