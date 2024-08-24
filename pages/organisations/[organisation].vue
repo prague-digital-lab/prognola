@@ -9,26 +9,27 @@
         <div class="flex justify-between">
           <input type="text"
                  class="p-0 w-full text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-3 border-none focus:ring-0"
-                 placeholder="Název výdaje" v-model="input_description" v-on:blur="updateDescription">
+                 placeholder="Název" v-model="input_description" v-on:blur="updateDescription">
 
           <div>
-            <expense-options :expense="expense"/>
+            <!--            <organisation-options :organisation="organisation"/>-->
           </div>
 
         </div>
 
-        <p class="text-gray-500 text-sm mb-5">Výdaj V-{{ expense.id }}</p>
+        <p class="text-gray-500 text-sm mb-5">{{ organisation.id }}</p>
 
         <textarea v-model="input_internal_note" class="border-none focus:ring-0 p-0 text-sm text-slate-700 w-full mb-5"
                   placeholder="Přidat popis..." v-on:blur="updateInternalNote"></textarea>
 
-        <p class="text-sm text-gray-600 mb-2">Doklady</p>
+        <p class="text-sm text-gray-600 mb-2">Výdaje</p>
 
         <div class="border border-slate-200 rounded divide-y divide-slate-200">
-          <expense-scan-row :scan="scan" v-for="scan in expense.scans"></expense-scan-row>
+          <expense-row :expense="expense" v-for="expense in organisation.received_invoices"></expense-row>
 
           <div>
-            <a :href="'https://valasskapevnost.cz/admin/invoicing/received_invoices/' + expense.id" target="_blank">
+            <a :href="'https://valasskapevnost.cz/admin/invoicing/received_invoices/' + organisation.id"
+               target="_blank">
               <div class="w-full px-5 py-3 text-sm text-slate-600">Zobrazit v IS</div>
             </a>
           </div>
@@ -37,31 +38,31 @@
 
       <div class="w-[250px] ps-4">
 
-        <expense-price-input :expense="expense"/>
+        <!--        <organisation-price-input :organisation="organisation"/>-->
 
-        <expense-status-select :expense="expense"/>
+        <!--        <organisation-status-select :organisation="organisation"/>-->
 
-        <expense-organisation-picker :expense="expense"/>
+        <!--        <organisation-organisation-picker :organisation="organisation"/>-->
 
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Kategorie výdaje</p>
+        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Kategorie výdaje</p>-->
 
-        <expense-category-picker :expense="expense"/>
+        <!--        <organisation-category-picker :organisation="organisation"/>-->
 
-        <expense-payments-picker :expense="expense"/>
+        <!--        <organisation-payments-picker :organisation="organisation"/>-->
 
 
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Datum přijetí</p>
-        <expense-received-at-input :expense="expense"/>
+        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Datum přijetí</p>-->
+        <!--        <organisation-received-at-input :organisation="organisation"/>-->
 
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="expense.payment_status === 'paid'">Uhrazeno</p>
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="expense.payment_status === 'plan'">Plánovaná
-          úhrada</p>
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="expense.payment_status === 'draft'">Plánovaná
-          úhrada</p>
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="expense.payment_status === 'pending'">Plánovaná
-          úhrada</p>
+        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="organisation.payment_status === 'paid'">Uhrazeno</p>-->
+        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="organisation.payment_status === 'plan'">Plánovaná-->
+        <!--          úhrada</p>-->
+        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="organisation.payment_status === 'draft'">Plánovaná-->
+        <!--          úhrada</p>-->
+        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="organisation.payment_status === 'pending'">Plánovaná-->
+        <!--          úhrada</p>-->
 
-        <expense-paid-at-input :expense="expense"/>
+        <!--        <organisation-paid-at-input :organisation="organisation"/>-->
 
 
       </div>
@@ -71,17 +72,14 @@
 </template>
 
 <script>
-import ExpenseStatusSelect from "~/components/expense/ExpenseStatusSelect.vue";
-import ExpensePaidAtInput from "~/components/expense/ExpensePaidAtInput.vue";
 
 export default {
-  components: {ExpensePaidAtInput, ExpenseStatusSelect},
   data() {
     return {
       route: null,
       loaded: false,
 
-      expense: null,
+      organisation: null,
       input_description: '',
       input_internal_note: '',
     }
@@ -95,7 +93,7 @@ export default {
 
   computed: {
     title() {
-      return this.expense ? this.expense.description + ' - Prognosol' : 'Detail výdaje - Prognosol'
+      return this.organisation ? this.organisation.name + ' - Prognosol' : 'Detail organizace - Prognosol'
     }
   },
 
@@ -103,14 +101,14 @@ export default {
     async fetchData() {
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('expense', () =>
-          client('/api/expenses/' + this.route.params.expense, {
+      const {data} = await useAsyncData('organisation', () =>
+          client('/api/organisations/' + this.route.params.organisation, {
             method: 'GET',
           })
       )
 
-      this.expense = data.value
-      this.input_description = data.value.description
+      this.organisation = data.value
+      this.input_description = data.value.name
       this.input_internal_note = data.value.internal_note
 
       this.loaded = true
@@ -124,8 +122,8 @@ export default {
     async updateDescription() {
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('expense', () =>
-          client('/api/expenses/' + this.route.params.expense, {
+      const {data} = await useAsyncData('organisation', () =>
+          client('/api/organisations/' + this.route.params.organisation, {
             method: 'PATCH',
             body: {
               description: this.input_description
@@ -137,8 +135,8 @@ export default {
     async updateInternalNote() {
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('expense', () =>
-          client('/api/expenses/' + this.route.params.expense, {
+      const {data} = await useAsyncData('organisation', () =>
+          client('/api/organisations/' + this.route.params.organisation, {
             method: 'PATCH',
             body: {
               internal_note: this.input_internal_note,
