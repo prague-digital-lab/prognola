@@ -28,7 +28,7 @@
           <expense-row :expense="expense" v-for="expense in organisation.received_invoices"></expense-row>
 
           <div>
-            <a :href="'https://valasskapevnost.cz/admin/invoicing/received_invoices/' + organisation.id"
+            <a :href="'https://valasskapevnost.cz/admin/crm/organisations/' + organisation.id"
                target="_blank">
               <div class="w-full px-5 py-3 text-sm text-slate-600">Zobrazit v IS</div>
             </a>
