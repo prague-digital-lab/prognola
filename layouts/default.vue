@@ -85,7 +85,7 @@
       <div class="flex grow bg-zinc-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link href="/" class="cursor-default">
-            <p class="font-semibold tracking-widest text-zinc-500 uppercase text-lg">[<span class="text-indigo-600">Progno</span>sol<span class="text-indigo-600">]</span> </p>
+            <p class="font-semibold tracking-widest text-zinc-500 uppercase text-lg">[<span class="text-indigo-600">Progno</span>la<span class="text-indigo-600">]</span> </p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
