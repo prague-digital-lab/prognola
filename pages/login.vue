@@ -11,7 +11,7 @@
     <div class="w-full max-w-sm space-y-10">
       <div>
         <img class="mx-auto h-10 w-auto" src="/img/logo_prazska_laborator.png" alt="Logo"/>
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Přihlášení</h2>
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Přihlášení do Prognoly</h2>
       </div>
       <form class="space-y-6" v-on:submit.prevent="submitLogin">
         <div class="relative -space-y-px rounded-md shadow-sm">
@@ -44,7 +44,7 @@
 
         <div>
           <button type="submit"
-                  class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  class="flex w-full justify-center rounded-md bg-black px-3 py-2 text-sm leading-6 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             Přihlásit se
           </button>
         </div>
@@ -63,7 +63,11 @@
 export default {
   setup() {
     definePageMeta({
-      layout: 'guest'
+      layout: 'guest',
+    })
+
+    useHead({
+      title: 'Přihlášení - Prognola'
     })
   },
 
