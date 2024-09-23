@@ -95,7 +95,7 @@ export default {
 
   computed: {
     title() {
-      return this.expense ? this.expense.description + ' - Prognosol' : 'Detail výdaje - Prognosol'
+      return this.expense ? this.expense.description + ' - Prognola' : 'Detail výdaje - Prognola'
     }
   },
 

@@ -15,7 +15,7 @@ export default {
 
   computed: {
     title() {
-      return 'Import z CSV - Prognosol ERP'
+      return 'Import z CSV - Prognola'
     }
   },
 

@@ -8,7 +8,7 @@
 useHead({
   title: 'Prognola',
   meta: [
-    { name: 'description', content: 'Prognosol Finance.' }
+    { name: 'description', content: 'Prognola Finance.' }
   ],
   bodyAttrs: {
     class: 'test'

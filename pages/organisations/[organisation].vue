@@ -93,7 +93,7 @@ export default {
 
   computed: {
     title() {
-      return this.organisation ? this.organisation.name + ' - Prognosol' : 'Detail organizace - Prognosol'
+      return this.organisation ? this.organisation.name + ' - Prognola' : 'Detail organizace - Prognola'
     }
   },
 

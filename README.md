@@ -1,3 +1,3 @@
-# Valašská pevnost - Finance
+# Prognola - web app
 
-Interní Nuxt SPA aplikace pro řízení financí DIGAMENT s.r.o.
+SPA frontend pro aplikaci Prognola.

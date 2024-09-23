@@ -113,7 +113,7 @@ export default {
       return bank_payment
     },
     title() {
-      return this.bank_account ? this.bank_account.name + ' - Prognosol' : 'Detail platby - Prognosol'
+      return this.bank_account ? this.bank_account.name + ' - Prognola' : 'Detail platby - Prognola'
     }
   },
 
