@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Finance - Valašská pevnost',
+  title: 'Prognola',
   meta: [
     { name: 'description', content: 'Prognosol Finance.' }
   ],
