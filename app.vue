@@ -11,7 +11,6 @@ useHead({
     { name: 'description', content: 'Prognola Finance.' }
   ],
   bodyAttrs: {
-    class: 'bg-black'
   },
 })
 </script>

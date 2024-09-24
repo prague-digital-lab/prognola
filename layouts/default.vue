@@ -190,7 +190,7 @@
                   </MenuItem>
 
                   <a @click="submitLogout"
-                     :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 cursor-pointer']">
+                     :class="['bg-gray-50 block px-3 py-1 text-sm leading-6 text-gray-900 cursor-pointer']">
                     Odhlásit se
                   </a>
                 </MenuItems>

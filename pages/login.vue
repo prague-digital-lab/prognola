@@ -64,6 +64,7 @@ export default {
   setup() {
     definePageMeta({
       layout: 'guest',
+      middleware: ['sanctum:guest'],
     })
 
     useHead({
