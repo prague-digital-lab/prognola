@@ -1,10 +1,16 @@
 <template>
-  <div class="">
+  <div>
     <main class="container mx-auto px-[120px]">
-      <div
-          class="sticky bg-gray-900/50 text-white rounded-2xl mt-5 mx-auto px-5 py-3 border border-gray-800/80 backdrop-blur-3xl mb-[100px]">
-        <div class="w-screen">
-          <nuxt-link href="/">Prognola</nuxt-link>
+      <div class="sticky w-full bg-gray-900/50 text-white rounded-2xl mt-5 px-5 py-3 border border-gray-800/80 backdrop-blur-3xl mb-[100px]">
+        <div class="flex justify-between">
+          <div>
+            <nuxt-link href="/">Prognola</nuxt-link>
+          </div>
+
+          <div>
+            <nuxt-link href="/login" class="bg-gray-800 rounded text-gray-200 px-2.5 py-1.5 text-sm font-medium me-2">Přihlásit se</nuxt-link>
+            <nuxt-link href="/register" class="bg-gray-200 rounded text-gray-800 px-2.5 py-1.5 text-sm font-medium">Vyzkoušet</nuxt-link>
+          </div>
         </div>
       </div>
 
