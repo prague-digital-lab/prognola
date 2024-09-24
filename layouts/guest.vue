@@ -1,14 +1,16 @@
 <template>
   <div class="">
-    <div
-        class="sticky bg-gray-900/50 text-white rounded-2xl mt-5 mx-[180px] px-5 py-3 border border-gray-800/80 backdrop-blur-3xl">
-      <div class="w-screen">
-        <a>Prognola</a>
+    <main class="container mx-auto px-[120px]">
+      <div
+          class="sticky bg-gray-900/50 text-white rounded-2xl mt-5 mx-auto px-5 py-3 border border-gray-800/80 backdrop-blur-3xl mb-[100px]">
+        <div class="w-screen">
+          <a>Prognola</a>
+        </div>
       </div>
-    </div>
 
-    <main class="py-10 text-gray-200 mt-5">
-      <slot/>
+      <div class="px-5">
+        <slot/>
+      </div>
     </main>
   </div>
 </template>
@@ -54,6 +56,6 @@ const sidebarOpen = ref(false)
 <style lang="scss">
 .bg-grad-dark {
   background: rgb(0, 0, 0);
-  background: linear-gradient(90deg, rgb(28, 28, 28) 0%, rgba(18, 18, 18, 1) 65%, rgba(0, 0, 0, 1) 100%);
+  background: linear-gradient(90deg, rgb(0, 11, 50) 0%, rgba(18, 18, 18, 1) 65%, rgba(0, 0, 0, 1) 100%);
 }
 </style>
