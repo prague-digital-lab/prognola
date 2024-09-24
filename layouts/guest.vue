@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div
-        class="sticky bg-gray-900/10 text-white rounded-2xl mt-5 mx-[180px] px-5 py-3 border border-gray-800/80 backdrop-blur-md">
+        class="sticky bg-gray-900/50 text-white rounded-2xl mt-5 mx-[180px] px-5 py-3 border border-gray-800/80 backdrop-blur-3xl">
       <div class="w-screen">
         <a>Prognola</a>
       </div>
