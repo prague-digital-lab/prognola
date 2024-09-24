@@ -29,7 +29,7 @@ export default defineComponent({
     },
 
     async navigateToOrganisation() {
-      await navigateTo('/organisations/' + this.organisation.id)
+      await navigateTo('/finance/organisations/' + this.organisation.id)
     }
   }
 })

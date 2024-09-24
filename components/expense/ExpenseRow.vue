@@ -75,11 +75,11 @@ export default defineComponent({
     },
 
     async navigateToExpense() {
-      await navigateTo('/expenses/' + this.expense.id)
+      await navigateTo('/finance/expenses/' + this.expense.id)
     },
 
     async navigateToOrganisation(organisation) {
-      await navigateTo('/organisations/' + organisation.id)
+      await navigateTo('/finance/organisations/' + organisation.id)
     }
   }
 })
