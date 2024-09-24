@@ -4,7 +4,7 @@
       <div
           class="sticky bg-gray-900/50 text-white rounded-2xl mt-5 mx-auto px-5 py-3 border border-gray-800/80 backdrop-blur-3xl mb-[100px]">
         <div class="w-screen">
-          <a>Prognola</a>
+          <nuxt-link href="/">Prognola</nuxt-link>
         </div>
       </div>
 
