@@ -67,7 +67,7 @@ export default {
 
       let id = data.value.id
 
-      await navigateTo('/expenses/' + id)
+      await navigateTo('/finance/expenses/' + id)
 
 
     }

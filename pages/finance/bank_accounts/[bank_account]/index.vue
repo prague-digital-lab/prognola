@@ -60,7 +60,7 @@
 // import bank_accountStatusSelect from "~/components/bank_account/bank_accountStatusSelect.vue";
 // import bank_accountPaidAtInput from "~/components/bank_account/bank_accountPaidAtInput.vue";
 
-import bank_payment from "~/pages/bank_payments/[bank_payment]/index.vue";
+import bank_payment from "~/pages/finance/bank_payments/[bank_payment]/index.vue";
 
 export default {
   // components: {bank_accountPaidAtInput, bank_accountStatusSelect},
