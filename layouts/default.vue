@@ -84,7 +84,7 @@
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div class="flex grow bg-zinc-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
-          <nuxt-link href="/" class="cursor-default">
+          <nuxt-link href="/finance/cashflow" class="cursor-default">
             <p class="font-semibold tracking-widest text-zinc-500 uppercase text-lg">[<span class="text-indigo-600">Progno</span>la<span class="text-indigo-600">]</span> </p>
           </nuxt-link>
         </div>
@@ -232,13 +232,13 @@ import {
 } from '@heroicons/vue/20/solid'
 
 const navigation = [
-  {name: 'Ke zpracování', href: '/inbox', icon: InboxIcon, current: false},
-  {name: 'Cashflow', href: '/', icon: ChartBarIcon, current: false},
-  {name: 'Účty', href: '/bank_accounts', icon: WalletIcon, current: false},
-  {name: 'Příjmy', href: '/income', icon: DocumentDuplicateIcon, current: false},
-  {name: 'Výdaje', href: '/expenses', icon: BanknotesIcon, current: false},
-  {name: 'Adresář', href: '/organisations', icon: UsersIcon, current: false},
-  {name: 'Report tržeb', href: '/invoices', icon: UsersIcon, current: false},
+  {name: 'Ke zpracování', href: '/finance/inbox', icon: InboxIcon, current: false},
+  {name: 'Cashflow', href: '/finance/cashflow', icon: ChartBarIcon, current: false},
+  {name: 'Účty', href: '/finance/bank_accounts', icon: WalletIcon, current: false},
+  {name: 'Příjmy', href: '/finance/income', icon: DocumentDuplicateIcon, current: false},
+  {name: 'Výdaje', href: '/finance/expenses', icon: BanknotesIcon, current: false},
+  {name: 'Adresář', href: '/finance/organisations', icon: UsersIcon, current: false},
+  {name: 'Report tržeb', href: '/finance/invoices', icon: UsersIcon, current: false},
   // {name: 'Projects', href: '#', icon: FolderIcon, current: false},
   // {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
   // {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},

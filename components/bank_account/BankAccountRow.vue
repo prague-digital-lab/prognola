@@ -15,7 +15,7 @@
 <script>
 import {defineComponent} from 'vue'
 import {DateTime} from 'luxon'
-import bank_accounts from "../../pages/bank_accounts/index.vue";
+import bank_accounts from "../../pages/finance/bank_accounts/index.vue";
 
 export default defineComponent({
   name: "BankAccountRow",
