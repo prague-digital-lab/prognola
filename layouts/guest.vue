@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="container mx-auto px-[120px]">
+    <main class="container mx-auto md:px-[120px]">
       <div class="sticky w-full bg-gray-900/50 text-white rounded-2xl mt-5 px-5 py-3 border border-gray-800/80 backdrop-blur-3xl mb-[100px]">
         <div class="flex justify-between">
           <div>
