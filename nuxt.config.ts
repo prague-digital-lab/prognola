@@ -26,9 +26,6 @@ export default defineNuxtConfig({
                     logout: '/api/logout',
                     user: '/api/user',
                 },
-                globalMiddleware: {
-                    enabled: true,
-                },
                 mode: 'token'
             },
         }

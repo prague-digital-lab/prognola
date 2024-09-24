@@ -1,22 +1,14 @@
 <template>
-  <div>
-    <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-      <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = true">
-        <span class="sr-only">Open sidebar</span>
-        <Bars3Icon class="h-6 w-6" aria-hidden="true" />
-      </button>
-
-      <!-- Separator -->
-      <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
-
-      <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-
+  <div class="">
+    <div
+        class="sticky bg-gray-900/10 text-white rounded-2xl mt-5 mx-[180px] px-5 py-3 border border-gray-800/80 backdrop-blur-md">
+      <div class="w-screen">
+        <a>Prognola</a>
       </div>
     </div>
-    <main class="py-10">
-      <div class="px-4 sm:px-6 lg:px-8">
-        <slot/>
-      </div>
+
+    <main class="py-10 text-gray-200 mt-5">
+      <slot/>
     </main>
   </div>
 </template>
@@ -31,9 +23,6 @@ import {
   HomeIcon,
   UsersIcon,
 } from '@heroicons/vue/24/outline'
-import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
-import {ChevronDownIcon, MagnifyingGlassIcon} from "@heroicons/vue/20/solid/index.js";
-import {Bars3Icon, BellIcon} from "@heroicons/vue/24/outline/index.js";
 
 const navigation = [
   {name: 'Nástěnka', href: '/', icon: HomeIcon, current: true},
@@ -53,5 +42,18 @@ const userNavigation = [
   {name: 'Sign out', href: '#'},
 ]
 
+useHead({
+  bodyAttrs: {
+    class: 'bg-grad-dark'
+  },
+})
+
 const sidebarOpen = ref(false)
 </script>
+
+<style lang="scss">
+.bg-grad-dark {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgb(28, 28, 28) 0%, rgba(18, 18, 18, 1) 65%, rgba(0, 0, 0, 1) 100%);
+}
+</style>
