@@ -80,6 +80,10 @@
   </div>
 </template>
 
+<script setup>
+
+</script>
+
 <script>
 import {
   BarElement,
