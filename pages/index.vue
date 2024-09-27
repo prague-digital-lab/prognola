@@ -14,12 +14,11 @@ definePageMeta({
 
 <template>
   <div>
-    <h1 class="text-[45px] mb-[40px] font-medium text-white">Prognola je budoucnost řízení vaší firmy.</h1>
+    <h1 class="text-[45px] mb-[40px] font-medium text-white">Plánujte finance jako profesionál</h1>
 
     <p class="text-[20px] text-gray-400 font-medium mb-[60px]">
-      Už nemusíte přepínat mezi Slackem, Asanou a dalšími aplikacemi – a platit za každou zvlášť.
-      <br>Řiďte projekty, komunikujte se zákazníky, spravujte finance a spolupracujte se svým týmem efektivně na jednom
-      místě.
+      Získejte zpět přehled o aktuálním stavu financí ve vaší firmě.
+      <br>Konečně budete mít prognózu, kolik budete mít peněz v nadcházejících obdobích.
     </p>
 
     <nuxt-link href="/register"
