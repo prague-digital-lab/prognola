@@ -85,7 +85,7 @@
       <div class="flex grow bg-zinc-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link href="/finance/cashflow" class="cursor-default flex items-center">
-            <nuxt-img src="/img/logo_prazska_laborator.png" width="30" class="me-2" />
+            <nuxt-img src="/img/logo_prazska_laborator.png" width="30" class="me-2"/>
 
             <p class="font-medium tracking-widest text-gray-800 text-md">Prognola</p>
           </nuxt-link>
@@ -251,16 +251,18 @@ const navigation = [
   // {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},
   // {name: 'Reports', href: '#', icon: ChartPieIcon, current: false},
 ]
-const teams = [
-  // {id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false},
-  // {id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false},
-  // {id: 3, name: 'Workcation', href: '#', initial: 'W', current: false},
-]
 const userNavigation = [
   // {name: 'Recepce', href: 'https://valasskapevnost.cz/admin/recepce'},
 ]
 
 const {user} = useSanctumAuth();
+
+const  workspaces = []
+const  active_workspace = []
+
+onMounted(() => {
+
+})
 
 const sidebarOpen = ref(false)
 
