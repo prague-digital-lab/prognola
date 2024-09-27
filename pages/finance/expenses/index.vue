@@ -79,6 +79,11 @@
 useHead({
   title: 'Výdaje - Prognola'
 })
+
+definePageMeta({
+  layout: 'default',
+  middleware: ['sanctum:auth', 'sanctum:verified'],
+})
 </script>
 
 <script>

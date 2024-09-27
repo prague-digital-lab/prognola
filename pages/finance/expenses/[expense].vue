@@ -70,6 +70,13 @@
   </div>
 </template>
 
+<script setup>
+definePageMeta({
+  layout: 'default',
+  middleware: ['sanctum:auth', 'sanctum:verified'],
+})
+</script>
+
 <script>
 import ExpenseStatusSelect from "~/components/expense/ExpenseStatusSelect.vue";
 import ExpensePaidAtInput from "~/components/expense/ExpensePaidAtInput.vue";

@@ -22,6 +22,13 @@
   </div>
 </template>
 
+<script setup>
+definePageMeta({
+  layout: 'default',
+  middleware: ['sanctum:auth', 'sanctum:verified'],
+})
+</script>
+
 <script>
 export default {
   data() {

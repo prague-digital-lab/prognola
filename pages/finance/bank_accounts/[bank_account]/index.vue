@@ -16,12 +16,12 @@
           </div>
 
 
-<!--          <div>-->
-<!--            &lt;!&ndash;            <bank_account-options :bank_account="bank_account"/>&ndash;&gt;-->
-<!--          </div>-->
+          <!--          <div>-->
+          <!--            &lt;!&ndash;            <bank_account-options :bank_account="bank_account"/>&ndash;&gt;-->
+          <!--          </div>-->
 
           <div class="mt-4 flex md:ml-4 md:mt-0">
-                       <div class="me-2">
+            <div class="me-2">
               <div class="mt-2">
                 <input type="date" v-model="from"
                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
@@ -43,7 +43,8 @@
         <p class="text-gray-500 text-sm mb-5">Účet</p>
 
         <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4">
-          <bank-payment-row v-for="bank_payment in bank_payments" @click="navigateToPayment(bank_payment)" :bank_payment="bank_payment"/>
+          <bank-payment-row v-for="bank_payment in bank_payments" @click="navigateToPayment(bank_payment)"
+                            :bank_payment="bank_payment"/>
 
           <div v-if="bank_payments.length === 0" class="w-full flex items-center justify-center h-[400px]">
             <p class="text-gray-600">Žádné odpovídající platby.</p>
@@ -56,14 +57,18 @@
   </div>
 </template>
 
+<script setup>
+definePageMeta({
+  layout: 'default',
+  middleware: ['sanctum:auth', 'sanctum:verified'],
+})
+</script>
+
 <script>
-// import bank_accountStatusSelect from "~/components/bank_account/bank_accountStatusSelect.vue";
-// import bank_accountPaidAtInput from "~/components/bank_account/bank_accountPaidAtInput.vue";
 
 import bank_payment from "~/pages/finance/bank_payments/[bank_payment]/index.vue";
 
 export default {
-  // components: {bank_accountPaidAtInput, bank_accountStatusSelect},
   data() {
     return {
       route: null,
@@ -118,8 +123,8 @@ export default {
   },
 
   methods: {
-    async navigateToPayment(payment){
-      await navigateTo('/bank_payments/'+ payment.id);
+    async navigateToPayment(payment) {
+      await navigateTo('/bank_payments/' + payment.id);
     },
 
     async fetchData() {

@@ -116,6 +116,13 @@
   </div>
 </template>
 
+<script setup>
+definePageMeta({
+  layout: 'default',
+  middleware: ['sanctum:auth', 'sanctum:verified'],
+})
+</script>
+
 <script>
 
 import {formatDate} from "compatx";

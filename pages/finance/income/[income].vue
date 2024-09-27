@@ -104,6 +104,13 @@
   </div>
 </template>
 
+<script setup>
+definePageMeta({
+  layout: 'default',
+  middleware: ['sanctum:auth', 'sanctum:verified'],
+})
+</script>
+
 <script>
 import IncomeStatusSelect from "~/components/income/IncomeStatusSelect.vue";
 import IncomePaidAtInput from "~/components/income/IncomePaidAtInput.vue";

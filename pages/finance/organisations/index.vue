@@ -35,6 +35,11 @@
 useHead({
   title: 'Adresář - Prognola'
 })
+
+definePageMeta({
+  layout: 'default',
+  middleware: ['sanctum:auth', 'sanctum:verified'],
+})
 </script>
 
 <script>
