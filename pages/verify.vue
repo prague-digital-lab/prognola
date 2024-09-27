@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="border border-gray-800 bg-gray-700/80 text-gray-200 rounded-2xl px-5 py-5 text-center">
-      <h1 class="text-3xl mb-5">Ověřte svůj email</h1>
+    <div class="border border-gray-800 bg-gray-700/20 text-gray-200 rounded-2xl px-5 py-5 text-center">
+      <h1 class="text-3xl mb-5">Ověření emailu</h1>
 
-      <p>Vítejte v Prognole. Na email {{ user ? user.email : '' }} jsme poslali odkaz.</p>
+      <p>Právě jsme vám poslali odkaz na email <b>{{ user ? user.email : '' }}</b>.</p>
+
     </div>
   </div>
 </template>
