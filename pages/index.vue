@@ -14,7 +14,7 @@ definePageMeta({
 
 <template>
   <div>
-    <h1 class="text-[45px] mb-[40px] font-medium text-white">Plánujte finance jako profesionál</h1>
+    <h1 class="text-[45px] mb-[40px] font-medium text-white">Plánujte své finance jako profesionál.</h1>
 
     <p class="text-[20px] text-gray-400 font-medium mb-[60px]">
       Získejte zpět přehled o aktuálním stavu financí ve vaší firmě.
