@@ -31,6 +31,6 @@ export default defineNuxtConfig({
         }
     },
 
-    modules: ["nuxt-auth-sanctum"],
+    modules: ["nuxt-auth-sanctum", '@nuxt/image'],
     compatibilityDate: '2024-07-16'
 })

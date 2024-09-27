@@ -84,9 +84,10 @@
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div class="flex grow bg-zinc-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
-          <nuxt-link href="/finance/cashflow" class="cursor-default">
-            <p class="font-semibold tracking-widest text-zinc-500 uppercase text-lg">[<span class="text-indigo-600">Progno</span>la<span
-                class="text-indigo-600">]</span></p>
+          <nuxt-link href="/finance/cashflow" class="cursor-default flex items-center">
+            <nuxt-img src="/img/logo_prazska_laborator.png" width="30" class="me-2" />
+
+            <p class="font-medium tracking-widest text-gray-800 text-md">Prognola</p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
