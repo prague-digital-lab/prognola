@@ -29,11 +29,26 @@ export default {
   },
 
   mounted() {
-    const {user} = useSanctumAuth();
-    this.user = user
+
+
+    this.verifyEmail(this.$route.query.url)
   },
 
-  methods: {},
+  methods: {
+    async verifyEmail(url) {
+
+
+      const client = useSanctumClient();
+
+      const {data} = await useAsyncData('verify-submit', () =>
+          client(url, {
+            method: 'GET'
+          })
+      )
+
+      await navigateTo('/finance/cashflow')
+    }
+  },
 
 }
 </script>

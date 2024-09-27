@@ -26,7 +26,7 @@
             <a @click="logout" class="bg-gray-800 rounded text-gray-200 px-2.5 py-1.5 text-sm font-medium me-2">
               Odhlásit se</a>
 
-            <nuxt-link href="/cashflow" class="bg-gray-200 rounded text-gray-800 px-2.5 py-1.5 text-sm font-medium">
+            <nuxt-link href="/finance/cashflow" class="bg-gray-200 rounded text-gray-800 px-2.5 py-1.5 text-sm font-medium">
               Přejít do aplikace
             </nuxt-link>
           </div>
@@ -86,7 +86,7 @@ const authenticated = computed(() => {
 })
 
 const verified = computed(() => {
-  return authenticated && user.email_verified_at
+  return authenticated && user.value.email_verified_at
 })
 
 async function logout() {
