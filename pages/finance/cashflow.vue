@@ -14,7 +14,6 @@
             </div>
           </div>
 
-
           <div>
             <div class="mt-2">
               <input type="date" v-model="to"
