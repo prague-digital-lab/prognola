@@ -12,7 +12,7 @@
 <script setup>
 definePageMeta({
   layout: 'guest',
-  middleware: ['sanctum:auth'],
+  middleware: ['sanctum:auth', 'sanctum:not-verified'],
 })
 
 useHead({
