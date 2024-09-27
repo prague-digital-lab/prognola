@@ -49,18 +49,18 @@
                     </li>
                     <li>
                       <!--                      <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
-                      <ul role="list" class="-mx-2 mt-2 space-y-1">
-                        <li v-for="team in teams" :key="team.name">
-                          <NuxtLink :href="team.href"
-                                    :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
-                            <span
-                                :class="[team.current ? 'border-indigo-600 text-indigo-600' : 'border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium']">{{
-                                team.initial
-                              }}</span>
-                            <span class="truncate">{{ team.name }}</span>
-                          </NuxtLink>
-                        </li>
-                      </ul>
+                      <!--                      <ul role="list" class="-mx-2 mt-2 space-y-1">-->
+                      <!--                        <li v-for="team in teams" :key="team.name">-->
+                      <!--                          <NuxtLink :href="team.href"-->
+                      <!--                                    :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">-->
+                      <!--                            <span-->
+                      <!--                                :class="[team.current ? 'border-indigo-600 text-indigo-600' : 'border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium']">{{-->
+                      <!--                                team.initial-->
+                      <!--                              }}</span>-->
+                      <!--                            <span class="truncate">{{ team.name }}</span>-->
+                      <!--                          </NuxtLink>-->
+                      <!--                        </li>-->
+                      <!--                      </ul>-->
                     </li>
                     <li class="mt-auto">
                       <!--                      <NuxtLink href="#"-->
@@ -106,29 +106,28 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <!--              <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
-              <ul role="list" class="-mx-2 mt-2 space-y-1">
-                <li v-for="team in teams" :key="team.name">
-                  <NuxtLink :href="team.href"
-                            :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
-                    <span
-                        :class="[team.current ? 'border-indigo-600 text-indigo-600' : 'border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium']">{{
-                        team.initial
-                      }}</span>
-                    <span class="truncate">{{ team.name }}</span>
-                  </NuxtLink>
-                </li>
-              </ul>
-            </li>
-            <li class="mt-auto">
-              <!--              <NuxtLink href="#"-->
-              <!--                        class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">-->
-              <!--                <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600" aria-hidden="true"/>-->
-              <!--                Settings-->
-              <!--              </NuxtLink>-->
-            </li>
+            <!--            <li>-->
+            <!--              &lt;!&ndash;              <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>&ndash;&gt;-->
+            <!--              <ul role="list" class="-mx-2 mt-2 space-y-1">-->
+            <!--                <li v-for="team in teams" :key="team.name">-->
+            <!--                  <NuxtLink :href="team.href"-->
+            <!--                            :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">-->
+            <!--                    <span-->
+            <!--                        :class="[team.current ? 'border-indigo-600 text-indigo-600' : 'border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium']">{{-->
+            <!--                        team.initial-->
+            <!--                      }}</span>-->
+            <!--                    <span class="truncate">{{ team.name }}</span>-->
+            <!--                  </NuxtLink>-->
+            <!--                </li>-->
+            <!--              </ul>-->
+            <!--            </li>-->
           </ul>
+
+          <div>
+            <select class="rounded bg-white text-sm">
+              <option v-for="workspace in workspaces">{{ workspace.name }}</option>
+            </select>
+          </div>
         </nav>
       </div>
     </div>
@@ -244,24 +243,45 @@ const navigation = [
   {name: 'Účty', href: '/finance/bank_accounts', icon: WalletIcon, current: false},
   {name: 'Příjmy', href: '/finance/income', icon: DocumentDuplicateIcon, current: false},
   {name: 'Výdaje', href: '/finance/expenses', icon: BanknotesIcon, current: false},
-  {name: 'Adresář', href: '/finance/organisations', icon: UsersIcon, current: false},
-  {name: 'Report tržeb', href: '/finance/invoices', icon: UsersIcon, current: false},
-  // {name: 'Projects', href: '#', icon: FolderIcon, current: false},
-  // {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
-  // {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},
-  // {name: 'Reports', href: '#', icon: ChartPieIcon, current: false},
+  {name: 'Organizace', href: '/finance/organisations', icon: UsersIcon, current: false},
+  // {name: 'Report tržeb', href: '/finance/invoices', icon: UsersIcon, current: false},
 ]
 const userNavigation = [
   // {name: 'Recepce', href: 'https://valasskapevnost.cz/admin/recepce'},
 ]
 
+const route = useRoute()
 const {user} = useSanctumAuth();
 
-const  workspaces = []
-const  active_workspace = []
+const workspaces = ref('')
+const active_workspace = []
 
-onMounted(() => {
+onMounted(async () => {
+  // Load available workspaces
+  const client = useSanctumClient();
 
+  const {data} = await useAsyncData('workspaces', () =>
+      client('/api/workspaces', {
+        method: 'GET',
+      })
+  )
+
+  workspaces.value = data.value
+
+  if (workspaces.value.length === 0) {
+    await navigateTo('/create_workspace')
+  }
+
+  // Find active workspace
+  let active_url_slug = route.params.workspace
+  let workspace_by_slug = workspaces.value.find(x => x.url_slug === active_url_slug)
+
+  console.log(workspace_by_slug)
+  if (workspace_by_slug === undefined) {
+    showError('Nenalezeno')
+  }
+
+  active_workspace.value = workspace_by_slug
 })
 
 const sidebarOpen = ref(false)

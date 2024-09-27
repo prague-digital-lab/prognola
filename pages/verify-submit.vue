@@ -46,7 +46,7 @@ export default {
           })
       )
 
-      await navigateTo('/finance/cashflow')
+      await navigateTo('/entry')
     }
   },
 
