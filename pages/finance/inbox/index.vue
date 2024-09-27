@@ -23,6 +23,12 @@
   </div>
 </template>
 
+<script setup>
+useHead({
+  title: 'Ke zpracování - Prognola'
+})
+</script>
+
 <script>
 export default {}
 

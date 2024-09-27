@@ -75,6 +75,12 @@
   </div>
 </template>
 
+<script setup>
+useHead({
+  title: 'Výdaje - Prognola'
+})
+</script>
+
 <script>
 export default {
   data() {

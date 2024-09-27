@@ -48,7 +48,7 @@
                       </ul>
                     </li>
                     <li>
-<!--                      <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
+                      <!--                      <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
                       <ul role="list" class="-mx-2 mt-2 space-y-1">
                         <li v-for="team in teams" :key="team.name">
                           <NuxtLink :href="team.href"
@@ -85,7 +85,8 @@
       <div class="flex grow bg-zinc-50 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link href="/finance/cashflow" class="cursor-default">
-            <p class="font-semibold tracking-widest text-zinc-500 uppercase text-lg">[<span class="text-indigo-600">Progno</span>la<span class="text-indigo-600">]</span> </p>
+            <p class="font-semibold tracking-widest text-zinc-500 uppercase text-lg">[<span class="text-indigo-600">Progno</span>la<span
+                class="text-indigo-600">]</span></p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
@@ -105,7 +106,7 @@
               </ul>
             </li>
             <li>
-<!--              <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
+              <!--              <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
               <ul role="list" class="-mx-2 mt-2 space-y-1">
                 <li v-for="team in teams" :key="team.name">
                   <NuxtLink :href="team.href"
@@ -226,10 +227,15 @@ import {
   BanknotesIcon,
   ChartBarIcon,
   ChevronDownIcon,
-  UsersIcon,
   DocumentDuplicateIcon,
-  InboxIcon, WalletIcon
+  InboxIcon,
+  UsersIcon,
+  WalletIcon
 } from '@heroicons/vue/20/solid'
+
+useHead({
+  title: 'Prognola'
+})
 
 const navigation = [
   {name: 'Ke zpracování', href: '/finance/inbox', icon: InboxIcon, current: false},

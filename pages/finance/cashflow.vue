@@ -117,7 +117,7 @@ export default {
     })
 
     useHead({
-      title: 'Registrace - Prognola'
+      title: 'Cashflow - Prognola'
     })
   },
 

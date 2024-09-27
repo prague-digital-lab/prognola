@@ -31,6 +31,12 @@
   </div>
 </template>
 
+<script setup>
+useHead({
+  title: 'Adresář - Prognola'
+})
+</script>
+
 <script>
 export default {
   data() {

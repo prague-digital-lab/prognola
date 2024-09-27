@@ -53,6 +53,12 @@
   </div>
 </template>
 
+<script setup>
+useHead({
+  title: 'Tržby - Prognola'
+})
+</script>
+
 <script>
 import {CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip} from 'chart.js'
 import {Line} from 'vue-chartjs'
