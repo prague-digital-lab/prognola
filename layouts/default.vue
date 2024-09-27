@@ -237,20 +237,21 @@ useHead({
   title: 'Prognola'
 })
 
+const route = useRoute()
+
 const navigation = [
-  {name: 'Ke zpracování', href: '/finance/inbox', icon: InboxIcon, current: false},
-  {name: 'Cashflow', href: '/finance/cashflow', icon: ChartBarIcon, current: false},
-  {name: 'Účty', href: '/finance/bank_accounts', icon: WalletIcon, current: false},
-  {name: 'Příjmy', href: '/finance/income', icon: DocumentDuplicateIcon, current: false},
-  {name: 'Výdaje', href: '/finance/expenses', icon: BanknotesIcon, current: false},
-  {name: 'Organizace', href: '/finance/organisations', icon: UsersIcon, current: false},
+  {name: 'Ke zpracování', href: '/' + route.params.workspace + '/inbox', icon: InboxIcon, current: false},
+  {name: 'Cashflow', href: '/' + route.params.workspace + '/cashflow', icon: ChartBarIcon, current: false},
+  {name: 'Účty', href: '/' + route.params.workspace + '/bank_accounts', icon: WalletIcon, current: false},
+  {name: 'Příjmy', href: '/' + route.params.workspace + '/income', icon: DocumentDuplicateIcon, current: false},
+  {name: 'Výdaje', href: '/' + route.params.workspace + '/expenses', icon: BanknotesIcon, current: false},
+  {name: 'Organizace', href: '/' + route.params.workspace + '/organisations', icon: UsersIcon, current: false},
   // {name: 'Report tržeb', href: '/finance/invoices', icon: UsersIcon, current: false},
 ]
 const userNavigation = [
   // {name: 'Recepce', href: 'https://valasskapevnost.cz/admin/recepce'},
 ]
 
-const route = useRoute()
 const {user} = useSanctumAuth();
 
 const workspaces = ref('')
