@@ -110,6 +110,17 @@ ChartJS.register(
 )
 
 export default {
+  setup() {
+    definePageMeta({
+      layout: 'default',
+      middleware: ['sanctum:auth', 'sanctum:verified'],
+    })
+
+    useHead({
+      title: 'Registrace - Prognola'
+    })
+  },
+
   components: {Bar},
 
   data() {

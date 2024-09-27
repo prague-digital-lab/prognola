@@ -1,17 +1,10 @@
 <template>
-  <!--
-    This example requires updating your template:
 
-    ```
-    <html class="h-full bg-white">
-    <body class="h-full">
-    ```
-  -->
   <div class="flex min-h-full flex-1 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
     <div class="w-full max-w-sm space-y-10">
       <div>
-<!--        <img class="mx-auto h-10 w-auto" src="/img/logo_prazska_laborator.png" alt="Logo"/>-->
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-200">Vítejte zpět!</h2>
+        <img class="mx-auto h-10 w-auto" src="/img/logo_prazska_laborator.png" alt="Logo"/>
+<!--        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-200">Vítejte zpět!</h2>-->
       </div>
       <form class="space-y-6" v-on:submit.prevent="submitLogin">
         <div class="relative -space-y-px rounded-md shadow-sm">
