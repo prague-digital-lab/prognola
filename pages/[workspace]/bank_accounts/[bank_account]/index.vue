@@ -66,7 +66,7 @@ definePageMeta({
 
 <script>
 
-import bank_payment from "~/pages/finance/bank_payments/[bank_payment]/index.vue";
+import bank_payment from "~/pages/[workspace]/bank_payments/[bank_payment]/index.vue";
 
 export default {
   data() {
