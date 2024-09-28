@@ -183,7 +183,7 @@
           </ul>
 
           <div>
-            <select class="rounded bg-white text-sm">
+            <select class="rounded bg-white text-sm border border-gray-200 w-full">
               <option v-for="workspace in workspaces">
                 {{ workspace.name }}
               </option>
