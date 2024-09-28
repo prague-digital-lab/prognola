@@ -87,7 +87,7 @@ export default {
         }),
       );
 
-      await navigateTo("/" + this.url_slug + "/cashflow");
+      location.href = "/" + this.url_slug + "/cashflow";
     },
   },
 };
