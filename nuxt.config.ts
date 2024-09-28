@@ -16,7 +16,7 @@ export default defineNuxtConfig({
             sanctum: {
                 baseUrl: 'http://localhost:8000',
                 redirect: {
-                    onLogin: '/finance/cashflow', // Custom route after successful login
+                    onLogin: '/entry', // Custom route after successful login
                     onAuthOnly: '/login',
                     onGuestOnly: '/finance/cashflow',
                     onLogout: '/login',

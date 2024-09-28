@@ -5,7 +5,7 @@
 
       <p>Právě jsme vám poslali odkaz na email <b>{{ user ? user.email : '' }}</b>.</p>
 
-      <p class="text-gray-300">Email nedošel? <a @click="resend" class="text-indigo-400 cursor-pointer">Zkusit poslat znovu.</a></p>
+      <p class="text-gray-300">Nedošel vám email? <a @click="resend" class="text-indigo-400 cursor-pointer">Zkusit poslat znovu.</a></p>
 
     </div>
   </div>

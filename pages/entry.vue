@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="border border-gray-800 bg-gray-700/20 text-gray-200 rounded-2xl px-5 py-5 text-center">
-        Načítání firmy.
+      Načítání firmy.
     </div>
   </div>
 </template>
@@ -21,17 +21,41 @@ useHead({
 export default {
   data: () => {
     return {
-      user: null
+      user: null,
+      workspaces: [],
+
     }
   },
 
-  mounted() {
+  async mounted() {
+    // Load available workspaces
+    const client = useSanctumClient();
+
+    const {data} = await useAsyncData('workspaces', () =>
+        client('/api/workspaces', {
+          method: 'GET',
+        })
+    )
+
+    this.workspaces.value = data.value
+
+    // If user has no workspaces, redirect to workspace create guide
+    if (this.workspaces.value.length === 0) {
+      await navigateTo('/create_workspace')
+      return
+    }
+
+    // Redirect to first workspace
+    let workspace_slug = this.workspaces.value[0].url_slug
+
+    // Redirect is made with native js location.
+    // This is ugly workaround, because nuxt navigateTo
+    // caused undefined workspace loaded in default.vue layout.
+    location.href = '/' + workspace_slug + '/cashflow'
 
   },
 
-  methods: {
-
-  },
+  methods: {},
 
 }
 </script>

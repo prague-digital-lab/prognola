@@ -21,7 +21,7 @@
             <a @click="logout" class="bg-gray-800 rounded text-gray-200 px-2.5 py-1.5 text-sm font-medium me-2">
               Odhlásit se</a>
 
-            <nuxt-link href="/finance/cashflow"
+            <nuxt-link href="/entry"
                        class="bg-gray-200 rounded text-gray-800 px-2.5 py-1.5 text-sm font-medium">Ověřit email
             </nuxt-link>
           </div>
@@ -30,7 +30,7 @@
             <a @click="logout" class="bg-gray-800 rounded text-gray-200 px-2.5 py-1.5 text-sm font-medium me-2">
               Odhlásit se</a>
 
-            <nuxt-link href="/finance/cashflow"
+            <nuxt-link href="/entry"
                        class="bg-gray-200 rounded text-gray-800 px-2.5 py-1.5 text-sm font-medium">
               Přejít do aplikace
             </nuxt-link>
