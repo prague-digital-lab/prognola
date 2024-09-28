@@ -18,7 +18,7 @@ export default defineNuxtConfig({
                 redirect: {
                     onLogin: '/entry', // Custom route after successful login
                     onAuthOnly: '/login',
-                    onGuestOnly: '/finance/cashflow',
+                    onGuestOnly: '/entry',
                     onLogout: '/login',
                 },
                 endpoints: {
