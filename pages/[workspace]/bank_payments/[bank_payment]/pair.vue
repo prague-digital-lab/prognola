@@ -4,17 +4,20 @@
   </Head>
 
   <div v-if="loaded">
-    <div class="md:flex md:justify-between mb-4 divide-x divide-slate-100 h-auto">
-      <div class="w-full me-5">
-        <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-4">Párování platby
-          {{ bank_payment.id }}</h4>
+    <div
+      class="mb-4 h-auto divide-x divide-slate-100 md:flex md:justify-between"
+    >
+      <div class="me-5 w-full">
+        <h4
+          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
+        >
+          Párování platby {{ bank_payment.id }}
+        </h4>
       </div>
-
     </div>
 
-
     <div>
-      <div class="overflow-hidden bg-white shadow sm:rounded-lg mb-4">
+      <div class="mb-4 overflow-hidden bg-white shadow sm:rounded-lg">
         <!--        <div class="px-4 py-6 sm:px-6">-->
         <!--          <h3 class="text-base font-semibold leading-7 text-gray-900">Informace o platbě</h3>-->
         <!--        </div>-->
@@ -22,62 +25,93 @@
           <dl class="divide-y divide-gray-100">
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Částka</dt>
-              <dd class="mt-1 text-sm leading-6 text-red-700 font-bold sm:col-span-2 sm:mt-0">
+              <dd
+                class="mt-1 text-sm font-bold leading-6 text-red-700 sm:col-span-2 sm:mt-0"
+              >
                 {{ formatPrice(bank_payment.amount) }} Kč
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Účet</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <dd
+                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+              >
                 {{ bank_payment.bank_account.name }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Popis platby</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <dd
+                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+              >
                 {{ bank_payment.description }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">Zpráva pro příjemce</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <dt class="text-sm font-medium text-gray-900">
+                Zpráva pro příjemce
+              </dt>
+              <dd
+                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+              >
                 {{ bank_payment.sender_comment }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Externí ID</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ bank_payment.external_id }}</dd>
+              <dd
+                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+              >
+                {{ bank_payment.external_id }}
+              </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">Variabilní symbol</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <dt class="text-sm font-medium text-gray-900">
+                Variabilní symbol
+              </dt>
+              <dd
+                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+              >
                 {{ bank_payment.variable_symbol }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Datum platby</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <dd
+                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+              >
                 {{ formatDate(bank_payment.issued_at) }}
               </dd>
             </div>
 
-            <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6" v-if="bank_payment.counter_account_number">
+            <div
+              class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              v-if="bank_payment.counter_account_number"
+            >
               <dt class="text-sm font-medium text-gray-900">Číslo protiúčtu</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                {{ bank_payment.counter_account_number }}/{{ bank_payment.counter_bank_number }}
+              <dd
+                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+              >
+                {{ bank_payment.counter_account_number }}/{{
+                  bank_payment.counter_bank_number
+                }}
               </dd>
             </div>
 
-
-            <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6" v-if="bank_payment.paired_at">
+            <div
+              class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              v-if="bank_payment.paired_at"
+            >
               <dt class="text-sm font-medium text-gray-900">Spárováno</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <dd
+                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+              >
                 {{ formatDate(bank_payment.paired_at) }}
               </dd>
             </div>
@@ -85,47 +119,67 @@
         </div>
       </div>
 
-
       <div class="flex items-center justify-between">
-        <h2 class="mb-2 mt-4 text-gray-700 font-semibold text-sm">Vyhledávání výdaje ke spárování</h2>
+        <h2 class="mb-2 mt-4 text-sm font-semibold text-gray-700">
+          Vyhledávání výdaje ke spárování
+        </h2>
 
-        <a type="button"
-           class="rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-           @click="createNewExpense">
+        <a
+          type="button"
+          class="rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          @click="createNewExpense"
+        >
           Vytvořit nový výdaj
         </a>
       </div>
 
-      <div class="overflow-hidden bg-white shadow sm:rounded-lg border border-gray-100 sm:px-6 mb-4 py-2">
-        <input placeholder="Název výdaje" class="me-4 rounded" v-model="name_query">
-        <input placeholder="Částka" class="me-4 rounded" v-model="price_query">
+      <div
+        class="mb-4 overflow-hidden border border-gray-100 bg-white py-2 shadow sm:rounded-lg sm:px-6"
+      >
+        <input
+          placeholder="Název výdaje"
+          class="me-4 rounded"
+          v-model="name_query"
+        />
+        <input
+          placeholder="Částka"
+          class="me-4 rounded"
+          v-model="price_query"
+        />
 
         <a @click="searchExpenses" class="cursor-pointer">Vyhledat výdaje</a>
       </div>
 
+      <div
+        class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
+        v-if="expenses_loaded"
+      >
+        <expense-row-pair
+          v-for="expense in expenses"
+          :expense="expense"
+          @click="pairExpense(expense)"
+        ></expense-row-pair>
 
-      <div class="border border-gray-200 rounded divide-gray-200 divide-y mb-4" v-if="expenses_loaded">
-        <expense-row-pair v-for="expense in expenses" :expense="expense" @click="pairExpense(expense)"></expense-row-pair>
-
-        <div v-if="expenses.length === 0" class="w-full flex items-center justify-center h-[100px]">
+        <div
+          v-if="expenses.length === 0"
+          class="flex h-[100px] w-full items-center justify-center"
+        >
           <p class="text-gray-600">Žádné odpovídající výdaje ke spárování.</p>
         </div>
       </div>
-
     </div>
   </div>
 </template>
 
 <script setup>
 definePageMeta({
-  layout: 'default',
-  middleware: ['sanctum:auth', 'sanctum:verified'],
-})
+  layout: "default",
+  middleware: ["sanctum:auth", "sanctum:verified"],
+});
 </script>
 
 <script>
-
-import {formatDate} from "compatx";
+import { formatDate } from "compatx";
 
 export default {
   data() {
@@ -135,17 +189,17 @@ export default {
 
       bank_payment: null,
 
-      price_query: '',
-      name_query: '',
+      price_query: "",
+      name_query: "",
 
       expenses: [],
       expenses_loaded: false,
-    }
+    };
   },
 
   mounted() {
-    this.route = useRoute()
-    this.fetchBankPayment()
+    this.route = useRoute();
+    this.fetchBankPayment();
   },
 
   methods: {
@@ -154,21 +208,20 @@ export default {
     async fetchBankPayment() {
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('bank_payment', () =>
-          client('/api/bank_payments/' + this.route.params.bank_payment, {
-            method: 'GET',
-          })
-      )
+      const { data } = await useAsyncData("bank_payment", () =>
+        client("/api/bank_payments/" + this.route.params.bank_payment, {
+          method: "GET",
+        }),
+      );
 
-      this.bank_payment = data.value
-      this.price_query = this.bank_payment.amount * -1
-      this.loaded = true
-
+      this.bank_payment = data.value;
+      this.price_query = this.bank_payment.amount * -1;
+      this.loaded = true;
     },
 
     formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+      let val = (value / 1).toFixed(0).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
 
     async searchExpenses() {
@@ -176,73 +229,71 @@ export default {
 
       let params = {
         is_paired: false,
-      }
+      };
 
       if (this.name_query) {
-        params.query = this.name_query
+        params.query = this.name_query;
       }
 
       if (this.price_query) {
-        params.price = this.price_query
+        params.price = this.price_query;
       }
 
-      const {data} = await useAsyncData('bank_payment_pairing_expenses', () =>
-          client('/api/expenses', {
-            method: 'GET',
-            params: params
-          })
-      )
+      const { data } = await useAsyncData("bank_payment_pairing_expenses", () =>
+        client("/api/expenses", {
+          method: "GET",
+          params: params,
+        }),
+      );
 
-      this.expenses = data.value.data
+      this.expenses = data.value.data;
       this.expenses_loaded = true;
     },
 
     async createNewExpense() {
-
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('expense', () =>
-          client('/api/expenses', {
-            method: 'POST',
-            body: {
-              description: this.bank_payment.description,
-              price: this.bank_payment.amount * -1,
-              payment_status: 'paid',
-              received_at: this.bank_payment.issued_at,
-              paid_at: this.bank_payment.issued_at,
-            }
-          })
-      )
+      const { data } = await useAsyncData("expense", () =>
+        client("/api/expenses", {
+          method: "POST",
+          body: {
+            description: this.bank_payment.description,
+            price: this.bank_payment.amount * -1,
+            payment_status: "paid",
+            received_at: this.bank_payment.issued_at,
+            paid_at: this.bank_payment.issued_at,
+          },
+        }),
+      );
 
-      let id = data.value.id
+      let id = data.value.id;
 
-      const pairing_data = await useAsyncData('expense', () =>
-          client('/api/expenses/' + id + '/bank_payments', {
-            method: 'POST',
-            body: {
-              bank_payment_id: this.bank_payment.id
-            }
-          })
-      )
+      const pairing_data = await useAsyncData("expense", () =>
+        client("/api/expenses/" + id + "/bank_payments", {
+          method: "POST",
+          body: {
+            bank_payment_id: this.bank_payment.id,
+          },
+        }),
+      );
 
-      await navigateTo('/expenses/' + id)
+      await navigateTo("/expenses/" + id);
     },
 
     async pairExpense(expense) {
       const client = useSanctumClient();
 
-      const pairing_data = await useAsyncData('expense', () =>
-          client('/api/expenses/' + expense.id + '/bank_payments', {
-            method: 'POST',
-            body: {
-              bank_payment_id: this.bank_payment.id
-            }
-          })
-      )
+      const pairing_data = await useAsyncData("expense", () =>
+        client("/api/expenses/" + expense.id + "/bank_payments", {
+          method: "POST",
+          body: {
+            bank_payment_id: this.bank_payment.id,
+          },
+        }),
+      );
 
-      await navigateTo('/inbox/payments_to_pair');
-    }
-  }
-}
-
+      await navigateTo("/inbox/payments_to_pair");
+    },
+  },
+};
 </script>

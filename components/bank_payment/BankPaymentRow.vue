@@ -1,19 +1,21 @@
 <template>
-  <div class="px-3 py-2 hover:bg-slate-50 flex justify-between items-center">
-<!--    <div class="text-sm flex">-->
-<!--      <p class="text-gray-500 w-[60px] font-light">{{ bank_payment.id }}</p>-->
-<!--      <p class="w-[400px]"></p>-->
-<!--    </div>-->
+  <div class="flex items-center justify-between px-3 py-2 hover:bg-slate-50">
+    <!--    <div class="text-sm flex">-->
+    <!--      <p class="text-gray-500 w-[60px] font-light">{{ bank_payment.id }}</p>-->
+    <!--      <p class="w-[400px]"></p>-->
+    <!--    </div>-->
 
-<!--    <div class="text-sm text-slate-600 font-light flex items-center">-->
-<!--      <p class="font-bold">{{ formatPrice(bank_payment.amount) }} Kč</p>-->
-<!--    </div>-->
+    <!--    <div class="text-sm text-slate-600 font-light flex items-center">-->
+    <!--      <p class="font-bold">{{ formatPrice(bank_payment.amount) }} Kč</p>-->
+    <!--    </div>-->
 
     <table class="w-full text-sm">
       <tr>
         <td class="w-[10%]">{{ formatDate(bank_payment.issued_at) }}</td>
         <td class="w-[30%]">
-          <a class="text-dark text-decoration-none">{{ bank_payment.description }}</a>
+          <a class="text-dark text-decoration-none">{{
+            bank_payment.description
+          }}</a>
 
           <!--        @if($payment->received_invoices->count() > 0)-->
           <!--        <br>-->
@@ -24,46 +26,45 @@
           <!--        @endif-->
         </td>
         <td class="w-[20%]">
-          <span v-if="bank_payment.type === 'income'">{{ formatPrice(bank_payment.amount) }} Kč</span>
-          <span class="text-red-700" v-else>{{ formatPrice(bank_payment.amount) }} Kč</span>
+          <span v-if="bank_payment.type === 'income'"
+            >{{ formatPrice(bank_payment.amount) }} Kč</span
+          >
+          <span class="text-red-700" v-else
+            >{{ formatPrice(bank_payment.amount) }} Kč</span
+          >
         </td>
         <td class="w-[20%]">
-
-          <span class="badge text-bg-warning" v-if="bank_payment.paired_at === null">nespárováno</span>
+          <span
+            class="badge text-bg-warning"
+            v-if="bank_payment.paired_at === null"
+            >nespárováno</span
+          >
           <span class="badge text-bg-success" v-else>spárováno</span>
         </td>
-
       </tr>
     </table>
   </div>
-
-
 </template>
 
 <script>
-import {defineComponent} from 'vue'
-import {DateTime} from 'luxon'
+import { defineComponent } from "vue";
+import { DateTime } from "luxon";
 
 export default defineComponent({
-  props: [
-    'bank_payment'
-  ],
+  props: ["bank_payment"],
   methods: {
     formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+      let val = (value / 1).toFixed(0).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
 
     formatDate(date) {
+      let formatted = DateTime.fromISO(date);
 
-      let formatted = DateTime.fromISO(date)
-
-      return formatted.toFormat('d.M.yyyy')
+      return formatted.toFormat("d.M.yyyy");
     },
-  }
-})
+  },
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

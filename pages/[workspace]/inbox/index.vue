@@ -1,40 +1,44 @@
 <template>
   <div>
-    <div class="md:flex md:items-center md:justify-between mb-4">
+    <div class="mb-4 md:flex md:items-center md:justify-between">
       <div class="min-w-0 flex-1">
-        <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-4">Ke zpracování</h4>
+        <h4
+          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
+        >
+          Ke zpracování
+        </h4>
       </div>
     </div>
 
-    <div class="mb-4 divide-y divide-gray-200 h-auto rounded border-gray-200 border">
+    <div
+      class="mb-4 h-auto divide-y divide-gray-200 rounded border border-gray-200"
+    >
       <nuxt-link href="/finance/inbox/expense_drafts">
-        <div class="px-3 py-2 hover:bg-slate-50 text-gray-700 text-sm">
+        <div class="px-3 py-2 text-sm text-gray-700 hover:bg-slate-50">
           Výdaje ke zpracování
         </div>
       </nuxt-link>
 
       <nuxt-link href="/finance/inbox/payments_to_pair">
-        <div class="px-3 py-2 hover:bg-slate-50 text-gray-700 text-sm">
+        <div class="px-3 py-2 text-sm text-gray-700 hover:bg-slate-50">
           Platby ke spárování
         </div>
       </nuxt-link>
     </div>
-
   </div>
 </template>
 
 <script setup>
 useHead({
-  title: 'Ke zpracování - Prognola'
-})
+  title: "Ke zpracování - Prognola",
+});
 
 definePageMeta({
-  layout: 'default',
-  middleware: ['sanctum:auth', 'sanctum:verified'],
-})
+  layout: "default",
+  middleware: ["sanctum:auth", "sanctum:verified"],
+});
 </script>
 
 <script>
-export default {}
-
+export default {};
 </script>

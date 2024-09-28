@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="border border-gray-800 bg-gray-700/20 text-gray-200 rounded-2xl px-5 py-5 text-center">
+    <div
+      class="rounded-2xl border border-gray-800 bg-gray-700/20 px-5 py-5 text-center text-gray-200"
+    >
       Načítání firmy.
     </div>
   </div>
@@ -8,13 +10,13 @@
 
 <script setup>
 definePageMeta({
-  layout: 'guest',
-  middleware: ['sanctum:auth', 'sanctum:verified'],
-})
+  layout: "guest",
+  middleware: ["sanctum:auth", "sanctum:verified"],
+});
 
 useHead({
-  title: 'Prognola'
-})
+  title: "Prognola",
+});
 </script>
 
 <script>
@@ -23,39 +25,36 @@ export default {
     return {
       user: null,
       workspaces: [],
-
-    }
+    };
   },
 
   async mounted() {
     // Load available workspaces
     const client = useSanctumClient();
 
-    const {data} = await useAsyncData('workspaces', () =>
-        client('/api/workspaces', {
-          method: 'GET',
-        })
-    )
+    const { data } = await useAsyncData("workspaces", () =>
+      client("/api/workspaces", {
+        method: "GET",
+      }),
+    );
 
-    this.workspaces.value = data.value
+    this.workspaces.value = data.value;
 
     // If user has no workspaces, redirect to workspace create guide
     if (this.workspaces.value.length === 0) {
-      await navigateTo('/create_workspace')
-      return
+      await navigateTo("/create_workspace");
+      return;
     }
 
     // Redirect to first workspace
-    let workspace_slug = this.workspaces.value[0].url_slug
+    let workspace_slug = this.workspaces.value[0].url_slug;
 
     // Redirect is made with native js location.
     // This is ugly workaround, because nuxt navigateTo
     // caused undefined workspace loaded in default.vue layout.
-    location.href = '/' + workspace_slug + '/cashflow'
-
+    location.href = "/" + workspace_slug + "/cashflow";
   },
 
   methods: {},
-
-}
+};
 </script>

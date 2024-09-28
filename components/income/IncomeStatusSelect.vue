@@ -4,15 +4,13 @@ export default {
     return {
       status: null,
       select_expanded: false,
-    }
+    };
   },
 
-  props: [
-    'income'
-  ],
+  props: ["income"],
 
   mounted() {
-    this.status = this.income.payment_status
+    this.status = this.income.payment_status;
   },
 
   methods: {
@@ -20,82 +18,93 @@ export default {
       if (this.select_expanded === true) {
         this.select_expanded = false;
       } else {
-        this.select_expanded = true
+        this.select_expanded = true;
       }
     },
 
     async setStatus(status) {
-      this.status = status
-      this.select_expanded = false
+      this.status = status;
+      this.select_expanded = false;
 
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('income', () =>
-          client('/api/incomes/' + this.income.id, {
-            method: 'PATCH',
-            body: {
-              payment_status: status
-            }
-          })
-      )
-    }
-  }
-}
+      const { data } = await useAsyncData("income", () =>
+        client("/api/incomes/" + this.income.id, {
+          method: "PATCH",
+          body: {
+            payment_status: status,
+          },
+        }),
+      );
+    },
+  },
+};
 </script>
 
 <template>
-  <div class="text-sm rounded text-gray-700 mb-3 relative hover:bg-gray-100">
+  <div class="relative mb-3 rounded text-sm text-gray-700 hover:bg-gray-100">
     <Transition>
-      <div v-if="select_expanded"
-           class="absolute left-[-150px] top-[-5px] w-[147px] bg-white border-slate-200 border shadow rounded px-1 py-1">
-
-        <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('draft')">
-          <income-status-icon payment_status="draft"/>
+      <div
+        v-if="select_expanded"
+        class="absolute left-[-150px] top-[-5px] w-[147px] rounded border border-slate-200 bg-white px-1 py-1 shadow"
+      >
+        <div
+          class="rounded px-1 py-1 hover:bg-gray-100"
+          @click="setStatus('draft')"
+        >
+          <income-status-icon payment_status="draft" />
 
           Ke zpracování
         </div>
-        <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('plan')">
-          <income-status-icon payment_status="plan"/>
+        <div
+          class="rounded px-1 py-1 hover:bg-gray-100"
+          @click="setStatus('plan')"
+        >
+          <income-status-icon payment_status="plan" />
 
           Odhad
         </div>
-        <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('pending')">
-          <income-status-icon payment_status="pending"/>
+        <div
+          class="rounded px-1 py-1 hover:bg-gray-100"
+          @click="setStatus('pending')"
+        >
+          <income-status-icon payment_status="pending" />
 
           K úhradě
         </div>
-        <div class="px-1 py-1 rounded hover:bg-gray-100" @click="setStatus('paid')">
-          <income-status-icon payment_status="paid"/>
+        <div
+          class="rounded px-1 py-1 hover:bg-gray-100"
+          @click="setStatus('paid')"
+        >
+          <income-status-icon payment_status="paid" />
 
           Uhrazeno
         </div>
       </div>
     </Transition>
 
-    <div @click="expandSelect" class="py-1 px-1">
+    <div @click="expandSelect" class="px-1 py-1">
       <div v-if="status === 'draft'">
-        <income-status-icon payment_status="draft"/>
+        <income-status-icon payment_status="draft" />
 
         Ke zpracování
       </div>
       <div v-if="status === 'plan'">
-        <income-status-icon payment_status="plan"/>
+        <income-status-icon payment_status="plan" />
         Odhad
       </div>
       <div v-if="status === 'pending'">
-        <income-status-icon payment_status="pending"/>
+        <income-status-icon payment_status="pending" />
 
         K úhradě
       </div>
       <div v-if="status === 'paid'">
-        <income-status-icon payment_status="paid"/>
+        <income-status-icon payment_status="paid" />
 
         Uhrazeno
       </div>
     </div>
   </div>
-
-
 </template>
 
 <style scoped>

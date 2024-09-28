@@ -4,65 +4,105 @@
   </Head>
 
   <div v-if="loaded">
-    <div class="md:flex md:justify-between mb-4 divide-x divide-slate-100 h-auto">
-      <div class="w-full me-5">
+    <div
+      class="mb-4 h-auto divide-x divide-slate-100 md:flex md:justify-between"
+    >
+      <div class="me-5 w-full">
         <div class="flex justify-between">
-          <input type="text"
-                 class="p-0 w-full text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight mb-3 border-none focus:ring-0"
-                 placeholder="Název příjmu" v-model="input_name" v-on:blur="updateName">
+          <input
+            type="text"
+            class="mb-3 w-full border-none p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
+            placeholder="Název příjmu"
+            v-model="input_name"
+            v-on:blur="updateName"
+          />
 
           <div>
-            <income-options :income="income"/>
+            <income-options :income="income" />
           </div>
-
         </div>
 
-        <p class="text-gray-500 text-sm mb-5">Příjem P-{{ income.id }}</p>
+        <p class="mb-5 text-sm text-gray-500">Příjem P-{{ income.id }}</p>
 
-        <textarea v-model="input_description" class="border-none focus:ring-0 p-0 text-sm text-slate-700 w-full mb-5"
-                  placeholder="Přidat popis..." v-on:blur="updateDescription"></textarea>
+        <textarea
+          v-model="input_description"
+          class="mb-5 w-full border-none p-0 text-sm text-slate-700 focus:ring-0"
+          placeholder="Přidat popis..."
+          v-on:blur="updateDescription"
+        ></textarea>
 
-        <p class="text-sm text-gray-600 mb-2">Doklady</p>
+        <p class="mb-2 text-sm text-gray-600">Doklady</p>
 
-        <div class="border border-slate-200 rounded divide-y divide-slate-200">
+        <div class="divide-y divide-slate-200 rounded border border-slate-200">
           <!--          <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>-->
-          <a :href="'https://valasskapevnost.cz/admin/invoicing/received_invoices/' + income.id" target="_blank">
-            <div class="w-full px-5 py-3 text-sm text-slate-600">Zobrazit v IS</div>
+          <a
+            :href="
+              'https://valasskapevnost.cz/admin/invoicing/received_invoices/' +
+              income.id
+            "
+            target="_blank"
+          >
+            <div class="w-full px-5 py-3 text-sm text-slate-600">
+              Zobrazit v IS
+            </div>
           </a>
         </div>
       </div>
 
       <div class="w-[250px] ps-4">
+        <income-price-input :income="income" />
 
-        <income-price-input :income="income"/>
+        <income-status-select :income="income" />
 
-        <income-status-select :income="income"/>
-
-        <p class="text-sm py-1 px-1 rounded text-gray-700 hover:bg-gray-100 mb-4" v-if="income.organisation">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor"
-               class="size-5 inline-block me-2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/>
+        <p
+          class="mb-4 rounded px-1 py-1 text-sm text-gray-700 hover:bg-gray-100"
+          v-if="income.organisation"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="me-2 inline-block size-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"
+            />
           </svg>
 
           {{ income.organisation.name }}
         </p>
 
-        <p class="text-sm py-1 px-1 rounded text-gray-500 hover:bg-gray-100 mb-7" v-else>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor"
-               class="size-5 inline-block me-2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/>
+        <p
+          class="mb-7 rounded px-1 py-1 text-sm text-gray-500 hover:bg-gray-100"
+          v-else
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="me-2 inline-block size-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"
+            />
           </svg>
 
           zvolit organizaci
         </p>
 
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Kategorie příjmu</p>
+        <p class="mb-2 px-1 text-xs font-medium text-gray-500">
+          Kategorie příjmu
+        </p>
 
-        <income-category-picker :income="income"/>
+        <income-category-picker :income="income" />
 
         <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Platby</p>-->
 
@@ -88,27 +128,42 @@
         <!--          -543 Kč-->
         <!--        </p>-->
 
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="income.payment_status === 'paid'">Uhrazeno</p>
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="income.payment_status === 'plan'">Plánovaná
-          úhrada</p>
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="income.payment_status === 'draft'">Plánovaná
-          úhrada</p>
-        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="income.payment_status === 'pending'">Plánovaná
-          úhrada</p>
+        <p
+          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          v-if="income.payment_status === 'paid'"
+        >
+          Uhrazeno
+        </p>
+        <p
+          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          v-if="income.payment_status === 'plan'"
+        >
+          Plánovaná úhrada
+        </p>
+        <p
+          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          v-if="income.payment_status === 'draft'"
+        >
+          Plánovaná úhrada
+        </p>
+        <p
+          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          v-if="income.payment_status === 'pending'"
+        >
+          Plánovaná úhrada
+        </p>
 
-        <income-paid-at-input :income="income"/>
-
+        <income-paid-at-input :income="income" />
       </div>
-
     </div>
   </div>
 </template>
 
 <script setup>
 definePageMeta({
-  layout: 'default',
-  middleware: ['sanctum:auth', 'sanctum:verified'],
-})
+  layout: "default",
+  middleware: ["sanctum:auth", "sanctum:verified"],
+});
 </script>
 
 <script>
@@ -116,78 +171,79 @@ import IncomeStatusSelect from "~/components/income/IncomeStatusSelect.vue";
 import IncomePaidAtInput from "~/components/income/IncomePaidAtInput.vue";
 
 export default {
-  components: {IncomePaidAtInput, IncomeStatusSelect},
+  components: { IncomePaidAtInput, IncomeStatusSelect },
   data() {
     return {
       route: null,
       loaded: false,
 
       income: null,
-      input_name: '',
-      input_description: '',
-    }
+      input_name: "",
+      input_description: "",
+    };
   },
 
   mounted() {
-    this.route = useRoute()
+    this.route = useRoute();
 
-    this.fetchData()
+    this.fetchData();
   },
 
   computed: {
     title() {
-      return this.income ? this.income.name + ' - Prognola' : 'Detail příjmu - Prognola'
-    }
+      return this.income
+        ? this.income.name + " - Prognola"
+        : "Detail příjmu - Prognola";
+    },
   },
 
   methods: {
     async fetchData() {
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('income', () =>
-          client('/api/incomes/' + this.route.params.income, {
-            method: 'GET',
-          })
-      )
+      const { data } = await useAsyncData("income", () =>
+        client("/api/incomes/" + this.route.params.income, {
+          method: "GET",
+        }),
+      );
 
-      this.income = data.value
-      this.input_name = data.value.name
-      this.input_description = data.value.description
+      this.income = data.value;
+      this.input_name = data.value.name;
+      this.input_description = data.value.description;
 
-      this.loaded = true
+      this.loaded = true;
     },
 
     formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+      let val = (value / 1).toFixed(0).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
 
     async updateName() {
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('income', () =>
-          client('/api/incomes/' + this.route.params.income, {
-            method: 'PATCH',
-            body: {
-              name: this.input_name
-            }
-          })
-      )
+      const { data } = await useAsyncData("income", () =>
+        client("/api/incomes/" + this.route.params.income, {
+          method: "PATCH",
+          body: {
+            name: this.input_name,
+          },
+        }),
+      );
     },
 
     async updateDescription() {
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('income', () =>
-          client('/api/incomes/' + this.route.params.income, {
-            method: 'PATCH',
-            body: {
-              description: this.input_description,
-            }
-          })
-      )
+      const { data } = await useAsyncData("income", () =>
+        client("/api/incomes/" + this.route.params.income, {
+          method: "PATCH",
+          body: {
+            description: this.input_description,
+          },
+        }),
+      );
     },
-  }
-}
-
+  },
+};
 </script>

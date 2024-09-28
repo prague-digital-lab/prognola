@@ -1,32 +1,42 @@
 <template>
-  <div class="text-center">
-    <h1 class="text-2xl mb-5 text-gray-200">Vytvořte novou firmu</h1>
+  <div class="flex flex-col items-center text-center">
+    <h1 class="mb-3 text-2xl text-gray-200">Vytvořte novou firmu</h1>
 
-    <div class="border border-gray-800 bg-gray-700/20 text-gray-200 rounded-2xl px-5 py-5 text-center">
+    <p class="mb-5 text-gray-500">Později budete moci název změnit.</p>
 
-      <p>Název firmy</p>
+    <div
+      class="rounded-2xl border border-gray-800 bg-gray-700/20 px-7 py-7 text-start text-gray-200 md:w-1/2"
+    >
+      <p class="mb-2 text-sm text-gray-300">Název firmy</p>
 
-      <input v-model="name">
+      <input
+        class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
+        v-model="name"
+      />
 
-      <p>URL adresa firmy</p>
+      <p class="text-sm text-gray-300">URL adresa firmy</p>
 
-      <input v-model="url_slug">
+      <input
+        class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
+        v-model="url_slug"
+      />
 
-      <a @click="submit">Vytvořit firmu</a>
-
+      <a @click="submit" class="rounded bg-white px-3 py-2 text-gray-800"
+        >Vytvořit firmu</a
+      >
     </div>
   </div>
 </template>
 
 <script setup>
 definePageMeta({
-  layout: 'guest',
-  middleware: ['sanctum:auth'],
-})
+  layout: "guest",
+  middleware: ["sanctum:auth"],
+});
 
 useHead({
-  title: 'Založení firmy - Prognola'
-})
+  title: "Založení firmy - Prognola",
+});
 </script>
 
 <script>
@@ -36,26 +46,25 @@ export default {
       user: null,
       workspaces: [],
 
-      name: '',
-      url_slug: '',
-    }
+      name: "",
+      url_slug: "",
+    };
   },
 
   async mounted() {
-
     // Load available workspaces
     const client = useSanctumClient();
 
-    const {data} = await useAsyncData('workspaces', () =>
-        client('/api/workspaces', {
-          method: 'GET',
-        })
-    )
+    const { data } = await useAsyncData("workspaces", () =>
+      client("/api/workspaces", {
+        method: "GET",
+      }),
+    );
 
-    this.workspaces = data.value
+    this.workspaces = data.value;
 
     if (this.workspaces.length === 0) {
-      await navigateTo('/create_workspace')
+      await navigateTo("/create_workspace");
     }
   },
 
@@ -64,18 +73,18 @@ export default {
       // Load available workspaces
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData('workspaces', () =>
-          client('/api/workspaces', {
-            method: 'POST',
-            body: {
-              url_slug: this.url_slug,
-              name: this.name
-            }
-          })
-      )
+      const { data } = await useAsyncData("workspaces", () =>
+        client("/api/workspaces", {
+          method: "POST",
+          body: {
+            url_slug: this.url_slug,
+            name: this.name,
+          },
+        }),
+      );
 
-      await navigateTo(this.url_slug + '/cashflow')
-    }
-  }
-}
+      await navigateTo(this.url_slug + "/cashflow");
+    },
+  },
+};
 </script>
