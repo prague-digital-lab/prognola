@@ -5,27 +5,27 @@
     <p class="mb-5 text-gray-500">Později budete moci název změnit.</p>
 
     <div
-        class="rounded-2xl border border-gray-800 bg-gray-700/20 px-7 py-7 text-start text-gray-200 md:w-1/2"
+      class="rounded-2xl border border-gray-800 bg-gray-700/20 px-7 py-7 text-start text-gray-200 md:w-1/2"
     >
       <p class="mb-2 text-sm text-gray-300">Název firmy</p>
 
       <input
-          class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
-          v-model="name"
+        class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
+        v-model="name"
       />
 
       <p class="mb-2 text-sm text-gray-300">URL adresa firmy</p>
 
       <input
-          class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
-          v-model="url_slug"
+        class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
+        v-model="url_slug"
       />
 
       <div class="mx-5">
         <a
-            @click="submit"
-            class="block w-full rounded bg-gray-200 px-3 py-3 text-center text-sm text-gray-800 hover:bg-white select-none"
-        >Vytvořit firmu</a
+          @click="submit"
+          class="block w-full select-none rounded bg-gray-200 px-3 py-3 text-center text-sm text-gray-800 hover:bg-white"
+          >Vytvořit firmu</a
         >
       </div>
     </div>
@@ -59,10 +59,10 @@ export default {
     // Load available workspaces
     const client = useSanctumClient();
 
-    const {data} = await useAsyncData("workspaces", () =>
-        client("/api/workspaces", {
-          method: "GET",
-        }),
+    const { data } = await useAsyncData("workspaces", () =>
+      client("/api/workspaces", {
+        method: "GET",
+      }),
     );
 
     this.workspaces = data.value;
@@ -77,17 +77,17 @@ export default {
       // Load available workspaces
       const client = useSanctumClient();
 
-      const {data} = await useAsyncData("workspaces", () =>
-          client("/api/workspaces", {
-            method: "POST",
-            body: {
-              url_slug: this.url_slug,
-              name: this.name,
-            },
-          }),
+      const { data } = await useAsyncData("workspaces", () =>
+        client("/api/workspaces", {
+          method: "POST",
+          body: {
+            url_slug: this.url_slug,
+            name: this.name,
+          },
+        }),
       );
 
-      await navigateTo('/' + this.url_slug + "/cashflow");
+      await navigateTo("/" + this.url_slug + "/cashflow");
     },
   },
 };
