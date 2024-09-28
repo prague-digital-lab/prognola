@@ -14,7 +14,7 @@
         v-model="name"
       />
 
-      <p class="text-sm text-gray-300">URL adresa firmy</p>
+      <p class="mb-2 text-sm text-gray-300">URL adresa firmy</p>
 
       <input
         class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
