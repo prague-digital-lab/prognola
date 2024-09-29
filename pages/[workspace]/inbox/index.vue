@@ -13,13 +13,13 @@
     <div
       class="mb-4 h-auto divide-y divide-gray-200 rounded border border-gray-200"
     >
-      <nuxt-link href="/finance/inbox/expense_drafts">
+      <nuxt-link :href="'/' + route.params.workspace + '/inbox/expense_drafts'">
         <div class="px-3 py-2 text-sm text-gray-700 hover:bg-slate-50">
           Výdaje ke zpracování
         </div>
       </nuxt-link>
 
-      <nuxt-link href="/finance/inbox/payments_to_pair">
+      <nuxt-link :href="'/' + route.params.workspace + '/inbox/payments_to_pair'">
         <div class="px-3 py-2 text-sm text-gray-700 hover:bg-slate-50">
           Platby ke spárování
         </div>
@@ -37,6 +37,8 @@ definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
+
+const route = useRoute()
 </script>
 
 <script>

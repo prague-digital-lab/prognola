@@ -68,9 +68,10 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("bank_payments_to_pair", () =>
-        client("/api/bank_payments", {
+        client("/api/" + route.params.workspace + "/bank_payments", {
           method: "GET",
           params: {
             from: "2024-01-01",
@@ -90,7 +91,7 @@ export default {
     },
 
     async pairPayment(payment) {
-      await navigateTo("/bank_payments/" + payment.id + "/pair");
+      await navigateTo("/bank_payments/" + payment.uuid + "/pair");
     },
   },
 };

@@ -24,7 +24,7 @@
         v-if="expenses.length === 0"
         class="flex h-[400px] w-full items-center justify-center"
       >
-        <p class="text-gray-600">
+        <p class="text-center text-gray-600">
           Všechny výdaje jsou zpracované. ✅<br />Tak se to musí!
         </p>
       </div>
@@ -34,7 +34,7 @@
       <form @submit.prevent="createExpense">
         <input
           v-model="new_expense_name"
-          placeholder="Nový výdaj..."
+          placeholder="Nový výdaj ke zpracování..."
           required
           class="me-2 rounded border border-gray-200 py-1"
         />
@@ -93,9 +93,10 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
-      const { data } = await useAsyncData("income", () =>
-        client("/api/expenses", {
+      const { data } = await useAsyncData("expense_drafts", () =>
+        client("/api/" + route.params.workspace + "/expenses", {
           method: "GET",
           params: {
             payment_status: "draft",
@@ -116,9 +117,10 @@ export default {
 
     async createExpense() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses", {
+        client("/api/" + route.params.workspace + "/expenses", {
           method: "POST",
           body: {
             description: this.new_expense_name,
@@ -128,9 +130,9 @@ export default {
         }),
       );
 
-      let id = data.value.id;
+      let uuid = data.value.uuid;
 
-      await navigateTo("/expenses/" + id);
+      await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
     },
   },
 };
