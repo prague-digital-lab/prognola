@@ -38,20 +38,6 @@
             :scan="scan"
             v-for="scan in expense.scans"
           ></expense-scan-row>
-
-          <div>
-            <a
-              :href="
-                'https://valasskapevnost.cz/admin/invoicing/received_invoices/' +
-                expense.id
-              "
-              target="_blank"
-            >
-              <div class="w-full px-5 py-3 text-sm text-slate-600">
-                Zobrazit v IS
-              </div>
-            </a>
-          </div>
         </div>
       </div>
 
@@ -119,7 +105,6 @@ export default {
   components: { ExpensePaidAtInput, ExpenseStatusSelect },
   data() {
     return {
-      route: null,
       loaded: false,
 
       expense: null,
@@ -129,8 +114,6 @@ export default {
   },
 
   mounted() {
-    this.route = useRoute();
-
     this.fetchData();
   },
 
@@ -145,11 +128,18 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses/" + this.route.params.expense, {
-          method: "GET",
-        }),
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/expenses/" +
+            route.params.expense,
+          {
+            method: "GET",
+          },
+        ),
       );
 
       this.expense = data.value;
@@ -166,22 +156,30 @@ export default {
 
     async updateDescription() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses/" + this.route.params.expense, {
-          method: "PATCH",
-          body: {
-            description: this.input_description,
+        client(
+          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+          {
+            method: "PATCH",
+            body: {
+              description: this.input_description,
+            },
           },
-        }),
+        ),
       );
     },
 
     async updateInternalNote() {
       const client = useSanctumClient();
+      const route = useRoute;
+
+      const endpoint =
+        "/api" + route.params.workspace + "/expenses/" + this.expense.uuid;
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses/" + this.route.params.expense, {
+        client(endpoint, {
           method: "PATCH",
           body: {
             internal_note: this.input_internal_note,

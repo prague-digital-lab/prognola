@@ -181,10 +181,12 @@ export default {
       this.fetchData();
       localStorage.setItem("from", newVal);
     },
+
     to: function (newVal, oldVal) {
       this.fetchData();
       localStorage.setItem("to", newVal);
     },
+
     grouped_by: function (newVal, oldVal) {
       localStorage.setItem("expenses.grouped_by", newVal);
 
@@ -197,9 +199,10 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
-      const { data } = await useAsyncData("income", () =>
-        client("/api/expenses", {
+      const { data } = await useAsyncData("expenses", () =>
+        client("/api/" + route.params.workspace + "/expenses", {
           method: "GET",
           params: {
             from: this.from,
@@ -221,9 +224,10 @@ export default {
 
     async createExpense() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses", {
+        client("/api/" + route.params.workspace + "/expenses", {
           method: "POST",
           body: {
             description: this.new_expense_name,
@@ -233,9 +237,9 @@ export default {
         }),
       );
 
-      let id = data.value.id;
+      let uuid = data.value.uuid;
 
-      await navigateTo("/expenses/" + id);
+      await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
     },
   },
 };

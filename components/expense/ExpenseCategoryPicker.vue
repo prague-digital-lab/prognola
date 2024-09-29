@@ -34,22 +34,27 @@ export default {
       this.selected_expense_category = expense_category;
 
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses/" + this.expense.id, {
-          method: "PATCH",
-          body: {
-            expense_category_id: expense_category.id,
+        client(
+          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+          {
+            method: "PATCH",
+            body: {
+              expense_category_id: expense_category.uuid,
+            },
           },
-        }),
+        ),
       );
     },
 
     async loadExpenseCategories() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expense-categories", {
+        client("/api/" + route.params.workspace + "/expense_categories", {
           method: "GET",
         }),
       );

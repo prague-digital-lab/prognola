@@ -93,11 +93,17 @@ export default defineComponent({
     },
 
     async navigateToExpense() {
-      await navigateTo("/finance/expenses/" + this.expense.id);
+      const route = useRoute();
+      await navigateTo(
+        "/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+      );
     },
 
     async navigateToOrganisation(organisation) {
-      await navigateTo("/finance/organisations/" + organisation.id);
+      const route = useRoute();
+      await navigateTo(
+        "/" + route.params.workspace + "/organisations/" + organisation.uuid,
+      );
     },
   },
 });
