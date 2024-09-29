@@ -19,7 +19,7 @@ export default defineNuxtConfig({
           onLogin: "/entry", // Custom route after successful login
           onAuthOnly: "/login",
           onGuestOnly: "/entry",
-          onLogout: "/login",
+          onLogout: "/",
         },
         endpoints: {
           login: "/api/login",

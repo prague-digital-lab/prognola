@@ -165,28 +165,17 @@
                 </li>
               </ul>
             </li>
-            <!--            <li>-->
-            <!--              &lt;!&ndash;              <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>&ndash;&gt;-->
-            <!--              <ul role="list" class="-mx-2 mt-2 space-y-1">-->
-            <!--                <li v-for="team in teams" :key="team.name">-->
-            <!--                  <NuxtLink :href="team.href"-->
-            <!--                            :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">-->
-            <!--                    <span-->
-            <!--                        :class="[team.current ? 'border-indigo-600 text-indigo-600' : 'border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium']">{{-->
-            <!--                        team.initial-->
-            <!--                      }}</span>-->
-            <!--                    <span class="truncate">{{ team.name }}</span>-->
-            <!--                  </NuxtLink>-->
-            <!--                </li>-->
-            <!--              </ul>-->
-            <!--            </li>-->
           </ul>
 
           <div>
             <select
               class="w-full rounded border border-gray-200 bg-white text-sm"
+              v-model="active_workspace_url_slug"
             >
-              <option v-for="workspace in workspaces">
+              <option
+                v-for="workspace in workspaces"
+                :value="workspace.url_slug"
+              >
                 {{ workspace.name }}
               </option>
             </select>
@@ -374,18 +363,26 @@ const navigation = [
     icon: UsersIcon,
     current: false,
   },
-  // {name: 'Report tržeb', href: '/finance/invoices', icon: UsersIcon, current: false},
-];
-const userNavigation = [
-  // {name: 'Recepce', href: 'https://valasskapevnost.cz/admin/recepce'},
 ];
 
 const { user } = useSanctumAuth();
 
 const workspaces = ref("");
-const active_workspace = [];
+const active_workspace = ref("");
+const active_workspace_url_slug = ref("");
 
 onMounted(async () => {
+  await loadAvailableWorkspaces();
+
+  if (workspaces.value.length === 0) {
+    await navigateTo("/create_workspace");
+    return;
+  }
+
+  findActiveWorkspace(route.params.workspace);
+});
+
+async function loadAvailableWorkspaces() {
   // Load available workspaces
   const client = useSanctumClient();
 
@@ -396,27 +393,34 @@ onMounted(async () => {
   );
 
   workspaces.value = data.value;
+}
 
-  if (workspaces.value.length === 0) {
-    await navigateTo("/create_workspace");
-    return;
-  }
+function findActiveWorkspace(url_slug) {
+  let active_url_slug = url_slug;
 
-  // Find active workspace
-  let active_url_slug = route.params.workspace;
   let workspace_by_slug = workspaces.value.find(
     (x) => x.url_slug === active_url_slug,
   );
 
-  console.log(workspace_by_slug);
   if (workspace_by_slug === undefined) {
     showError("Nenalezeno");
   }
 
   active_workspace.value = workspace_by_slug;
-});
+  active_workspace_url_slug.value = active_url_slug;
+}
 
 const sidebarOpen = ref(false);
+
+watch(active_workspace_url_slug, async (newUrlSlug, oldUrlSlug) => {
+  if (newUrlSlug === oldUrlSlug || oldUrlSlug === "") {
+    return;
+  }
+
+  console.log("Changing workspace to: " + newUrlSlug);
+
+  location.href = "/" + newUrlSlug + "/cashflow";
+});
 
 async function submitLogout() {
   const { logout } = useSanctumAuth();
