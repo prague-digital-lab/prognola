@@ -25,10 +25,10 @@
     </div>
 
     <div class="flex justify-end">
-      <form @submit.prevent="createExpense">
+      <form @submit.prevent="createOrganisation">
         <input
-          v-model="new_expense_name"
-          placeholder="Nový výdaj..."
+          v-model="new_organisation_name"
+          placeholder="Nová organizace..."
           required
           class="me-2 rounded border border-gray-200 py-1"
         />
@@ -61,7 +61,7 @@ export default {
     return {
       // Page UI data
       loaded: false,
-      new_expense_name: "",
+      new_organisation_name: "",
 
       // Data table params
       grouped_by: null,
@@ -80,9 +80,10 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
-      const { data } = await useAsyncData("income", () =>
-        client("/api/organisations", {
+      const { data } = await useAsyncData("organisations", () =>
+        client("/api/" + route.params.workspace + "/organisations", {
           method: "GET",
           params: {},
         }),
@@ -100,17 +101,20 @@ export default {
 
     async createOrganisation() {
       const client = useSanctumClient();
+      const route = useRoute();
 
-      const { data } = await useAsyncData("expense", () =>
-        client("/api/organisations", {
+      const { data } = await useAsyncData("organisation", () =>
+        client("/api/" + route.params.workspace + "/organisations", {
           method: "POST",
-          body: {},
+          body: {
+            name: this.new_organisation_name
+          },
         }),
       );
 
-      let id = data.value.id;
+      let uuid = data.value.uuid;
 
-      await navigateTo("/organisations/" + id);
+      await navigateTo("/"+route.params.workspace + "/organisations/" + uuid);
     },
   },
 };

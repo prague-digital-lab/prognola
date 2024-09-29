@@ -31,7 +31,14 @@ export default defineComponent({
     },
 
     async navigateToOrganisation() {
-      await navigateTo("/finance/organisations/" + this.organisation.id);
+      const route = useRoute();
+
+      await navigateTo(
+        "/" +
+          route.params.workspace +
+          "/organisations/" +
+          this.organisation.uuid,
+      );
     },
   },
 });

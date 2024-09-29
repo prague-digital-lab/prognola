@@ -39,19 +39,7 @@
             v-for="expense in organisation.received_invoices"
           ></expense-row>
 
-          <div>
-            <a
-              :href="
-                'https://valasskapevnost.cz/admin/crm/organisations/' +
-                organisation.id
-              "
-              target="_blank"
-            >
-              <div class="w-full px-5 py-3 text-sm text-slate-600">
-                Zobrazit v IS
-              </div>
-            </a>
-          </div>
+
         </div>
       </div>
 
@@ -122,11 +110,18 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("organisation", () =>
-        client("/api/organisations/" + this.route.params.organisation, {
-          method: "GET",
-        }),
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/organisations/" +
+            route.params.organisation,
+          {
+            method: "GET",
+          },
+        ),
       );
 
       this.organisation = data.value;
