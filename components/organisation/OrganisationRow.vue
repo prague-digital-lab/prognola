@@ -26,7 +26,7 @@ export default defineComponent({
 
     formatDate(date) {
       let formatted = DateTime.fromISO(date);
-      r;
+
       return formatted.toFormat("d.M.yyyy");
     },
 
