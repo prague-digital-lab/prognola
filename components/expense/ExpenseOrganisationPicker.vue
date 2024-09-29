@@ -34,7 +34,7 @@ export default {
       this.selected_organisation = organisation;
 
       const client = useSanctumClient();
-      const route = useRoute;
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
         client(
@@ -42,7 +42,7 @@ export default {
           {
             method: "PATCH",
             body: {
-              organisation_id: organisation.uuid,
+              organisation_uuid: organisation.uuid,
             },
           },
         ),

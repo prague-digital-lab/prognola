@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <p class="mb-5 text-sm text-gray-500">{{ organisation.id }}</p>
+        <p class="mb-5 text-sm text-gray-500">{{ organisation.type }}</p>
 
         <textarea
           v-model="input_internal_note"
@@ -36,7 +36,7 @@
         <div class="divide-y divide-slate-200 rounded border border-slate-200">
           <expense-row
             :expense="expense"
-            v-for="expense in organisation.received_invoices"
+            v-for="expense in organisation.expenses"
           ></expense-row>
 
 
