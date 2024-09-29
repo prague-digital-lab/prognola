@@ -27,14 +27,18 @@ export default {
       this.select_expanded = false;
 
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses/" + this.expense.id, {
-          method: "PATCH",
-          body: {
-            payment_status: status,
+        client(
+          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+          {
+            method: "PATCH",
+            body: {
+              payment_status: status,
+            },
           },
-        }),
+        ),
       );
     },
   },

@@ -34,22 +34,27 @@ export default {
       this.selected_organisation = organisation;
 
       const client = useSanctumClient();
+      const route = useRoute;
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses/" + this.expense.id, {
-          method: "PATCH",
-          body: {
-            organisation_id: organisation.id,
+        client(
+          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+          {
+            method: "PATCH",
+            body: {
+              organisation_id: organisation.uuid,
+            },
           },
-        }),
+        ),
       );
     },
 
     async loadOrganisations() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("organisations", () =>
-        client("/api/organisations", {
+        client("/api/" + route.params.workspace + "/organisations", {
           method: "GET",
         }),
       );

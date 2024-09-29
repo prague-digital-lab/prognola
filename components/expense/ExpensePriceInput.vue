@@ -30,17 +30,19 @@ export default {
     async updatePrice() {
       this.expanded = false;
 
-      console.log("Updating");
-
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses/" + this.expense.id, {
-          method: "PATCH",
-          body: {
-            price: this.price,
+        client(
+          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+          {
+            method: "PATCH",
+            body: {
+              price: this.price,
+            },
           },
-        }),
+        ),
       );
     },
   },

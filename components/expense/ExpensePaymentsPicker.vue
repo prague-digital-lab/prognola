@@ -9,7 +9,7 @@ export default {
     },
 
     async navigateToPayment(payment) {
-      await navigateTo("/bank_payments/" + payment.id);
+      await navigateTo("/bank_payments/" + payment.uuid);
     },
   },
 };
