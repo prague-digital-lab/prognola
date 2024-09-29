@@ -31,22 +31,8 @@
           v-on:blur="updateDescription"
         ></textarea>
 
-        <p class="mb-2 text-sm text-gray-600">Doklady</p>
+<!--        <p class="mb-2 text-sm text-gray-600">Doklady</p>-->
 
-        <div class="divide-y divide-slate-200 rounded border border-slate-200">
-          <!--          <div class="w-full px-5 py-3 text-sm text-slate-600">Doklad 023564</div>-->
-          <a
-            :href="
-              'https://valasskapevnost.cz/admin/invoicing/received_invoices/' +
-              income.id
-            "
-            target="_blank"
-          >
-            <div class="w-full px-5 py-3 text-sm text-slate-600">
-              Zobrazit v IS
-            </div>
-          </a>
-        </div>
       </div>
 
       <div class="w-[250px] ps-4">
@@ -200,11 +186,18 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/incomes/" + this.route.params.income, {
-          method: "GET",
-        }),
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/incomes/" +
+            this.route.params.income,
+          {
+            method: "GET",
+          },
+        ),
       );
 
       this.income = data.value;
@@ -221,27 +214,36 @@ export default {
 
     async updateName() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/incomes/" + this.route.params.income, {
-          method: "PATCH",
-          body: {
-            name: this.input_name,
+        client(
+          "/api/" + route.params.workspace + "/incomes/" + this.income.uuid,
+
+          {
+            method: "PATCH",
+            body: {
+              name: this.input_name,
+            },
           },
-        }),
+        ),
       );
     },
 
     async updateDescription() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/incomes/" + this.route.params.income, {
-          method: "PATCH",
-          body: {
-            description: this.input_description,
+        client(
+          "/api/" + route.params.workspace + "/incomes/" + this.income.uuid,
+          {
+            method: "PATCH",
+            body: {
+              description: this.input_description,
+            },
           },
-        }),
+        ),
       );
     },
   },

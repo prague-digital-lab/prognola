@@ -23,14 +23,18 @@ export default {
       }
 
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/incomes/" + this.income.id, {
-          method: "DELETE",
-        }),
+        client(
+          "/api/" + route.params.workspace + "/incomes/" + this.income.uuid,
+          {
+            method: "DELETE",
+          },
+        ),
       );
 
-      await navigateTo("/income");
+      await navigateTo("/" + route.params.workspace + "/income");
     },
   },
 };

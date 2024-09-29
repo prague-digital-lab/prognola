@@ -80,7 +80,10 @@ export default defineComponent({
     },
 
     async navigateToIncome() {
-      await navigateTo("/income/" + this.income.id);
+      const route = useRoute();
+      await navigateTo(
+        "/" + route.params.workspace + "/income/" + this.income.uuid,
+      );
     },
   },
 });

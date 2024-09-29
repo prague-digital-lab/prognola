@@ -189,9 +189,10 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/incomes", {
+        client("/api/" + route.params.workspace + "/incomes", {
           method: "GET",
           params: {
             from: this.from,
@@ -213,9 +214,10 @@ export default {
 
     async createIncome() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/incomes", {
+        client("/api/" + route.params.workspace + "/incomes", {
           method: "POST",
           body: {
             name: this.new_income_name,
@@ -225,9 +227,9 @@ export default {
         }),
       );
 
-      let id = data.value.id;
+      let uuid = data.value.uuid;
 
-      await navigateTo("/income/" + id);
+      await navigateTo("/" + route.params.workspace + "/income/" + uuid);
     },
   },
 };

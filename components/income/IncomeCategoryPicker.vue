@@ -34,22 +34,27 @@ export default {
       this.selected_income_category = income_category;
 
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/incomes/" + this.income.id, {
-          method: "PATCH",
-          body: {
-            income_category_id: income_category.id,
+        client(
+          "/api/" + route.params.workspace + "/incomes/" + this.income.id,
+          {
+            method: "PATCH",
+            body: {
+              income_category_id: income_category.id,
+            },
           },
-        }),
+        ),
       );
     },
 
     async loadIncomeCategories() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/income-categories", {
+        client("/api/" + route.params.workspace + "/income_categories", {
           method: "GET",
         }),
       );

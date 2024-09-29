@@ -15,11 +15,7 @@ export default {
 
   methods: {
     expandSelect() {
-      if (this.select_expanded === true) {
-        this.select_expanded = false;
-      } else {
-        this.select_expanded = true;
-      }
+      this.select_expanded = !this.select_expanded;
     },
 
     async setStatus(status) {
@@ -27,14 +23,18 @@ export default {
       this.select_expanded = false;
 
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/incomes/" + this.income.id, {
-          method: "PATCH",
-          body: {
-            payment_status: status,
+        client(
+          "/api/" + route.params.workspace + "/incomes/" + this.income.uuid,
+          {
+            method: "PATCH",
+            body: {
+              payment_status: status,
+            },
           },
-        }),
+        ),
       );
     },
   },
