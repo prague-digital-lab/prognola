@@ -10,17 +10,36 @@
       </div>
     </div>
 
-    <div class="mb-4 divide-y divide-gray-200 rounded border border-gray-200">
+    <div
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
+      v-if="bank_accounts.length > 0"
+    >
       <bank-account-row
         v-for="bank_account in bank_accounts"
         :bank_account="bank_account"
       ></bank-account-row>
+    </div>
 
-      <div
-        v-if="bank_accounts.length === 0"
-        class="flex h-[400px] w-full items-center justify-center"
-      >
-        <p class="text-gray-600">Žádné účty.</p>
+    <div
+      v-if="bank_accounts.length === 0"
+      class="bg-grad-grey flex h-[400px] w-full items-center rounded-2xl px-10"
+    >
+      <div>
+        <p class="mb-4 text-3xl font-semibold text-gray-950">
+          Mějte všechny platby na jednom místě
+        </p>
+
+        <p class="mb-7 text-gray-950">
+          Přidejte bankovní účet nebo hotovostní pokladnu, abyste měli vždy
+          přehled o uskutečněných platbách. <br />Teď už vám žádná transakce
+          neunikne.
+        </p>
+
+        <nuxt-link
+          :href="'/' + route.params.workspace + '/bank_accounts/new'"
+          class="rounded-xl bg-black px-4 py-2 font-medium text-white"
+          >Přidat první účet</nuxt-link
+        >
       </div>
     </div>
   </div>
@@ -35,6 +54,8 @@ definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
+
+const route = useRoute();
 </script>
 
 <script>
@@ -54,9 +75,10 @@ export default {
   methods: {
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-        client("/api/bank_accounts", {
+        client("/api/" + route.params.workspace + "/bank_accounts", {
           method: "GET",
         }),
       );
@@ -71,11 +93,12 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
 
-    async createExpense() {
+    async createBankAccount() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses", {
+        client("/api/" + route.params.workspace + "/bank_accounts", {
           method: "POST",
           body: {
             description: this.new_expense_name,

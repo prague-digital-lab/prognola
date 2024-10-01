@@ -31,8 +31,7 @@
           v-on:blur="updateDescription"
         ></textarea>
 
-<!--        <p class="mb-2 text-sm text-gray-600">Doklady</p>-->
-
+        <!--        <p class="mb-2 text-sm text-gray-600">Doklady</p>-->
       </div>
 
       <div class="w-[250px] ps-4">

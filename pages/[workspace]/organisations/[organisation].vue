@@ -38,8 +38,6 @@
             :expense="expense"
             v-for="expense in organisation.expenses"
           ></expense-row>
-
-
         </div>
       </div>
 

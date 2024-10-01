@@ -19,7 +19,9 @@
         </div>
       </nuxt-link>
 
-      <nuxt-link :href="'/' + route.params.workspace + '/inbox/payments_to_pair'">
+      <nuxt-link
+        :href="'/' + route.params.workspace + '/inbox/payments_to_pair'"
+      >
         <div class="px-3 py-2 text-sm text-gray-700 hover:bg-slate-50">
           Platby ke spárování
         </div>
@@ -38,7 +40,7 @@ definePageMeta({
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
 
-const route = useRoute()
+const route = useRoute();
 </script>
 
 <script>

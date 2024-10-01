@@ -107,14 +107,14 @@ export default {
         client("/api/" + route.params.workspace + "/organisations", {
           method: "POST",
           body: {
-            name: this.new_organisation_name
+            name: this.new_organisation_name,
           },
         }),
       );
 
       let uuid = data.value.uuid;
 
-      await navigateTo("/"+route.params.workspace + "/organisations/" + uuid);
+      await navigateTo("/" + route.params.workspace + "/organisations/" + uuid);
     },
   },
 };
