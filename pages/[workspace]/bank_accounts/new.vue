@@ -123,7 +123,7 @@
       <div class="mb-4">
         <p class="mb-4 font-semibold">3. Podrobnosti o účtu</p>
 
-        <div class="overflow-hidden rounded-lg bg-white shadow md:w-1/2">
+        <div class="mb-5 overflow-hidden rounded-lg bg-white shadow md:w-1/2">
           <div class="px-4 py-5 sm:p-6">
             <div class="mb-4">
               <label
@@ -133,9 +133,8 @@
               >
               <div class="mt-2">
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
+                  name="name"
+                  v-model="name"
                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   placeholder="Firemní účet (hlavní)"
                 />
@@ -150,9 +149,8 @@
               >
               <div class="mt-2">
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
+                  v-model="bank_number"
+                  type="number"
                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   placeholder="1234567890"
                 />
@@ -175,22 +173,16 @@
                 />
               </div>
             </div>
-
           </div>
         </div>
 
-        <a>ODeslat</a>
+        <nuxt-link
+          class="rounded-xl bg-black px-4 py-2 font-medium text-white"
+          v-on:click="createBankAccount"
+          >Vytvořit účet
+        </nuxt-link>
       </div>
     </div>
-    <!--    <div class="mb-5">-->
-    <!--      <p>Název účtu</p>-->
-
-    <!--      <input  />-->
-    <!--    </div>-->
-
-    <!--    <nuxt-link class="rounded-xl bg-black px-4 py-2 font-medium text-white"-->
-    <!--      >Přidat první účet-->
-    <!--    </nuxt-link>-->
   </div>
 </template>
 
@@ -205,9 +197,27 @@ definePageMeta({
 });
 
 const route = useRoute();
+const client = useSanctumClient();
 
 const account_type = ref("");
 const selected_bank = ref("");
+const name = ref("");
+const bank_number = ref("");
+
+async function createBankAccount() {
+  const { data } = await useAsyncData("bank_account", () =>
+    client("/api/" + route.params.workspace + "/bank_accounts", {
+      method: "POST",
+      body: {
+        name: name.value,
+        bank: selected_bank.value,
+        bank_number: bank_number.value,
+      },
+    }),
+  );
+
+  await navigateTo("/" + route.params.workspace + "/bank_accounts");
+}
 </script>
 
 <script>
@@ -243,26 +253,6 @@ export default {
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
-
-    async createBankAccount() {
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("expense", () =>
-        client("/api/" + route.params.workspace + "/bank_accounts", {
-          method: "POST",
-          body: {
-            description: this.new_expense_name,
-            price: 0,
-            paid_at: this.from,
-          },
-        }),
-      );
-
-      let id = data.value.id;
-
-      await navigateTo("/finance/expenses/" + id);
     },
   },
 };
