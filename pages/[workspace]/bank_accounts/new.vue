@@ -15,7 +15,7 @@
         <p class="text-gray-600">1. Zvolte typ účtu</p>
       </div>
 
-      <div class="mb-10 grid w-full grid-flow-col gap-7 duration-500">
+      <div class="mb-10 grid w-full grid-cols-2 gap-7 duration-500">
         <choose-account-type
           :selected="account_type === 'bank_account'"
           name="Bankovní účet"
@@ -23,12 +23,12 @@
           @click="account_type = 'bank_account'"
         ></choose-account-type>
 
-        <choose-account-type
-          :selected="account_type === 'cash_register'"
-          name="Hotovostní pokladna"
-          account_type="cash_register"
-          @click="account_type = 'cash_register'"
-        ></choose-account-type>
+        <!--        <choose-account-type-->
+        <!--          :selected="account_type === 'cash_register'"-->
+        <!--          name="Hotovostní pokladna"-->
+        <!--          account_type="cash_register"-->
+        <!--          @click="account_type = 'cash_register'"-->
+        <!--        ></choose-account-type>-->
       </div>
     </div>
 
@@ -42,19 +42,19 @@
           <choose-bank-button
             :selected="selected_bank === 'fio'"
             name="Fio Banka"
-            @click="selected_bank = 'fio'"
+            @click="selectBank('fio')"
           ></choose-bank-button>
 
           <choose-bank-button
             :selected="selected_bank === 'kb'"
             name="Komerční banka"
-            @click="selected_bank = 'kb'"
+            @click="selectBank('kb')"
           ></choose-bank-button>
 
           <choose-bank-button
             :selected="selected_bank === 'other'"
             name="Jiná banka"
-            @click="selected_bank = 'other'"
+            @click="selectBank('other')"
           ></choose-bank-button>
         </div>
       </div>
@@ -163,6 +163,29 @@ async function createBankAccount() {
   );
 
   await navigateTo("/" + route.params.workspace + "/bank_accounts");
+}
+
+function selectBank(bank) {
+  if (bank === "fio") {
+    selected_bank.value = "fio";
+    bank_number.value = "2010";
+
+    name.value = "Firemní účet FIO";
+  }
+
+  if (bank === "kb") {
+    selected_bank.value = "kb";
+    bank_number.value = "0100";
+
+    name.value = "Firemní účet KB";
+  }
+
+  if (bank === "other") {
+    selected_bank.value = "other";
+    bank_number.value = "";
+
+    name.value = "Firemní účet";
+  }
 }
 </script>
 
