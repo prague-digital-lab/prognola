@@ -22,16 +22,16 @@
           </div>
         </div>
 
-        <p class="mb-5 text-sm text-gray-500">Příjem P-{{ income.id }}</p>
+        <p class="mb-5 text-base text-gray-500">Příjem P-{{ income.id }}</p>
 
         <textarea
           v-model="input_description"
-          class="mb-5 w-full border-none p-0 text-sm text-slate-700 focus:ring-0"
+          class="mb-5 w-full border-none p-0 text-base text-slate-700 focus:ring-0"
           placeholder="Přidat popis..."
           v-on:blur="updateDescription"
         ></textarea>
 
-        <!--        <p class="mb-2 text-sm text-gray-600">Doklady</p>-->
+        <!--        <p class="mb-2 text-base text-gray-600">Doklady</p>-->
       </div>
 
       <div class="w-[250px] ps-4">
@@ -40,7 +40,7 @@
         <income-status-select :income="income" />
 
         <p
-          class="mb-4 rounded px-1 py-1 text-sm text-gray-700 hover:bg-gray-100"
+          class="mb-4 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100"
           v-if="income.organisation"
         >
           <svg
@@ -62,7 +62,7 @@
         </p>
 
         <p
-          class="mb-7 rounded px-1 py-1 text-sm text-gray-500 hover:bg-gray-100"
+          class="mb-7 rounded px-1 py-1 text-base text-gray-500 hover:bg-gray-100"
           v-else
         >
           <svg

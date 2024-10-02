@@ -3,14 +3,14 @@
     class="flex items-center justify-between px-3 py-2 hover:bg-slate-50"
     @click="navigateToExpense"
   >
-    <div class="flex text-sm">
+    <div class="flex text-base">
       <p class="w-[60px] font-light text-gray-500">V-{{ expense.id }}</p>
       <p class="w-[400px]">
         {{ expense.description ? expense.description : "nový výdaj" }}
       </p>
     </div>
 
-    <div class="flex items-center text-sm font-light text-slate-600">
+    <div class="flex items-center text-base font-light text-slate-600">
       <div
         v-if="expense.organisation"
         class="flex cursor-pointer items-center rounded-[20px] border border-gray-200 px-3 py-1 hover:border-gray-300 hover:bg-slate-100"

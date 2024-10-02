@@ -12,13 +12,13 @@
           <div v-if="!authenticated">
             <nuxt-link
               href="/login"
-              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-sm font-medium text-gray-200"
+              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-base font-medium text-gray-200"
             >
               Přihlásit se
             </nuxt-link>
             <nuxt-link
               href="/register"
-              class="rounded bg-gray-200 px-2.5 py-1.5 text-sm font-medium text-gray-800"
+              class="rounded bg-gray-200 px-2.5 py-1.5 text-base font-medium text-gray-800"
             >
               Vyzkoušet
             </nuxt-link>
@@ -27,14 +27,14 @@
           <div v-if="authenticated && !verified">
             <a
               @click="logout"
-              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-sm font-medium text-gray-200"
+              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-base font-medium text-gray-200"
             >
               Odhlásit se</a
             >
 
             <nuxt-link
               href="/entry"
-              class="rounded bg-gray-200 px-2.5 py-1.5 text-sm font-medium text-gray-800"
+              class="rounded bg-gray-200 px-2.5 py-1.5 text-base font-medium text-gray-800"
               >Ověřit email
             </nuxt-link>
           </div>
@@ -42,14 +42,14 @@
           <div v-if="authenticated && verified">
             <a
               @click="logout"
-              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-sm font-medium text-gray-200"
+              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-base font-medium text-gray-200"
             >
               Odhlásit se</a
             >
 
             <nuxt-link
               href="/entry"
-              class="rounded bg-gray-200 px-2.5 py-1.5 text-sm font-medium text-gray-800"
+              class="rounded bg-gray-200 px-2.5 py-1.5 text-base font-medium text-gray-800"
             >
               Přejít do aplikace
             </nuxt-link>

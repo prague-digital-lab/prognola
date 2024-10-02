@@ -153,7 +153,7 @@ export default {
             </p>
 
             <p
-              class="px-2 py-1 text-sm text-gray-700 hover:bg-gray-100"
+              class="px-2 py-1 text-base text-gray-700 hover:bg-gray-100"
               v-for="category in department"
               @click="selectCategory(category)"
             >
@@ -162,7 +162,7 @@ export default {
           </div>
 
           <p
-            class="px-2 py-1 text-sm text-gray-500"
+            class="px-2 py-1 text-base text-gray-500"
             v-if="filtered_categories.length === 0"
           >
             žádná kategorie

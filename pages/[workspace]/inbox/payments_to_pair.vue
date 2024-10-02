@@ -8,7 +8,7 @@
           Platby ke spárování
         </h4>
 
-        <p class="text-sm text-gray-500" v-if="loaded">
+        <p class="text-base text-gray-500" v-if="loaded">
           Celkem plateb ke spárování: {{ payments.length }}
         </p>
       </div>
@@ -26,10 +26,10 @@
 
       <div
         v-if="payments.length === 0"
-        class="flex h-[400px] w-full items-center justify-center"
+        class="flex h-[400px] w-full items-center justify-center bg-white"
       >
-        <p class="text-center text-gray-600">
-          Všechny úhrady jsou spárované. ✅ <br />Tak se to musí!
+        <p class="text-center text-base text-gray-500">
+          Všechny úhrady jsou spárované. <br />Tak se to musí!
         </p>
       </div>
     </div>

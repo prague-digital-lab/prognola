@@ -24,67 +24,67 @@
         <div class="border-t border-gray-100">
           <dl class="divide-y divide-gray-100">
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">Částka</dt>
+              <dt class="text-base font-medium text-gray-900">Částka</dt>
               <dd
-                class="mt-1 text-sm font-bold leading-6 text-red-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base font-bold leading-6 text-red-700 sm:col-span-2 sm:mt-0"
               >
                 {{ formatPrice(bank_payment.amount) }} Kč
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">Účet</dt>
+              <dt class="text-base font-medium text-gray-900">Účet</dt>
               <dd
-                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
                 {{ bank_payment.bank_account.name }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">Popis platby</dt>
+              <dt class="text-base font-medium text-gray-900">Popis platby</dt>
               <dd
-                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
                 {{ bank_payment.description }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">
+              <dt class="text-base font-medium text-gray-900">
                 Zpráva pro příjemce
               </dt>
               <dd
-                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
                 {{ bank_payment.sender_comment }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">Externí ID</dt>
+              <dt class="text-base font-medium text-gray-900">Externí ID</dt>
               <dd
-                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
                 {{ bank_payment.external_id }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">
+              <dt class="text-base font-medium text-gray-900">
                 Variabilní symbol
               </dt>
               <dd
-                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
                 {{ bank_payment.variable_symbol }}
               </dd>
             </div>
 
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-900">Datum platby</dt>
+              <dt class="text-base font-medium text-gray-900">Datum platby</dt>
               <dd
-                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
                 {{ formatDate(bank_payment.issued_at) }}
               </dd>
@@ -94,9 +94,9 @@
               class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
               v-if="bank_payment.counter_account_number"
             >
-              <dt class="text-sm font-medium text-gray-900">Číslo protiúčtu</dt>
+              <dt class="text-base font-medium text-gray-900">Číslo protiúčtu</dt>
               <dd
-                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
                 {{ bank_payment.counter_account_number }}/{{
                   bank_payment.counter_bank_number
@@ -108,9 +108,9 @@
               class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
               v-if="bank_payment.paired_at"
             >
-              <dt class="text-sm font-medium text-gray-900">Spárováno</dt>
+              <dt class="text-base font-medium text-gray-900">Spárováno</dt>
               <dd
-                class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
                 {{ formatDate(bank_payment.paired_at) }}
               </dd>

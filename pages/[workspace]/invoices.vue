@@ -10,24 +10,24 @@
       </div>
       <div class="mt-4 flex md:ml-4 md:mt-0">
         <div class="me-2">
-          <!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
+          <!--          <label for="email" class="block text-base font-medium leading-6 text-gray-900">Email</label>-->
           <div class="mt-2">
             <input
               type="date"
               v-model="from"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
               placeholder="you@example.com"
             />
           </div>
         </div>
 
         <div>
-          <!--          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>-->
+          <!--          <label for="email" class="block text-base font-medium leading-6 text-gray-900">Email</label>-->
           <div class="mt-2">
             <input
               type="date"
               v-model="to"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
               placeholder="you@example.com"
             />
           </div>
@@ -40,7 +40,7 @@
         <div
           class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
         >
-          <dt class="truncate text-sm font-medium text-gray-500">Tržby</dt>
+          <dt class="truncate text-base font-medium text-gray-500">Tržby</dt>
           <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
             {{ formatPrice(whole_income) }} Kč
           </dd>
@@ -48,7 +48,7 @@
         <div
           class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
         >
-          <dt class="truncate text-sm font-medium text-gray-500">
+          <dt class="truncate text-base font-medium text-gray-500">
             Průměrně týdně
           </dt>
           <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
@@ -58,7 +58,7 @@
         <div
           class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
         >
-          <dt class="truncate text-sm font-medium text-gray-500">
+          <dt class="truncate text-base font-medium text-gray-500">
             Průměrně denně
           </dt>
           <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">

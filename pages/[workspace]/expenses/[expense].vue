@@ -22,16 +22,16 @@
           </div>
         </div>
 
-        <p class="mb-5 text-sm text-gray-500">Výdaj V-{{ expense.id }}</p>
+        <p class="mb-5 text-base text-gray-500">Výdaj V-{{ expense.id }}</p>
 
         <textarea
           v-model="input_internal_note"
-          class="mb-5 w-full border-none p-0 text-sm text-slate-700 focus:ring-0"
+          class="mb-5 w-full border-none p-0 text-base text-slate-700 focus:ring-0"
           placeholder="Přidat popis..."
           v-on:blur="updateInternalNote"
         ></textarea>
 
-        <p class="mb-2 text-sm text-gray-600">Doklady</p>
+        <p class="mb-2 text-base text-gray-600">Doklady</p>
 
         <div class="divide-y divide-slate-200 rounded border border-slate-200">
           <expense-scan-row

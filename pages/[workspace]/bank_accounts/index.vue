@@ -19,10 +19,10 @@
         :bank_account="bank_account"
       ></bank-account-row>
     </div>
-    <div class="mx-5 text-sm">
+    <div class="mx-5 text-base">
       <nuxt-link href="bank_accounts/new" class="text-gray-400"
-        >Přidat účet</nuxt-link
-      >
+        >Přidat účet
+      </nuxt-link>
     </div>
 
     <div
@@ -32,15 +32,16 @@
       <div class="md:w-1/2">
         <p class="mb-4 font-medium">Mějte všechny platby na jednom místě</p>
 
-        <p class="mb-7 text-sm font-light">
+        <p class="mb-7 text-base font-light">
           Přidejte bankovní účet nebo hotovostní pokladnu, abyste měli vždy
           přehled o&nbsp;uskutečněných platbách. Teď už vám žádná transakce
           neunikne.
         </p>
 
         <nuxt-link
+          v-if="bank_accounts.length > 0"
           :href="'/' + route.params.workspace + '/bank_accounts/new'"
-          class="rounded-xl bg-black px-4 py-2 font-medium text-white"
+          class="rounded-xl bg-black px-4 py-2 font-medium text-white text-base"
           >Přidat účet
         </nuxt-link>
       </div>

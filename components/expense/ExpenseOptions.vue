@@ -43,7 +43,7 @@ export default {
 <template>
   <div class="relative">
     <p
-      class="mb-3 rounded px-1 py-1 text-sm text-gray-700 hover:bg-gray-100"
+      class="mb-3 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100"
       @click="expanded ? close() : expand()"
     >
       <svg
@@ -74,13 +74,13 @@ export default {
           "
           target="_blank"
         >
-          <div class="w-full p-2 text-sm text-slate-600 hover:bg-gray-100">
+          <div class="w-full p-2 text-base text-slate-600 hover:bg-gray-100">
             Zobrazit v IS
           </div>
         </a>
 
         <p
-          class="p-2 text-sm text-red-600 hover:bg-gray-100"
+          class="p-2 text-base text-red-600 hover:bg-gray-100"
           @click="deleteExpense"
         >
           Odstranit výdaj

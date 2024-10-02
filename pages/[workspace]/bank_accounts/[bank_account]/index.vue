@@ -31,7 +31,7 @@
                 <input
                   type="date"
                   v-model="from"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
                 />
               </div>
             </div>
@@ -41,14 +41,14 @@
                 <input
                   type="date"
                   v-model="to"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
                 />
               </div>
             </div>
           </div>
         </div>
 
-        <p class="mb-5 text-sm text-gray-500">Účet</p>
+        <p class="mb-5 text-base text-gray-500">Účet</p>
 
         <div
           class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
@@ -63,7 +63,7 @@
             v-if="bank_payments.length === 0"
             class="flex h-[400px] w-full items-center justify-center"
           >
-            <p class="text-gray-600">Žádné odpovídající platby.</p>
+            <p class="text-gray-600 text-base">Žádné odpovídající platby.</p>
           </div>
         </div>
       </div>

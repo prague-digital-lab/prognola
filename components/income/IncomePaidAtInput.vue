@@ -60,7 +60,7 @@ export default {
 <template>
   <div class="relative">
     <p
-      class="mb-3 rounded px-1 py-1 text-sm text-gray-700 hover:bg-gray-100"
+      class="mb-3 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100"
       @click="expanded ? close() : expand()"
     >
       <svg
@@ -94,7 +94,7 @@ export default {
           v-model="paid_at"
         />
 
-        <p class="ms-2 text-sm text-gray-500">Datum úhrady</p>
+        <p class="ms-2 text-base text-gray-500">Datum úhrady</p>
       </div>
     </Transition>
   </div>

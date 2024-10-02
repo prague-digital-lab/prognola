@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-full px-5 py-3 text-sm text-slate-500">
+  <div class="w-full px-5 py-3 text-base text-slate-500">
     <div
       class="flex justify-between"
       @click="!expanded ? (expanded = true) : (expanded = false)"

@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-  <div class="relative mb-3 rounded text-sm text-gray-700 hover:bg-gray-100">
+  <div class="relative mb-3 rounded text-base text-gray-700 hover:bg-gray-100">
     <Transition>
       <div
         v-if="select_expanded"

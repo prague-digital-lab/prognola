@@ -3,7 +3,7 @@
     class="flex items-center justify-between px-3 py-2 hover:bg-slate-50"
     @click="navigateToOrganisation"
   >
-    <div class="flex text-sm">
+    <div class="flex text-base">
       <!--      <p class="text-gray-500 w-[60px] font-light">{{ organisation.id }}</p>-->
       <p class="w-[400px]">
         {{ organisation.name ? organisation.name : "bez názvu" }}

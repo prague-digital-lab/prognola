@@ -8,7 +8,7 @@
           Výdaje ke zpracování
         </h4>
 
-        <p class="text-sm text-gray-500">
+        <p class="text-base text-gray-500">
           Celkem výdajů ke zpracování: {{ expenses.length }}
         </p>
       </div>
@@ -22,10 +22,10 @@
 
       <div
         v-if="expenses.length === 0"
-        class="flex h-[400px] w-full items-center justify-center"
+        class="flex h-[400px] w-full items-center justify-center bg-white"
       >
-        <p class="text-center text-gray-600">
-          Všechny výdaje jsou zpracované. ✅<br />Tak se to musí!
+        <p class="text-center text-gray-500 text-base">
+          Všechny výdaje jsou zpracované.<br />
         </p>
       </div>
     </div>

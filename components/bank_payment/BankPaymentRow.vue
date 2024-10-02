@@ -1,15 +1,15 @@
 <template>
   <div class="flex items-center justify-between px-3 py-2 hover:bg-slate-50">
-    <!--    <div class="text-sm flex">-->
+    <!--    <div class="text-base flex">-->
     <!--      <p class="text-gray-500 w-[60px] font-light">{{ bank_payment.id }}</p>-->
     <!--      <p class="w-[400px]"></p>-->
     <!--    </div>-->
 
-    <!--    <div class="text-sm text-slate-600 font-light flex items-center">-->
+    <!--    <div class="text-base text-slate-600 font-light flex items-center">-->
     <!--      <p class="font-bold">{{ formatPrice(bank_payment.amount) }} Kč</p>-->
     <!--    </div>-->
 
-    <table class="w-full text-sm">
+    <table class="w-full text-base">
       <tr>
         <td class="w-[10%]">{{ formatDate(bank_payment.issued_at) }}</td>
         <td class="w-[30%]">

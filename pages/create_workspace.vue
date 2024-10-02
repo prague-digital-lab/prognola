@@ -7,14 +7,14 @@
     <div
       class="rounded-2xl border border-gray-800 bg-gray-700/20 px-7 py-7 text-start text-gray-200 md:w-1/2"
     >
-      <p class="mb-2 text-sm text-gray-300">Název firmy</p>
+      <p class="mb-2 text-base text-gray-300">Název firmy</p>
 
       <input
         class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
         v-model="name"
       />
 
-      <p class="mb-2 text-sm text-gray-300">URL adresa firmy</p>
+      <p class="mb-2 text-base text-gray-300">URL adresa firmy</p>
 
       <input
         class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
@@ -24,7 +24,7 @@
       <div class="mx-5">
         <a
           @click="submit"
-          class="block w-full select-none rounded bg-gray-200 px-3 py-3 text-center text-sm text-gray-800 hover:bg-white"
+          class="block w-full select-none rounded bg-gray-200 px-3 py-3 text-center text-base text-gray-800 hover:bg-white"
           >Vytvořit firmu</a
         >
       </div>

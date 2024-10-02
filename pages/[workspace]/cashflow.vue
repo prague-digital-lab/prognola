@@ -15,7 +15,7 @@
             <input
               type="date"
               v-model="from"
-              class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="w-full rounded-md border border-gray-200 py-1.5 text-base text-gray-700 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:block sm:leading-6"
             />
           </div>
 
@@ -23,7 +23,7 @@
             <input
               type="date"
               v-model="to"
-              class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="w-full rounded-md border border-gray-200 py-1.5 text-base text-gray-700 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:block sm:leading-6"
             />
           </div>
         </template>
@@ -34,7 +34,9 @@
           <div
             class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
-            <dt class="truncate text-sm font-medium text-gray-500">Příjmy</dt>
+            <nuxt-link href="income">
+              <dt class="truncate font-medium text-gray-500">Příjmy</dt>
+            </nuxt-link>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-blue-700">
               {{ formatPrice(income_sum) }} Kč
               <span
@@ -47,7 +49,9 @@
           <div
             class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
-            <dt class="truncate text-sm font-medium text-gray-500">Výdaje</dt>
+            <nuxt-link href="expenses">
+              <dt class="truncate font-medium text-gray-500">Výdaje</dt>
+            </nuxt-link>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-red-700">
               {{ formatPrice(expense_sum) }} Kč
               <span
@@ -60,7 +64,7 @@
           <div
             class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
-            <dt class="truncate text-sm font-medium text-gray-500">Výsledek</dt>
+            <dt class="truncate font-medium text-gray-500">Výsledek</dt>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">
               {{ formatPrice(profit_sum + profit_plan_sum) }} Kč
             </dd>

@@ -23,7 +23,7 @@ export default {
 <template>
   <div class="relative">
     <p
-      class="mb-3 rounded px-1 py-1 text-sm text-gray-700 hover:bg-gray-100"
+      class="mb-3 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100"
       @click="expanded ? close() : expand()"
     >
       <svg
@@ -51,7 +51,7 @@ export default {
           :href="'/bank_accounts/' + bank_account.id + '/import-kb-csv'"
           v-if="bank_account.bank === 'komercni_banka_csv'"
         >
-          <div class="w-full p-2 text-sm text-slate-600 hover:bg-gray-100">
+          <div class="w-full p-2 text-base text-slate-600 hover:bg-gray-100">
             Importovat transakce z CSV
           </div>
         </nuxt-link>

@@ -8,7 +8,7 @@
           Výdaje
         </h4>
 
-        <p class="text-sm text-gray-500">
+        <p class="text-base text-gray-500">
           Celkem: {{ formatPrice(price_sum) }} Kč
         </p>
       </div>
@@ -18,7 +18,7 @@
           <div class="mt-2">
             <select
               v-model="grouped_by"
-              class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
             >
               <option :value="null">Seskupit</option>
               <option value="expense_category">Kategorie</option>
@@ -31,7 +31,7 @@
             <input
               type="date"
               v-model="from"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
             />
           </div>
         </div>
@@ -41,7 +41,7 @@
             <input
               type="date"
               v-model="to"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
             />
           </div>
         </div>
@@ -70,7 +70,7 @@
         class="divide-y divide-gray-200"
         v-for="category in expenses_by_category"
       >
-        <div class="w-full bg-slate-100 py-2 ps-3 text-sm text-gray-600">
+        <div class="w-full bg-slate-100 py-2 ps-3 text-base text-gray-600">
           {{
             category[0].expense_category
               ? category[0].expense_category.name

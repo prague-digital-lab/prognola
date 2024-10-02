@@ -52,7 +52,7 @@ export default {
 <template>
   <div class="relative">
     <p
-      class="mb-3 rounded px-1 py-1 text-sm text-gray-700 hover:bg-gray-100"
+      class="mb-3 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100"
       @click="expanded ? close() : expand()"
     >
       <svg
@@ -87,7 +87,7 @@ export default {
           v-model="amount"
         />
 
-        <p class="ms-2 text-sm text-gray-500">Měna</p>
+        <p class="ms-2 text-base text-gray-500">Měna</p>
 
         <p class="p-2 hover:bg-gray-100">Koruna (Kč)</p>
       </div>

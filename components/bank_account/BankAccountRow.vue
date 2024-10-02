@@ -3,13 +3,13 @@
     class="flex cursor-pointer items-center justify-between px-5 py-4"
     @click="navigateToBankAccount"
   >
-    <div class="flex text-sm">
+    <div class="flex text-base">
       <!--      <p class="w-[60px] font-light text-gray-500">{{ bank_account.id }}</p>-->
       <p class="w-[400px]">{{ bank_account.name }}</p>
       <p class="w-[400px]">{{ bank_account.bank }}</p>
     </div>
 
-    <div class="flex items-center text-sm font-light text-slate-600">
+    <div class="flex items-center text-base font-light text-slate-600">
       <p class="font-bold">{{ formatPrice(bank_account.current_amount) }} Kč</p>
     </div>
   </div>

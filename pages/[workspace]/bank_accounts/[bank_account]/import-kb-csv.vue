@@ -12,7 +12,7 @@
           Import plateb do účtu
         </h4>
 
-        <p class="mb-5 text-sm text-gray-700">
+        <p class="mb-5 text-base text-gray-700">
           Tento proces načte platby z CSV Komerční banky do aplikace.<br />
           CSV z KB bankovnictví obsahuje unikátní ID každé platby. Díky tomu
           aplikace zajistí, aby nevznikaly duplicitní platby.
@@ -34,7 +34,7 @@
         <button
           type="submit"
           v-if="file"
-          class="rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          class="rounded bg-white px-2 py-1 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         >
           Zahájit import
         </button>
@@ -69,7 +69,7 @@
             <nuxt-link
               :href="'/bank_accounts/' + this.route.params.bank_account"
               type="button"
-              class="rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              class="rounded bg-white px-2 py-1 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
               >Přejít na výpis účtu</nuxt-link
             >
           </div>

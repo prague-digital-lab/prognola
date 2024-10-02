@@ -1,5 +1,5 @@
 <template>
-  <div class="cursor-default">
+  <div class="cursor-default text-base">
     <TransitionRoot as="template" :show="sidebarOpen">
       <Dialog class="relative z-50 lg:hidden" @close="sidebarOpen = false">
         <TransitionChild
@@ -71,7 +71,7 @@
                               item.current
                                 ? 'bg-gray-50 text-indigo-600'
                                 : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
-                              'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
+                              'group flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6',
                             ]"
                           >
                             <component
@@ -94,7 +94,7 @@
                       <!--                      <ul role="list" class="-mx-2 mt-2 space-y-1">-->
                       <!--                        <li v-for="team in teams" :key="team.name">-->
                       <!--                          <NuxtLink :href="team.href"-->
-                      <!--                                    :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">-->
+                      <!--                                    :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6']">-->
                       <!--                            <span-->
                       <!--                                :class="[team.current ? 'border-indigo-600 text-indigo-600' : 'border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium']">{{-->
                       <!--                                team.initial-->
@@ -106,7 +106,7 @@
                     </li>
                     <li class="mt-auto">
                       <!--                      <NuxtLink href="#"-->
-                      <!--                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">-->
+                      <!--                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">-->
                       <!--                        <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"-->
                       <!--                                       aria-hidden="true"/>-->
                       <!--                        Settings-->
@@ -151,7 +151,7 @@
                   <NuxtLink
                     :href="item.href"
                     :active-class="'hover:bg-gray-200 bg-gray-200 text-indigo-600'"
-                    class="group flex items-center gap-x-3 rounded-md p-2 text-sm leading-4 text-gray-500 hover:bg-gray-200/60 hover:text-indigo-600"
+                    class="group flex items-center gap-x-3 rounded-md p-2 text-base leading-4 text-gray-500 hover:bg-gray-200/60 hover:text-indigo-600"
                   >
                     <component
                       :is="item.icon"
@@ -167,7 +167,7 @@
 
           <div>
             <select
-              class="w-full rounded border border-gray-200 bg-white text-sm"
+              class="w-full rounded border border-gray-200 bg-white text-base"
               v-model="active_workspace_url_slug"
             >
               <option
@@ -205,7 +205,7 @@
             <!--            <MagnifyingGlassIcon class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"-->
             <!--                                 aria-hidden="true"/>-->
             <!--            <input id="search-field"-->
-            <!--                   class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"-->
+            <!--                   class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-base"-->
             <!--                   placeholder="Vyhledávání" type="search" name="search"/>-->
           </form>
           <div class="flex items-center gap-x-4 lg:gap-x-6">
@@ -234,7 +234,7 @@
                 />
                 <span class="hidden lg:flex lg:items-center">
                   <span
-                    class="ml-4 text-sm leading-6 text-gray-900"
+                    class="ml-4 text-base leading-6 text-gray-900"
                     aria-hidden="true"
                     >{{ user.name }}</span
                   >
@@ -264,7 +264,7 @@
                       :href="item.href"
                       :class="[
                         active ? 'bg-gray-50' : '',
-                        'block px-3 py-1 text-sm leading-6 text-gray-900',
+                        'block px-3 py-1 text-base leading-6 text-gray-900',
                       ]"
                     >
                       {{ item.name }}
@@ -274,7 +274,7 @@
                   <a
                     @click="submitLogout"
                     :class="[
-                      'block cursor-pointer bg-gray-50 px-3 py-1 text-sm leading-6 text-gray-900',
+                      'block cursor-pointer bg-gray-50 px-3 py-1 text-base leading-6 text-gray-900',
                     ]"
                   >
                     Odhlásit se

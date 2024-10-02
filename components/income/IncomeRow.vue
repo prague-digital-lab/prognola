@@ -3,12 +3,12 @@
     class="flex items-center justify-between px-3 py-2 hover:bg-slate-50"
     @click="navigateToIncome"
   >
-    <div class="flex text-sm">
+    <div class="flex text-base">
       <p class="w-[60px] font-light text-gray-500">P-{{ income.id }}</p>
       <p class="w-[400px]">{{ income.name }}</p>
     </div>
 
-    <div class="flex items-center text-sm font-light text-slate-600">
+    <div class="flex items-center text-base font-light text-slate-600">
       <div
         v-if="income.organisation"
         class="me-5 flex items-center rounded-[20px] border border-gray-200 px-3 py-1"
