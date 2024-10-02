@@ -227,11 +227,11 @@
             <Menu as="div" class="relative">
               <MenuButton class="-m-1.5 flex items-center p-1.5">
                 <span class="sr-only">Open user menu</span>
-                <img
-                  class="h-6 w-6 rounded-full bg-gray-50"
-                  :src="user.profile_photo_url"
-                  alt=""
-                />
+<!--                <img-->
+<!--                  class="h-6 w-6 rounded-full bg-gray-50"-->
+<!--                  :src="user.profile_photo_url"-->
+<!--                  alt=""-->
+<!--                />-->
                 <span class="hidden lg:flex lg:items-center">
                   <span
                     class="ml-4 text-base leading-6 text-gray-700"
