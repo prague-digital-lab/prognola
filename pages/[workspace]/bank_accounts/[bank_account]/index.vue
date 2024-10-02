@@ -99,7 +99,7 @@ export default {
     };
   },
 
-  async mounted() {
+  mounted() {
     this.route = useRoute();
 
     if (localStorage.getItem("from")) {
@@ -114,8 +114,8 @@ export default {
       this.to = "2024-07-30";
     }
 
-    await this.fetchData();
-    await this.fetchPayments();
+    this.fetchData();
+    this.fetchPayments();
 
     this.loaded = true;
   },
@@ -175,7 +175,7 @@ export default {
         client("/api/" + route.params.workspace + "/bank_payments", {
           method: "GET",
           params: {
-            bank_account_id: route.params.bank_account,
+            bank_account: route.params.bank_account,
             from: this.from,
             to: this.to,
           },

@@ -183,8 +183,6 @@ export default {
       const client = useSanctumClient();
       const route = useRoute();
 
-      console.log("/api/" + route.params.workspace + "/stats/cashflow");
-
       const { data } = await useAsyncData("income", () =>
         client("/api/" + route.params.workspace + "/stats/cashflow", {
           method: "GET",
