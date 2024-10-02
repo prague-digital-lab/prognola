@@ -41,7 +41,7 @@
         <div class="mb-10 grid w-full grid-cols-6 gap-5 duration-500">
           <choose-bank-button
             :selected="selected_bank === 'fio'"
-            name="Fio Banka"
+            name="Fio banka"
             @click="selectBank('fio')"
           ></choose-bank-button>
 
