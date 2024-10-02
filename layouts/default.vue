@@ -137,10 +137,10 @@
             <nuxt-img
               src="/img/logo_prazska_laborator.png"
               width="30"
-              class="me-2"
+              class="me-1"
             />
 
-            <p class="text-md tracking-widest text-gray-700">Prognola</p>
+            <p class="font-medium text-gray-700">Prognola</p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
@@ -150,8 +150,8 @@
                 <li v-for="item in navigation" :key="item.name">
                   <NuxtLink
                     :href="item.href"
-                    class="group flex items-center gap-x-3 rounded-md p-2 text-sm leading-4 text-gray-500 hover:bg-gray-100 hover:text-indigo-600"
-                    :active-class="'bg-gray-100 text-indigo-600'"
+                    :active-class="'hover:bg-gray-200 bg-gray-200 text-indigo-600'"
+                    class="group flex items-center gap-x-3 rounded-md p-2 text-sm leading-4 text-gray-500 hover:bg-gray-200/60 hover:text-indigo-600"
                   >
                     <component
                       :is="item.icon"

@@ -62,10 +62,10 @@
 
     <div v-if="selected_bank !== ''">
       <div class="mb-4">
-        <p class="text-gray-600 mb-4">3. Podrobnosti o účtu</p>
+        <p class="mb-4 text-gray-600">3. Podrobnosti o účtu</p>
 
         <div
-          class="mb-7 rounded-xl border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
+          class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
         >
           <div class="mb-4">
             <label
@@ -118,7 +118,7 @@
         </div>
 
         <nuxt-link
-          class="rounded-xl bg-black px-4 py-2 font-medium text-white"
+          class="rounded-full bg-black px-4 py-2 font-medium text-white"
           v-on:click="createBankAccount"
           >Vytvořit účet
         </nuxt-link>

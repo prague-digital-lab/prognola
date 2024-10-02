@@ -11,17 +11,18 @@
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded-xl border bg-white border-gray-200"
+      class="mb-4 divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white"
       v-if="bank_accounts.length > 0"
     >
       <bank-account-row
         v-for="bank_account in bank_accounts"
         :bank_account="bank_account"
       ></bank-account-row>
-
     </div>
     <div class="mx-5 text-sm">
-      <nuxt-link href="bank_accounts/new" class="text-gray-400">Přidat účet</nuxt-link>
+      <nuxt-link href="bank_accounts/new" class="text-gray-400"
+        >Přidat účet</nuxt-link
+      >
     </div>
 
     <div

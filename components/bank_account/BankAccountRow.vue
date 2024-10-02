@@ -4,7 +4,7 @@
     @click="navigateToBankAccount"
   >
     <div class="flex text-sm">
-<!--      <p class="w-[60px] font-light text-gray-500">{{ bank_account.id }}</p>-->
+      <!--      <p class="w-[60px] font-light text-gray-500">{{ bank_account.id }}</p>-->
       <p class="w-[400px]">{{ bank_account.name }}</p>
       <p class="w-[400px]">{{ bank_account.bank }}</p>
     </div>

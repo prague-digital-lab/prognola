@@ -15,7 +15,7 @@
             <input
               type="date"
               v-model="from"
-              class="block w-full rounded-md  py-1.5 text-gray-900  border border-gray-200 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
 
@@ -23,7 +23,7 @@
             <input
               type="date"
               v-model="to"
-              class="block w-full rounded-md  py-1.5 text-gray-900 border border-gray-200 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
         </template>
