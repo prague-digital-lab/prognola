@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="mb-4 divide-y divide-gray-200 rounded border border-gray-200">
+    <div class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white">
       <organisation-row
         v-for="organisation in organisations"
         :organisation="organisation"

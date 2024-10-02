@@ -140,7 +140,7 @@
               class="me-2"
             />
 
-            <p class="font-medium text-gray-700">Prognola</p>
+            <p class="font-medium text-gray-600">{{ active_workspace ? active_workspace.name : ''}}</p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">

@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: "Prognola - Veďte firmu jako nikdy předtím",
+  title: "Prognola - Plánujte firemní finance s lehkostí",
   meta: [{ name: "description", content: "Prognola" }],
   bodyAttrs: {},
 });
