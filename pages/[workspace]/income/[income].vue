@@ -83,7 +83,7 @@
           zvolit organizaci
         </p>
 
-        <p class="mb-2 px-1 text-xs font-medium text-gray-500">
+        <p class="text-xs mb-2 px-1 font-medium text-gray-500">
           Kategorie příjmu
         </p>
 
@@ -114,25 +114,25 @@
         <!--        </p>-->
 
         <p
-          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          class="text-xs mb-2 px-1 font-medium text-gray-500"
           v-if="income.payment_status === 'paid'"
         >
           Uhrazeno
         </p>
         <p
-          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          class="text-xs mb-2 px-1 font-medium text-gray-500"
           v-if="income.payment_status === 'plan'"
         >
           Plánovaná úhrada
         </p>
         <p
-          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          class="text-xs mb-2 px-1 font-medium text-gray-500"
           v-if="income.payment_status === 'draft'"
         >
           Plánovaná úhrada
         </p>
         <p
-          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          class="text-xs mb-2 px-1 font-medium text-gray-500"
           v-if="income.payment_status === 'pending'"
         >
           Plánovaná úhrada

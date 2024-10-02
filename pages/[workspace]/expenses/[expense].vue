@@ -48,7 +48,7 @@
 
         <expense-organisation-picker :expense="expense" />
 
-        <p class="mb-2 px-1 text-xs font-medium text-gray-500">
+        <p class="text-xs mb-2 px-1 font-medium text-gray-500">
           Kategorie výdaje
         </p>
 
@@ -56,29 +56,29 @@
 
         <expense-payments-picker :expense="expense" />
 
-        <p class="mb-2 px-1 text-xs font-medium text-gray-500">Datum přijetí</p>
+        <p class="text-xs mb-2 px-1 font-medium text-gray-500">Datum přijetí</p>
         <expense-received-at-input :expense="expense" />
 
         <p
-          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          class="text-xs mb-2 px-1 font-medium text-gray-500"
           v-if="expense.payment_status === 'paid'"
         >
           Uhrazeno
         </p>
         <p
-          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          class="text-xs mb-2 px-1 font-medium text-gray-500"
           v-if="expense.payment_status === 'plan'"
         >
           Plánovaná úhrada
         </p>
         <p
-          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          class="text-xs mb-2 px-1 font-medium text-gray-500"
           v-if="expense.payment_status === 'draft'"
         >
           Plánovaná úhrada
         </p>
         <p
-          class="mb-2 px-1 text-xs font-medium text-gray-500"
+          class="text-xs mb-2 px-1 font-medium text-gray-500"
           v-if="expense.payment_status === 'pending'"
         >
           Plánovaná úhrada

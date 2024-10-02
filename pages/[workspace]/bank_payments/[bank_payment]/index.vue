@@ -94,7 +94,9 @@
               class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
               v-if="bank_payment.counter_account_number"
             >
-              <dt class="text-base font-medium text-gray-900">Číslo protiúčtu</dt>
+              <dt class="text-base font-medium text-gray-900">
+                Číslo protiúčtu
+              </dt>
               <dd
                 class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >

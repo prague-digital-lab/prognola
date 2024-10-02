@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex h-[70px] items-center justify-center rounded-md border bg-gray-100/20 px-10 text-base text-gray-700 duration-300"
+    class="flex h-[70px] cursor-pointer items-center justify-center rounded-md border bg-gray-100/20 px-10 text-base text-gray-700 duration-300"
     :class="
       selected
         ? 'border-gray-400 bg-white shadow-md'

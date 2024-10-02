@@ -50,20 +50,13 @@
 
     <div
       class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
-      v-if="grouped_by === null"
+      v-if="incomes.length > 0 && grouped_by === null"
     >
       <income-row v-for="income in incomes" :income="income"></income-row>
-
-      <div
-        v-if="incomes.length === 0"
-        class="flex h-[400px] w-full items-center justify-center"
-      >
-        <p class="text-gray-600">Žádné odpovídající příjmy.</p>
-      </div>
     </div>
 
     <div
-      v-if="grouped_by === 'income_category'"
+      v-if="incomes.length > 0 && grouped_by === 'income_category'"
       class="mb-4 rounded border border-gray-200"
     >
       <div
@@ -79,13 +72,13 @@
         </div>
         <income-row v-for="income in category" :income="income"></income-row>
       </div>
+    </div>
 
-      <div
-        v-if="incomes.length === 0"
-        class="flex h-[400px] w-full items-center justify-center"
-      >
-        <p class="text-gray-600">Žádné odpovídající příjmy.</p>
-      </div>
+    <div
+      v-if="incomes.length === 0"
+      class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200"
+    >
+      <p class="text-gray-600">Žádné odpovídající příjmy.</p>
     </div>
 
     <div class="flex justify-end">

@@ -118,7 +118,7 @@
         </div>
 
         <nuxt-link
-          class="rounded-full bg-black px-4 py-2 font-medium text-white"
+          class="cursor-pointer rounded-full bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
           v-on:click="createBankAccount"
           >Vytvořit účet
         </nuxt-link>

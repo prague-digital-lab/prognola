@@ -18,13 +18,13 @@ export default {
 <template>
   <div class="mb-4">
     <div class="flex items-center justify-between">
-      <p class="px-1 text-xs font-medium text-gray-500">Platby</p>
+      <p class="text-xs px-1 font-medium text-gray-500">Platby</p>
 
       <!--      <nuxt-link :href="'/bank_payments/' + expense.id + '/pair'">+</nuxt-link>-->
     </div>
 
     <p
-      class="mb-1 rounded px-1 py-1 text-xs text-gray-800 hover:bg-gray-100"
+      class="text-xs mb-1 rounded px-1 py-1 text-gray-800 hover:bg-gray-100"
       v-for="payment in expense.bank_payments"
       @click="navigateToPayment(payment)"
     >

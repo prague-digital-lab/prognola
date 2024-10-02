@@ -90,7 +90,7 @@ export default {
 <template>
   <div class="relative">
     <p
-      class="mb-7 rounded px-1 py-1 text-xs text-gray-800 hover:bg-gray-100"
+      class="text-xs mb-7 rounded px-1 py-1 text-gray-800 hover:bg-gray-100"
       @click="expanded ? close() : expand()"
     >
       <svg
@@ -133,7 +133,7 @@ export default {
 
         <div class="max-h-[50vh] overflow-auto">
           <div v-for="department in filtered_categories_grouped_by_department">
-            <p class="px-2 py-1 text-xs text-gray-500">
+            <p class="text-xs px-2 py-1 text-gray-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

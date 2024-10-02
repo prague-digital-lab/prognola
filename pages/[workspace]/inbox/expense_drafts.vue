@@ -24,7 +24,7 @@
         v-if="expenses.length === 0"
         class="flex h-[400px] w-full items-center justify-center bg-white"
       >
-        <p class="text-center text-gray-500 text-base">
+        <p class="text-center text-base text-gray-500">
           Všechny výdaje jsou zpracované.<br />
         </p>
       </div>

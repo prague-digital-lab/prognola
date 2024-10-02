@@ -63,7 +63,7 @@
             v-if="bank_payments.length === 0"
             class="flex h-[400px] w-full items-center justify-center"
           >
-            <p class="text-gray-600 text-base">Žádné odpovídající platby.</p>
+            <p class="text-base text-gray-600">Žádné odpovídající platby.</p>
           </div>
         </div>
       </div>

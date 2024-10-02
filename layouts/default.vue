@@ -167,7 +167,7 @@
 
           <div>
             <select
-              class="w-full rounded border border-gray-200 bg-white text-base"
+              class="w-full rounded border border-gray-200 bg-gray-50 text-base focus:border-gray-200 focus:shadow focus:ring-0"
               v-model="active_workspace_url_slug"
             >
               <option

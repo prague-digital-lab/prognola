@@ -13,14 +13,18 @@
     <div
       class="mb-4 h-auto divide-y divide-gray-200 rounded border border-gray-200 bg-white"
     >
-      <nuxt-link :href="'/' + route.params.workspace + '/inbox/expense_drafts'" class="block">
+      <nuxt-link
+        :href="'/' + route.params.workspace + '/inbox/expense_drafts'"
+        class="block"
+      >
         <div class="px-3 py-2 text-base text-gray-700 hover:bg-slate-50">
           Výdaje ke zpracování
         </div>
       </nuxt-link>
 
       <nuxt-link
-        :href="'/' + route.params.workspace + '/inbox/payments_to_pair'" class="block"
+        :href="'/' + route.params.workspace + '/inbox/payments_to_pair'"
+        class="block"
       >
         <div class="px-3 py-2 text-base text-gray-700 hover:bg-slate-50">
           Platby ke spárování

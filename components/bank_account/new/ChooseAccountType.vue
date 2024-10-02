@@ -11,7 +11,7 @@
       <p class="mb-4">{{ name }}</p>
 
       <nuxt-link
-        class="rounded-full bg-black px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-gray-800"
+        class="cursor-pointer rounded-full bg-black px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-gray-700"
         v-if="!selected"
         >Vybrat
       </nuxt-link>

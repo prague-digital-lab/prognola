@@ -19,7 +19,8 @@
         :bank_account="bank_account"
       ></bank-account-row>
     </div>
-    <div class="mx-5 text-base">
+
+    <div class="mx-5 text-base" v-if="bank_accounts.length > 0">
       <nuxt-link href="bank_accounts/new" class="text-gray-400"
         >Přidat účet
       </nuxt-link>
@@ -30,7 +31,9 @@
       class="flex h-[400px] w-full items-center rounded-2xl border border-gray-200 bg-white px-10 text-gray-700"
     >
       <div class="md:w-1/2">
-        <p class="mb-4 font-medium">Mějte všechny platby na jednom místě</p>
+        <p class="mb-4 text-xl font-medium">
+          Mějte všechny platby na jednom místě
+        </p>
 
         <p class="mb-7 text-base font-light">
           Přidejte bankovní účet nebo hotovostní pokladnu, abyste měli vždy
@@ -39,9 +42,8 @@
         </p>
 
         <nuxt-link
-          v-if="bank_accounts.length > 0"
           :href="'/' + route.params.workspace + '/bank_accounts/new'"
-          class="rounded-xl bg-black px-4 py-2 font-medium text-white text-base"
+          class="rounded-full bg-black px-4 py-2 text-base font-medium text-white duration-150 hover:bg-gray-700"
           >Přidat účet
         </nuxt-link>
       </div>
