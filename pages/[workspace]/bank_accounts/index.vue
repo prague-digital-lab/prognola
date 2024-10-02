@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="mb-4 md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
+    <page-content-header>
+      <template v-slot:title>
         <h4
-          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
+          class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
         >
           Účty
         </h4>
-      </div>
-    </div>
+      </template>
+    </page-content-header>
 
     <div
       class="mb-4 divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white"
@@ -20,8 +20,10 @@
       ></bank-account-row>
     </div>
 
-    <div class="text-base text-end" v-if="bank_accounts.length > 0">
-      <nuxt-link href="bank_accounts/new" class="rounded bg-indigo-700 px-3 py-1 text-gray-100 transition hover:bg-indigo-900"
+    <div class="text-end text-base" v-if="bank_accounts.length > 0">
+      <nuxt-link
+        href="bank_accounts/new"
+        class="rounded bg-indigo-700 px-3 py-1 text-gray-100 transition hover:bg-indigo-900"
         >Přidat účet
       </nuxt-link>
     </div>
@@ -52,6 +54,8 @@
 </template>
 
 <script setup>
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+
 useHead({
   title: "Účty - Prognola",
 });

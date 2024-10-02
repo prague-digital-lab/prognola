@@ -30,7 +30,7 @@
       </page-content-header>
 
       <div class="mb-5">
-        <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <dl class="grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
             class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
