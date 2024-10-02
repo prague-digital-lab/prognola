@@ -6,7 +6,7 @@
     <div class="flex text-base">
       <!--      <p class="w-[60px] font-light text-gray-500">{{ bank_account.id }}</p>-->
       <p class="w-[400px]">{{ bank_account.name }}</p>
-      <p class="w-[400px]">{{ bank_account.bank }}</p>
+      <p class="w-[400px] text-gray-500 font-light">{{ bank_account.account_number}}/{{ bank_account.bank_number}}</p>
     </div>
 
     <div class="flex items-center text-base font-light text-slate-600">

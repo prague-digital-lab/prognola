@@ -91,7 +91,7 @@
             >
             <div class="mt-2">
               <input
-                v-model="bank_number"
+                v-model="account_number"
                 type="number"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
                 placeholder="1234567890"
@@ -107,8 +107,8 @@
             >
             <div class="mt-2">
               <input
-                type="email"
-                name="email"
+                v-model="bank_number"
+                name="number"
                 id="email"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
                 placeholder="1234"
@@ -146,6 +146,7 @@ const client = useSanctumClient();
 const account_type = ref("");
 const selected_bank = ref("");
 const name = ref("");
+const account_number = ref("");
 const bank_number = ref("");
 
 async function createBankAccount() {
@@ -155,6 +156,7 @@ async function createBankAccount() {
       body: {
         name: name.value,
         bank: selected_bank.value,
+        account_number: account_number.value,
         bank_number: bank_number.value,
       },
     }),

@@ -20,8 +20,8 @@
       ></bank-account-row>
     </div>
 
-    <div class="mx-5 text-base" v-if="bank_accounts.length > 0">
-      <nuxt-link href="bank_accounts/new" class="text-gray-400"
+    <div class="text-base text-end" v-if="bank_accounts.length > 0">
+      <nuxt-link href="bank_accounts/new" class="rounded bg-indigo-700 px-3 py-1 text-gray-100 transition hover:bg-indigo-900"
         >Přidat účet
       </nuxt-link>
     </div>

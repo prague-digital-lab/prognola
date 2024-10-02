@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        <p class="mb-5 text-base text-gray-500">Účet</p>
+        <p class="mb-5 text-base text-gray-500">Bankovní účet {{bank_account.account_number}}/{{bank_account.bank_number}} </p>
 
         <div
           class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
