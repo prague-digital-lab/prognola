@@ -140,7 +140,9 @@
               class="me-2"
             />
 
-            <p class="font-medium text-gray-600">{{ active_workspace ? active_workspace.name : ''}}</p>
+            <p class="font-medium text-gray-600">
+              {{ active_workspace ? active_workspace.name : "" }}
+            </p>
           </nuxt-link>
         </div>
         <nav class="flex flex-1 flex-col">
@@ -151,7 +153,7 @@
                   <NuxtLink
                     :href="item.href"
                     :active-class="'hover:bg-gray-200 bg-gray-200 text-indigo-600'"
-                    class="group flex items-center gap-x-3 rounded-md p-2 text-base leading-4 text-gray-500 hover:bg-gray-200/60 hover:text-indigo-600"
+                    class="group flex items-center gap-x-3 rounded-md p-2 text-base  duration-100 leading-4 text-gray-500 hover:bg-gray-200/60 hover:text-indigo-600"
                   >
                     <component
                       :is="item.icon"
@@ -209,29 +211,29 @@
             <!--                   placeholder="Vyhledávání" type="search" name="search"/>-->
           </form>
           <div class="flex items-center gap-x-4 lg:gap-x-6">
-<!--            <button-->
-<!--              type="button"-->
-<!--              class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"-->
-<!--            >-->
-<!--              <span class="sr-only">View notifications</span>-->
-<!--              <BellIcon class="h-6 w-6" aria-hidden="true" />-->
-<!--            </button>-->
+            <!--            <button-->
+            <!--              type="button"-->
+            <!--              class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"-->
+            <!--            >-->
+            <!--              <span class="sr-only">View notifications</span>-->
+            <!--              <BellIcon class="h-6 w-6" aria-hidden="true" />-->
+            <!--            </button>-->
 
-<!--            &lt;!&ndash; Separator &ndash;&gt;-->
-<!--            <div-->
-<!--              class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"-->
-<!--              aria-hidden="true"-->
-<!--            />-->
+            <!--            &lt;!&ndash; Separator &ndash;&gt;-->
+            <!--            <div-->
+            <!--              class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"-->
+            <!--              aria-hidden="true"-->
+            <!--            />-->
 
             <!-- Profile dropdown -->
             <Menu as="div" class="relative">
               <MenuButton class="-m-1.5 flex items-center p-1.5">
                 <span class="sr-only">Open user menu</span>
-<!--                <img-->
-<!--                  class="h-6 w-6 rounded-full bg-gray-50"-->
-<!--                  :src="user.profile_photo_url"-->
-<!--                  alt=""-->
-<!--                />-->
+                <!--                <img-->
+                <!--                  class="h-6 w-6 rounded-full bg-gray-50"-->
+                <!--                  :src="user.profile_photo_url"-->
+                <!--                  alt=""-->
+                <!--                />-->
                 <span class="hidden lg:flex lg:items-center">
                   <span
                     class="ml-4 text-base leading-6 text-gray-700"
@@ -274,7 +276,7 @@
                   <a
                     @click="submitLogout"
                     :class="[
-                      'block cursor-pointer  px-3 py-1 text-base leading-6 text-gray-900',
+                      'block cursor-pointer px-3 py-1 text-base leading-6 text-gray-900',
                     ]"
                   >
                     Odhlásit se
@@ -307,7 +309,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/vue/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 import {
   BanknotesIcon,
   ChartBarIcon,
