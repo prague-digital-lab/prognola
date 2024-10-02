@@ -99,7 +99,7 @@ export default {
     };
   },
 
-  mounted() {
+  async mounted() {
     this.route = useRoute();
 
     if (localStorage.getItem("from")) {
@@ -114,7 +114,10 @@ export default {
       this.to = "2024-07-30";
     }
 
-    this.fetchData();
+    await this.fetchData();
+    await this.fetchPayments();
+
+    this.loaded = true;
   },
 
   watch: {
@@ -162,6 +165,11 @@ export default {
 
       this.bank_account = data.value;
       this.input_name = data.value.name;
+    },
+
+    async fetchPayments() {
+      const client = useSanctumClient();
+      const route = useRoute();
 
       const bank_payments_data = await useAsyncData("bank_payments", () =>
         client("/api/" + route.params.workspace + "/bank_payments", {
@@ -175,8 +183,6 @@ export default {
       );
 
       this.bank_payments = bank_payments_data.data.value;
-
-      this.loaded = true;
     },
 
     formatPrice(value) {
