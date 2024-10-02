@@ -95,6 +95,10 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Cashflow - Prognola",
+});
+
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 </script>
 
@@ -128,10 +132,6 @@ export default {
     definePageMeta({
       layout: "default",
       middleware: ["sanctum:auth", "sanctum:verified"],
-    });
-
-    useHead({
-      title: "Cashflow - Prognola",
     });
   },
 

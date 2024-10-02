@@ -46,7 +46,7 @@
 
 <script setup>
 useHead({
-  title: "Adresář - Prognola",
+  title: "Organizace - Prognola",
 });
 
 definePageMeta({
