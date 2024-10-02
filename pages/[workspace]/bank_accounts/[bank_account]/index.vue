@@ -165,7 +165,7 @@ export default {
         client("/api/" + route.params.workspace + "/bank_payments", {
           method: "GET",
           params: {
-            bank_account_id: this.route.params.bank_account,
+            bank_account_id: route.params.bank_account,
             from: this.from,
             to: this.to,
           },
