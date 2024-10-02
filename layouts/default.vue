@@ -136,8 +136,8 @@
           >
             <nuxt-img
               src="/img/logo_prazska_laborator.png"
-              width="30"
-              class="me-1"
+              width="22"
+              class="me-2"
             />
 
             <p class="font-medium text-gray-700">Prognola</p>
