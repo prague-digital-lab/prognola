@@ -144,18 +144,25 @@ export default {
 
     async fetchData() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("bank_account", () =>
-        client("/api/bank_accounts/" + this.route.params.bank_account, {
-          method: "GET",
-        }),
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/bank_accounts/" +
+            route.params.bank_account,
+          {
+            method: "GET",
+          },
+        ),
       );
 
       this.bank_account = data.value;
       this.input_name = data.value.name;
 
       const bank_payments_data = await useAsyncData("bank_payments", () =>
-        client("/api/bank_payments", {
+        client("/api/" + route.params.workspace + "/bank_payments", {
           method: "GET",
           params: {
             bank_account_id: this.route.params.bank_account,

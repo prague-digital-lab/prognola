@@ -41,7 +41,13 @@ export default defineComponent({
     },
 
     async navigateToBankAccount() {
-      await navigateTo("/bank_accounts/" + this.bank_account.id);
+      const route = useRoute();
+      await navigateTo(
+        "/" +
+          route.params.workspace +
+          "/bank_accounts/" +
+          this.bank_account.uuid,
+      );
     },
   },
 });

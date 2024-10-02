@@ -16,105 +16,46 @@
       </div>
 
       <div class="mb-10 grid w-full grid-flow-col gap-7 duration-500">
-        <div
-          class="bg-grad-select flex h-[200px] items-center justify-center rounded-xl shadow duration-300"
-          :class="
-            account_type === 'bank_account'
-              ? 'ring-1 ring-gray-700 ring-offset-2'
-              : ''
-          "
-        >
-          <div class="text-center">
-            <p class="mb-4">Bankovní účet</p>
+        <choose-account-type
+          :selected="account_type === 'bank_account'"
+          name="Bankovní účet"
+          account_type="bank_account"
+          @click="account_type = 'bank_account'"
+        ></choose-account-type>
 
-            <nuxt-link
-              class="rounded-xl bg-black px-4 py-2 font-medium text-white"
-              v-if="account_type !== 'bank_account'"
-              @click="account_type = 'bank_account'"
-              >Vybrat
-            </nuxt-link>
-
-            <nuxt-link
-              class="rounded-xl bg-gray-500 px-4 py-2 font-medium text-white"
-              v-else
-              >Zvoleno
-            </nuxt-link>
-          </div>
-        </div>
-        <div
-          class="bg-grad-select flex h-[200px] items-center justify-center rounded-xl shadow duration-300"
-          :class="
-            account_type === 'cash_register'
-              ? 'ring-1 ring-gray-700 ring-offset-2'
-              : ''
-          "
-        >
-          <div class="text-center">
-            <p class="mb-4">Hotovostní pokladna</p>
-
-            <nuxt-link
-              class="rounded-xl bg-black px-4 py-2 font-medium text-white"
-              v-if="account_type !== 'cash_register'"
-              @click="account_type = 'cash_register'"
-              >Vybrat
-            </nuxt-link>
-
-            <nuxt-link
-              class="rounded-xl bg-gray-500 px-4 py-2 font-medium text-white"
-              v-else
-              >Zvoleno
-            </nuxt-link>
-          </div>
-        </div>
+        <choose-account-type
+          :selected="account_type === 'cash_register'"
+          name="Hotovostní pokladna"
+          account_type="cash_register"
+          @click="account_type = 'cash_register'"
+        ></choose-account-type>
       </div>
     </div>
 
     <div v-if="account_type === 'bank_account'">
       <div class="mb-4">
-        <p class="font-semibold">2. Vyberte poskytovatele</p>
+        <p class="font-semibold">2. Vyberte banku</p>
       </div>
 
       <div>
         <div class="mb-10 grid w-full grid-cols-6 gap-5 duration-500">
-          <div
-            class="bg-grad-select flex h-[100px] items-center justify-center rounded-xl shadow duration-300"
-            :class="
-              selected_bank === 'fio'
-                ? 'ring-1 ring-gray-700 ring-offset-2'
-                : ''
-            "
+          <choose-bank-button
+            :selected="selected_bank === 'fio'"
+            name="Fio Banka"
             @click="selected_bank = 'fio'"
-          >
-            <div class="text-center">
-              <p class="">Fio Banka</p>
-            </div>
-          </div>
+          ></choose-bank-button>
 
-          <div
-            class="bg-grad-select flex h-[100px] items-center justify-center rounded-xl shadow duration-300"
-            :class="
-              selected_bank === 'kb' ? 'ring-1 ring-gray-700 ring-offset-2' : ''
-            "
+          <choose-bank-button
+            :selected="selected_bank === 'kb'"
+            name="Komerční banka"
             @click="selected_bank = 'kb'"
-          >
-            <div class="text-center">
-              <p class="">Komerční banka</p>
-            </div>
-          </div>
+          ></choose-bank-button>
 
-          <div
-            class="bg-grad-select flex h-[100px] items-center justify-center rounded-xl shadow duration-300"
-            :class="
-              selected_bank === 'other'
-                ? 'ring-1 ring-gray-700 ring-offset-2'
-                : ''
-            "
+          <choose-bank-button
+            :selected="selected_bank === 'other'"
+            name="Jiná banka"
             @click="selected_bank = 'other'"
-          >
-            <div class="text-center">
-              <p class="">Jiná banka</p>
-            </div>
-          </div>
+          ></choose-bank-button>
         </div>
       </div>
     </div>
@@ -123,55 +64,55 @@
       <div class="mb-4">
         <p class="mb-4 font-semibold">3. Podrobnosti o účtu</p>
 
-        <div class="mb-5 overflow-hidden rounded-lg bg-white shadow md:w-1/2">
-          <div class="px-4 py-5 sm:p-6">
-            <div class="mb-4">
-              <label
-                for="email"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Název účtu</label
-              >
-              <div class="mt-2">
-                <input
-                  name="name"
-                  v-model="name"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Firemní účet (hlavní)"
-                />
-              </div>
+        <div
+          class="mb-7 rounded-xl border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
+        >
+          <div class="mb-4">
+            <label
+              for="email"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Název účtu</label
+            >
+            <div class="mt-2">
+              <input
+                name="name"
+                v-model="name"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                placeholder="Firemní účet (hlavní)"
+              />
             </div>
+          </div>
 
-            <div class="mb-4">
-              <label
-                for="email"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Číslo účtu</label
-              >
-              <div class="mt-2">
-                <input
-                  v-model="bank_number"
-                  type="number"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="1234567890"
-                />
-              </div>
+          <div class="mb-4">
+            <label
+              for="email"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Číslo účtu</label
+            >
+            <div class="mt-2">
+              <input
+                v-model="bank_number"
+                type="number"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                placeholder="1234567890"
+              />
             </div>
+          </div>
 
-            <div>
-              <label
-                for="email"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Kód banky</label
-              >
-              <div class="mt-2">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="1234"
-                />
-              </div>
+          <div>
+            <label
+              for="email"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Kód banky</label
+            >
+            <div class="mt-2">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                placeholder="1234"
+              />
             </div>
           </div>
         </div>
@@ -187,6 +128,9 @@
 </template>
 
 <script setup>
+import ChooseBankButton from "~/components/bank_account/new/ChooseBankButton.vue";
+import ChooseAccountType from "~/components/bank_account/new/ChooseAccountType.vue";
+
 useHead({
   title: "Účty - Prognola",
 });

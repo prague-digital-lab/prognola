@@ -21,24 +21,24 @@
     </div>
 
     <div
-      v-if="bank_accounts.length === 0"
-      class="bg-grad-grey flex h-[400px] w-full items-center rounded-2xl px-10"
+      v-if="bank_accounts.length === 0 && loaded"
+      class="flex h-[400px] w-full items-center rounded-2xl border border-gray-200 bg-white px-10 text-gray-700"
     >
-      <div>
-        <p class="mb-4 text-3xl font-semibold text-gray-950">
+      <div class="md:w-1/2">
+        <p class="mb-4 font-medium">
           Mějte všechny platby na jednom místě
         </p>
 
-        <p class="mb-7 text-gray-950">
+        <p class="mb-7 font-light text-sm">
           Přidejte bankovní účet nebo hotovostní pokladnu, abyste měli vždy
-          přehled o uskutečněných platbách. <br />Teď už vám žádná transakce
+          přehled o&nbsp;uskutečněných platbách. Teď už vám žádná transakce
           neunikne.
         </p>
 
         <nuxt-link
           :href="'/' + route.params.workspace + '/bank_accounts/new'"
           class="rounded-xl bg-black px-4 py-2 font-medium text-white"
-          >Přidat první účet</nuxt-link
+          >Přidat účet</nuxt-link
         >
       </div>
     </div>

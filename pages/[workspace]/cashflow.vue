@@ -73,7 +73,7 @@
         </dl>
       </div>
 
-      <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+      <Bar id="my-chart-id" height="100%" :options="chartOptions" :data="chartData" />
     </div>
 
     <div v-else class="flex h-[600px] items-center justify-center">
