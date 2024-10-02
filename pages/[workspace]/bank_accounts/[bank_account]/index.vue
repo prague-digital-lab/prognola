@@ -184,27 +184,21 @@ export default {
 
     async updateName() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("bank_account", () =>
-        client("/api/bank_accounts/" + this.route.params.bank_account, {
-          method: "PATCH",
-          body: {
-            name: this.input_name,
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/bank_accounts/" +
+            route.params.bank_account,
+          {
+            method: "PATCH",
+            body: {
+              name: this.input_name,
+            },
           },
-        }),
-      );
-    },
-
-    async updateDescription() {
-      const client = useSanctumClient();
-
-      const { data } = await useAsyncData("bank_account", () =>
-        client("/api/bank_accounts/" + this.route.params.bank_account, {
-          method: "PATCH",
-          body: {
-            description: this.input_description,
-          },
-        }),
+        ),
       );
     },
   },
