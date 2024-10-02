@@ -49,7 +49,7 @@
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white"
       v-if="incomes.length > 0 && grouped_by === null"
     >
       <income-row v-for="income in incomes" :income="income"></income-row>

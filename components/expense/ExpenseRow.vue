@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex items-center justify-between px-3 py-2"
+    class="flex items-center justify-between px-3 py-2 hover:bg-gray-50 duration-100"
     @click="navigateToExpense"
   >
     <div class="flex text-base">
-      <p class="w-[60px] font-light text-gray-500">V-{{ expense.id }}</p>
+<!--      <p class="w-[60px] font-light text-gray-500">V-{{ expense.id }}</p>-->
       <p class="w-[400px]">
         {{ expense.description ? expense.description : "nový výdaj" }}
       </p>
@@ -34,9 +34,9 @@
         {{ expense.organisation.name }}
       </div>
 
-      <p class="w-[90px] ps-4" v-if="expense.received_at">
-        {{ formatDate(expense.received_at) }}
-      </p>
+<!--      <p class="w-[90px] ps-4" v-if="expense.received_at">-->
+<!--        {{ formatDate(expense.received_at) }}-->
+<!--      </p>-->
       <p class="w-[90px] ps-2" v-if="expense.paid_at">
         {{ formatDate(expense.paid_at) }}
       </p>
