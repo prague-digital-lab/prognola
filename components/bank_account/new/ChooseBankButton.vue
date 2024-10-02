@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex h-[70px] items-center justify-center rounded-xl border border-gray-200 px-10 text-gray-700 text-sm duration-200"
+    class="flex h-[70px] items-center justify-center rounded-xl border bg-gray-100/20 px-10 text-sm text-gray-700 duration-300"
     :class="
       selected
-        ? 'border-transparent bg-white ring-1 ring-gray-200 ring-offset-2'
-        : 'bg-white/20'
+        ? 'border-gray-400 bg-white shadow-md'
+        : 'border-gray-200 bg-white hover:border-gray-300'
     "
   >
     <div class="text-center">
