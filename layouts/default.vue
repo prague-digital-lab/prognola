@@ -185,7 +185,7 @@
     <!-- Top navbar -->
     <div class="lg:pl-72">
       <div
-        class="sticky top-0 z-40 flex h-14 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-gray-50 px-4 sm:gap-x-6 sm:px-6 lg:px-8"
+        class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-gray-50 px-4 sm:gap-x-6 sm:px-6 lg:px-8"
       >
         <button
           type="button"
@@ -209,32 +209,32 @@
             <!--                   placeholder="Vyhledávání" type="search" name="search"/>-->
           </form>
           <div class="flex items-center gap-x-4 lg:gap-x-6">
-            <button
-              type="button"
-              class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
-            >
-              <span class="sr-only">View notifications</span>
-              <BellIcon class="h-6 w-6" aria-hidden="true" />
-            </button>
+<!--            <button-->
+<!--              type="button"-->
+<!--              class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"-->
+<!--            >-->
+<!--              <span class="sr-only">View notifications</span>-->
+<!--              <BellIcon class="h-6 w-6" aria-hidden="true" />-->
+<!--            </button>-->
 
-            <!-- Separator -->
-            <div
-              class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
-              aria-hidden="true"
-            />
+<!--            &lt;!&ndash; Separator &ndash;&gt;-->
+<!--            <div-->
+<!--              class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"-->
+<!--              aria-hidden="true"-->
+<!--            />-->
 
             <!-- Profile dropdown -->
             <Menu as="div" class="relative">
               <MenuButton class="-m-1.5 flex items-center p-1.5">
                 <span class="sr-only">Open user menu</span>
                 <img
-                  class="h-8 w-8 rounded-full bg-gray-50"
+                  class="h-6 w-6 rounded-full bg-gray-50"
                   :src="user.profile_photo_url"
                   alt=""
                 />
                 <span class="hidden lg:flex lg:items-center">
                   <span
-                    class="ml-4 text-base leading-6 text-gray-900"
+                    class="ml-4 text-base leading-6 text-gray-700"
                     aria-hidden="true"
                     >{{ user.name }}</span
                   >
@@ -274,7 +274,7 @@
                   <a
                     @click="submitLogout"
                     :class="[
-                      'block cursor-pointer bg-gray-50 px-3 py-1 text-base leading-6 text-gray-900',
+                      'block cursor-pointer  px-3 py-1 text-base leading-6 text-gray-900',
                     ]"
                   >
                     Odhlásit se

@@ -34,9 +34,9 @@
       <form @submit.prevent="createExpense">
         <input
           v-model="new_expense_name"
-          placeholder="Nový výdaj ke zpracování..."
+          placeholder="Nový výdaj..."
           required
-          class="me-2 rounded border border-gray-200 py-1"
+          class="me-2 rounded border border-gray-200 py-1 text-base"
         />
 
         <button

@@ -87,7 +87,7 @@
           v-model="new_income_name"
           placeholder="Nový příjem..."
           required
-          class="me-2 rounded border border-gray-200 py-1"
+          class="me-2 rounded border border-gray-200 py-1 text-base"
         />
 
         <button
