@@ -1,43 +1,38 @@
 <template>
   <div>
     <div v-if="loaded">
-      <div class="md:flex md:items-center md:justify-between">
-        <div class="min-w-0 flex-1">
+      <page-content-header>
+        <template v-slot:title>
           <h2
             class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
           >
             Cashflow
           </h2>
-        </div>
-        <div class="mt-4 flex md:ml-4 md:mt-0">
+        </template>
+
+        <template v-slot:controls>
           <div class="me-2">
-            <div class="mt-2">
-              <input
-                type="date"
-                v-model="from"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="you@example.com"
-              />
-            </div>
+            <input
+              type="date"
+              v-model="from"
+              class="block w-full rounded-md  py-1.5 text-gray-900  border border-gray-200 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
           </div>
 
           <div>
-            <div class="mt-2">
-              <input
-                type="date"
-                v-model="to"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="you@example.com"
-              />
-            </div>
+            <input
+              type="date"
+              v-model="to"
+              class="block w-full rounded-md  py-1.5 text-gray-900 border border-gray-200 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
           </div>
-        </div>
-      </div>
+        </template>
+      </page-content-header>
 
       <div class="mb-5">
         <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
-            class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
             <dt class="truncate text-sm font-medium text-gray-500">Příjmy</dt>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-blue-700">
@@ -50,7 +45,7 @@
             </dd>
           </div>
           <div
-            class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
             <dt class="truncate text-sm font-medium text-gray-500">Výdaje</dt>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-red-700">
@@ -63,7 +58,7 @@
             </dd>
           </div>
           <div
-            class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
             <dt class="truncate text-sm font-medium text-gray-500">Výsledek</dt>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">
@@ -73,7 +68,12 @@
         </dl>
       </div>
 
-      <Bar id="my-chart-id" height="100%" :options="chartOptions" :data="chartData" />
+      <Bar
+        id="my-chart-id"
+        height="100%"
+        :options="chartOptions"
+        :data="chartData"
+      />
     </div>
 
     <div v-else class="flex h-[600px] items-center justify-center">
@@ -90,7 +90,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+</script>
 
 <script>
 import {

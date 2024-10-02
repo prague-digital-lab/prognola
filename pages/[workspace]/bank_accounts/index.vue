@@ -11,13 +11,17 @@
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
+      class="mb-4 divide-y divide-gray-200 rounded-xl border bg-white border-gray-200"
       v-if="bank_accounts.length > 0"
     >
       <bank-account-row
         v-for="bank_account in bank_accounts"
         :bank_account="bank_account"
       ></bank-account-row>
+
+    </div>
+    <div class="mx-5 text-sm">
+      <nuxt-link href="bank_accounts/new" class="text-gray-400">Přidat účet</nuxt-link>
     </div>
 
     <div
@@ -25,11 +29,9 @@
       class="flex h-[400px] w-full items-center rounded-2xl border border-gray-200 bg-white px-10 text-gray-700"
     >
       <div class="md:w-1/2">
-        <p class="mb-4 font-medium">
-          Mějte všechny platby na jednom místě
-        </p>
+        <p class="mb-4 font-medium">Mějte všechny platby na jednom místě</p>
 
-        <p class="mb-7 font-light text-sm">
+        <p class="mb-7 text-sm font-light">
           Přidejte bankovní účet nebo hotovostní pokladnu, abyste měli vždy
           přehled o&nbsp;uskutečněných platbách. Teď už vám žádná transakce
           neunikne.
@@ -38,8 +40,8 @@
         <nuxt-link
           :href="'/' + route.params.workspace + '/bank_accounts/new'"
           class="rounded-xl bg-black px-4 py-2 font-medium text-white"
-          >Přidat účet</nuxt-link
-        >
+          >Přidat účet
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -77,7 +79,7 @@ export default {
       const client = useSanctumClient();
       const route = useRoute();
 
-      const { data } = await useAsyncData("income", () =>
+      const { data } = await useAsyncData("bank_accounts", () =>
         client("/api/" + route.params.workspace + "/bank_accounts", {
           method: "GET",
         }),

@@ -11,7 +11,7 @@
         <div class="flex justify-between">
           <input
             type="text"
-            class="mb-3 w-full border-none p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
+            class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
             placeholder="Název účtu"
             v-model="input_name"
             v-on:blur="updateName"

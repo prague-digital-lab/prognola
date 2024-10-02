@@ -12,7 +12,7 @@
 
     <div>
       <div class="mb-4">
-        <p class="font-semibold">1. Zvolte typ účtu</p>
+        <p class="text-gray-600">1. Zvolte typ účtu</p>
       </div>
 
       <div class="mb-10 grid w-full grid-flow-col gap-7 duration-500">
@@ -34,7 +34,7 @@
 
     <div v-if="account_type === 'bank_account'">
       <div class="mb-4">
-        <p class="font-semibold">2. Vyberte banku</p>
+        <p class="text-gray-600">2. Vyberte banku</p>
       </div>
 
       <div>
@@ -62,7 +62,7 @@
 
     <div v-if="selected_bank !== ''">
       <div class="mb-4">
-        <p class="mb-4 font-semibold">3. Podrobnosti o účtu</p>
+        <p class="text-gray-600">3. Podrobnosti o účtu</p>
 
         <div
           class="mb-7 rounded-xl border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
