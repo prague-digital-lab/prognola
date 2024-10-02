@@ -153,7 +153,7 @@
                   <NuxtLink
                     :href="item.href"
                     :active-class="'hover:bg-gray-200 bg-gray-200 text-indigo-600'"
-                    class="group flex items-center gap-x-3 rounded-md p-2 text-base  duration-100 leading-4 text-gray-500 hover:bg-gray-200/60 hover:text-indigo-600"
+                    class="group flex items-center gap-x-3 rounded-md p-2 text-base leading-4 text-gray-500 duration-100 hover:bg-gray-200/60 hover:text-indigo-600"
                   >
                     <component
                       :is="item.icon"
