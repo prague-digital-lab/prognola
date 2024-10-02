@@ -61,68 +61,73 @@
     </div>
 
     <div v-if="selected_bank !== ''">
-      <div class="mb-4">
-        <p class="mb-4 text-gray-600">3. Podrobnosti o účtu</p>
+      <form v-on:submit.prevent="createBankAccount">
+        <div class="mb-4">
+          <p class="mb-4 text-gray-600">3. Podrobnosti o účtu</p>
 
-        <div
-          class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
-        >
-          <div class="mb-4">
-            <label
-              for="email"
-              class="block text-base font-medium leading-6 text-gray-900"
-              >Název účtu</label
-            >
-            <div class="mt-2">
-              <input
-                name="name"
-                v-model="name"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-                placeholder="Firemní účet (hlavní)"
-              />
+          <div
+            class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
+          >
+            <div class="mb-4">
+              <label
+                for="email"
+                class="block text-base font-medium leading-6 text-gray-900"
+                >Název účtu</label
+              >
+              <div class="mt-2">
+                <input
+                  name="name"
+                  required
+                  v-model="name"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+                  placeholder="Firemní účet (hlavní)"
+                />
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label
+                for="email"
+                class="block text-base font-medium leading-6 text-gray-900"
+                >Číslo účtu</label
+              >
+              <div class="mt-2">
+                <input
+                  v-model="account_number"
+                  required
+                  type="number"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+                  placeholder="1234567890"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="email"
+                class="block text-base font-medium leading-6 text-gray-900"
+                >Kód banky</label
+              >
+              <div class="mt-2">
+                <input
+                  v-model="bank_number"
+                  required
+                  name="number"
+                  id="email"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+                  placeholder="1234"
+                />
+              </div>
             </div>
           </div>
 
-          <div class="mb-4">
-            <label
-              for="email"
-              class="block text-base font-medium leading-6 text-gray-900"
-              >Číslo účtu</label
-            >
-            <div class="mt-2">
-              <input
-                v-model="account_number"
-                type="number"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-                placeholder="1234567890"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label
-              for="email"
-              class="block text-base font-medium leading-6 text-gray-900"
-              >Kód banky</label
-            >
-            <div class="mt-2">
-              <input
-                v-model="bank_number"
-                name="number"
-                id="email"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-                placeholder="1234"
-              />
-            </div>
-          </div>
+          <button
+            class="cursor-pointer rounded-full bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
+            type="submit"
+            >Vytvořit účet
+          </button>
         </div>
-
-        <nuxt-link
-          class="cursor-pointer rounded-full bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
-          v-on:click="createBankAccount"
-          >Vytvořit účet
-        </nuxt-link>
-      </div>
+      </form>
     </div>
   </div>
 </template>
