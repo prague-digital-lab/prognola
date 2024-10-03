@@ -22,7 +22,7 @@
 
     <div class="text-end text-base" v-if="bank_accounts.length > 0">
       <nuxt-link
-        href="bank_accounts/new"
+        :href="'/' + route.params.workspace + '/bank_accounts/new'"
         class="rounded bg-indigo-700 px-3 py-1 text-gray-100 transition hover:bg-indigo-900"
         >Přidat účet
       </nuxt-link>
