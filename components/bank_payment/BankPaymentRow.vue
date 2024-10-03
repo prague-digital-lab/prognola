@@ -10,6 +10,7 @@
     <!--    </div>-->
 
     <table class="w-full text-base">
+      <tbody>
       <tr>
         <td class="w-[10%]">{{ formatDate(bank_payment.issued_at) }}</td>
         <td class="w-[30%]">
@@ -42,6 +43,7 @@
           <span class="badge text-bg-success" v-else>spárováno</span>
         </td>
       </tr>
+      </tbody>
     </table>
   </div>
 </template>
