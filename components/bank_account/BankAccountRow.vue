@@ -6,7 +6,9 @@
     <div class="flex text-base">
       <!--      <p class="w-[60px] font-light text-gray-500">{{ bank_account.id }}</p>-->
       <p class="w-[400px]">{{ bank_account.name }}</p>
-      <p class="w-[400px] text-gray-500 font-light">{{ bank_account.account_number}}/{{ bank_account.bank_number}}</p>
+      <p class="w-[400px] font-light text-gray-500">
+        {{ bank_account.account_number }}/{{ bank_account.bank_number }}
+      </p>
     </div>
 
     <div class="flex items-center text-base font-light text-slate-600">
@@ -16,17 +18,10 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
 import { DateTime } from "luxon";
-import bank_accounts from "../../pages/[workspace]/bank_accounts/index.vue";
 
-export default defineComponent({
+export default {
   name: "BankAccountRow",
-  computed: {
-    bank_accounts() {
-      return bank_accounts;
-    },
-  },
   props: ["bank_account"],
   methods: {
     formatPrice(value) {
@@ -50,7 +45,7 @@ export default defineComponent({
       );
     },
   },
-});
+};
 </script>
 
 <style scoped></style>
