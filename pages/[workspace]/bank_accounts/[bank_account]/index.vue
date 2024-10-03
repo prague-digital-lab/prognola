@@ -162,12 +162,10 @@ export default {
             method: "GET",
           },
         ),
-      ).then(() => {
-        this.bank_account = data.value;
-        this.input_name = data.value.name;
-      });
+      );
 
-
+      this.bank_account = data.value;
+      this.input_name = data.value.name;
     },
 
     async fetchPayments() {
