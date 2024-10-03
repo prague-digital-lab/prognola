@@ -114,10 +114,11 @@ export default {
       this.to = "2024-07-30";
     }
 
-    this.fetchData();
-    this.fetchPayments();
-
-    this.loaded = true;
+    this.fetchData().then(() => {
+      this.fetchPayments().then(() => {
+        this.loaded = true;
+      });
+    });
   },
 
   watch: {
