@@ -7,67 +7,18 @@
     <page-content-header>
       <template v-slot:title>
         <div class="flex items-center justify-between">
-          <input
-            type="text"
-            class="w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
-            placeholder="Název účtu"
-            v-model="input_name"
-            v-on:blur="updateName"
-          />
-
-          <bank-account-options :bank_account="bank_account" />
-        </div>
-      </template>
-      <template v-slot:subtitle>
-        <p class="mb-5 text-base text-gray-500">
-          Bankovní účet {{ bank_account.account_number }}/{{
-            bank_account.bank_number
-          }}
-        </p>
-      </template>
-      <template v-slot:controls>
-        <div class="flex md:mt-0">
-          <div class="me-2">
-            <input
-              type="date"
-              v-model="from"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-            />
-          </div>
-
-          <div>
-            <input
-              type="date"
-              v-model="to"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-            />
-          </div>
+          <h4
+            class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
+          >
+            Nastavení účtu
+          </h4>
         </div>
       </template>
     </page-content-header>
 
     <div
       class="mb-4 h-auto divide-x divide-slate-100 md:flex md:justify-between"
-    >
-      <div class="w-full">
-        <div
-          class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
-        >
-          <bank-payment-row
-            v-for="bank_payment in bank_payments"
-            @click="navigateToPayment(bank_payment)"
-            :bank_payment="bank_payment"
-          />
-
-          <div
-            v-if="bank_payments.length === 0"
-            class="flex h-[400px] w-full items-center justify-center"
-          >
-            <p class="text-base text-gray-600">Žádné odpovídající platby.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    ></div>
   </div>
 </template>
 
@@ -115,8 +66,8 @@ export default {
     }
 
     this.fetchData().then(() => {
-        this.loaded = true;
-      this.fetchPayments()
+      this.loaded = true;
+      this.fetchPayments();
     });
   },
 

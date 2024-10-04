@@ -5,7 +5,12 @@ export default {
   data: () => {
     return {
       expanded: false,
+      route: null,
     };
+  },
+
+  mounted() {
+    this.route = useRoute();
   },
 
   methods: {
@@ -48,7 +53,27 @@ export default {
         class="absolute left-[-150px] top-[-5px] w-[147px] rounded border border-slate-200 bg-white px-1 py-1 shadow"
       >
         <nuxt-link
-          :href="'/bank_accounts/' + bank_account.id + '/import-kb-csv'"
+          :href="
+            '/' +
+            route.params.workspace +
+            '/bank_accounts/' +
+            bank_account.uuid +
+            '/edit'
+          "
+        >
+          <div class="w-full p-2 text-base text-slate-600 hover:bg-gray-100">
+            Nastavení účtu
+          </div>
+        </nuxt-link>
+
+        <nuxt-link
+          :href="
+            '/' +
+            route.params.workspace +
+            '/bank_accounts/' +
+            bank_account.uuid +
+            '/import-kb-csv'
+          "
           v-if="bank_account.bank === 'komercni_banka_csv'"
         >
           <div class="w-full p-2 text-base text-slate-600 hover:bg-gray-100">
