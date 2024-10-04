@@ -16,9 +16,72 @@
       </template>
     </page-content-header>
 
-    <div
-      class="mb-4 h-auto divide-x divide-slate-100 md:flex md:justify-between"
-    ></div>
+    <form v-on:submit.prevent="updateBankAccount">
+      <div class="mb-4">
+        <div
+          class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
+        >
+          <div class="mb-4">
+            <label
+              for="email"
+              class="block text-base font-medium leading-6 text-gray-900"
+              >Název účtu</label
+            >
+            <div class="mt-2">
+              <input
+                name="name"
+                required
+                v-model="name"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+                placeholder="Firemní účet (hlavní)"
+              />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label
+              for="email"
+              class="block text-base font-medium leading-6 text-gray-900"
+              >Číslo účtu</label
+            >
+            <div class="mt-2">
+              <input
+                v-model="account_number"
+                required
+                type="number"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+                placeholder="1234567890"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              for="email"
+              class="block text-base font-medium leading-6 text-gray-900"
+              >Kód banky</label
+            >
+            <div class="mt-2">
+              <input
+                v-model="bank_number"
+                required
+                name="number"
+                id="email"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+                placeholder="1234"
+              />
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="cursor-pointer rounded-md bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
+          type="submit"
+        >
+          Uložit změny
+        </button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -41,63 +104,20 @@ export default {
       loaded: false,
 
       bank_account: null,
-      bank_payments: [],
-      input_name: "",
-      input_description: "",
-
-      from: "2024-07-01",
-      to: "2024-07-30",
+      name: "",
+      account_number: "",
+      bank_number: "",
     };
   },
 
   mounted() {
     this.route = useRoute();
 
-    if (localStorage.getItem("from")) {
-      this.from = localStorage.getItem("from");
-    } else {
-      this.from = "2024-07-01";
-    }
-
-    if (localStorage.getItem("to")) {
-      this.to = localStorage.getItem("to");
-    } else {
-      this.to = "2024-07-30";
-    }
-
-    this.fetchData().then(() => {
-      this.loaded = true;
-      this.fetchPayments();
-    });
-  },
-
-  watch: {
-    from: function (newVal, oldVal) {
-      this.fetchPayments();
-      localStorage.setItem("from", newVal);
-    },
-    to: function (newVal, oldVal) {
-      this.fetchPayments();
-      localStorage.setItem("to", newVal);
-    },
-  },
-
-  computed: {
-    bank_payment() {
-      return bank_payment;
-    },
-    title() {
-      return this.bank_account
-        ? this.bank_account.name + " - Prognola"
-        : "Detail platby - Prognola";
-    },
+    this.fetchData();
+    this.loaded = true;
   },
 
   methods: {
-    async navigateToPayment(payment) {
-      await navigateTo("/bank_payments/" + payment.id);
-    },
-
     async fetchData() {
       const client = useSanctumClient();
       const route = useRoute();
@@ -115,33 +135,12 @@ export default {
       );
 
       this.bank_account = data.value;
-      this.input_name = data.value.name;
+      this.name = data.value.name;
+      this.account_number = data.value.account_number;
+      this.bank_number = data.value.bank_number;
     },
 
-    async fetchPayments() {
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const bank_payments_data = await useAsyncData("bank_payments", () =>
-        client("/api/" + route.params.workspace + "/bank_payments", {
-          method: "GET",
-          params: {
-            bank_account: route.params.bank_account,
-            from: this.from,
-            to: this.to,
-          },
-        }),
-      );
-
-      this.bank_payments = bank_payments_data.data.value;
-    },
-
-    formatPrice(value) {
-      let val = (value / 1).toFixed(2).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
-
-    async updateName() {
+    async updateBankAccount() {
       const client = useSanctumClient();
       const route = useRoute();
 
@@ -154,10 +153,19 @@ export default {
           {
             method: "PATCH",
             body: {
-              name: this.input_name,
+              name: this.name,
+              account_number: this.account_number,
+              bank_number: this.bank_number,
             },
           },
         ),
+      );
+
+      await navigateTo(
+        "/" +
+          route.params.workspace +
+          "/bank_accounts/" +
+          this.bank_account.uuid,
       );
     },
   },
