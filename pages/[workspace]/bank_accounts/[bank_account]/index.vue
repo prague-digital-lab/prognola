@@ -123,11 +123,11 @@ export default {
 
   watch: {
     from: function (newVal, oldVal) {
-      // this.fetchData();
+      this.fetchPayments();
       localStorage.setItem("from", newVal);
     },
     to: function (newVal, oldVal) {
-      // this.fetchData();
+      this.fetchPayments();
       localStorage.setItem("to", newVal);
     },
   },
