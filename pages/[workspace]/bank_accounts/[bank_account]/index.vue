@@ -115,9 +115,8 @@ export default {
     }
 
     this.fetchData().then(() => {
-      this.fetchPayments().then(() => {
         this.loaded = true;
-      });
+      this.fetchPayments()
     });
   },
 
