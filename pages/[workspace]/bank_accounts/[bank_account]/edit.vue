@@ -27,6 +27,10 @@
               <p v-if="bank_account.bank === 'fio'" class="text-gray-500">
                 Fio Banka (automatická synchronizace)
               </p>
+
+              <p v-if="bank_account.bank === 'komercni_banka_csv'" class="text-gray-500">
+                Komerční banka (import ze souboru)
+              </p>
             </div>
           </div>
 

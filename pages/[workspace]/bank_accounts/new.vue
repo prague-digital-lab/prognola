@@ -46,9 +46,9 @@
           ></choose-bank-button>
 
           <choose-bank-button
-            :selected="selected_bank === 'kb'"
+            :selected="selected_bank === 'komercni_banka_csv'"
             name="Komerční banka"
-            @click="selectBank('kb')"
+            @click="selectBank('komercni_banka_csv')"
           ></choose-bank-button>
 
           <choose-bank-button
@@ -178,8 +178,8 @@ function selectBank(bank) {
     name.value = "Firemní účet FIO";
   }
 
-  if (bank === "kb") {
-    selected_bank.value = "kb";
+  if (bank === "komercni_banka_csv") {
+    selected_bank.value = "komercni_banka_csv";
     bank_number.value = "0100";
 
     name.value = "Firemní účet KB";

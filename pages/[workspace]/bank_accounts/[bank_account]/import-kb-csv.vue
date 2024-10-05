@@ -67,11 +67,16 @@
             </div>
 
             <nuxt-link
-              :href="'/bank_accounts/' + this.route.params.bank_account"
+              :href="
+                '/' +
+                route.params.workspace +
+                '/bank_accounts/' +
+                route.params.bank_account
+              "
               type="button"
               class="rounded bg-white px-2 py-1 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-              >Přejít na výpis účtu</nuxt-link
-            >
+              >Přejít na výpis účtu
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -94,6 +99,7 @@ export default {
       submitted: false,
       created_payments_count: 0,
       found_payments_count: 0,
+      route: null,
     };
   },
 
@@ -124,9 +130,11 @@ export default {
       const formData = new FormData();
       formData.append("file", this.file);
 
-      const { data } = await useAsyncData("expense", () =>
+      const { data } = await useAsyncData("bank_account_import", () =>
         client(
-          "/api/bank_accounts/" +
+          "/api/" +
+            this.route.params.workspace +
+            "/bank_accounts/" +
             this.route.params.bank_account +
             "/import/kb-csv",
           {
