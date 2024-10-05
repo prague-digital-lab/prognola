@@ -49,45 +49,43 @@
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white"
-      v-if="grouped_by === null"
+      v-if="expenses.length === 0"
+      class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200"
     >
-      <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
-
-      <div
-        v-if="expenses.length === 0"
-        class="flex h-[400px] w-full items-center justify-center"
-      >
-        <p class="text-gray-600">Žádné odpovídající výdaje.</p>
-      </div>
+      <p class="text-gray-600">Žádné odpovídající výdaje.</p>
     </div>
 
-    <div
-      v-if="grouped_by === 'expense_category'"
-      class="mb-4 rounded border border-gray-200"
-    >
+    <div v-if="expenses.length > 0">
       <div
-        class="divide-y divide-gray-200"
-        v-for="category in expenses_by_category"
+        class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white"
+        v-if="grouped_by === null"
       >
-        <div class="w-full bg-slate-100 py-2 ps-3 text-base text-gray-600">
-          {{
-            category[0].expense_category
-              ? category[0].expense_category.name
-              : "Výdaje bez kategorie"
-          }}
-        </div>
         <expense-row
-          v-for="expense in category"
+          v-for="expense in expenses"
           :expense="expense"
         ></expense-row>
       </div>
 
       <div
-        v-if="expenses.length === 0"
-        class="flex h-[400px] w-full items-center justify-center"
+        v-if="grouped_by === 'expense_category'"
+        class="mb-4 rounded border border-gray-200"
       >
-        <p class="text-gray-600">Žádné odpovídající výdaje.</p>
+        <div
+          class="divide-y divide-gray-200"
+          v-for="category in expenses_by_category"
+        >
+          <div class="w-full bg-slate-100 py-2 ps-3 text-base text-gray-600">
+            {{
+              category[0].expense_category
+                ? category[0].expense_category.name
+                : "Výdaje bez kategorie"
+            }}
+          </div>
+          <expense-row
+            v-for="expense in category"
+            :expense="expense"
+          ></expense-row>
+        </div>
       </div>
     </div>
 
@@ -97,7 +95,7 @@
           v-model="new_expense_name"
           placeholder="Nový výdaj..."
           required
-          class="me-2 rounded border border-gray-200 py-1"
+          class="me-2 rounded border border-gray-200 py-1 text-base"
         />
 
         <button
