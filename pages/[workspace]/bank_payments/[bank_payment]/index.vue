@@ -162,7 +162,7 @@ export default {
       const client = useSanctumClient();
 
       const { data } = await useAsyncData("bank_payment", () =>
-        client("/api/bank_payments/" + this.route.params.bank_payment, {
+        client("/api/" + this.route.params.workspace + '/bank_payments/' + this.route.params.bank_payment, {
           method: "GET",
         }),
       );

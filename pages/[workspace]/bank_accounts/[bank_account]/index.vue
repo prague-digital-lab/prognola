@@ -115,8 +115,8 @@ export default {
     }
 
     this.fetchData().then(() => {
-        this.loaded = true;
-      this.fetchPayments()
+      this.loaded = true;
+      this.fetchPayments();
     });
   },
 
@@ -144,7 +144,10 @@ export default {
 
   methods: {
     async navigateToPayment(payment) {
-      await navigateTo("/bank_payments/" + payment.id);
+      const route = useRoute();
+      await navigateTo(
+        "/" + route.params.workspace + "/bank_payments/" + payment.uuid,
+      );
     },
 
     async fetchData() {

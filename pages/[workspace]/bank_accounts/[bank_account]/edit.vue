@@ -95,6 +95,8 @@
               >Token pro synchronizace s Fio Bankou</label
             >
 
+            <a @click="syncFioNow()">Synchronizovat nyní</a>
+
             <div class="mt-2">
               <input
                 required
@@ -207,6 +209,30 @@ export default {
           route.params.workspace +
           "/bank_accounts/" +
           this.bank_account.uuid,
+      );
+    },
+
+    async syncFioNow() {
+      const client = useSanctumClient();
+      const route = useRoute();
+
+      const { data } = await useAsyncData("bank_account", () =>
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/bank_accounts/" +
+            route.params.bank_account +
+            "/sync-fio",
+          {
+            method: "POST",
+            body: {
+              name: this.name,
+              account_number: this.account_number,
+              bank_number: this.bank_number,
+              api_token: this.api_token,
+            },
+          },
+        ),
       );
     },
   },
