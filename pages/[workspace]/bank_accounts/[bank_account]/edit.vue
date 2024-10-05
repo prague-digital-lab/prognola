@@ -15,7 +15,7 @@
     <form v-on:submit.prevent="updateBankAccount">
       <div class="mb-4">
         <div
-          class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
+          class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-5 text-gray-700 md:w-1/2"
         >
           <div class="mb-4">
             <label
@@ -85,19 +85,20 @@
       </div>
 
       <div class="mb-4" v-if="bank_account.bank === 'fio'">
+
         <div
-          class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-7 text-gray-700 md:w-1/2"
+          class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-5 text-gray-700 md:w-1/2"
         >
-          <div class="mb-4">
+
+
+          <div class="">
             <label
               for="email"
               class="block text-base font-medium leading-6 text-gray-900"
-              >Token pro synchronizace s Fio Bankou</label
+              >Token pro synchronizaci s Fio Bankou</label
             >
 
-            <a @click="syncFioNow()">Synchronizovat nyní</a>
-
-            <div class="mt-2">
+            <div class="mb-5 mt-2">
               <input
                 required
                 type="password"
@@ -106,16 +107,24 @@
                 placeholder=""
               />
             </div>
+
+            <p class="me-2 inline-block text-gay-400" v-if="bank_account.synced_at">
+              Platby staženy {{ formatDate(bank_account.synced_at) }}.
+            </p>
+
+            <a @click="syncFioNow()" class="me-2 cursor-pointer"
+              >Synchronizovat nyní</a
+            >
           </div>
         </div>
-
-        <button
-          class="cursor-pointer rounded-md bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
-          type="submit"
-        >
-          Uložit změny
-        </button>
       </div>
+
+      <button
+        class="cursor-pointer rounded-md bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
+        type="submit"
+      >
+        Uložit změny
+      </button>
     </form>
   </div>
 </template>
@@ -135,6 +144,7 @@ useHead({
 
 <script>
 import bank_payment from "~/pages/[workspace]/bank_payments/[bank_payment]/index.vue";
+import { DateTime } from "luxon";
 
 export default {
   data() {
@@ -212,6 +222,12 @@ export default {
       );
     },
 
+    formatDate(date) {
+      let formatted = DateTime.fromISO(date);
+
+      return formatted.toFormat("d.M.yyyy v H:mm");
+    },
+
     async syncFioNow() {
       const client = useSanctumClient();
       const route = useRoute();
@@ -234,6 +250,8 @@ export default {
           },
         ),
       );
+
+      await this.fetchData();
     },
   },
 };
