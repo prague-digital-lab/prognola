@@ -19,11 +19,22 @@
         </div>
       </template>
       <template v-slot:subtitle>
-        <p class="mb-5 text-base text-gray-500">
-          Bankovní účet {{ bank_account.account_number }}/{{
-            bank_account.bank_number
-          }}
-        </p>
+        <div class="mb-5">
+          <span
+            class="me-2 rounded-full border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
+          >
+            Číslo účtu: {{ bank_account.account_number }}/{{
+              bank_account.bank_number
+            }}
+          </span>
+
+          <span
+            class="me-2 rounded-full border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
+            v-if="bank_account.synced_at"
+          >
+            Platby staženy {{ formatDate(bank_account.synced_at) }}
+          </span>
+        </div>
       </template>
       <template v-slot:controls>
         <div class="flex md:mt-0">
@@ -82,6 +93,7 @@ definePageMeta({
 
 <script>
 import bank_payment from "~/pages/[workspace]/bank_payments/[bank_payment]/index.vue";
+import { DateTime } from "luxon";
 
 export default {
   data() {
@@ -191,6 +203,12 @@ export default {
     formatPrice(value) {
       let val = (value / 1).toFixed(2).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    },
+
+    formatDate(date) {
+      let formatted = DateTime.fromISO(date);
+
+      return formatted.toFormat("d.M.yyyy");
     },
 
     async updateName() {
