@@ -28,7 +28,10 @@
                 Fio Banka (automatická synchronizace)
               </p>
 
-              <p v-if="bank_account.bank === 'komercni_banka_csv'" class="text-gray-500">
+              <p
+                v-if="bank_account.bank === 'komercni_banka_csv'"
+                class="text-gray-500"
+              >
                 Komerční banka (import ze souboru)
               </p>
             </div>
@@ -89,12 +92,9 @@
       </div>
 
       <div class="mb-4" v-if="bank_account.bank === 'fio'">
-
         <div
           class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-5 text-gray-700 md:w-1/2"
         >
-
-
           <div class="">
             <label
               for="email"
@@ -112,7 +112,10 @@
               />
             </div>
 
-            <p class="me-2 inline-block text-gay-400" v-if="bank_account.synced_at">
+            <p
+              class="text-gay-400 me-2 inline-block"
+              v-if="bank_account.synced_at"
+            >
               Platby staženy {{ formatDate(bank_account.synced_at) }}.
             </p>
 
@@ -124,11 +127,15 @@
       </div>
 
       <button
-        class="cursor-pointer rounded-md bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
+        class="mb-10 cursor-pointer rounded-md bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
         type="submit"
       >
         Uložit změny
       </button>
+
+      <p @click="deleteAccount" class="cursor-pointer text-red-700">
+        Smazat bankovní účet
+      </p>
     </form>
   </div>
 </template>
@@ -256,6 +263,33 @@ export default {
       );
 
       await this.fetchData();
+    },
+
+    async deleteAccount() {
+      const confirm = window.confirm(
+        "Opravdu chcete odstranit tento bankovní účet a všechny související bankovní platby? Bude zrušeno párování se všemi příjmy a výdaji.",
+      );
+
+      if (!confirm) {
+        return;
+      }
+
+      const client = useSanctumClient();
+      const route = useRoute();
+
+      const { data } = await useAsyncData("bank_account", () =>
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/bank_accounts/" +
+            route.params.bank_account,
+          {
+            method: "DELETE",
+          },
+        ),
+      );
+
+      await navigateTo("/" + route.params.workspace + "/bank_accounts");
     },
   },
 };
