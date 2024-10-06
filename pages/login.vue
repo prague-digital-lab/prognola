@@ -24,7 +24,7 @@
               type="email"
               autocomplete="email"
               required=""
-              class="mb-4 w-full rounded border border-gray-500 bg-gray-900"
+              class="mb-4 w-full rounded text-base border border-gray-500 bg-gray-900"
               placeholder="Emailová adresa"
             />
           </div>
@@ -37,7 +37,7 @@
               type="password"
               autocomplete="current-password"
               required=""
-              class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
+              class="mb-10 w-full rounded text-base border border-gray-500 bg-gray-900"
               placeholder="Heslo"
             />
           </div>
