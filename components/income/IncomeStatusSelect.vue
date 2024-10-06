@@ -1,46 +1,3 @@
-<script>
-export default {
-  data: () => {
-    return {
-      status: null,
-      select_expanded: false,
-    };
-  },
-
-  props: ["income"],
-
-  mounted() {
-    this.status = this.income.payment_status;
-  },
-
-  methods: {
-    expandSelect() {
-      this.select_expanded = !this.select_expanded;
-    },
-
-    async setStatus(status) {
-      this.status = status;
-      this.select_expanded = false;
-
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("income", () =>
-        client(
-          "/api/" + route.params.workspace + "/incomes/" + this.income.uuid,
-          {
-            method: "PATCH",
-            body: {
-              payment_status: status,
-            },
-          },
-        ),
-      );
-    },
-  },
-};
-</script>
-
 <template>
   <div class="relative mb-3 rounded text-base text-gray-700 hover:bg-gray-100">
     <Transition>
@@ -106,6 +63,53 @@ export default {
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => {
+    return {
+      status: null,
+      select_expanded: false,
+    };
+  },
+
+  emits: ["income-updated"],
+
+  props: ["income"],
+
+  mounted() {
+    this.status = this.income.payment_status;
+  },
+
+  methods: {
+    expandSelect() {
+      this.select_expanded = !this.select_expanded;
+    },
+
+    async setStatus(status) {
+      this.status = status;
+      this.select_expanded = false;
+
+      const client = useSanctumClient();
+      const route = useRoute();
+
+      const { data } = await useAsyncData("income", () =>
+        client(
+          "/api/" + route.params.workspace + "/incomes/" + this.income.uuid,
+          {
+            method: "PATCH",
+            body: {
+              payment_status: status,
+            },
+          },
+        ),
+      );
+
+      this.$emit("income-updated");
+    },
+  },
+};
+</script>
 
 <style scoped>
 .v-enter-active,

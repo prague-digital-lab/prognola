@@ -37,7 +37,7 @@
       <div class="w-[250px] ps-4">
         <income-price-input :income="income" />
 
-        <income-status-select :income="income" />
+        <income-status-select :income="income" @income-updated="fetchData" />
 
         <p
           class="mb-4 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100"

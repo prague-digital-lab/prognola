@@ -30,14 +30,14 @@
               class="w-full max-w-4xl transform overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 text-left align-middle transition-all"
             >
               <DialogTitle as="h3" class="font-medium leading-6 text-gray-900">
-                Párování příjmu {{ income.name }}
+                Přidání existující platby
               </DialogTitle>
 
               <div v-if="loaded">
                 <div>
                   <div class="flex items-center justify-between">
-                    <h2 class="mb-2 mt-4 text-base text-gray-700">
-                      Vyhledávání plateb ke spárování
+                    <h2 class="mb-4 mt-4 text-base text-gray-700">
+                     Vyhledejte platbu, kterou chcete přidat k příjmu {{income.name}}.
                     </h2>
                   </div>
 
