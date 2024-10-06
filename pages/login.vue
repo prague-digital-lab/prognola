@@ -12,9 +12,9 @@
         <!--        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-200">Vítejte zpět!</h2>-->
       </div>
       <form class="space-y-6" v-on:submit.prevent="submitLogin">
-        <div class="relative -space-y-px rounded-md shadow-sm">
+        <div class="">
           <div
-            class="pointer-events-none absolute inset-0 z-10 rounded-md ring-1 ring-inset ring-gray-300"
+            class=""
           />
           <div>
             <input
@@ -24,7 +24,7 @@
               type="email"
               autocomplete="email"
               required=""
-              class="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+              class="mb-4 w-full rounded border border-gray-500 bg-gray-900"
               placeholder="Emailová adresa"
             />
           </div>
@@ -37,7 +37,7 @@
               type="password"
               autocomplete="current-password"
               required=""
-              class="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+              class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
               placeholder="Heslo"
             />
           </div>
