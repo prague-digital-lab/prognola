@@ -15,18 +15,22 @@
     >
       <nuxt-link
         :href="'/' + route.params.workspace + '/inbox/expense_drafts'"
-        class="block"
+        class="block cursor-default"
       >
-        <div class="px-3 py-2 text-base text-gray-700 hover:bg-slate-50">
+        <div
+          class="hover:bg-gray-hover px-3 py-2 text-base text-gray-700 duration-100"
+        >
           Výdaje ke zpracování
         </div>
       </nuxt-link>
 
       <nuxt-link
         :href="'/' + route.params.workspace + '/inbox/payments_to_pair'"
-        class="block"
+        class="block cursor-default"
       >
-        <div class="px-3 py-2 text-base text-gray-700 hover:bg-slate-50">
+        <div
+          class="hover:bg-gray-hover px-3 py-2 text-base text-gray-700 duration-100"
+        >
           Platby ke spárování
         </div>
       </nuxt-link>

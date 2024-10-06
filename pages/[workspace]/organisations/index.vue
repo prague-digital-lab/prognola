@@ -10,18 +10,21 @@
       </div>
     </div>
 
-    <div class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white">
+    <div
+      v-if="organisations.length === 0"
+      class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200"
+    >
+      <p class="text-gray-600">Žádné odpovídající organizace.</p>
+    </div>
+
+    <div
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white"
+      v-if="organisations.length > 0"
+    >
       <organisation-row
         v-for="organisation in organisations"
         :organisation="organisation"
       ></organisation-row>
-
-      <div
-        v-if="organisations.length === 0"
-        class="flex h-[400px] w-full items-center justify-center"
-      >
-        <p class="text-gray-600">Žádné odpovídající organizace.</p>
-      </div>
     </div>
 
     <div class="flex justify-end">
@@ -30,7 +33,7 @@
           v-model="new_organisation_name"
           placeholder="Nová organizace..."
           required
-          class="me-2 rounded border border-gray-200 text-base py-1"
+          class="me-2 rounded border border-gray-200 py-1 text-base"
         />
 
         <button

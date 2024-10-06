@@ -22,6 +22,9 @@ module.exports = {
       fontFamily: {
         custom: ["Inter"],
       },
+      colors: {
+        'gray-hover': '#fafafa',
+      }
     },
   },
   plugins: [require("@tailwindcss/forms")],

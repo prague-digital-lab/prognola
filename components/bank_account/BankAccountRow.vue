@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex cursor-pointer items-center justify-between px-5 py-4"
+    class="flex hover:bg-gray-hover duration-100 items-center justify-between px-5 py-4"
     @click="navigateToBankAccount"
   >
     <div class="flex text-base">
