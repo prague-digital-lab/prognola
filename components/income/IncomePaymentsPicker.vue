@@ -2,13 +2,6 @@
   <div class="mb-4">
     <div class="flex items-center justify-between">
       <p class="mb-2 px-1 text-sm font-medium text-gray-500">Platby</p>
-
-      <nuxt-link
-        :href="
-          '/' + $route.params.workspace + '/income/' + income.uuid + '/pair'
-        "
-        >+
-      </nuxt-link>
     </div>
 
     <p
@@ -31,11 +24,18 @@
 
       {{ formatPrice(payment.amount) }} Kč
     </p>
+
+    <income-add-payment-options @open_pair_modal="openPairingModal"></income-add-payment-options>
+
+    <income-pair-with-payment-modal ref="modal_pair"></income-pair-with-payment-modal>
   </div>
 </template>
 
 <script>
+import IncomeAddPaymentOptions from "~/components/income/IncomeAddPaymentOptions.vue";
+
 export default {
+  components: { IncomeAddPaymentOptions },
   props: ["income"],
 
   data: () => {
@@ -43,6 +43,11 @@ export default {
   },
 
   methods: {
+
+    openPairingModal(){
+      this.$refs.modal_pair.openModal();
+    },
+
     formatPrice(value) {
       let val = (value / 1).toFixed(2).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
