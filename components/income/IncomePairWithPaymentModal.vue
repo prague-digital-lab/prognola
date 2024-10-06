@@ -117,6 +117,8 @@ defineExpose({
   closeModal,
 });
 
+const emit = defineEmits(["incomeUpdated"]);
+
 async function pairBankPayment(bank_payment) {
   const client = useSanctumClient();
   const route = useRoute();
@@ -138,6 +140,7 @@ async function pairBankPayment(bank_payment) {
   );
 
   closeModal();
+  emit("incomeUpdated");
 }
 </script>
 

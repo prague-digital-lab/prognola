@@ -89,7 +89,7 @@
 
         <income-category-picker :income="income" />
 
-        <income-payments-picker :income="income" />
+        <income-payments-picker :income="income" @income-updated="fetchData" />
 
         <p
           class="mb-2 px-1 text-sm font-medium text-gray-500"

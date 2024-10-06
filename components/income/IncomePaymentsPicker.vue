@@ -27,7 +27,7 @@
 
     <income-add-payment-options @open_pair_modal="openPairingModal"></income-add-payment-options>
 
-    <income-pair-with-payment-modal ref="modal_pair"></income-pair-with-payment-modal>
+    <income-pair-with-payment-modal ref="modal_pair" @income-updated="$emit('income-updated')"></income-pair-with-payment-modal>
   </div>
 </template>
 
