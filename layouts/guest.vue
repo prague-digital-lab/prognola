@@ -6,7 +6,14 @@
       >
         <div class="flex justify-between">
           <div>
-            <nuxt-link href="/">Prognola</nuxt-link>
+            <nuxt-link href="/" class="flex items-center text-[15px]">
+              <img
+                  class="h-6 w-auto inline-block me-2"
+                  src="/img/logo_prazska_laborator.png"
+                  alt="Finance"
+              />
+
+              Prognola</nuxt-link>
           </div>
 
           <div v-if="!authenticated">

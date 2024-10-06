@@ -1,9 +1,8 @@
 <script lang="ts">
-import { defineComponent } from "vue";
 
-export default defineComponent({
+export default {
   name: "index.vue",
-});
+};
 </script>
 
 <script setup lang="ts">
@@ -15,12 +14,12 @@ definePageMeta({
 <template>
   <div>
     <h1 class="mb-[40px] text-[45px] font-medium text-white">
-      Plánujte své finance jako profesionál.
+      Plánujte firemní finance jako nikdy předtím
     </h1>
 
     <p class="mb-[60px] text-[20px] font-medium text-gray-400">
       Získejte zpět přehled o aktuálním stavu financí ve vaší firmě.
-      <br />Konečně budete mít prognózu, kolik budete mít peněz v nadcházejících
+      <br />, kolik budete mít peněz v nadcházejících
       obdobích.
     </p>
 

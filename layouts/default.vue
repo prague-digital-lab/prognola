@@ -56,7 +56,7 @@
                     <img
                       class="h-8 w-auto"
                       src="/img/logo_horizontal_sm.webp"
-                      alt="Finance"
+                      alt="Prognola"
                     />
                   </nuxt-link>
                 </div>
