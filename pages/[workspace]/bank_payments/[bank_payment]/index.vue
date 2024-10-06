@@ -11,8 +11,11 @@
         <h4
           class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
         >
-          Detail platby {{ bank_payment.id }}
+          Detail platby
         </h4>
+
+        <p class="text-gray-700" v-if="bank_payment.amount > 0">Příchozí platba</p>
+        <p class="text-gray-700" v-else>Odchozí platba</p>
       </div>
     </div>
 
@@ -26,9 +29,12 @@
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-base font-medium text-gray-900">Částka</dt>
               <dd
-                class="mt-1 text-base font-bold leading-6 text-red-700 sm:col-span-2 sm:mt-0"
+                class="mt-1 text-base font-bold leading-6 sm:col-span-2 sm:mt-0"
               >
-                {{ formatPrice(bank_payment.amount) }} Kč
+                <span v-if="bank_payment.amount < 0" class="text-red-700"
+                  >{{ formatPrice(bank_payment.amount) }} Kč</span
+                >
+                <span v-else>{{ formatPrice(bank_payment.amount) }} Kč</span>
               </dd>
             </div>
 
@@ -37,7 +43,16 @@
               <dd
                 class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
               >
-                {{ bank_payment.bank_account.name }}
+                <nuxt-link
+                  :href="
+                    '/' +
+                    $route.params.workspace +
+                    '/bank_accounts/' +
+                    bank_payment.bank_account.uuid
+                  "
+                >
+                  {{ bank_payment.bank_account.name }}
+                </nuxt-link>
               </dd>
             </div>
 
@@ -132,7 +147,7 @@ definePageMeta({
 </script>
 
 <script>
-import { formatDate } from "compatx";
+import {DateTime} from "luxon";
 
 export default {
   data() {
@@ -156,15 +171,24 @@ export default {
   },
 
   methods: {
-    formatDate,
+    formatDate(date) {
+      let formatted = DateTime.fromISO(date);
 
+      return formatted.toFormat("d.M.yyyy");
+    },
     async fetchBankPayment() {
       const client = useSanctumClient();
 
       const { data } = await useAsyncData("bank_payment", () =>
-        client("/api/" + this.route.params.workspace + '/bank_payments/' + this.route.params.bank_payment, {
-          method: "GET",
-        }),
+        client(
+          "/api/" +
+            this.route.params.workspace +
+            "/bank_payments/" +
+            this.route.params.bank_payment,
+          {
+            method: "GET",
+          },
+        ),
       );
 
       this.bank_payment = data.value;

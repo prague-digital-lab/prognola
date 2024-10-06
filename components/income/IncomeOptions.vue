@@ -65,9 +65,9 @@ export default {
     <Transition>
       <div
         v-if="expanded"
-        class="absolute left-[-150px] top-[-5px] w-[147px] rounded border border-slate-200 bg-white px-1 py-1 shadow"
+        class="absolute left-[-150px] top-[-5px] w-[147px] rounded border border-slate-200 bg-white shadow-sm"
       >
-        <p class="p-2 text-red-600 hover:bg-gray-100" @click="deleteIncome">
+        <p class="px-3 py-2 text-gray-700 hover:bg-gray-hover duration-100" @click="deleteIncome">
           Odstranit výdaj
         </p>
       </div>

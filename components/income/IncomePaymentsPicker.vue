@@ -1,14 +1,19 @@
 <template>
   <div class="mb-4">
     <div class="flex items-center justify-between">
-      <p class="text-xs px-1 font-medium text-gray-500">Platby</p>
+      <p class="mb-2 px-1 text-sm font-medium text-gray-500">Platby</p>
 
-      <!--      <nuxt-link :href="'/bank_payments/' + expense.id + '/pair'">+</nuxt-link>-->
+      <nuxt-link
+        :href="
+          '/' + $route.params.workspace + '/income/' + income.uuid + '/pair'
+        "
+        >+
+      </nuxt-link>
     </div>
 
     <p
-      class="text-xs mb-1 rounded px-1 py-1 text-gray-800 hover:bg-gray-100"
-      v-for="payment in expense.bank_payments"
+      class="mb-1 rounded px-1 py-1 text-sm text-gray-800 hover:bg-gray-100"
+      v-for="payment in income.bank_payments"
       @click="navigateToPayment(payment)"
     >
       <svg
@@ -31,7 +36,11 @@
 
 <script>
 export default {
-  props: ["expense"],
+  props: ["income"],
+
+  data: () => {
+    return {};
+  },
 
   methods: {
     formatPrice(value) {
@@ -40,7 +49,10 @@ export default {
     },
 
     async navigateToPayment(payment) {
-      await navigateTo("/bank_payments/" + payment.uuid);
+      const route = useRoute();
+      await navigateTo(
+        "/" + route.params.workspace + "/bank_payments/" + payment.uuid,
+      );
     },
   },
 };

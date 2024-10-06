@@ -4,7 +4,6 @@
     @click="navigateToIncome"
   >
     <div class="flex text-base">
-      <p class="w-[60px] font-light text-gray-500">P-{{ income.id }}</p>
       <p class="w-[400px]">{{ income.name }}</p>
     </div>
 
