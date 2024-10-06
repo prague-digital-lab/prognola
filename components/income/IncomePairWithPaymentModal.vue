@@ -27,12 +27,9 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 text-left align-middle transition-all"
+              class="w-full max-w-4xl transform overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 text-left align-middle transition-all"
             >
-              <DialogTitle
-                as="h3"
-                class="text-lg font-medium leading-6 text-gray-900"
-              >
+              <DialogTitle as="h3" class="font-medium leading-6 text-gray-900">
                 Párování příjmu {{ income.name }}
               </DialogTitle>
 
@@ -47,20 +44,25 @@
                   <div
                     class="mb-4 overflow-hidden border border-gray-200 bg-white py-2 sm:rounded-lg sm:px-6"
                   >
-                    <input
-                      placeholder="Název platby"
-                      class="me-4 rounded border border-gray-200 text-base"
-                      v-model="name_query"
-                    />
-                    <input
-                      placeholder="Částka"
-                      class="me-4 rounded border border-gray-200 text-base"
-                      v-model="price_query"
-                    />
+                    <form v-on:submit.prevent="searchPayments">
+                      <input
+                        placeholder="Název platby"
+                        class="me-4 rounded border border-gray-200 py-1 text-base"
+                        v-model="name_query"
+                      />
+                      <input
+                        placeholder="Částka"
+                        class="me-4 rounded border border-gray-200 py-1 text-base"
+                        v-model="price_query"
+                      />
 
-                    <a @click="searchPayments" class="cursor-pointer"
-                      >Vyhledat platby</a
-                    >
+                      <button
+                        type="submit"
+                        class="cursor-pointer rounded-md bg-black px-3 py-2 text-base text-white duration-100 hover:bg-gray-700"
+                      >
+                        Vyhledat platby
+                      </button>
+                    </form>
                   </div>
 
                   <div
@@ -77,7 +79,7 @@
                       v-if="bank_payments.length === 0"
                       class="flex h-[100px] w-full items-center justify-center"
                     >
-                      <p class="text-gray-600">
+                      <p class="text-base text-gray-600">
                         Žádné odpovídající platby. Zkuste upravit zadání.
                       </p>
                     </div>
@@ -101,8 +103,20 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import { DateTime } from "luxon";
 
 const isOpen = ref(false);
+
+const route = useRoute();
+const loaded = ref(false);
+
+const income = ref(null);
+
+const price_query = ref("");
+const name_query = ref("");
+
+const bank_payments = ref([]);
+const bank_payments_loaded = ref(false);
 
 function closeModal() {
   isOpen.value = false;
@@ -110,7 +124,12 @@ function closeModal() {
 
 function openModal() {
   isOpen.value = true;
+  searchPayments();
 }
+
+onMounted(() => {
+  fetchIncome();
+});
 
 defineExpose({
   openModal,
@@ -142,87 +161,58 @@ async function pairBankPayment(bank_payment) {
   closeModal();
   emit("incomeUpdated");
 }
-</script>
 
-<script>
-import { formatDate } from "compatx";
+function formatDate(date) {
+  let formatted = DateTime.fromISO(date);
 
-export default {
-  data() {
-    return {
-      route: null,
-      loaded: false,
+  return formatted.toFormat("d.M.yyyy");
+}
 
-      expense: null,
+async function searchPayments() {
+  const client = useSanctumClient();
 
-      price_query: "",
-      name_query: "",
+  let params = {
+    is_paired: false,
+  };
 
-      bank_payments: [],
-      bank_payments_loaded: false,
-    };
-  },
+  if (name_query.value) {
+    params.query = name_query.value;
+  }
 
-  mounted() {
-    this.route = useRoute();
-    this.fetchIncome();
-  },
+  if (price_query.value) {
+    params.amount = price_query.value;
+  }
 
-  methods: {
-    formatDate,
+  const { data } = await useAsyncData("bank_payment_pairing_expenses", () =>
+    client("/api/" + route.params.workspace + "/bank_payments", {
+      method: "GET",
+      params: params,
+    }),
+  );
 
-    async fetchIncome() {
-      const client = useSanctumClient();
-      const route = useRoute();
+  bank_payments.value = data.value;
+  bank_payments_loaded.value = true;
+}
 
-      const { data } = await useAsyncData("income", () =>
-        client(
-          "/api/" +
-            route.params.workspace +
-            "/incomes/" +
-            this.route.params.income,
-          {
-            method: "GET",
-          },
-        ),
-      );
+async function fetchIncome() {
+  const client = useSanctumClient();
 
-      this.income = data.value;
-      this.price_query = this.income.amount;
-      this.loaded = true;
-    },
+  const { data } = await useAsyncData("income", () =>
+    client(
+      "/api/" + route.params.workspace + "/incomes/" + route.params.income,
+      {
+        method: "GET",
+      },
+    ),
+  );
 
-    formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
+  income.value = data.value;
+  price_query.value = income.value.amount;
+  loaded.value = true;
+}
 
-    async searchPayments() {
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      let params = {
-        is_paired: false,
-      };
-
-      if (this.name_query) {
-        params.query = this.name_query;
-      }
-
-      if (this.price_query) {
-        params.amount = this.price_query;
-      }
-
-      const { data } = await useAsyncData("bank_payment_pairing_expenses", () =>
-        client("/api/" + route.params.workspace + "/bank_payments", {
-          method: "GET",
-          params: params,
-        }),
-      );
-
-      this.bank_payments = data.value;
-      this.bank_payments_loaded = true;
-    },
-  },
-};
+function formatPrice(value) {
+  let val = (value / 1).toFixed(0).replace(".", ",");
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 </script>
