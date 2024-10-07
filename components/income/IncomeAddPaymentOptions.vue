@@ -3,7 +3,7 @@
     <Menu as="div" class="relative inline-block text-left">
       <div>
         <MenuButton
-          class="rounded-md text-sm px-2 py-1 text-gray-400 duration-100 hover:bg-gray-100"
+          class="rounded-md px-2 py-1 text-sm text-gray-400 duration-100 hover:bg-gray-100 active:bg-gray-200"
           >+ přidat platbu
         </MenuButton>
       </div>
@@ -26,21 +26,21 @@
                   active ? 'bg-gray-hover duration-100' : 'text-gray-900',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
-                @click="$emit('open_pair_modal');"
+                @click="$emit('open_pair_modal')"
               >
                 Spárovat s existující platbou
               </button>
             </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-gray-hover duration-100' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                Vytvořit novou platbu
-              </button>
-            </MenuItem>
+<!--            <MenuItem v-slot="{ active }">-->
+<!--              <button-->
+<!--                :class="[-->
+<!--                  active ? 'bg-gray-hover duration-100' : 'text-gray-900',-->
+<!--                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
+<!--                ]"-->
+<!--              >-->
+<!--                Vytvořit novou platbu-->
+<!--              </button>-->
+<!--            </MenuItem>-->
           </div>
         </MenuItems>
       </transition>
