@@ -23,7 +23,7 @@
           <div>
             <label
               for="email"
-              class="block text-base font-medium leading-6 text-gray-900"
+              class="block text-base font-medium text-gray-900"
               >Email pro zasílání přijatých dokladů</label
             >
             <div class="mt-2">
