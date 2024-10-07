@@ -4,7 +4,7 @@
       <div>
         <MenuButton
           class="rounded-md text-sm px-2 py-1 text-gray-400 duration-100 hover:bg-gray-100"
-          >přidat platbu
+          >+ přidat platbu
         </MenuButton>
       </div>
 

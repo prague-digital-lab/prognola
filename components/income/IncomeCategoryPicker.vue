@@ -1,96 +1,7 @@
-<script>
-export default {
-  props: ["income"],
-
-  data: () => {
-    return {
-      expanded: false,
-      category_name_filter: null,
-
-      income_categories: [],
-      selected_income_category: null,
-    };
-  },
-
-  mounted() {
-    if (this.income.income_category_id) {
-      this.selected_income_category = this.income.income_category;
-    }
-
-    this.loadIncomeCategories();
-  },
-
-  methods: {
-    expand() {
-      this.expanded = true;
-    },
-
-    close() {
-      this.expanded = false;
-    },
-
-    async selectCategory(income_category) {
-      this.expanded = false;
-      this.selected_income_category = income_category;
-
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("income", () =>
-        client(
-          "/api/" + route.params.workspace + "/incomes/" + this.income.id,
-          {
-            method: "PATCH",
-            body: {
-              income_category_id: income_category.id,
-            },
-          },
-        ),
-      );
-    },
-
-    async loadIncomeCategories() {
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("income", () =>
-        client("/api/" + route.params.workspace + "/income_categories", {
-          method: "GET",
-        }),
-      );
-
-      this.income_categories = data.value;
-    },
-  },
-
-  computed: {
-    filtered_categories() {
-      return this.income_categories.filter((category) => {
-        // console.log(category.name, this.category_name_filter)
-        return (
-          !this.category_name_filter ||
-          category.name
-            .toLowerCase()
-            .indexOf(this.category_name_filter.toLowerCase()) > -1
-        );
-      });
-    },
-
-    filtered_categories_grouped_by_department() {
-      return this.filtered_categories.reduce(function (r, category) {
-        r[category.department_id] = r[category.department_id] || [];
-        r[category.department_id].push(category);
-        return r;
-      }, Object.create(null));
-    },
-  },
-};
-</script>
-
 <template>
   <div class="relative">
     <p
-      class="text-xs mb-7 rounded px-1 py-1 text-gray-800 hover:bg-gray-100"
+      class="text-xs mb-7 rounded px-1 py-1 text-gray-500 hover:bg-gray-100"
       @click="expanded ? close() : expand()"
     >
       <svg
@@ -172,5 +83,94 @@ export default {
     </Transition>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["income"],
+
+  data: () => {
+    return {
+      expanded: false,
+      category_name_filter: null,
+
+      income_categories: [],
+      selected_income_category: null,
+    };
+  },
+
+  mounted() {
+    if (this.income.income_category_id) {
+      this.selected_income_category = this.income.income_category;
+    }
+
+    this.loadIncomeCategories();
+  },
+
+  methods: {
+    expand() {
+      this.expanded = true;
+    },
+
+    close() {
+      this.expanded = false;
+    },
+
+    async selectCategory(income_category) {
+      this.expanded = false;
+      this.selected_income_category = income_category;
+
+      const client = useSanctumClient();
+      const route = useRoute();
+
+      const { data } = await useAsyncData("income", () =>
+          client(
+              "/api/" + route.params.workspace + "/incomes/" + this.income.id,
+              {
+                method: "PATCH",
+                body: {
+                  income_category_id: income_category.id,
+                },
+              },
+          ),
+      );
+    },
+
+    async loadIncomeCategories() {
+      const client = useSanctumClient();
+      const route = useRoute();
+
+      const { data } = await useAsyncData("income", () =>
+          client("/api/" + route.params.workspace + "/income_categories", {
+            method: "GET",
+          }),
+      );
+
+      this.income_categories = data.value;
+    },
+  },
+
+  computed: {
+    filtered_categories() {
+      return this.income_categories.filter((category) => {
+        // console.log(category.name, this.category_name_filter)
+        return (
+            !this.category_name_filter ||
+            category.name
+                .toLowerCase()
+                .indexOf(this.category_name_filter.toLowerCase()) > -1
+        );
+      });
+    },
+
+    filtered_categories_grouped_by_department() {
+      return this.filtered_categories.reduce(function (r, category) {
+        r[category.department_id] = r[category.department_id] || [];
+        r[category.department_id].push(category);
+        return r;
+      }, Object.create(null));
+    },
+  },
+};
+</script>
 
 <style scoped></style>
