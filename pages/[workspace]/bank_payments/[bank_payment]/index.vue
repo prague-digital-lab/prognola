@@ -132,13 +132,17 @@
     >
       <p class="mb-4 font-medium text-gray-600">Spárované příjmy a výdaje</p>
 
-      <div v-for="income in bank_payment.incomes" class="text-gray-600">
+      <div v-for="income in bank_payment.incomes" class="text-gray-600 mt-2">
         Příjem
         <badge-income :income="income" class="mx-2" />
         {{ income.pivot.amount }} Kč
       </div>
 
-      <p v-for="expense in bank_payment.expenses">{{ expense.name }}</p>
+      <div v-for="expense in bank_payment.expenses" class="text-gray-600 mt-2">
+        Výdaj
+        <badge-expense :expense="expense" class="mx-2" />
+        {{ expense.pivot.amount }} Kč
+      </div>
     </div>
   </div>
 </template>
@@ -146,6 +150,7 @@
 <script setup>
 import BadgeIncome from "~/components/badges/BadgeIncome.vue";
 import BadgeBankAccount from "~/components/badges/BadgeBankAccount.vue";
+import BadgeExpense from "~/components/badges/BadgeExpense.vue";
 
 definePageMeta({
   layout: "default",

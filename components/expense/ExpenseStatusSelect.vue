@@ -56,7 +56,7 @@ export default {
           class="rounded px-1 py-1 hover:bg-gray-100"
           @click="setStatus('draft')"
         >
-          <expense-status-icon payment_status="draft" />
+          <expense-status-icon payment_status="draft" class="me-2" />
 
           Ke zpracování
         </div>
@@ -64,7 +64,7 @@ export default {
           class="rounded px-1 py-1 hover:bg-gray-100"
           @click="setStatus('plan')"
         >
-          <expense-status-icon payment_status="plan" />
+          <expense-status-icon payment_status="plan" class="me-2" />
 
           Odhad
         </div>
@@ -72,7 +72,7 @@ export default {
           class="rounded px-1 py-1 hover:bg-gray-100"
           @click="setStatus('pending')"
         >
-          <expense-status-icon payment_status="pending" />
+          <expense-status-icon payment_status="pending" class="me-2" />
 
           K úhradě
         </div>
@@ -80,7 +80,7 @@ export default {
           class="rounded px-1 py-1 hover:bg-gray-100"
           @click="setStatus('paid')"
         >
-          <expense-status-icon payment_status="paid" />
+          <expense-status-icon payment_status="paid" class="me-2" />
 
           Uhrazeno
         </div>
@@ -89,21 +89,21 @@ export default {
 
     <div @click="expandSelect" class="px-1 py-1">
       <div v-if="status === 'draft'">
-        <expense-status-icon payment_status="draft" />
+        <expense-status-icon payment_status="draft" class="me-2" />
 
         Ke zpracování
       </div>
       <div v-if="status === 'plan'">
-        <expense-status-icon payment_status="plan" />
+        <expense-status-icon payment_status="plan" class="me-2" />
         Odhad
       </div>
       <div v-if="status === 'pending'">
-        <expense-status-icon payment_status="pending" />
+        <expense-status-icon payment_status="pending" class="me-2" />
 
         K úhradě
       </div>
       <div v-if="status === 'paid'">
-        <expense-status-icon payment_status="paid" />
+        <expense-status-icon payment_status="paid" class="me-2" />
 
         Uhrazeno
       </div>

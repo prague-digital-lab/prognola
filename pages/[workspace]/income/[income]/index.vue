@@ -132,9 +132,10 @@ definePageMeta({
 <script>
 import IncomeStatusSelect from "~/components/income/IncomeStatusSelect.vue";
 import IncomePaidAtInput from "~/components/income/IncomePaidAtInput.vue";
+import IncomePaymentsPicker from "~/components/income/payments/IncomePaymentsPicker.vue";
 
 export default {
-  components: { IncomePaidAtInput, IncomeStatusSelect },
+  components: { IncomePaidAtInput, IncomeStatusSelect, IncomePaymentsPicker },
   data() {
     return {
       route: null,
