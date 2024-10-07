@@ -1,50 +1,3 @@
-<script>
-export default {
-  data: () => {
-    return {
-      status: null,
-      select_expanded: false,
-    };
-  },
-
-  props: ["expense"],
-
-  mounted() {
-    this.status = this.expense.payment_status;
-  },
-
-  methods: {
-    expandSelect() {
-      if (this.select_expanded === true) {
-        this.select_expanded = false;
-      } else {
-        this.select_expanded = true;
-      }
-    },
-
-    async setStatus(status) {
-      this.status = status;
-      this.select_expanded = false;
-
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("expense", () =>
-        client(
-          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-          {
-            method: "PATCH",
-            body: {
-              payment_status: status,
-            },
-          },
-        ),
-      );
-    },
-  },
-};
-</script>
-
 <template>
   <div class="relative mb-3 rounded text-base text-gray-700 hover:bg-gray-100">
     <Transition>
@@ -110,6 +63,59 @@ export default {
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => {
+    return {
+      select_expanded: false,
+    };
+  },
+
+  props: ["expense"],
+
+  mounted() {
+    // this.status = this.expense.payment_status;
+  },
+
+  methods: {
+    expandSelect() {
+      if (this.select_expanded === true) {
+        this.select_expanded = false;
+      } else {
+        this.select_expanded = true;
+      }
+    },
+
+    async setStatus(status) {
+      this.select_expanded = false;
+
+      const client = useSanctumClient();
+      const route = useRoute();
+
+      const { data } = await useAsyncData("expense", () =>
+          client(
+              "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+              {
+                method: "PATCH",
+                body: {
+                  payment_status: status,
+                },
+              },
+          ),
+      );
+
+      this.$emit("expense-updated");
+    },
+  },
+
+  computed: {
+    status() {
+      return this.expense.payment_status;
+    }
+  },
+};
+</script>
 
 <style scoped>
 .v-enter-active,

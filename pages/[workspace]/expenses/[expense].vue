@@ -44,45 +44,53 @@
       <div class="w-[250px] ps-4">
         <expense-price-input :expense="expense" />
 
-        <expense-status-select :expense="expense" />
+        <expense-status-select
+          :expense="expense"
+          @expense-updated="fetchData"
+        />
 
         <expense-organisation-picker :expense="expense" />
 
-        <p class="text-xs mb-2 px-1 font-medium text-gray-500">
+        <p class="text-sm mb-2 px-1 font-medium text-gray-500">
           Kategorie výdaje
         </p>
 
         <expense-category-picker :expense="expense" />
 
-        <expense-payments-picker :expense="expense" @expense-updated="fetchData" />
+        <expense-payments-picker
+          :expense="expense"
+          @expense-updated="fetchData"
+        />
 
-        <p class="text-xs mb-2 px-1 font-medium text-gray-500">Datum přijetí</p>
+        <p class="text-sm mb-2 px-1 font-medium text-gray-500">Datum přijetí</p>
         <expense-received-at-input :expense="expense" />
 
-        <p
-          class="text-xs mb-2 px-1 font-medium text-gray-500"
-          v-if="expense.payment_status === 'paid'"
-        >
-          Uhrazeno
-        </p>
-        <p
-          class="text-xs mb-2 px-1 font-medium text-gray-500"
-          v-if="expense.payment_status === 'plan'"
-        >
-          Plánovaná úhrada
-        </p>
-        <p
-          class="text-xs mb-2 px-1 font-medium text-gray-500"
-          v-if="expense.payment_status === 'draft'"
-        >
-          Plánovaná úhrada
-        </p>
-        <p
-          class="text-xs mb-2 px-1 font-medium text-gray-500"
-          v-if="expense.payment_status === 'pending'"
-        >
-          Plánovaná úhrada
-        </p>
+        <div class="transition duration-100">
+          <p
+            class="text-sm mb-2 px-1 font-medium text-gray-500"
+            v-if="expense.payment_status === 'paid'"
+          >
+            Uhrazeno
+          </p>
+          <p
+            class="text-sm mb-2 px-1 font-medium text-gray-500"
+            v-if="expense.payment_status === 'plan'"
+          >
+            Plánovaná úhrada
+          </p>
+          <p
+            class="text-sm mb-2 px-1 font-medium text-gray-500"
+            v-if="expense.payment_status === 'draft'"
+          >
+            Plánovaná úhrada
+          </p>
+          <p
+            class="text-sm mb-2 px-1 font-medium text-gray-500"
+            v-if="expense.payment_status === 'pending'"
+          >
+            Plánovaná úhrada
+          </p>
+        </div>
 
         <expense-paid-at-input :expense="expense" />
       </div>
