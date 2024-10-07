@@ -9,7 +9,7 @@
           class="rounded px-1 py-1 hover:bg-gray-100"
           @click="setStatus('draft')"
         >
-          <income-status-icon payment_status="draft" />
+          <income-status-icon payment_status="draft" class="me-2" />
 
           Ke zpracování
         </div>
@@ -17,7 +17,7 @@
           class="rounded px-1 py-1 hover:bg-gray-100"
           @click="setStatus('plan')"
         >
-          <income-status-icon payment_status="plan" />
+          <income-status-icon payment_status="plan" class="me-2" />
 
           Odhad
         </div>
@@ -25,7 +25,7 @@
           class="rounded px-1 py-1 hover:bg-gray-100"
           @click="setStatus('pending')"
         >
-          <income-status-icon payment_status="pending" />
+          <income-status-icon payment_status="pending" class="me-2" />
 
           K úhradě
         </div>
@@ -33,7 +33,7 @@
           class="rounded px-1 py-1 hover:bg-gray-100"
           @click="setStatus('paid')"
         >
-          <income-status-icon payment_status="paid" />
+          <income-status-icon payment_status="paid" class="me-2" />
 
           Uhrazeno
         </div>
@@ -42,21 +42,21 @@
 
     <div @click="expandSelect" class="px-1 py-1">
       <div v-if="status === 'draft'">
-        <income-status-icon payment_status="draft" />
+        <income-status-icon payment_status="draft" class="me-2" />
 
         Ke zpracování
       </div>
       <div v-if="status === 'plan'">
-        <income-status-icon payment_status="plan" />
+        <income-status-icon payment_status="plan" class="me-2" />
         Odhad
       </div>
       <div v-if="status === 'pending'">
-        <income-status-icon payment_status="pending" />
+        <income-status-icon payment_status="pending" class="me-2" />
 
         K úhradě
       </div>
       <div v-if="status === 'paid'">
-        <income-status-icon payment_status="paid" />
+        <income-status-icon payment_status="paid" class="me-2" />
 
         Uhrazeno
       </div>
@@ -68,7 +68,6 @@
 export default {
   data: () => {
     return {
-      status: null,
       select_expanded: false,
     };
   },
@@ -78,7 +77,7 @@ export default {
   props: ["income"],
 
   mounted() {
-    this.status = this.income.payment_status;
+    // this.status = this.income.payment_status;
   },
 
   methods: {
@@ -87,7 +86,7 @@ export default {
     },
 
     async setStatus(status) {
-      this.status = status;
+      // this.status = status;
       this.select_expanded = false;
 
       const client = useSanctumClient();
@@ -107,6 +106,12 @@ export default {
 
       this.$emit("income-updated");
     },
+  },
+
+  computed: {
+    status() {
+      return this.income.payment_status;
+    }
   },
 };
 </script>
