@@ -21,7 +21,7 @@
       <template v-slot:subtitle>
         <div class="mb-5">
           <span
-            class="me-2 rounded-full border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
+            class="me-2 rounded-md border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
           >
             Číslo účtu: {{ bank_account.account_number }}/{{
               bank_account.bank_number
@@ -29,7 +29,7 @@
           </span>
 
           <span
-            class="me-2 rounded-full border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
+            class="me-2 rounded-md border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
             v-if="bank_account.synced_at"
           >
             Platby staženy {{ formatDate(bank_account.synced_at) }}

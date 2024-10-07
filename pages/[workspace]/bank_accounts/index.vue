@@ -45,7 +45,7 @@
 
         <nuxt-link
           :href="'/' + route.params.workspace + '/bank_accounts/new'"
-          class="rounded-full bg-black px-4 py-2 text-base font-medium text-white duration-150 hover:bg-gray-700"
+          class="rounded-md bg-black px-4 py-2 text-base font-medium text-white duration-150 hover:bg-gray-700"
           >Přidat účet
         </nuxt-link>
       </div>
