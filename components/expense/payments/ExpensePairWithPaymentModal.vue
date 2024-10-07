@@ -159,7 +159,7 @@ async function pairBankPayment(bank_payment) {
   );
 
   closeModal();
-  emit("expenseUpdated");
+  emit("expense-updated");
 }
 
 function formatDate(date) {
@@ -207,7 +207,7 @@ async function fetchExpense() {
   );
 
   expense.value = data.value;
-  price_query.value = expense.value.amount;
+  price_query.value = expense.value.price;
   loaded.value = true;
 }
 
