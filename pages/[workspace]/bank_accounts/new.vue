@@ -122,7 +122,7 @@
           </div>
 
           <button
-            class="cursor-pointer rounded-full bg-black px-4 py-2 font-medium text-white duration-200 hover:bg-gray-700"
+            class="cursor-pointer rounded-md bg-black px-10 py-2 font-medium text-white duration-200 hover:bg-gray-700"
             type="submit"
             >Vytvořit účet
           </button>

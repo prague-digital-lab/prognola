@@ -32,7 +32,11 @@
             class="me-2 rounded-md border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
             v-if="bank_account.synced_at"
           >
-            Platby staženy {{ formatDate(bank_account.synced_at) }}
+            <span v-if="bank_account.bank === 'fio'">Platby staženy</span>
+            <span v-if="bank_account.bank === 'komercni_banka_csv'"
+              >Importováno z CSV do</span
+            >
+            {{ formatDate(bank_account.synced_at) }}
           </span>
         </div>
       </template>

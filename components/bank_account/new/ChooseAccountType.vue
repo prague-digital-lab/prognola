@@ -11,13 +11,13 @@
       <p class="mb-4">{{ name }}</p>
 
       <nuxt-link
-        class="cursor-pointer rounded-full bg-black px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-gray-700"
+        class="cursor-pointer rounded-md bg-black px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-gray-700"
         v-if="!selected"
         >Vybrat
       </nuxt-link>
 
       <nuxt-link
-        class="rounded-full border border-gray-200 bg-gray-50/50 px-4 py-2 text-base text-gray-400"
+        class="rounded-md border border-gray-200 bg-gray-50/50 px-4 py-2 text-base text-gray-400"
         v-else
         >Vybráno
       </nuxt-link>
