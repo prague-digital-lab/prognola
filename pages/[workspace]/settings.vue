@@ -11,7 +11,7 @@
         </div>
       </template>
       <template v-slot:subtitle>
-        <p class="text-gray-500">{{workspace.name}}</p>
+        <p class="text-gray-500">{{ workspace.name }}</p>
       </template>
     </page-content-header>
 
@@ -21,17 +21,19 @@
           class="mb-7 rounded-md border border-gray-200 bg-white px-5 py-5 text-gray-700 md:w-1/2"
         >
           <div>
-            <label
-              for="email"
-              class="block text-base font-medium text-gray-900"
+            <label for="email" class="block text-base font-medium text-gray-900"
               >Email pro zasílání přijatých dokladů</label
             >
             <div class="mt-2">
               <input
                 disabled
                 v-model="inbox_email"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+                class="mb-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
               />
+
+              <a @click="refreshInboxEmail" class="cursor-pointer"
+                >Vygenerovat nový email</a
+              >
             </div>
           </div>
         </div>
@@ -73,4 +75,14 @@ onMounted(async () => {
 });
 
 async function updateInboxSettings() {}
+
+async function refreshInboxEmail() {
+  const { data } = await useAsyncData("workspace", () =>
+    client("/api/workspaces/" + route.params.workspace + "/refresh-email", {
+      method: "POST",
+    }),
+  );
+
+  inbox_email.value = data.value.inbox_email;
+}
 </script>
