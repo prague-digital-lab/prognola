@@ -141,7 +141,7 @@
             />
 
             <p class="font-medium text-gray-600">
-              {{ active_workspace ? active_workspace.name : "" }}
+              Prognola
             </p>
           </nuxt-link>
         </div>
