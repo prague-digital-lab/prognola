@@ -42,7 +42,7 @@ export default {
           {
             method: "PATCH",
             body: {
-              organisation_uuid: organisation.uuid,
+              organisation: organisation.uuid,
             },
           },
         ),
