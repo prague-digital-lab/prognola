@@ -31,13 +31,17 @@
           v-on:blur="updateInternalNote"
         ></textarea>
 
-        <p class="mb-2 text-base text-gray-600">Doklady</p>
+        <div v-if="expense.scans.length > 0">
+          <p class="mb-2 text-base text-gray-600">Doklady</p>
 
-        <div class="divide-y divide-slate-200 rounded border border-slate-200">
-          <expense-scan-row
-            :scan="scan"
-            v-for="scan in expense.scans"
-          ></expense-scan-row>
+          <div
+            class="divide-y divide-slate-200 rounded border border-slate-200"
+          >
+            <expense-scan-row
+              :scan="scan"
+              v-for="scan in expense.scans"
+            ></expense-scan-row>
+          </div>
         </div>
       </div>
 
@@ -51,7 +55,7 @@
 
         <expense-organisation-picker :expense="expense" />
 
-        <p class="text-sm mb-2 px-1 font-medium text-gray-500">
+        <p class="mb-2 px-1 text-sm font-medium text-gray-500">
           Kategorie výdaje
         </p>
 
@@ -62,30 +66,30 @@
           @expense-updated="fetchData"
         />
 
-        <p class="text-sm mb-2 px-1 font-medium text-gray-500">Datum přijetí</p>
+        <p class="mb-2 px-1 text-sm font-medium text-gray-500">Datum přijetí</p>
         <expense-received-at-input :expense="expense" />
 
         <div class="transition duration-100">
           <p
-            class="text-sm mb-2 px-1 font-medium text-gray-500"
+            class="mb-2 px-1 text-sm font-medium text-gray-500"
             v-if="expense.payment_status === 'paid'"
           >
             Uhrazeno
           </p>
           <p
-            class="text-sm mb-2 px-1 font-medium text-gray-500"
+            class="mb-2 px-1 text-sm font-medium text-gray-500"
             v-if="expense.payment_status === 'plan'"
           >
             Plánovaná úhrada
           </p>
           <p
-            class="text-sm mb-2 px-1 font-medium text-gray-500"
+            class="mb-2 px-1 text-sm font-medium text-gray-500"
             v-if="expense.payment_status === 'draft'"
           >
             Plánovaná úhrada
           </p>
           <p
-            class="text-sm mb-2 px-1 font-medium text-gray-500"
+            class="mb-2 px-1 text-sm font-medium text-gray-500"
             v-if="expense.payment_status === 'pending'"
           >
             Plánovaná úhrada
