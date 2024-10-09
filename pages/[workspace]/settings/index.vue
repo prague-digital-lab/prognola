@@ -6,12 +6,9 @@
           <h4
             class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
           >
-            Nastavení firmy
+            Zasílání dokladů
           </h4>
         </div>
-      </template>
-      <template v-slot:subtitle>
-        <p class="text-gray-500">{{ workspace.name }}</p>
       </template>
     </page-content-header>
 
@@ -65,7 +62,7 @@ import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import { Switch } from "@headlessui/vue";
 
 definePageMeta({
-  layout: "default",
+  layout: "settings",
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
 
