@@ -15,10 +15,12 @@
       <tbody>
         <tr>
           <td class="w-[10%]">{{ formatDate(bank_payment.issued_at) }}</td>
-          <td class="w-[30%]">
+          <td class="w-[50%]">
             <a class="text-dark text-decoration-none">{{
               bank_payment.description
             }}</a>
+
+            <p class="text-sm font-light text-gray-600">{{bank_payment.sender_comment}}</p>
 
             <!--        @if($payment->received_invoices->count() > 0)-->
             <!--        <br>-->
@@ -28,7 +30,7 @@
             <!--        @endforeach-->
             <!--        @endif-->
           </td>
-          <td class="w-[20%]">
+          <td class="w-[10%]">
             <span v-if="bank_payment.type === 'income'"
               >{{ formatPrice(bank_payment.amount) }} Kč</span
             >
@@ -36,7 +38,7 @@
               >{{ formatPrice(bank_payment.amount) }} Kč</span
             >
           </td>
-          <td class="w-[20%]">
+          <td class="w-[10%]">
             <span
               class="badge text-bg-warning"
               v-if="bank_payment.paired_at === null"
