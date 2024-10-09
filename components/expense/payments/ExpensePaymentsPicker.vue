@@ -15,6 +15,7 @@
     ></expense-add-payment-options>
 
     <expense-pair-with-payment-modal
+      :expense="expense"
       ref="modal_pair"
       @expense-updated="$emit('expense-updated')"
     ></expense-pair-with-payment-modal>

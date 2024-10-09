@@ -33,11 +33,12 @@
                 Přidání existující platby
               </DialogTitle>
 
-              <div v-if="loaded">
+              <div>
                 <div>
                   <div class="flex items-center justify-between">
                     <h2 class="mb-4 mt-4 text-base text-gray-700">
-                     Vyhledejte platbu, kterou chcete přidat k příjmu {{expense.name}}.
+                      Vyhledejte platbu, která souvisí s výdajem
+                      {{ props.expense.description }}.
                     </h2>
                   </div>
 
@@ -124,11 +125,15 @@ function closeModal() {
 
 function openModal() {
   isOpen.value = true;
+
+  loaded.value = true;
+  price_query.value = props.expense.price;
+
   searchPayments();
 }
 
 onMounted(() => {
-  fetchExpense();
+  // fetchExpense();
 });
 
 defineExpose({
@@ -136,7 +141,9 @@ defineExpose({
   closeModal,
 });
 
-const emit = defineEmits(["expenseUpdated"]);
+const props = defineProps(["expense"]);
+
+const emit = defineEmits(["expense-updated"]);
 
 async function pairBankPayment(bank_payment) {
   const client = useSanctumClient();
@@ -192,23 +199,6 @@ async function searchPayments() {
 
   bank_payments.value = data.value;
   bank_payments_loaded.value = true;
-}
-
-async function fetchExpense() {
-  const client = useSanctumClient();
-
-  const { data } = await useAsyncData("expense", () =>
-    client(
-      "/api/" + route.params.workspace + "/expenses/" + route.params.expense,
-      {
-        method: "GET",
-      },
-    ),
-  );
-
-  expense.value = data.value;
-  price_query.value = expense.value.price;
-  loaded.value = true;
 }
 
 function formatPrice(value) {

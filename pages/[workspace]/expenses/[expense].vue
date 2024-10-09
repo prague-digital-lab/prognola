@@ -46,7 +46,7 @@
       </div>
 
       <div class="w-[250px] ps-4">
-        <expense-price-input :expense="expense" />
+        <expense-price-input @expense-updated="fetchData" :expense="expense" />
 
         <expense-status-select
           :expense="expense"

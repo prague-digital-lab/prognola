@@ -44,6 +44,8 @@ export default {
           },
         ),
       );
+
+      this.$emit("expense-updated");
     },
   },
 };
