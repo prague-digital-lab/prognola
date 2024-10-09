@@ -37,10 +37,12 @@
             <nuxt-link href="income">
               <dt class="truncate text-gray-500">Příjmy</dt>
             </nuxt-link>
-            <dd class="mt-1 text-xl font-semibold tracking-tight text-sky-600">
+            <dd
+              class="mt-1 text-xl font-semibold tracking-tight text-indigo-600"
+            >
               {{ formatPrice(income_sum) }} Kč
               <span
-                class="ms-1 mt-1 text-xl font-semibold tracking-tight text-sky-400"
+                class="ms-1 mt-1 text-xl font-semibold tracking-tight text-indigo-400"
               >
                 + {{ formatPrice(income_plan_sum) }} Kč</span
               >
@@ -74,7 +76,7 @@
 
       <Bar
         id="my-chart-id"
-        height="100%"
+        height="150%"
         :options="chartOptions"
         :data="chartData"
       />
@@ -147,12 +149,27 @@ export default {
 
       chartData: {},
       chartOptions: {
+        plugins: {
+          legend: {
+            display: false,
+            position: 'bottom'
+          }
+        },
+
         responsive: true,
         scales: {
           y: {
+            grid: {
+              display: false,
+            },
             beginAtZero: true,
             type: "linear",
             position: "right",
+          },
+          x: {
+            grid: {
+              display: false,
+            },
           },
         },
       },
@@ -200,7 +217,7 @@ export default {
           {
             label: "Příjmy",
             data: data.value.chart_data_income,
-            backgroundColor: [colors.sky[400]],
+            backgroundColor: [colors.indigo[400]],
             hidden: false,
             cubicInterpolationMode: "monotone",
             tension: 0.1,
@@ -211,7 +228,7 @@ export default {
           {
             label: "Plán příjmů",
             data: data.value.chart_data_income_plan,
-            backgroundColor: [colors.sky[200]],
+            backgroundColor: [colors.indigo[200]],
             hidden: false,
             cubicInterpolationMode: "monotone",
             tension: 0.1,
@@ -223,7 +240,7 @@ export default {
             label: "Výdaje",
             data: data.value.chart_data_expense,
             hidden: false,
-            backgroundColor: [colors.red[500]],
+            backgroundColor: [colors.red[400]],
             cubicInterpolationMode: "monotone",
             tension: 0.1,
             stack: "stack 1",
