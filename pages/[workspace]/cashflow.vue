@@ -250,7 +250,7 @@ export default {
           {
             label: "Plán výdajů",
             data: data.value.chart_data_expense_plan,
-            backgroundColor: [colors.red[300]],
+            backgroundColor: [colors.red[200]],
             hidden: false,
             cubicInterpolationMode: "monotone",
             tension: 0.1,
