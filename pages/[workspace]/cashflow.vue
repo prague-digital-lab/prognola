@@ -35,12 +35,12 @@
             class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
             <nuxt-link href="income">
-              <dt class="truncate font-medium text-gray-500">Příjmy</dt>
+              <dt class="truncate text-gray-500">Příjmy</dt>
             </nuxt-link>
-            <dd class="mt-1 text-xl font-semibold tracking-tight text-blue-700">
+            <dd class="mt-1 text-xl font-semibold tracking-tight text-sky-600">
               {{ formatPrice(income_sum) }} Kč
               <span
-                class="ms-1 mt-1 text-xl font-semibold tracking-tight text-blue-400"
+                class="ms-1 mt-1 text-xl font-semibold tracking-tight text-sky-400"
               >
                 + {{ formatPrice(income_plan_sum) }} Kč</span
               >
@@ -50,9 +50,9 @@
             class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
             <nuxt-link href="expenses">
-              <dt class="truncate font-medium text-gray-500">Výdaje</dt>
+              <dt class="truncate text-gray-500">Výdaje</dt>
             </nuxt-link>
-            <dd class="mt-1 text-xl font-semibold tracking-tight text-red-700">
+            <dd class="mt-1 text-xl font-semibold tracking-tight text-red-600">
               {{ formatPrice(expense_sum) }} Kč
               <span
                 class="ms-1 mt-1 text-xl font-semibold tracking-tight text-red-400"
@@ -64,7 +64,7 @@
           <div
             class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
           >
-            <dt class="truncate font-medium text-gray-500">Výsledek</dt>
+            <dt class="truncate text-gray-500">Výsledek</dt>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">
               {{ formatPrice(profit_sum + profit_plan_sum) }} Kč
             </dd>
@@ -115,6 +115,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "vue-chartjs";
+import colors from "tailwindcss/colors";
 
 ChartJS.register(
   CategoryScale,
@@ -199,45 +200,45 @@ export default {
           {
             label: "Příjmy",
             data: data.value.chart_data_income,
-            backgroundColor: ["rgb(114,143,252)"],
+            backgroundColor: [colors.sky[400]],
             hidden: false,
             cubicInterpolationMode: "monotone",
             tension: 0.1,
             stack: "stack 0",
-            borderRadius: 6,
+            borderRadius: 4,
           },
 
           {
             label: "Plán příjmů",
             data: data.value.chart_data_income_plan,
-            backgroundColor: ["rgb(167,185,255)"],
+            backgroundColor: [colors.sky[200]],
             hidden: false,
             cubicInterpolationMode: "monotone",
             tension: 0.1,
             stack: "stack 0",
-            borderRadius: 6,
+            borderRadius: 4,
           },
 
           {
             label: "Výdaje",
             data: data.value.chart_data_expense,
-            backgroundColor: ["rgba(255,0,0,0.56)"],
             hidden: false,
+            backgroundColor: [colors.red[500]],
             cubicInterpolationMode: "monotone",
             tension: 0.1,
             stack: "stack 1",
-            borderRadius: 6,
+            borderRadius: 4,
           },
 
           {
             label: "Plán výdajů",
             data: data.value.chart_data_expense_plan,
-            backgroundColor: ["rgba(250,152,152,0.56)"],
+            backgroundColor: [colors.red[300]],
             hidden: false,
             cubicInterpolationMode: "monotone",
             tension: 0.1,
             stack: "stack 1",
-            borderRadius: 6,
+            borderRadius: 4,
           },
 
           {
