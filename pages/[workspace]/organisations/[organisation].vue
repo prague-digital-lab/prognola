@@ -5,7 +5,7 @@
 
   <div v-if="loaded">
     <div
-      class="mb-4 h-screen divide-x divide-slate-100 md:flex md:justify-between"
+      class="mb-4 h-screen md:flex md:justify-between"
     >
       <div class="me-5 w-full overflow-scroll">
         <div class="flex justify-between">
@@ -22,7 +22,8 @@
           </div>
         </div>
 
-        <p class="mb-5 text-base text-gray-500">{{ organisation.type }}</p>
+<!--        <p class="mb-5 text-base text-gray-500">{{ organisation.type }}</p>-->
+        <p class="mb-5 text-base text-gray-500">Organizace</p>
 
         <textarea
           v-model="input_internal_note"
@@ -30,6 +31,18 @@
           placeholder="Přidat popis..."
           v-on:blur="updateInternalNote"
         ></textarea>
+
+        <p class="mb-2 text-gray-700">Fakturační údaje</p>
+        <div class="mb-4 rounded-md border border-gray-200 p-5">
+          <p class="mb-2 text-red-500">Údaje momentálně nelze upravit. Funkci připravujeme.</p>
+
+          <p>IČ: {{ organisation.ic }}</p>
+          <p>DIČ: {{ organisation.dic }}</p>
+          <p>Ulice: {{ organisation.street }}</p>
+          <p>Město: {{ organisation.city }}</p>
+          <p>PSČ: {{ organisation.postal }}</p>
+          <p>Země: {{ organisation.country }}</p>
+        </div>
 
         <p class="mb-2 text-base text-gray-600">Výdaje</p>
 
@@ -41,32 +54,7 @@
         </div>
       </div>
 
-      <div class="w-[250px] ps-4">
-        <!--        <organisation-price-input :organisation="organisation"/>-->
 
-        <!--        <organisation-status-select :organisation="organisation"/>-->
-
-        <!--        <organisation-organisation-picker :organisation="organisation"/>-->
-
-        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Kategorie výdaje</p>-->
-
-        <!--        <organisation-category-picker :organisation="organisation"/>-->
-
-        <!--        <organisation-payments-picker :organisation="organisation"/>-->
-
-        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2">Datum přijetí</p>-->
-        <!--        <organisation-received-at-input :organisation="organisation"/>-->
-
-        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="organisation.payment_status === 'paid'">Uhrazeno</p>-->
-        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="organisation.payment_status === 'plan'">Plánovaná-->
-        <!--          úhrada</p>-->
-        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="organisation.payment_status === 'draft'">Plánovaná-->
-        <!--          úhrada</p>-->
-        <!--        <p class="text-xs px-1 font-medium text-gray-500 mb-2" v-if="organisation.payment_status === 'pending'">Plánovaná-->
-        <!--          úhrada</p>-->
-
-        <!--        <organisation-paid-at-input :organisation="organisation"/>-->
-      </div>
     </div>
   </div>
 </template>
