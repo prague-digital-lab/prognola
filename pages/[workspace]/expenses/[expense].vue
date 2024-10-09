@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <p class="mb-5 text-base text-gray-500">Výdaj V-{{ expense.id }}</p>
+        <p class="mb-5 text-base text-gray-500">Výdaj</p>
 
         <textarea
           v-model="input_internal_note"
