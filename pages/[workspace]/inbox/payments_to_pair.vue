@@ -81,7 +81,18 @@ export default {
         }),
       );
 
-      this.payments = data.value;
+      const income_data = await useAsyncData("bank_payments_to_pair", () =>
+        client("/api/" + route.params.workspace + "/bank_payments", {
+          method: "GET",
+          params: {
+            from: "2024-01-01",
+            is_paired: false,
+            type: "income",
+          },
+        }),
+      );
+
+      this.payments = data.value.concat(income_data.data.value);
       this.loaded = true;
     },
 
