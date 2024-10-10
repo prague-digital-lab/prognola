@@ -75,7 +75,7 @@ export default {
           method: "GET",
           params: {
             from: "2024-01-01",
-            not_paired: true,
+            is_paired: false,
             type: "expense",
           },
         }),
