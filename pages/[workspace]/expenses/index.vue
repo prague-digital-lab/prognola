@@ -14,6 +14,10 @@
       </div>
 
       <div class="mt-4 flex md:ml-4 md:mt-0">
+        <div class="mt-3">
+        <button-secondary @click="downloadExport">Export</button-secondary>
+        </div>
+
         <div class="me-2">
           <div class="mt-2">
             <select
@@ -110,6 +114,8 @@
 </template>
 
 <script setup>
+import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
+
 useHead({
   title: "Výdaje - Prognola",
 });
@@ -239,6 +245,21 @@ export default {
 
       await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
     },
+
+    async downloadExport() {
+      const client = useSanctumClient();
+      const route = useRoute();
+
+      const { data } = await useAsyncData("export", () =>
+          client("/api/" + route.params.workspace + "/download/expenses/scans/url", {
+            method: "GET",
+            query: {
+              from: this.from,
+              to: this.to,
+            },
+          }),
+      );
+    }
   },
 };
 </script>
