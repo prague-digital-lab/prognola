@@ -259,6 +259,8 @@ export default {
             },
           }),
       );
+
+      window.open(data.value.export_url, '_blank');
     }
   },
 };
