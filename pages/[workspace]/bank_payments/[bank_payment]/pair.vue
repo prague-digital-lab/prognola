@@ -13,6 +13,10 @@
         >
           Párování platby {{ bank_payment.id }}
         </h4>
+
+        <button-secondary @click="navigateToBankPayment"
+          >Zobrazit stránku s platbou
+        </button-secondary>
       </div>
     </div>
 
@@ -126,13 +130,9 @@
           Vyhledávání výdaje ke spárování
         </h2>
 
-        <a
-          type="button"
-          class="rounded bg-white px-2 py-1 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          @click="createNewExpense"
-        >
+        <button-secondary @click="createNewExpense">
           Vytvořit nový výdaj
-        </a>
+        </button-secondary>
       </div>
 
       <div
@@ -174,6 +174,8 @@
 </template>
 
 <script setup>
+import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
+
 definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],
@@ -186,7 +188,6 @@ import { formatDate } from "compatx";
 export default {
   data() {
     return {
-      route: null,
       loaded: false,
 
       bank_payment: null,
@@ -200,7 +201,6 @@ export default {
   },
 
   mounted() {
-    this.route = useRoute();
     this.fetchBankPayment();
   },
 
@@ -209,11 +209,18 @@ export default {
 
     async fetchBankPayment() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("bank_payment", () =>
-        client("/api/bank_payments/" + this.route.params.bank_payment, {
-          method: "GET",
-        }),
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/bank_payments/" +
+            route.params.bank_payment,
+          {
+            method: "GET",
+          },
+        ),
       );
 
       this.bank_payment = data.value;
@@ -228,6 +235,7 @@ export default {
 
     async searchExpenses() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       let params = {
         is_paired: false,
@@ -242,7 +250,7 @@ export default {
       }
 
       const { data } = await useAsyncData("bank_payment_pairing_expenses", () =>
-        client("/api/expenses", {
+        client("/api/" + route.params.workspace + "/expenses", {
           method: "GET",
           params: params,
         }),
@@ -256,7 +264,7 @@ export default {
       const client = useSanctumClient();
 
       const { data } = await useAsyncData("expense", () =>
-        client("/api/expenses", {
+        client("/api/" + route.params.workspace + "/expenses", {
           method: "POST",
           body: {
             description: this.bank_payment.description,
@@ -268,10 +276,10 @@ export default {
         }),
       );
 
-      let id = data.value.id;
+      let id = data.value.uuid;
 
       const pairing_data = await useAsyncData("expense", () =>
-        client("/api/expenses/" + id + "/bank_payments", {
+        client("/api/expenses/" + uuid + "/bank_payments", {
           method: "POST",
           body: {
             bank_payment_id: this.bank_payment.id,
@@ -284,17 +292,38 @@ export default {
 
     async pairExpense(expense) {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const pairing_data = await useAsyncData("expense", () =>
-        client("/api/expenses/" + expense.id + "/bank_payments", {
-          method: "POST",
-          body: {
-            bank_payment_id: this.bank_payment.id,
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/expenses/" +
+            expense.uuid +
+            "/bank_payments",
+          {
+            method: "POST",
+            body: {
+              bank_payment: this.bank_payment.uuid,
+            },
           },
-        }),
+        ),
       );
 
-      await navigateTo("/inbox/payments_to_pair");
+      await navigateTo(
+        "/" + route.params.workspace + "/inbox/payments_to_pair",
+      );
+    },
+
+    async navigateToBankPayment() {
+      const route = useRoute();
+
+      await navigateTo(
+        "/" +
+          route.params.workspace +
+          "/bank_payments/" +
+          this.bank_payment.uuid,
+      );
     },
   },
 };

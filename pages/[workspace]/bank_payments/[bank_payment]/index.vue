@@ -44,7 +44,7 @@
             <dd
               class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
             >
-             <badge-bank-account :bank_account="bank_payment.bank_account" />
+              <badge-bank-account :bank_account="bank_payment.bank_account" />
             </dd>
           </div>
 
@@ -130,15 +130,23 @@
       class="mb-4 overflow-hidden border border-gray-200 bg-white p-6 sm:rounded-lg"
       v-if="bank_payment.incomes.length > 0 || bank_payment.expenses.length > 0"
     >
-      <p class="mb-4 font-medium text-gray-600">Spárované příjmy a výdaje</p>
+      <div class="mb-4 flex items-center justify-between">
+        <p class="font-medium text-gray-600">Spárované příjmy a výdaje</p>
 
-      <div v-for="income in bank_payment.incomes" class="text-gray-600 mt-2">
+        <div>
+          <button-secondary @click="navigateToPair"
+            >Uhradit příjem/výdaj
+          </button-secondary>
+        </div>
+      </div>
+
+      <div v-for="income in bank_payment.incomes" class="mt-2 text-gray-600">
         Příjem
         <badge-income :income="income" class="mx-2" />
         {{ income.pivot.amount }} Kč
       </div>
 
-      <div v-for="expense in bank_payment.expenses" class="text-gray-600 mt-2">
+      <div v-for="expense in bank_payment.expenses" class="mt-2 text-gray-600">
         Výdaj
         <badge-expense :expense="expense" class="mx-2" />
         {{ expense.pivot.amount }} Kč
@@ -151,6 +159,7 @@
 import BadgeIncome from "~/components/badges/BadgeIncome.vue";
 import BadgeBankAccount from "~/components/badges/BadgeBankAccount.vue";
 import BadgeExpense from "~/components/badges/BadgeExpense.vue";
+import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
 
 definePageMeta({
   layout: "default",
@@ -188,6 +197,19 @@ export default {
 
       return formatted.toFormat("d.M.yyyy");
     },
+
+    async navigateToPair() {
+      const route = useRoute();
+
+      await navigateTo(
+        "/" +
+          route.params.workspace +
+          "/bank_payments/" +
+          this.bank_payment.uuid +
+          "/pair",
+      );
+    },
+
     async fetchBankPayment() {
       const client = useSanctumClient();
 

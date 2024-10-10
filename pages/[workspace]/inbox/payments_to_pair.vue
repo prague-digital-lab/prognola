@@ -91,7 +91,14 @@ export default {
     },
 
     async pairPayment(payment) {
-      await navigateTo("/bank_payments/" + payment.uuid + "/pair");
+      const route = useRoute();
+      await navigateTo(
+        "/" +
+          route.params.workspace +
+          "/bank_payments/" +
+          payment.uuid +
+          "/pair",
+      );
     },
   },
 };
