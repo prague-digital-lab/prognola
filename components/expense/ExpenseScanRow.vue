@@ -11,12 +11,13 @@ export default {
 </script>
 
 <template>
-  <div class="w-full px-5 py-3 text-base text-slate-500">
+  <div class="w-full text-base text-slate-500">
     <div
-      class="flex justify-between"
+      class="flex items-center justify-between border-b border-gray-200 bg-white px-5 py-2 hover:bg-gray-hover active:bg-gray-100"
       @click="!expanded ? (expanded = true) : (expanded = false)"
     >
-      <div>{{ scan.title }}</div>
+      <div>
+        {{ scan.title }}</div>
 
       <div>
         <div v-if="expanded">
@@ -54,11 +55,11 @@ export default {
       </div>
     </div>
 
-    <div v-if="expanded" class="mt-3">
+    <div v-if="expanded" class="mt-3 px-5 py-3">
       <object
         :data="scan.file_url"
         type="application/pdf"
-        class="h-[800px] md:w-1/2"
+        class="h-[800px] w-full"
       >
         <p>Unable to display PDF file. <a href="">Download</a>instead.</p>
       </object>
