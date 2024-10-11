@@ -67,18 +67,6 @@ export default {
         v-if="expanded"
         class="absolute left-[-150px] top-[-5px] w-[147px] rounded border border-slate-200 bg-white px-1 py-1 shadow"
       >
-        <a
-          :href="
-            'https://valasskapevnost.cz/admin/invoicing/received_invoices/' +
-            expense.id
-          "
-          target="_blank"
-        >
-          <div class="w-full p-2 text-base text-slate-600 hover:bg-gray-100">
-            Zobrazit v IS
-          </div>
-        </a>
-
         <p
           class="p-2 text-base text-red-600 hover:bg-gray-100"
           @click="deleteExpense"
