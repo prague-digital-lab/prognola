@@ -66,8 +66,12 @@
           @expense-updated="fetchData"
         />
 
-        <p class="mb-2 px-1 text-sm font-medium text-gray-500">Datum přijetí</p>
-        <expense-received-at-input :expense="expense" />
+        <div v-if="expense.payment_status !== 'plan'">
+          <p class="mb-2 px-1 text-sm font-medium text-gray-500">
+            Datum přijetí
+          </p>
+          <expense-received-at-input :expense="expense" />
+        </div>
 
         <div class="transition duration-100">
           <p
