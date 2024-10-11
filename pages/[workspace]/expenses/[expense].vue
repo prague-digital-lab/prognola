@@ -31,18 +31,22 @@
           v-on:blur="updateInternalNote"
         ></textarea>
 
-        <div v-if="expense.scans.length > 0">
-          <p class="mb-2 text-base text-gray-600">Přílohy</p>
+        <!--        <div v-if="expense.scans.length > 0">-->
+        <p class="mb-2 text-base text-gray-600">Přílohy</p>
 
-          <div
-            class="divide-y divide-slate-200 rounded border border-slate-200"
-          >
-            <expense-scan-row
-              :scan="scan"
-              v-for="scan in expense.scans"
-            ></expense-scan-row>
-          </div>
+        <div class="divide-y divide-slate-200 rounded border border-slate-200">
+          <expense-scan-row
+            :scan="scan"
+            v-for="scan in scans"
+          ></expense-scan-row>
         </div>
+
+        <input
+          @change="uploadFile($event)"
+          type="file"
+          class="mt-2 rounded-md border bg-white px-2 py-1 text-sm text-gray-800 shadow-sm duration-75 hover:bg-gray-hover active:bg-gray-100"
+        />
+        <!--        </div>-->
       </div>
 
       <div class="w-[250px] ps-4">
@@ -126,6 +130,8 @@ export default {
       expense: null,
       input_description: "",
       input_internal_note: "",
+
+      scans: [],
     };
   },
 
@@ -161,6 +167,7 @@ export default {
       this.expense = data.value;
       this.input_description = data.value.description;
       this.input_internal_note = data.value.internal_note;
+      this.scans = data.value.scans;
 
       this.loaded = true;
     },
@@ -192,7 +199,7 @@ export default {
       const route = useRoute;
 
       const endpoint =
-        "/api" + route.params.workspace + "/expenses/" + this.expense.uuid;
+        "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid;
 
       const { data } = await useAsyncData("expense", () =>
         client(endpoint, {
@@ -202,6 +209,30 @@ export default {
           },
         }),
       );
+    },
+
+    async uploadFile(event) {
+      const client = useSanctumClient();
+      const route = useRoute();
+
+      const endpoint =
+        "/api/" +
+        route.params.workspace +
+        "/expenses/" +
+        this.expense.uuid +
+        "/scans";
+
+      let formData = new FormData();
+      formData.append("file", event.target.files[0]);
+
+      const { data } = await useAsyncData("expense", () =>
+        client(endpoint, {
+          method: "POST",
+          body: formData,
+        }),
+      );
+
+      await this.fetchData();
     },
   },
 };
