@@ -74,8 +74,12 @@
           </div>
         </div>
 
-        <button-secondary @click="stopDiscordNotifications()"
+        <button-secondary class="me-2" @click="stopDiscordNotifications()"
           >Vypnout notifikace
+        </button-secondary>
+
+        <button-secondary @click="testDiscord()"
+          >Poslat testovací oznámení
         </button-secondary>
       </div>
     </div>
@@ -130,6 +134,17 @@ async function saveDiscord() {
   );
 
   await loadSettings();
+}
+
+async function testDiscord() {
+  const { data } = await useAsyncData("workspace", () =>
+    client(
+      "/api/workspaces/" + route.params.workspace + "/discord-settings/test",
+      {
+        method: "POST",
+      },
+    ),
+  );
 }
 
 async function stopDiscordNotifications() {
