@@ -126,6 +126,8 @@
       </div>
     </div>
 
+
+
     <div
       class="mb-4 overflow-hidden border border-gray-200 bg-white p-6 sm:rounded-lg"
       v-if="bank_payment.incomes.length > 0 || bank_payment.expenses.length > 0"
@@ -135,7 +137,7 @@
 
         <div>
           <button-secondary @click="navigateToPair"
-            >Uhradit příjem/výdaj
+            >Spárovat příjem/výdaj
           </button-secondary>
         </div>
       </div>
@@ -151,6 +153,12 @@
         <badge-expense :expense="expense" class="mx-2" />
         {{ expense.pivot.amount }} Kč
       </div>
+    </div>
+
+    <div v-else>
+      <button-secondary @click="navigateToPair"
+      >Spárovat příjem/výdaj
+      </button-secondary>
     </div>
   </div>
 </template>
