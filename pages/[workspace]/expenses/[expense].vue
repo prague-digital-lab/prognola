@@ -34,7 +34,7 @@
         <!--        <div v-if="expense.scans.length > 0">-->
         <p class="mb-2 text-base text-gray-600">Přílohy</p>
 
-        <div class="divide-y divide-slate-200 rounded border border-slate-200">
+        <div>
           <expense-scan-row
             :scan="scan"
             v-for="scan in scans"
