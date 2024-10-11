@@ -62,7 +62,7 @@
 <script setup>
 import { ref } from "vue";
 import {
-  ArrowLeftIcon,
+  ArrowLeftIcon, BellIcon,
   ChartBarIcon,
   InboxIcon,
 } from "@heroicons/vue/20/solid";
@@ -87,6 +87,12 @@ const navigation = [
     name: "API",
     href: "/" + route.params.workspace + "/settings/api",
     icon: ChartBarIcon,
+    current: false,
+  },
+  {
+    name: "Oznámení",
+    href: "/" + route.params.workspace + "/settings/notifications",
+    icon: BellIcon,
     current: false,
   },
 ];
