@@ -261,6 +261,7 @@ export default {
     },
 
     async createNewExpense() {
+      const route = useRoute();
       const client = useSanctumClient();
 
       const { data } = await useAsyncData("expense", () =>
@@ -276,18 +277,25 @@ export default {
         }),
       );
 
-      let id = data.value.uuid;
+      let uuid = data.value.uuid;
 
       const pairing_data = await useAsyncData("expense", () =>
-        client("/api/expenses/" + uuid + "/bank_payments", {
-          method: "POST",
-          body: {
-            bank_payment_id: this.bank_payment.id,
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/expenses/" +
+            uuid +
+            "/bank_payments",
+          {
+            method: "POST",
+            body: {
+              bank_payment: this.bank_payment.uuid,
+            },
           },
-        }),
+        ),
       );
 
-      await navigateTo("/expenses/" + id);
+      await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
     },
 
     async pairExpense(expense) {
