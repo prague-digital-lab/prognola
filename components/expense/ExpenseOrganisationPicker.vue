@@ -32,7 +32,7 @@
         class="text-xs mb-7 rounded px-2 py-1 text-gray-500 hover:bg-gray-100 active:bg-gray-200/80 duration-100 flex items-center cursor-default "
         v-if="selected_organisation"
       >
-        <chevron-double-right-icon class="h-4 w-4 text-gray-700" />
+        <chevron-double-right-icon class="h-4 w-4 text-gray-500" />
       </nuxt-link>
     </div>
 
