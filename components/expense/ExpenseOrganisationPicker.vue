@@ -2,7 +2,7 @@
   <div class="relative">
     <div class="flex">
       <p
-        class="text-xs mb-7 rounded px-1 py-1 text-gray-800 hover:bg-gray-100"
+        class="text-xs mb-7 rounded ps-1 pe-3 py-1 text-gray-800 hover:bg-gray-100"
         @click="expanded ? close() : expand()"
       >
         <svg
