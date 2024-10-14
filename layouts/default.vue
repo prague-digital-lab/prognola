@@ -285,7 +285,7 @@
       </div>
 
       <main class="py-10">
-        <div class="px-4 sm:px-10 lg:px-[70px]">
+        <div class="px-4 sm:px-10">
           <slot />
         </div>
       </main>

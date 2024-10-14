@@ -6,7 +6,7 @@
           :class="open ? 'bg-gray-200' : ''"
           class="text-xs mb-7 me-2 rounded py-1 pe-3 ps-1 text-gray-800 hover:bg-gray-100 active:bg-gray-200"
         >
-          <p class="flex items-center text-gray-800">
+          <p class="flex text-gray-800">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -22,7 +22,7 @@
               />
             </svg>
 
-            <span v-if="selected_organisation" class="text-gray-700">
+            <span v-if="selected_organisation" class="text-gray-700 text-left">
               {{ selected_organisation.name }}
             </span>
             <span v-else class="text-gray-500"> zvolit organizaci </span>
