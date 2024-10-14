@@ -5,7 +5,7 @@
 
   <div v-if="loaded">
     <div class="mb-4 h-screen md:flex md:justify-between">
-      <div class="me-5 w-full overflow-scroll">
+      <div class="me-5 w-full">
         <div class="flex justify-between">
           <input
             type="text"
