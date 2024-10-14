@@ -4,17 +4,15 @@
   </Head>
 
   <div v-if="loaded">
-    <div
-      class="mb-4 h-screen md:flex md:justify-between"
-    >
+    <div class="mb-4 h-screen md:flex md:justify-between">
       <div class="me-5 w-full overflow-scroll">
         <div class="flex justify-between">
           <input
             type="text"
             class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
             placeholder="Název"
-            v-model="input_description"
-            v-on:blur="updateDescription"
+            v-model="input_name"
+            v-on:blur="updateName"
           />
 
           <div>
@@ -22,11 +20,42 @@
           </div>
         </div>
 
-<!--        <p class="mb-5 text-base text-gray-500">{{ organisation.type }}</p>-->
-        <p class="mb-5 text-base text-gray-500" v-if="organisation.expenses.length === 0 && organisation.incomes.length === 0">Organizace</p>
-        <p class="mb-5 text-base text-gray-500" v-if="organisation.expenses.length > 0 && organisation.incomes.length === 0">Dodavatel</p>
-        <p class="mb-5 text-base text-gray-500" v-if="organisation.expenses.length === 0 && organisation.incomes.length > 0">Zákazník</p>
-        <p class="mb-5 text-base text-gray-500" v-if="organisation.expenses.length > 0 && organisation.incomes.length > 0">Dodavatel a zákazník</p>
+        <!--        <p class="mb-5 text-base text-gray-500">{{ organisation.type }}</p>-->
+        <p
+          class="mb-5 text-base text-gray-500"
+          v-if="
+            organisation.expenses.length === 0 &&
+            organisation.incomes.length === 0
+          "
+        >
+          Organizace
+        </p>
+        <p
+          class="mb-5 text-base text-gray-500"
+          v-if="
+            organisation.expenses.length > 0 &&
+            organisation.incomes.length === 0
+          "
+        >
+          Dodavatel
+        </p>
+        <p
+          class="mb-5 text-base text-gray-500"
+          v-if="
+            organisation.expenses.length === 0 &&
+            organisation.incomes.length > 0
+          "
+        >
+          Zákazník
+        </p>
+        <p
+          class="mb-5 text-base text-gray-500"
+          v-if="
+            organisation.expenses.length > 0 && organisation.incomes.length > 0
+          "
+        >
+          Dodavatel a zákazník
+        </p>
 
         <textarea
           v-model="input_internal_note"
@@ -37,7 +66,9 @@
 
         <p class="mb-2 text-gray-700">Fakturační údaje</p>
         <div class="mb-4 rounded-md border border-gray-200 p-5">
-          <p class="mb-2 text-red-500">Údaje momentálně nelze upravit. Funkci připravujeme.</p>
+          <p class="mb-2 text-red-500">
+            Údaje momentálně nelze upravit. Funkci připravujeme.
+          </p>
 
           <p>IČ: {{ organisation.ic }}</p>
           <p>DIČ: {{ organisation.dic }}</p>
@@ -56,8 +87,6 @@
           ></expense-row>
         </div>
       </div>
-
-
     </div>
   </div>
 </template>
@@ -77,7 +106,7 @@ export default {
       loaded: false,
 
       organisation: null,
-      input_description: "",
+      input_name: "",
       input_internal_note: "",
     };
   },
@@ -114,7 +143,7 @@ export default {
       );
 
       this.organisation = data.value;
-      this.input_description = data.value.name;
+      this.input_name = data.value.name;
       this.input_internal_note = data.value.internal_note;
 
       this.loaded = true;
@@ -125,29 +154,43 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
 
-    async updateDescription() {
+    async updateName() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("organisation", () =>
-        client("/api/organisations/" + this.route.params.organisation, {
-          method: "PATCH",
-          body: {
-            description: this.input_description,
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/organisations/" +
+            route.params.organisation,
+          {
+            method: "PATCH",
+            body: {
+              name: this.input_name,
+            },
           },
-        }),
+        ),
       );
     },
 
     async updateInternalNote() {
       const client = useSanctumClient();
+      const route = useRoute();
 
       const { data } = await useAsyncData("organisation", () =>
-        client("/api/organisations/" + this.route.params.organisation, {
-          method: "PATCH",
-          body: {
-            internal_note: this.input_internal_note,
+        client(
+          "/api/" +
+            route.params.workspace +
+            "/organisations/" +
+            route.params.organisation,
+          {
+            method: "PATCH",
+            body: {
+              internal_note: this.input_internal_note,
+            },
           },
-        }),
+        ),
       );
     },
   },
