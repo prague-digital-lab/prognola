@@ -61,7 +61,7 @@
         </div>
 
         <div v-else>
-          <p class="ms-2 text-end font-bold text-red-600" v-if="isDue">
+          <p class="ms-2 text-end font-bold text-red-700" v-if="isDue">
             {{ formatPrice(expense.price) }} Kč
           </p>
 
@@ -112,7 +112,7 @@ const isDue = computed(() => {
   const today = DateTime.now().endOf("day");
 
   const paid_at = DateTime.fromISO(props.expense.paid_at);
-  return paid_at > today;
+  return paid_at < today;
 });
 </script>
 
