@@ -196,7 +196,7 @@ export default {
 
     async updateInternalNote() {
       const client = useSanctumClient();
-      const route = useRoute;
+      const route = useRoute();
 
       const endpoint =
         "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid;
