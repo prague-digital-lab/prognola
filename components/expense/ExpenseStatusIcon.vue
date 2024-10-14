@@ -1,12 +1,6 @@
-<script lang="ts">
-export default {
-  props: ["payment_status"],
-};
-</script>
-
 <template>
   <div class="inline-block">
-    <div v-if="payment_status === 'draft'">
+    <div v-if="status === 'draft'">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -19,7 +13,7 @@ export default {
       </svg>
     </div>
 
-    <div v-if="payment_status === 'plan'" class="inline-block">
+    <div v-if="status === 'plan'" class="inline-block">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -34,7 +28,7 @@ export default {
       </svg>
     </div>
 
-    <div v-if="payment_status === 'pending'" class="inline-block">
+    <div v-if="status === 'pending'" class="inline-block">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -49,7 +43,22 @@ export default {
       </svg>
     </div>
 
-    <div v-if="payment_status === 'paid'" class="inline-block">
+    <div v-if="status === 'due'" class="inline-block">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="inline-block size-5 text-red-700"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+
+    <div v-if="status === 'paid'" class="inline-block">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -65,5 +74,31 @@ export default {
     </div>
   </div>
 </template>
+
+<script setup>
+import { DateTime } from "luxon";
+
+const props = defineProps(["expense", "payment_status"]);
+
+const isDue = computed(() => {
+  const today = DateTime.now().endOf("day");
+
+  const paid_at = DateTime.fromISO(props.expense.paid_at);
+
+  return paid_at < today;
+});
+
+const status = computed(() => {
+  if (props.expense !== undefined) {
+    if (props.expense.payment_status === "pending" && isDue.value === true) {
+      return "due";
+    }
+
+    return props.expense.payment_status;
+  }
+
+  return props.payment_status;
+});
+</script>
 
 <style scoped></style>

@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex items-center justify-between px-3 py-2 bg-white hover:bg-gray-hover duration-100"
+    class="flex items-center justify-between bg-white px-3 py-2 duration-100 hover:bg-gray-hover"
     @click="navigateToExpense"
   >
     <div class="flex text-base">
-<!--      <p class="w-[60px] font-light text-gray-500">V-{{ expense.id }}</p>-->
+      <!--      <p class="w-[60px] font-light text-gray-500">V-{{ expense.id }}</p>-->
       <p class="w-[400px]">
         {{ expense.description ? expense.description : "nový výdaj" }}
       </p>
@@ -34,9 +34,9 @@
         {{ expense.organisation.name }}
       </div>
 
-<!--      <p class="w-[90px] ps-4" v-if="expense.received_at">-->
-<!--        {{ formatDate(expense.received_at) }}-->
-<!--      </p>-->
+      <!--      <p class="w-[90px] ps-4" v-if="expense.received_at">-->
+      <!--        {{ formatDate(expense.received_at) }}-->
+      <!--      </p>-->
       <p class="w-[90px] ps-2" v-if="expense.paid_at">
         {{ formatDate(expense.paid_at) }}
       </p>
@@ -61,51 +61,58 @@
         </div>
 
         <div v-else>
-          <p class="ms-2 text-end font-bold text-orange-400">
+          <p class="ms-2 text-end font-bold text-red-600" v-if="isDue">
+            {{ formatPrice(expense.price) }} Kč
+          </p>
+
+          <p class="ms-2 text-end font-bold text-orange-400" v-else>
             {{ formatPrice(expense.price) }} Kč
           </p>
         </div>
       </div>
 
       <div class="ms-2">
-        <expense-status-icon :payment_status="expense.payment_status" />
+        <expense-status-icon :expense="expense" />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent } from "vue";
+<script setup>
 import { DateTime } from "luxon";
 
-export default defineComponent({
-  props: ["expense"],
-  methods: {
-    formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
+const props = defineProps(["expense"]);
 
-    formatDate(date) {
-      let formatted = DateTime.fromISO(date);
+function formatPrice(value) {
+  let val = (value / 1).toFixed(0).replace(".", ",");
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
-      return formatted.toFormat("d.M.yyyy");
-    },
+function formatDate(date) {
+  let formatted = DateTime.fromISO(date);
 
-    async navigateToExpense() {
-      const route = useRoute();
-      await navigateTo(
-        "/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-      );
-    },
+  return formatted.toFormat("d.M.yyyy");
+}
 
-    async navigateToOrganisation(organisation) {
-      const route = useRoute();
-      await navigateTo(
-        "/" + route.params.workspace + "/organisations/" + organisation.uuid,
-      );
-    },
-  },
+async function navigateToExpense() {
+  const route = useRoute();
+  await navigateTo(
+    "/" + route.params.workspace + "/expenses/" + props.expense.uuid,
+  );
+}
+
+async function navigateToOrganisation(organisation) {
+  const route = useRoute();
+  await navigateTo(
+    "/" + route.params.workspace + "/organisations/" + organisation.uuid,
+  );
+}
+
+const isDue = computed(() => {
+  const today = DateTime.now().endOf("day");
+
+  const paid_at = DateTime.fromISO(props.expense.paid_at);
+  return paid_at > today;
 });
 </script>
 

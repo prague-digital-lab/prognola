@@ -42,21 +42,21 @@
 
     <div @click="expandSelect" class="px-1 py-1">
       <div v-if="status === 'draft'">
-        <expense-status-icon payment_status="draft" class="me-2" />
+        <expense-status-icon :expense="expense" class="me-2" />
 
         Ke zpracování
       </div>
       <div v-if="status === 'plan'">
-        <expense-status-icon payment_status="plan" class="me-2" />
+        <expense-status-icon :expense="expense" class="me-2" />
         Odhad
       </div>
       <div v-if="status === 'pending'">
-        <expense-status-icon payment_status="pending" class="me-2" />
+        <expense-status-icon :expense="expense" class="me-2" />
 
         K úhradě
       </div>
       <div v-if="status === 'paid'">
-        <expense-status-icon payment_status="paid" class="me-2" />
+        <expense-status-icon :expense="expense" class="me-2" />
 
         Uhrazeno
       </div>
@@ -94,15 +94,15 @@ export default {
       const route = useRoute();
 
       const { data } = await useAsyncData("expense", () =>
-          client(
-              "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-              {
-                method: "PATCH",
-                body: {
-                  payment_status: status,
-                },
-              },
-          ),
+        client(
+          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+          {
+            method: "PATCH",
+            body: {
+              payment_status: status,
+            },
+          },
+        ),
       );
 
       this.$emit("expense-updated");
@@ -112,7 +112,7 @@ export default {
   computed: {
     status() {
       return this.expense.payment_status;
-    }
+    },
   },
 };
 </script>
