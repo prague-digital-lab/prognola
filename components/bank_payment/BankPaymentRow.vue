@@ -14,15 +14,15 @@
     <table class="w-full text-base">
       <tbody>
         <tr>
-          <td class="w-[10%]">{{ formatDate(bank_payment.issued_at) }}</td>
+          <td class="w-[7%]">{{ formatDate(bank_payment.issued_at) }}</td>
           <td class="w-[30%] pe-5">
             <a class="text-dark text-decoration-none text-sm">{{
               bank_payment.description
             }}</a>
 
-            <div class="text-decoration-none text-sm text-gray-500">{{
-                bank_payment.sender_comment
-              }}</div>
+            <div class="text-decoration-none text-sm text-gray-500">
+              {{ bank_payment.sender_comment }}
+            </div>
 
             <!--        @if($payment->received_invoices->count() > 0)-->
             <!--        <br>-->
@@ -40,26 +40,42 @@
               >{{ formatPrice(bank_payment.amount) }} Kč</span
             >
           </td>
-          <td class="w-[30%]">
+          <td class="w-[30%] space-x-1 space-y-2">
             <div
-                v-for="income in bank_payment.incomes"
-                class="text-gray-600"
+              v-for="income in bank_payment.incomes"
+              class="inline-block text-sm text-gray-600"
             >
-              <badge-income :income="income" class="mx-2" />
+              <badge-income :income="income" class="" />
             </div>
 
             <div
-                v-for="expense in bank_payment.expenses"
-                class="text-gray-600"
+              v-for="expense in bank_payment.expenses"
+              class="inline-block text-sm text-gray-600"
             >
-              <badge-expense :expense="expense" class="mx-2" />
+              <badge-expense :expense="expense" class="" />
             </div>
+
+            <nuxt-link
+              :href="
+                '/' +
+                route.params.workspace +
+                '/bank_payments/' +
+                bank_payment.uuid +
+                '/pair'
+              "
+              class="inline-block rounded-md border border-gray-200 hover:bg-gray-100 active:bg-gray-200 px-2 py-[2px] text-gray-500"
+              >+
+            </nuxt-link>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
+
+<script setup>
+const route = useRoute();
+</script>
 
 <script>
 import { defineComponent } from "vue";
