@@ -11,7 +11,7 @@
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link
             :href="'/' + route.params.workspace + '/cashflow'"
-            class="active:bg-gray-100 flex cursor-pointer items-center rounded-md px-2 py-2 pb-1 pt-1 duration-100 hover:bg-gray-hover"
+            class="flex cursor-pointer items-center rounded-md px-2 py-2 pb-1 pt-1 duration-100 hover:bg-gray-hover active:bg-gray-100"
           >
             <arrow-left-icon
               class="me-2 inline-block h-4 w-4 shrink-0 group-hover:text-indigo-600"
@@ -62,13 +62,15 @@
 <script setup>
 import { ref } from "vue";
 import {
-  ArrowLeftIcon, BellIcon,
+  ArrowLeftIcon,
+  BellIcon,
   ChartBarIcon,
   InboxIcon,
+  UserIcon,
 } from "@heroicons/vue/20/solid";
 
 useHead({
-  title: "Prognola",
+  title: "Nastavení - Prognola",
   bodyAttrs: {
     class: "bg-gray-50",
   },
@@ -77,6 +79,12 @@ useHead({
 const route = useRoute();
 
 const navigation = [
+  {
+    name: "Uživatel",
+    href: "/" + route.params.workspace + "/settings/user",
+    icon: UserIcon,
+    current: false,
+  },
   {
     name: "Zasílání dokladů",
     href: "/" + route.params.workspace + "/settings",
