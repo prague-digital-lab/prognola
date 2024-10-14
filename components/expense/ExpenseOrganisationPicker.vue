@@ -1,158 +1,174 @@
 <template>
-  <div class="relative">
-    <div class="flex">
-      <p
-        class="text-xs mb-7 rounded ps-1 pe-3 py-1 text-gray-800 hover:bg-gray-100"
-        @click="expanded ? close() : expand()"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="me-2 inline-block size-5"
+  <div class="w-full max-w-sm">
+    <Popover v-slot="{ open }" class="relative">
+      <div class="flex">
+        <PopoverButton
+          :class="open ? 'bg-gray-200' : ''"
+          class="text-xs mb-7 me-2 rounded py-1 pe-3 ps-1 text-gray-800 hover:bg-gray-100 active:bg-gray-200"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"
-          />
-        </svg>
+          <p class="flex items-center text-gray-800">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="me-2 inline-block size-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"
+              />
+            </svg>
 
-        {{
-          selected_organisation
-            ? selected_organisation.name
-            : "zvolit organizaci"
-        }}
-      </p>
-
-      <nuxt-link
-        :href="'/' + route.params.workspace + '/organisations/' + selected_organisation.uuid"
-        class="text-xs mb-7 rounded px-2 py-1 text-gray-500 hover:bg-gray-100 active:bg-gray-200/80 duration-100 flex items-center cursor-default "
-        v-if="selected_organisation"
-      >
-        <chevron-double-right-icon class="h-4 w-4 text-gray-500" />
-      </nuxt-link>
-    </div>
-
-    <Transition>
-      <div
-        v-if="expanded"
-        class="absolute left-[-200px] top-[-5px] w-[197px] scroll-auto rounded border border-slate-200 bg-white px-1 py-1 shadow"
-      >
-        <input
-          class="mb-2 w-full rounded border-gray-200 py-1 text-gray-700 focus:border-gray-200 focus:ring-0"
-          type="text"
-          placeholder="Název organizace..."
-          v-model="organisation_name_filter"
-        />
-
-        <div class="max-h-[50vh] overflow-auto">
-          <p
-            class="px-2 py-1 text-base text-gray-700 hover:bg-gray-100"
-            v-for="organisation in filtered_organisations"
-            @click="selectOrganisation(organisation)"
-          >
-            {{ organisation.name }}
+            <span v-if="selected_organisation" class="text-gray-700">
+              {{ selected_organisation.name }}
+            </span>
+            <span v-else class="text-gray-500"> zvolit organizaci </span>
           </p>
+        </PopoverButton>
 
-          <p
-            class="px-2 py-1 text-base text-gray-500"
-            v-if="filtered_organisations.length === 0"
-          >
-            žádná organizace
-          </p>
-        </div>
+        <nuxt-link
+          :href="
+            '/' +
+            route.params.workspace +
+            '/organisations/' +
+            selected_organisation.uuid
+          "
+          class="text-xs mb-7 flex cursor-default items-center rounded px-2 py-1 text-gray-500 duration-100 hover:bg-gray-100 active:bg-gray-200/80"
+          v-if="selected_organisation"
+        >
+          <chevron-double-right-icon class="h-4 w-4 text-gray-500" />
+        </nuxt-link>
       </div>
-    </Transition>
+
+      <transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="translate-y-1 opacity-0"
+        enter-to-class="translate-y-0 opacity-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="translate-y-0 opacity-100"
+        leave-to-class="translate-y-1 opacity-0"
+      >
+        <PopoverPanel
+          v-slot="{ close }"
+          class="absolute left-[-260px] top-0 z-10 w-[250px]"
+        >
+          <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
+            <div class="relative bg-white p-2">
+              <input
+                class="mb-2 w-full rounded border-gray-200 py-1 text-base text-gray-700 focus:border-gray-200 focus:ring-0"
+                type="text"
+                placeholder="Název organizace..."
+                v-model="organisation_name_filter"
+              />
+
+              <div class="max-h-[50vh] overflow-auto">
+                <p
+                  class="rounded-md px-2 py-1 text-base text-gray-700 hover:bg-gray-hover active:bg-gray-100"
+                  v-for="organisation in filtered_organisations"
+                  @click="selectOrganisation(organisation, close)"
+                >
+                  {{ organisation.name }}
+                </p>
+
+                <p
+                  class="cursor-pointer rounded-md px-2 py-1 text-base text-gray-500 hover:bg-gray-hover active:bg-gray-100"
+                  v-if="filtered_organisations.length === 0"
+                  @click="createOrganisation(close)"
+                >
+                  + vytvořit firmu "{{ organisation_name_filter }}"
+                </p>
+              </div>
+            </div>
+          </div>
+        </PopoverPanel>
+      </transition>
+    </Popover>
   </div>
 </template>
 
 <script setup>
-import { ChevronDoubleRightIcon } from "@heroicons/vue/24/solid";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
+import { ChevronDoubleRightIcon } from "@heroicons/vue/24/solid/index.js";
 
-const route = useRoute()
+const props = defineProps(["expense"]);
+
+const organisation_name_filter = ref("");
+
+const organisations = ref([]);
+const selected_organisation = ref(null);
+
+const route = useRoute();
+// const open = ref(false);
+
+onMounted(async () => {
+  if (props.expense.organisation_id) {
+    selected_organisation.value = props.expense.organisation;
+  }
+
+  await loadOrganisations();
+});
+
+async function selectOrganisation(organisation, close) {
+  selected_organisation.value = organisation;
+
+  const client = useSanctumClient();
+  const route = useRoute();
+
+  const { data } = await useAsyncData("expense", () =>
+    client(
+      "/api/" + route.params.workspace + "/expenses/" + props.expense.uuid,
+      {
+        method: "PATCH",
+        body: {
+          organisation: organisation.uuid,
+        },
+      },
+    ),
+  );
+
+  close();
+}
+
+async function loadOrganisations() {
+  const client = useSanctumClient();
+  const route = useRoute();
+
+  const { data } = await useAsyncData("organisations", () =>
+    client("/api/" + route.params.workspace + "/organisations", {
+      method: "GET",
+    }),
+  );
+
+  organisations.value = data.value;
+}
+
+async function createOrganisation(close) {
+  const client = useSanctumClient();
+  const route = useRoute();
+
+  const { data } = await useAsyncData("organisation", () =>
+    client("/api/" + route.params.workspace + "/organisations", {
+      method: "POST",
+      body: {
+        name: organisation_name_filter.value,
+      },
+    }),
+  );
+
+  await selectOrganisation(data.value, close);
+}
+
+const filtered_organisations = computed(() => {
+  return organisations.value.filter((organisation) => {
+    return (
+      !organisation_name_filter.value ||
+      organisation.name
+        .toLowerCase()
+        .indexOf(organisation_name_filter.value.toLowerCase()) > -1
+    );
+  });
+});
 </script>
-
-<script>
-export default {
-  props: ["expense"],
-
-  data: () => {
-    return {
-      expanded: false,
-      organisation_name_filter: null,
-
-      organisations: [],
-      selected_organisation: null,
-    };
-  },
-
-  mounted() {
-    if (this.expense.organisation_id) {
-      this.selected_organisation = this.expense.organisation;
-    }
-
-    this.loadOrganisations();
-  },
-
-  methods: {
-    expand() {
-      this.expanded = true;
-    },
-
-    close() {
-      this.expanded = false;
-    },
-
-    async selectOrganisation(organisation) {
-      this.expanded = false;
-      this.selected_organisation = organisation;
-
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("expense", () =>
-        client(
-          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-          {
-            method: "PATCH",
-            body: {
-              organisation: organisation.uuid,
-            },
-          },
-        ),
-      );
-    },
-
-    async loadOrganisations() {
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("organisations", () =>
-        client("/api/" + route.params.workspace + "/organisations", {
-          method: "GET",
-        }),
-      );
-
-      this.organisations = data.value;
-    },
-  },
-
-  computed: {
-    filtered_organisations() {
-      return this.organisations.filter((organisation) => {
-        return (
-          !this.organisation_name_filter ||
-          organisation.name
-            .toLowerCase()
-            .indexOf(this.organisation_name_filter.toLowerCase()) > -1
-        );
-      });
-    },
-  },
-};
-</script>
-
-<style scoped></style>
