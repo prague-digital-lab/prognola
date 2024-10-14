@@ -135,22 +135,24 @@
         </button-secondary>
       </div>
 
-      <div
-        class="mb-4 overflow-hidden border border-gray-100 bg-white py-2 shadow sm:rounded-lg sm:px-6"
-      >
-        <input
-          placeholder="Název výdaje"
-          class="me-4 rounded"
-          v-model="name_query"
-        />
-        <input
-          placeholder="Částka"
-          class="me-4 rounded"
-          v-model="price_query"
-        />
+      <form v-on:submit.prevent="searchExpenses">
+        <div
+          class="mb-4 overflow-hidden border border-gray-100 bg-white py-2 shadow sm:rounded-lg sm:px-6"
+        >
+          <input
+            placeholder="Název výdaje"
+            class="me-4 rounded"
+            v-model="name_query"
+          />
+          <input
+            placeholder="Částka"
+            class="me-4 rounded"
+            v-model="price_query"
+          />
 
-        <a @click="searchExpenses" class="cursor-pointer">Vyhledat výdaje</a>
-      </div>
+          <button type="submit" class="cursor-pointer">Vyhledat výdaje</button>
+        </div>
+      </form>
 
       <div
         class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
