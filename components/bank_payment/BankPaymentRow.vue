@@ -43,14 +43,14 @@
           <td class="w-[30%]">
             <div
                 v-for="income in bank_payment.incomes"
-                class="mt-2 text-gray-600"
+                class="text-gray-600"
             >
               <badge-income :income="income" class="mx-2" />
             </div>
 
             <div
                 v-for="expense in bank_payment.expenses"
-                class="mt-2 text-gray-600"
+                class="text-gray-600"
             >
               <badge-expense :expense="expense" class="mx-2" />
             </div>
