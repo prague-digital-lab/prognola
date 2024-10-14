@@ -53,7 +53,8 @@
       <div v-if="status === 'pending'">
         <expense-status-icon :expense="expense" class="me-2" />
 
-        K úhradě
+        <span v-if="!isDue">k úhradě</span>
+        <span v-else>k úhradě (po splatnosti)</span>
       </div>
       <div v-if="status === 'paid'">
         <expense-status-icon :expense="expense" class="me-2" />
@@ -65,6 +66,8 @@
 </template>
 
 <script>
+import { DateTime } from "luxon";
+
 export default {
   data: () => {
     return {
@@ -112,6 +115,14 @@ export default {
   computed: {
     status() {
       return this.expense.payment_status;
+    },
+
+    isDue() {
+      const today = DateTime.now().endOf("day");
+
+      const paid_at = DateTime.fromISO(this.expense.paid_at);
+
+      return paid_at < today;
     },
   },
 };
