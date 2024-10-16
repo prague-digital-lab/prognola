@@ -15,7 +15,6 @@
       <p class="mb-10">Hotovost na pokladnách: 17 000 Kč</p>
       <p></p>
 
-      <p class="mb-2">Opožděné příjmy a výdaje</p>
 
       <div class="mb-4 rounded-md border border-red-200 bg-red-50 p-4">
         <div class="flex">
@@ -37,8 +36,10 @@
         </div>
       </div>
 
+      <p class="mb-2">Zpožděné příjmy</p>
       <income-row :income="income" v-for="income in incomes_due"></income-row>
 
+      <p class="mb-2 mt-2">Zpožděné výdaje</p>
       <expense-row
         :expense="expense"
         v-for="expense in expenses_due"
