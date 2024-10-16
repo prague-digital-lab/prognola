@@ -15,8 +15,10 @@
       <p class="mb-10">Hotovost na pokladnách: 17 000 Kč</p>
       <p></p>
 
-
-      <div class="mb-4 rounded-md border border-red-200 bg-red-50 p-4">
+      <div
+        class="mb-4 rounded-md border border-red-200 bg-red-50 p-4"
+        v-if="incomes_due.length > 0 || expenses_due.length > 0"
+      >
         <div class="flex">
           <div class="flex-shrink-0">
             <ExclamationCircleIcon
@@ -36,18 +38,38 @@
         </div>
       </div>
 
-      <p class="mb-2">Zpožděné příjmy</p>
-      <income-row :income="income" v-for="income in incomes_due"></income-row>
+      <div class="mb-4" v-if="incomes_due.length > 0">
+        <p class="mb-2">Zpožděné příjmy</p>
+        <income-row :income="income" v-for="income in incomes_due"></income-row>
+      </div>
 
-      <p class="mb-2 mt-2">Zpožděné výdaje</p>
-      <expense-row
-        :expense="expense"
-        v-for="expense in expenses_due"
-      ></expense-row>
+      <div class="mb-4" v-if="expenses_due.length > 0">
+        <p class="mb-2">Zpožděné výdaje</p>
+        <expense-row
+          :expense="expense"
+          v-for="expense in expenses_due"
+        ></expense-row>
+      </div>
 
-      <!--      <p>Dnes k úhradě</p>-->
+      <div class="mb-4">
+        <p class="mb-2">Dnešní příjmy</p>
+        <income-row
+          :income="income"
+          v-for="income in incomes_today"
+        ></income-row>
 
-      <!--      <p>Nejbližší nadcházející platby</p>-->
+        <div v-if="incomes_today.length === 0">-</div>
+      </div>
+
+      <div class="mb-4">
+        <p class="mb-2 mt-2">Dnešní výdaje</p>
+        <expense-row
+          :expense="expense"
+          v-for="expense in expenses_today"
+        ></expense-row>
+
+        <div v-if="expenses_today.length === 0">-</div>
+      </div>
     </div>
 
     <div v-else class="flex h-[600px] items-center justify-center">
@@ -80,15 +102,6 @@ definePageMeta({
 
 const loaded = ref(true);
 
-// const incomes_due = ref([]);
-// const expenses_due = ref([]);
-
-const incomes_today = ref([]);
-const expenses_today = ref([]);
-
-const incomes_future = ref([]);
-const expenses_future = ref([]);
-
 onMounted(() => {
   fetchData();
 });
@@ -98,7 +111,7 @@ const route = useRoute();
 
 const yesterday_end = DateTime.now().minus({ days: 1 }).endOf("day").toISO();
 
-let { data: response } = await useAsyncData("expenses_due", () =>
+const { data: response } = await useAsyncData("expenses_due", () =>
   client("/api/" + route.params.workspace + "/expenses", {
     method: "GET",
     params: {
@@ -109,7 +122,7 @@ let { data: response } = await useAsyncData("expenses_due", () =>
 );
 const expenses_due = response.value.data;
 
-let { data: response_2 } = await useAsyncData("incomes_due", () =>
+const { data: response_2 } = await useAsyncData("incomes_due", () =>
   client("/api/" + route.params.workspace + "/incomes", {
     method: "GET",
     params: {
@@ -120,6 +133,33 @@ let { data: response_2 } = await useAsyncData("incomes_due", () =>
 );
 
 const incomes_due = response_2.value.data;
+
+// Today
+const today_start = DateTime.now().startOf("day").toISO();
+const today_end = DateTime.now().endOf("day").toISO();
+
+const { data: response_3 } = await useAsyncData("expenses_today", () =>
+  client("/api/" + route.params.workspace + "/expenses", {
+    method: "GET",
+    params: {
+      from: today_start,
+      to: today_end,
+    },
+  }),
+);
+const expenses_today = response_3.value.data;
+
+const { data: response_4 } = await useAsyncData("incomes_today", () =>
+  client("/api/" + route.params.workspace + "/incomes", {
+    method: "GET",
+    params: {
+      from: today_start,
+      to: today_end,
+    },
+  }),
+);
+
+const incomes_today = response_4.value.data;
 
 async function fetchData() {
   // console.log(expenses_due.data.value.data)
