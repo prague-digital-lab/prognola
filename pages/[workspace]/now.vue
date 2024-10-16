@@ -47,10 +47,12 @@
           <div>Zpožděné výdaje</div>
           <div><span class="px-3 py-1 rounded-md bg-red-100 text-red-700 font-bold">{{ formatPrice(expenses_due_sum) }} Kč</span></div>
         </div>
+        <div class="divide-y divide-gray-200 border border-gray-200">
         <expense-row
           :expense="expense"
           v-for="expense in expenses_due"
         ></expense-row>
+        </div>
       </div>
 
       <div class="mb-4">
