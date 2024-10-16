@@ -38,20 +38,36 @@
       </div>
 
       <div class="mb-4" v-if="incomes_due.length > 0">
-        <p class="mb-2">Zpožděné příjmy - {{ formatPrice(incomes_due_sum) }}</p>
-        <income-row :income="income" v-for="income in incomes_due"></income-row>
+        <div class="mb-2 flex justify-between">
+          <div>Zpožděné příjmy</div>
+          <div>
+            <span class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
+              >{{ formatPrice(incomes_due_sum) }} Kč</span
+            >
+          </div>
+        </div>
+        <div class="divide-y divide-gray-200 border border-gray-200">
+          <income-row
+            :income="income"
+            v-for="income in incomes_due"
+          ></income-row>
+        </div>
       </div>
 
       <div class="mb-4" v-if="expenses_due.length > 0">
         <div class="mb-2 flex justify-between">
           <div>Zpožděné výdaje</div>
-          <div><span class="px-3 py-1 rounded-md bg-red-100 text-red-700 font-bold">{{ formatPrice(expenses_due_sum) }} Kč</span></div>
+          <div>
+            <span class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700"
+              >{{ formatPrice(expenses_due_sum) }} Kč</span
+            >
+          </div>
         </div>
         <div class="divide-y divide-gray-200 border border-gray-200">
-        <expense-row
-          :expense="expense"
-          v-for="expense in expenses_due"
-        ></expense-row>
+          <expense-row
+            :expense="expense"
+            v-for="expense in expenses_due"
+          ></expense-row>
         </div>
       </div>
 
