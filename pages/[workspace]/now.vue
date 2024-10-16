@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="loaded">
+    <div>
       <page-content-header>
         <template v-slot:title>
           <h2
@@ -11,9 +11,8 @@
         </template>
       </page-content-header>
 
-      <p class="">Aktuální zůstatek napříč účty: 10 000 Kč</p>
-      <p class="mb-10">Hotovost na pokladnách: 17 000 Kč</p>
-      <p></p>
+      <p class="">Aktuální zůstatek napříč účty: 0 Kč</p>
+      <p class="mb-10">Hotovost na pokladnách: 0 Kč</p>
 
       <div
         class="mb-4 rounded-md border border-red-200 bg-red-50 p-4"
@@ -39,12 +38,15 @@
       </div>
 
       <div class="mb-4" v-if="incomes_due.length > 0">
-        <p class="mb-2">Zpožděné příjmy</p>
+        <p class="mb-2">Zpožděné příjmy - {{ formatPrice(incomes_due_sum) }}</p>
         <income-row :income="income" v-for="income in incomes_due"></income-row>
       </div>
 
       <div class="mb-4" v-if="expenses_due.length > 0">
-        <p class="mb-2">Zpožděné výdaje</p>
+        <div class="mb-2 flex justify-between">
+          <div>Zpožděné výdaje</div>
+          <div><span class="px-3 py-1 rounded-md bg-red-100 text-red-700 font-bold">{{ formatPrice(expenses_due_sum) }} Kč</span></div>
+        </div>
         <expense-row
           :expense="expense"
           v-for="expense in expenses_due"
@@ -71,18 +73,6 @@
         <div v-if="expenses_today.length === 0">-</div>
       </div>
     </div>
-
-    <div v-else class="flex h-[600px] items-center justify-center">
-      <div class="atom-spinner">
-        <div class="spinner-inner">
-          <div class="spinner-line"></div>
-          <div class="spinner-line"></div>
-          <div class="spinner-line"></div>
-          <!--Chrome renders little circles malformed :(-->
-          <div class="spinner-circle">&#9679;</div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -100,12 +90,6 @@ definePageMeta({
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
 
-const loaded = ref(true);
-
-onMounted(() => {
-  fetchData();
-});
-
 const client = useSanctumClient();
 const route = useRoute();
 
@@ -121,6 +105,7 @@ const { data: response } = await useAsyncData("expenses_due", () =>
   }),
 );
 const expenses_due = response.value.data;
+const expenses_due_sum = response.value.price_sum;
 
 const { data: response_2 } = await useAsyncData("incomes_due", () =>
   client("/api/" + route.params.workspace + "/incomes", {
@@ -133,6 +118,7 @@ const { data: response_2 } = await useAsyncData("incomes_due", () =>
 );
 
 const incomes_due = response_2.value.data;
+const incomes_due_sum = response_2.value.price_sum;
 
 // Today
 const today_start = DateTime.now().startOf("day").toISO();
@@ -161,10 +147,9 @@ const { data: response_4 } = await useAsyncData("incomes_today", () =>
 
 const incomes_today = response_4.value.data;
 
-async function fetchData() {
-  // console.log(expenses_due.data.value.data)
-  // expenses_due.value = expenses_due.data.value.data;
-  // incomes_due.value = incomes_due;
+function formatPrice(value) {
+  let val = (value / 1).toFixed(2).replace(".", ",");
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 </script>
 
