@@ -327,6 +327,12 @@ const route = useRoute();
 
 const navigation = [
   {
+    name: "Nástěnka",
+    href: "/" + route.params.workspace + "/now",
+    icon: ChartBarIcon,
+    current: false,
+  },
+  {
     name: "Ke zpracování",
     href: "/" + route.params.workspace + "/inbox",
     icon: InboxIcon,

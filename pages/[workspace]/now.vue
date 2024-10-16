@@ -1,0 +1,205 @@
+<template>
+  <div>
+    <div v-if="loaded">
+      <page-content-header>
+        <template v-slot:title>
+          <h2
+            class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
+          >
+            Výhled hospodaření
+          </h2>
+        </template>
+      </page-content-header>
+
+      <p class="">Aktuální zůstatek napříč účty: 10 000 Kč</p>
+      <p class="mb-10">Hotovost na pokladnách: 17 000 Kč</p>
+      <p></p>
+
+      <p class="mb-2">Opožděné příjmy a výdaje</p>
+
+      <div class="mb-4 rounded-md border border-red-200 bg-red-50 p-4">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <ExclamationCircleIcon
+              class="h-5 w-5 text-red-400"
+              aria-hidden="true"
+            />
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-red-800">
+              Tyto příjmy a výdaje nebyly uhrazené v naplánovaném termínu.
+            </h3>
+            <div class="mt-2 text-sm text-red-700">
+              Můžete je odložit do budoucna, podle toho, kdy očekáváte jejich
+              uhrazení.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <income-row :income="income" v-for="income in incomes_due"></income-row>
+
+      <expense-row
+        :expense="expense"
+        v-for="expense in expenses_due"
+      ></expense-row>
+
+      <!--      <p>Dnes k úhradě</p>-->
+
+      <!--      <p>Nejbližší nadcházející platby</p>-->
+    </div>
+
+    <div v-else class="flex h-[600px] items-center justify-center">
+      <div class="atom-spinner">
+        <div class="spinner-inner">
+          <div class="spinner-line"></div>
+          <div class="spinner-line"></div>
+          <div class="spinner-line"></div>
+          <!--Chrome renders little circles malformed :(-->
+          <div class="spinner-circle">&#9679;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { DateTime } from "luxon";
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+import { ExclamationCircleIcon } from "@heroicons/vue/20/solid";
+
+useHead({
+  title: "Výhled - Prognola",
+});
+
+definePageMeta({
+  layout: "default",
+  middleware: ["sanctum:auth", "sanctum:verified"],
+});
+
+const loaded = ref(true);
+
+// const incomes_due = ref([]);
+// const expenses_due = ref([]);
+
+const incomes_today = ref([]);
+const expenses_today = ref([]);
+
+const incomes_future = ref([]);
+const expenses_future = ref([]);
+
+onMounted(() => {
+  fetchData();
+});
+
+const client = useSanctumClient();
+const route = useRoute();
+
+const yesterday_end = DateTime.now().minus({ days: 1 }).endOf("day").toISO();
+
+let { data: response } = await useAsyncData("expenses_due", () =>
+  client("/api/" + route.params.workspace + "/expenses", {
+    method: "GET",
+    params: {
+      to: yesterday_end,
+      payment_status: "pending",
+    },
+  }),
+);
+const expenses_due = response.value.data;
+
+let { data: response_2 } = await useAsyncData("incomes_due", () =>
+  client("/api/" + route.params.workspace + "/incomes", {
+    method: "GET",
+    params: {
+      to: yesterday_end,
+      payment_status: "pending",
+    },
+  }),
+);
+
+const incomes_due = response_2.value.data;
+
+async function fetchData() {
+  // console.log(expenses_due.data.value.data)
+  // expenses_due.value = expenses_due.data.value.data;
+  // incomes_due.value = incomes_due;
+}
+</script>
+
+<style>
+.atom-spinner,
+.atom-spinner * {
+  box-sizing: border-box;
+}
+
+.atom-spinner {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+}
+
+.atom-spinner .spinner-inner {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.atom-spinner .spinner-circle {
+  display: block;
+  position: absolute;
+  color: rgb(79 70 229);
+  font-size: calc(60px * 0.24);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.atom-spinner .spinner-line {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation-duration: 1s;
+  border-left-width: calc(60px / 25);
+  border-top-width: calc(60px / 25);
+  border-left-color: rgb(79 70 229);
+  border-left-style: solid;
+  border-top-style: solid;
+  border-top-color: transparent;
+}
+
+.atom-spinner .spinner-line:nth-child(1) {
+  animation: atom-spinner-animation-1 2s linear infinite;
+  transform: rotateZ(120deg) rotateX(66deg) rotateZ(0deg);
+}
+
+.atom-spinner .spinner-line:nth-child(2) {
+  animation: atom-spinner-animation-2 2s linear infinite;
+  transform: rotateZ(240deg) rotateX(66deg) rotateZ(0deg);
+}
+
+.atom-spinner .spinner-line:nth-child(3) {
+  animation: atom-spinner-animation-3 2s linear infinite;
+  transform: rotateZ(360deg) rotateX(66deg) rotateZ(0deg);
+}
+
+@keyframes atom-spinner-animation-1 {
+  100% {
+    transform: rotateZ(120deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes atom-spinner-animation-2 {
+  100% {
+    transform: rotateZ(240deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes atom-spinner-animation-3 {
+  100% {
+    transform: rotateZ(360deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+</style>
