@@ -41,7 +41,8 @@
         <div class="mb-2 flex justify-between">
           <div>Zpožděné příjmy</div>
           <div>
-            <span class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
+            <span
+              class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
               >{{ formatPrice(incomes_due_sum) }} Kč</span
             >
           </div>
@@ -72,21 +73,47 @@
       </div>
 
       <div class="mb-4">
-        <p class="mb-2">Dnešní příjmy</p>
-        <income-row
-          :income="income"
-          v-for="income in incomes_today"
-        ></income-row>
+        <div class="mb-2 flex justify-between">
+          <div>Dnešní příjmy</div>
+          <div>
+            <span
+                class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
+            >{{ formatPrice(incomes_today_sum) }} Kč</span
+            >
+          </div>
+        </div>
 
+        <div
+          class="divide-y divide-gray-200 border border-gray-200"
+          v-if="incomes_today.length > 0"
+        >
+          <income-row
+            :income="income"
+            v-for="income in incomes_today"
+          ></income-row>
+        </div>
         <div v-if="incomes_today.length === 0">-</div>
       </div>
 
       <div class="mb-4">
-        <p class="mb-2 mt-2">Dnešní výdaje</p>
-        <expense-row
-          :expense="expense"
-          v-for="expense in expenses_today"
-        ></expense-row>
+        <div class="mb-2 flex justify-between">
+          <div>Dnešní výdaje</div>
+          <div>
+            <span class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700"
+            >{{ formatPrice(expenses_today_sum) }} Kč</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="divide-y divide-gray-200 border border-gray-200"
+          v-if="expenses_today.length > 0"
+        >
+          <expense-row
+            :expense="expense"
+            v-for="expense in expenses_today"
+          ></expense-row>
+        </div>
 
         <div v-if="expenses_today.length === 0">-</div>
       </div>
@@ -152,6 +179,7 @@ const { data: response_3 } = await useAsyncData("expenses_today", () =>
   }),
 );
 const expenses_today = response_3.value.data;
+const expenses_today_sum = response_3.value.price_sum;
 
 const { data: response_4 } = await useAsyncData("incomes_today", () =>
   client("/api/" + route.params.workspace + "/incomes", {
@@ -164,6 +192,7 @@ const { data: response_4 } = await useAsyncData("incomes_today", () =>
 );
 
 const incomes_today = response_4.value.data;
+const incomes_today_sum = response_4.value.price_sum;
 
 function formatPrice(value) {
   let val = (value / 1).toFixed(2).replace(".", ",");
