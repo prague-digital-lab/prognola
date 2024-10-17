@@ -241,7 +241,7 @@ const incomes_today = response_4.value.data;
 const incomes_today_sum = response_4.value.price_sum;
 
 const tomorrow_start = DateTime.now().plus({ days: 1 }).startOf("day").toISO();
-const month_from_now = DateTime.now().plus({ days: 1 }).startOf("day").toISO();
+const month_from_now = DateTime.now().plus({ days: 31 }).startOf("day").toISO();
 
 const { data: response_5 } = await useAsyncData("expenses_upcoming", () =>
   client("/api/" + route.params.workspace + "/expenses", {
