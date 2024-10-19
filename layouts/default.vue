@@ -123,7 +123,7 @@
 
     <!-- Static sidebar for desktop -->
     <div
-      class="hidden lg:fixed lg:inset-y-0 lg:z-30 lg:flex lg:w-72 lg:flex-col"
+      class="hidden lg:fixed lg:inset-y-0 lg:z-30 lg:flex lg:w-60 lg:flex-col"
     >
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
@@ -185,7 +185,7 @@
     </div>
 
     <!-- Top navbar -->
-    <div class="lg:pl-72">
+    <div class="lg:pl-60">
       <div
         class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-gray-50 px-4 sm:gap-x-6 sm:px-6 lg:px-8"
       >
@@ -307,11 +307,12 @@ import {
 } from "@headlessui/vue";
 import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 import {
-  BanknotesIcon,
   ChartBarIcon,
   ChevronDownIcon,
-  DocumentDuplicateIcon,
+  ClockIcon,
   InboxIcon,
+  MinusCircleIcon,
+  PlusCircleIcon,
   UsersIcon,
   WalletIcon,
 } from "@heroicons/vue/20/solid";
@@ -327,43 +328,45 @@ const route = useRoute();
 
 const navigation = [
   {
-    name: "Nástěnka",
-    href: "/" + route.params.workspace + "/now",
+    name: "Cash flow",
+    href: "/" + route.params.workspace + "/cashflow",
     icon: ChartBarIcon,
     current: false,
   },
   {
-    name: "Ke zpracování",
+    name: "Schránka",
     href: "/" + route.params.workspace + "/inbox",
     icon: InboxIcon,
     current: false,
   },
   {
-    name: "Cashflow",
-    href: "/" + route.params.workspace + "/cashflow",
-    icon: ChartBarIcon,
+    name: "Příjmy",
+    href: "/" + route.params.workspace + "/income",
+    icon: PlusCircleIcon,
     current: false,
   },
+  {
+    name: "Výdaje",
+    href: "/" + route.params.workspace + "/expenses",
+    icon: MinusCircleIcon,
+    current: false,
+  },
+  {
+    name: "Platební plán",
+    href: "/" + route.params.workspace + "/now",
+    icon: ClockIcon,
+    current: false,
+  },
+
   {
     name: "Účty",
     href: "/" + route.params.workspace + "/bank_accounts",
     icon: WalletIcon,
     current: false,
   },
+
   {
-    name: "Příjmy",
-    href: "/" + route.params.workspace + "/income",
-    icon: DocumentDuplicateIcon,
-    current: false,
-  },
-  {
-    name: "Výdaje",
-    href: "/" + route.params.workspace + "/expenses",
-    icon: BanknotesIcon,
-    current: false,
-  },
-  {
-    name: "Organizace",
+    name: "Firmy",
     href: "/" + route.params.workspace + "/organisations",
     icon: UsersIcon,
     current: false,
@@ -433,3 +436,9 @@ async function submitLogout() {
   await logout();
 }
 </script>
+
+<style>
+body {
+  font-family: "Inter", sans-serif;
+}
+</style>
