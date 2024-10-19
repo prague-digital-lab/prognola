@@ -334,6 +334,12 @@ const navigation = [
     current: false,
   },
   {
+    name: "Nadcházející",
+    href: "/" + route.params.workspace + "/now",
+    icon: ClockIcon,
+    current: false,
+  },
+  {
     name: "Schránka",
     href: "/" + route.params.workspace + "/inbox",
     icon: InboxIcon,
@@ -351,13 +357,6 @@ const navigation = [
     icon: MinusCircleIcon,
     current: false,
   },
-  {
-    name: "Nadcházející",
-    href: "/" + route.params.workspace + "/now",
-    icon: ClockIcon,
-    current: false,
-  },
-
   {
     name: "Účty",
     href: "/" + route.params.workspace + "/bank_accounts",
