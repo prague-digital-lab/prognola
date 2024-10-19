@@ -10,13 +10,13 @@ module.exports = {
   ],
   theme: {
     fontSize: {
-      sm: "0.8rem",
+      sm: "0.80rem",
       base: "0.85rem",
-      xl: "1.25rem",
-      "2xl": "1.563rem",
-      "3xl": "1.953rem",
-      "4xl": "2.441rem",
-      "5xl": "3.052rem",
+      xl: "1.17rem",
+      "2xl": "1.263rem",
+      "3xl": "1.453rem",
+      "4xl": "1.741rem",
+      "5xl": "2.052rem",
     },
     extend: {
       fontFamily: {

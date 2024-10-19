@@ -29,10 +29,10 @@
         </template>
       </page-content-header>
 
-      <div class="mb-5">
+      <div class="mb-7">
         <dl class="grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5"
           >
             <nuxt-link href="income">
               <dt class="truncate text-gray-500">Příjmy</dt>
@@ -49,7 +49,7 @@
             </dd>
           </div>
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5"
           >
             <nuxt-link href="expenses">
               <dt class="truncate text-gray-500">Výdaje</dt>
@@ -64,7 +64,7 @@
             </dd>
           </div>
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-4 py-5 sm:p-6"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5"
           >
             <dt class="truncate text-gray-500">Výsledek</dt>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">
@@ -76,7 +76,7 @@
 
       <Bar
         id="my-chart-id"
-        height="150%"
+        height="130%"
         :options="chartOptions"
         :data="chartData"
       />
