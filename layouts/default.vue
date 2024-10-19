@@ -140,7 +140,7 @@
               class="me-3"
             />
 
-<!--            <p class="font-medium text-gray-700">Prognola</p>-->
+            <p class="font-medium text-gray-700">Prognola</p>
           </nuxt-link>
         </div>
 
