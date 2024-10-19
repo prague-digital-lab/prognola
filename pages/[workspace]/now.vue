@@ -6,7 +6,7 @@
           <h2
             class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
           >
-            Výhled hospodaření
+            Nadcházející platby
           </h2>
         </template>
       </page-content-header>
@@ -173,7 +173,7 @@ import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import { ExclamationCircleIcon } from "@heroicons/vue/20/solid";
 
 useHead({
-  title: "Výhled - Prognola",
+  title: "Nadcházející platby - Prognola",
 });
 
 definePageMeta({
