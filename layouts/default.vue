@@ -140,7 +140,7 @@
               class="me-3"
             />
 
-            <p class="font-bold text-[20px] text-indigo-900 spectral">Prognola</p>
+            <p class="text-[15px] text-zinc-800 spectral">Prognola</p>
           </nuxt-link>
         </div>
 
@@ -441,6 +441,6 @@ body {
   font-family: "Nunito", sans-serif;
 }
 .spectral {
-  font-family: "Tomorrow", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 </style>
