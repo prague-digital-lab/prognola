@@ -140,7 +140,7 @@
               class="me-3"
             />
 
-            <p class="font-medium text-gray-700">Prognola</p>
+            <p class="font-bold text-[20px] text-indigo-900 spectral">Prognola</p>
           </nuxt-link>
         </div>
 
@@ -439,5 +439,8 @@ async function submitLogout() {
 <style>
 body {
   font-family: "Nunito", sans-serif;
+}
+.spectral {
+  font-family: "Tomorrow", sans-serif;
 }
 </style>
