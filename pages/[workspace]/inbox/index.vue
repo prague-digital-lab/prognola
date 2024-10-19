@@ -5,7 +5,7 @@
         <h4
           class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
         >
-          Ke zpracování
+          Schránka
         </h4>
       </div>
     </div>

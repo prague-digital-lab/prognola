@@ -19,11 +19,9 @@ module.exports = {
       "5xl": "2.052rem",
     },
     extend: {
-      fontFamily: {
-        custom: ["Inter"],
-      },
       colors: {
         'gray-hover': '#fafafa',
+        'primary': '#18181b',
       }
     },
   },

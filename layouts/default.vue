@@ -123,11 +123,11 @@
 
     <!-- Static sidebar for desktop -->
     <div
-      class="hidden lg:fixed lg:inset-y-0 lg:z-30 lg:flex lg:w-60 lg:flex-col"
+      class="hidden lg:fixed lg:inset-y-0 lg:z-30 lg:flex lg:w-72 lg:flex-col"
     >
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
-        class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-zinc-100 px-4 pb-4"
+        class="m-3 flex grow flex-col gap-y-5 overflow-y-auto border border-zinc-200 rounded-xl bg-white px-4 pb-4 tracking-wide"
       >
         <div class="flex h-16 shrink-0 items-center">
           <nuxt-link
@@ -136,15 +136,28 @@
           >
             <nuxt-img
               src="/img/logo_prazska_laborator.png"
-              width="22"
-              class="me-2"
+              width="28"
+              class="me-3"
             />
 
-            <p class="font-medium text-gray-600">
-              Prognola
-            </p>
+<!--            <p class="font-medium text-gray-700">Prognola</p>-->
           </nuxt-link>
         </div>
+
+        <div>
+          <select
+              class="w-full rounded border border-gray-200 bg-gray-50 text-base focus:border-gray-200 focus:shadow focus:ring-0"
+              v-model="active_workspace_url_slug"
+          >
+            <option
+                v-for="workspace in workspaces"
+                :value="workspace.url_slug"
+            >
+              {{ workspace.name }}
+            </option>
+          </select>
+        </div>
+
         <nav class="flex flex-1 flex-col px-2">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
@@ -152,12 +165,12 @@
                 <li v-for="item in navigation" :key="item.name">
                   <NuxtLink
                     :href="item.href"
-                    :active-class="'hover:bg-gray-200 bg-gray-200 text-indigo-600'"
-                    class="group flex items-center gap-x-3 rounded-md p-2 text-base leading-4 text-gray-500 duration-100 hover:bg-gray-200/60 hover:text-indigo-600"
+                    :active-class="'hover:bg-primary/90 bg-primary text-white'"
+                    class="group flex h-9 items-center gap-x-4 rounded-md px-3 text-base font-medium text-gray-800 duration-100 hover:bg-gray-200/60"
                   >
                     <component
                       :is="item.icon"
-                      class="h-4 w-4 shrink-0 group-hover:text-indigo-600"
+                      class="h-4 w-4 shrink-0"
                       :active-class="'text-indigo-600'"
                     />
                     {{ item.name }}
@@ -166,26 +179,12 @@
               </ul>
             </li>
           </ul>
-
-          <div>
-            <select
-              class="w-full rounded border border-gray-200 bg-gray-50 text-base focus:border-gray-200 focus:shadow focus:ring-0"
-              v-model="active_workspace_url_slug"
-            >
-              <option
-                v-for="workspace in workspaces"
-                :value="workspace.url_slug"
-              >
-                {{ workspace.name }}
-              </option>
-            </select>
-          </div>
         </nav>
       </div>
     </div>
 
-    <!-- Top navbar -->
-    <div class="lg:pl-60">
+    <!-- Top navbar and content -->
+    <div class="lg:pl-72">
       <div
         class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-gray-50 px-4 sm:gap-x-6 sm:px-6 lg:px-8"
       >
@@ -305,8 +304,8 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 import {
+  Bars3Icon,
   ChartBarIcon,
   ChevronDownIcon,
   ClockIcon,
@@ -315,7 +314,8 @@ import {
   PlusCircleIcon,
   UsersIcon,
   WalletIcon,
-} from "@heroicons/vue/20/solid";
+  XMarkIcon,
+} from "@heroicons/vue/24/outline";
 
 useHead({
   title: "Prognola",
@@ -438,6 +438,6 @@ async function submitLogout() {
 
 <style>
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 </style>
