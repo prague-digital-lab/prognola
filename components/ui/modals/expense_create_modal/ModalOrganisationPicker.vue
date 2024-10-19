@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-sm">
+  <div class="inline-block">
     <Popover v-slot="{ open }" class="relative">
       <div class="">
         <PopoverButton
@@ -78,7 +78,6 @@
 
 <script setup>
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import { ChevronDoubleRightIcon } from "@heroicons/vue/24/solid/index.js";
 
 const model = defineModel();
 

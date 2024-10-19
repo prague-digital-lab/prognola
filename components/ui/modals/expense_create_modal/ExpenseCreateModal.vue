@@ -36,15 +36,17 @@
               <form v-on:submit.prevent="createExpense">
                 <div class="flex justify-between">
                   <input
-                    class="mb-2 border-none px-0 py-2 font-medium focus:ring-0"
+                    class="mb-2 flex-1 border-none px-0 py-2 font-medium focus:ring-0"
                     placeholder="Název výdaje"
                     type="text"
+                    required
                     v-model="expense_name"
                   />
                   <div>
                     <input
                       class="mb-2 border-none px-0 py-2 text-end font-medium focus:ring-0"
                       type="number"
+                      step="0.01"
                       v-model="price"
                     />
 
@@ -53,10 +55,14 @@
                 </div>
 
                 <div class="flex justify-between">
-                  <div>
+                  <div class="flex items-center">
                     <modal-organisation-picker
                       v-model="organisation_uuid"
                     ></modal-organisation-picker>
+
+                    <modal-paid-at-input
+                      v-model="paid_at"
+                    ></modal-paid-at-input>
                   </div>
                   <div>
                     <button
@@ -87,6 +93,7 @@ import {
 } from "@headlessui/vue";
 import { DateTime } from "luxon";
 import ModalOrganisationPicker from "~/components/ui/modals/expense_create_modal/ModalOrganisationPicker.vue";
+import ModalPaidAtInput from "~/components/ui/modals/expense_create_modal/ModalPaidAtInput.vue";
 
 const isOpen = ref(false);
 
@@ -96,6 +103,7 @@ const props = defineProps(["default_organisation_uuid"]);
 const expense_name = ref("");
 const organisation_uuid = ref(null);
 const price = ref(0);
+const paid_at = ref(null);
 
 function openModal() {
   isOpen.value = true;
@@ -135,17 +143,15 @@ async function createExpense() {
   const client = useSanctumClient();
   const route = useRoute();
 
-  const date_today = DateTime.now().startOf("day");
-
   const { data } = await useAsyncData("expense", () =>
     client("/api/" + route.params.workspace + "/expenses", {
       method: "POST",
       body: {
         description: expense_name.value,
         price: price.value,
-        paid_at: date_today,
+        paid_at: paid_at.value,
         organisation: organisation_uuid.value,
-        payment_status: 'plan'
+        payment_status: "plan",
       },
     }),
   );
