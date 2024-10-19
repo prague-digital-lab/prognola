@@ -103,7 +103,7 @@ const props = defineProps(["default_organisation_uuid"]);
 const expense_name = ref("");
 const organisation_uuid = ref(null);
 const price = ref(0);
-const paid_at = ref(null);
+const paid_at = ref();
 
 function openModal() {
   isOpen.value = true;
@@ -156,7 +156,8 @@ async function createExpense() {
     }),
   );
 
-  // let uuid = data.value.uuid;
+  expense_name.value = "";
+  price.value = 0;
 
   emit("expense-created");
   closeModal();
