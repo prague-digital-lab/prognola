@@ -129,7 +129,7 @@
       <div
         class="m-3 flex grow flex-col gap-y-5 overflow-y-auto border border-zinc-200 rounded-xl bg-white px-4 pb-4 tracking-wide"
       >
-        <div class="flex h-16 shrink-0 items-center">
+        <div class="flex h-16 shrink-0 items-center border-b border-zinc-200">
           <nuxt-link
             :href="'/' + route.params.workspace + '/cashflow'"
             class="flex cursor-default items-center rounded-md py-1 pe-3 ps-2 duration-100 hover:bg-gray-200/50 active:hover:bg-gray-200/80"
