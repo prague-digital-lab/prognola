@@ -352,7 +352,7 @@ const navigation = [
     current: false,
   },
   {
-    name: "Platební plán",
+    name: "Nadcházející",
     href: "/" + route.params.workspace + "/now",
     icon: ClockIcon,
     current: false,
