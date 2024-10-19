@@ -15,7 +15,7 @@
 
       <div class="fixed inset-0 overflow-y-auto">
         <div
-          class="mt-[70px] flex min-h-full items-start justify-center p-4 text-center"
+          class="pt-[70px] flex min-h-full items-start justify-center p-4 text-center"
         >
           <TransitionChild
             as="template"
