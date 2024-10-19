@@ -78,9 +78,26 @@
           <p>Země: {{ organisation.country }}</p>
         </div>
 
-        <p class="mb-2 text-base text-gray-600">Výdaje</p>
+        <div class="mb-2 flex justify-between">
+          <div>
+            <p class="text-base text-gray-600">Výdaje</p>
+          </div>
+          <div>
+            <button-secondary @click="openModal"
+              >+ přidat výdaj
+            </button-secondary>
+          </div>
+        </div>
 
-        <div class="divide-y divide-slate-200 rounded border border-slate-200">
+        <expense-create-modal
+          ref="modal_create"
+          :default_organisation_uuid="organisation.uuid"
+          @expense-created="fetchData"
+        />
+
+        <div
+          class="mb-4 divide-y divide-slate-200 rounded border border-slate-200"
+        >
           <expense-row
             :expense="expense"
             v-for="expense in organisation.expenses"
@@ -92,10 +109,19 @@
 </template>
 
 <script setup>
+import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
+import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
+
 definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
+
+const modal_create = useTemplateRef('modal_create');
+
+function openModal() {
+  modal_create.value.openModal();
+}
 </script>
 
 <script>
