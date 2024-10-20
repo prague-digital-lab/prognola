@@ -140,7 +140,7 @@
               class="me-3"
             />
 
-            <p class="text-[15px] text-zinc-800 spectral">Prognola</p>
+            <p class="text-[15px] text-zinc-800">Prognola</p>
           </nuxt-link>
         </div>
 
