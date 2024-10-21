@@ -127,7 +127,7 @@
     >
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
-        class="m-3 flex grow flex-col gap-y-5 overflow-y-auto border border-zinc-200 rounded-xl bg-white px-4 pb-4 tracking-wide"
+        class="m-3 flex grow flex-col gap-y-5 overflow-y-auto rounded-xl border border-zinc-200 bg-white px-2 pb-4 tracking-wide"
       >
         <div class="flex h-16 shrink-0 items-center border-b border-zinc-200">
           <nuxt-link
@@ -144,25 +144,15 @@
           </nuxt-link>
         </div>
 
-        <div>
-          <select
-              class="w-full rounded border border-gray-200 bg-gray-50 text-base focus:border-gray-200 focus:shadow focus:ring-0"
-              v-model="active_workspace_url_slug"
-          >
-            <option
-                v-for="workspace in workspaces"
-                :value="workspace.url_slug"
-            >
-              {{ workspace.name }}
-            </option>
-          </select>
-        </div>
-
         <nav class="flex flex-1 flex-col px-2">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
               <ul role="list" class="-mx-2 space-y-1">
-                <li v-for="item in navigation" :key="item.name">
+                <li
+                  v-for="item in navigation"
+                  :key="item.name"
+                  :class="item.separate ? 'border-b border-zinc-200 pb-2' : ''"
+                >
                   <NuxtLink
                     :href="item.href"
                     :active-class="'hover:bg-primary/90 bg-primary text-white'"
@@ -200,7 +190,17 @@
         <!-- Separator -->
         <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
 
+        <select
+            class="border-none bg-transparent py-0 focus:shadow-none cursor-pointer text-base focus:border-gray-200 focus:shadow-sm focus:ring-0"
+            v-model="active_workspace_url_slug"
+        >
+          <option v-for="workspace in workspaces" :value="workspace.url_slug">
+            {{ workspace.name }}
+          </option>
+        </select>
+
         <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+
           <form class="relative flex flex-1" action="#" method="GET">
             <label for="search-field" class="sr-only">Search</label>
             <!--            <MagnifyingGlassIcon class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"-->
@@ -332,36 +332,42 @@ const navigation = [
     href: "/" + route.params.workspace + "/cashflow",
     icon: ChartBarIcon,
     current: false,
+    separate: false,
   },
   {
     name: "Nadcházející",
     href: "/" + route.params.workspace + "/now",
     icon: ClockIcon,
     current: false,
+    separate: false,
   },
   {
     name: "Schránka",
     href: "/" + route.params.workspace + "/inbox",
     icon: InboxIcon,
     current: false,
+    separate: true,
   },
   {
     name: "Příjmy",
     href: "/" + route.params.workspace + "/income",
     icon: PlusCircleIcon,
     current: false,
+    separate: false,
   },
   {
     name: "Výdaje",
     href: "/" + route.params.workspace + "/expenses",
     icon: MinusCircleIcon,
     current: false,
+    separate: false,
   },
   {
     name: "Účty",
     href: "/" + route.params.workspace + "/bank_accounts",
     icon: WalletIcon,
     current: false,
+    separate: true,
   },
 
   {
@@ -440,6 +446,7 @@ async function submitLogout() {
 body {
   font-family: "Nunito", sans-serif;
 }
+
 .spectral {
   font-family: "Inter", sans-serif;
 }
