@@ -97,7 +97,7 @@
       <button-secondary @click="openModal">+ nový výdaj</button-secondary>
     </div>
 
-    <expense-create-modal ref="modal_create" :default_paid_at="from" @income-created="fetchData" />
+    <expense-create-modal ref="modal_create" :default_paid_at="from" @expense-created="fetchData" />
   </div>
 </template>
 

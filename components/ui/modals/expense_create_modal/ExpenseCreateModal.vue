@@ -132,6 +132,10 @@ onMounted(() => {
   price.value = 0;
 });
 
+watch(() => props.default_paid_at, (newX) => {
+  paid_at.value = props.default_paid_at;
+})
+
 function formatDate(date) {
   let formatted = DateTime.fromISO(date);
 
