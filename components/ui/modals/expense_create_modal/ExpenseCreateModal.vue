@@ -15,7 +15,7 @@
 
       <div class="fixed inset-0 overflow-y-auto">
         <div
-          class="pt-[70px] flex min-h-full items-start justify-center p-4 text-center"
+          class="flex min-h-full items-start justify-center p-4 pt-[70px] text-center"
         >
           <TransitionChild
             as="template"
@@ -65,6 +65,16 @@
                     ></modal-paid-at-input>
                   </div>
                   <div>
+                    <input
+                        id="create_more"
+                      type="checkbox"
+                      v-model="create_more"
+                      class="me-2 rounded-md"
+                    />
+                    <label for="create_more" class="me-4 text-sm text-gray-500"
+                      >Vytvořit více</label
+                    >
+
                     <button
                       type="submit"
                       class="inline-block rounded-md bg-black px-3 py-2 text-base text-white hover:bg-gray-800"
@@ -97,13 +107,15 @@ import ModalPaidAtInput from "~/components/ui/modals/expense_create_modal/ModalP
 
 const isOpen = ref(false);
 
-const props = defineProps(["default_organisation_uuid", 'default_paid_at']);
+const props = defineProps(["default_organisation_uuid", "default_paid_at"]);
 
 // Modal data
 const expense_name = ref("");
 const organisation_uuid = ref(null);
 const price = ref(0);
 const paid_at = ref();
+
+const create_more = ref(false);
 
 function openModal() {
   isOpen.value = true;
@@ -132,9 +144,12 @@ onMounted(() => {
   price.value = 0;
 });
 
-watch(() => props.default_paid_at, (newX) => {
-  paid_at.value = props.default_paid_at;
-})
+watch(
+  () => props.default_paid_at,
+  (newX) => {
+    paid_at.value = props.default_paid_at;
+  },
+);
 
 function formatDate(date) {
   let formatted = DateTime.fromISO(date);
