@@ -82,29 +82,26 @@
     </div>
 
     <div class="flex justify-end">
-      <form @submit.prevent="createIncome">
-        <input
-          v-model="new_income_name"
-          placeholder="Nový příjem..."
-          required
-          class="me-2 rounded border border-gray-200 py-1 text-base"
-        />
-
-        <button
-          type="submit"
-          class="rounded bg-indigo-700 px-3 py-1 text-gray-100 transition hover:bg-indigo-900"
-        >
-          Přidat
-        </button>
-      </form>
+      <button-secondary @click="openModal">+ přidat příjem</button-secondary>
     </div>
+
+    <income-create-modal ref="modal_create" @income-created="fetchData" />
   </div>
 </template>
 
 <script setup>
+import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
+import IncomeCreateModal from "~/components/ui/modals/income_create_modal/IncomeCreateModal.vue";
+
 useHead({
   title: "Příjmy - Prognola",
 });
+
+const modal_create = useTemplateRef("modal_create");
+
+function openModal() {
+  modal_create.value.openModal();
+}
 </script>
 
 <script>
