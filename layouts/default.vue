@@ -173,7 +173,7 @@
               <span
                 class="text-base leading-6 text-gray-700"
                 aria-hidden="true"
-                >{{ user.name }}</span
+                >{{ active_workspace.name }}</span
               >
               <ChevronDownIcon
                 class="ml-2 h-5 w-5 text-gray-400"
