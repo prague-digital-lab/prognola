@@ -66,7 +66,7 @@
                   </div>
                   <div>
                     <input
-                        id="create_more"
+                      id="create_more"
                       type="checkbox"
                       v-model="create_more"
                       class="me-2 rounded-md"
@@ -179,12 +179,14 @@ async function createExpense() {
     }),
   );
 
-  expense_name.value = "";
-  price.value = 0;
-
   emit("expense-created");
-  closeModal();
 
-  // await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
+  if (create_more.value === false) {
+    expense_name.value = "";
+    price.value = 0;
+    organisation_uuid.value = null;
+
+    closeModal();
+  }
 }
 </script>
