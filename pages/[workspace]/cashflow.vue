@@ -6,7 +6,7 @@
           <h2
             class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
           >
-            Cashflow
+            Cash flow
           </h2>
         </template>
 
