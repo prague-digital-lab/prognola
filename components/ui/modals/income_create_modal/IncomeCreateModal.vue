@@ -15,7 +15,7 @@
 
       <div class="fixed inset-0 overflow-y-auto">
         <div
-          class="pt-[70px] flex min-h-full items-start justify-center p-4 text-center"
+          class="flex min-h-full items-start justify-center p-4 pt-[70px] text-center"
         >
           <TransitionChild
             as="template"
@@ -65,6 +65,15 @@
                     ></modal-paid-at-input>
                   </div>
                   <div>
+                    <input
+                      type="checkbox"
+                      v-model="create_more"
+                      class="me-2 rounded-md"
+                    />
+                    <span class="me-4 text-sm text-gray-500"
+                      >Vytvořit více</span
+                    >
+
                     <button
                       type="submit"
                       class="inline-block rounded-md bg-black px-3 py-2 text-base text-white hover:bg-gray-800"
@@ -104,6 +113,8 @@ const income_name = ref("");
 const organisation_uuid = ref(null);
 const price = ref(0);
 const paid_at = ref();
+
+const create_more = ref(false);
 
 function openModal() {
   isOpen.value = true;
@@ -156,11 +167,13 @@ async function createIncome() {
     }),
   );
 
-  income_name.value = "";
-  price.value = 0;
-
   emit("income-created");
-  closeModal();
 
+  if (create_more.value === false) {
+    income_name.value = "";
+    price.value = 0;
+    organisation_uuid.value = null;
+    closeModal();
+  }
 }
 </script>
