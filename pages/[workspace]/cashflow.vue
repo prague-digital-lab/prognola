@@ -152,8 +152,8 @@ export default {
         plugins: {
           legend: {
             display: false,
-            position: 'bottom'
-          }
+            position: "bottom",
+          },
         },
 
         responsive: true,

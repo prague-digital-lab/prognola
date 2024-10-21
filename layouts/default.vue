@@ -134,7 +134,7 @@
         >
           <nuxt-link
             :href="'/' + route.params.workspace + '/cashflow'"
-            class="flex cursor-default items-center rounded-md py-1 pe-3 ps-2 duration-100 hover:bg-gray-200/50 active:hover:bg-gray-200/80"
+            class="flex w-full cursor-default items-center rounded-md py-1 pe-3 ps-2 duration-100 hover:bg-gray-200/50 active:hover:bg-gray-200/80"
           >
             <nuxt-img
               src="/img/logo_prazska_laborator.png"
