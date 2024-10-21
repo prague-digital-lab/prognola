@@ -49,9 +49,9 @@
               </TransitionChild>
               <!-- Sidebar component, swap this element with another sidebar if you like -->
               <div
-                class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4"
+                class="flex grow flex-col overflow-y-auto bg-white px-6 pb-4"
               >
-                <div class="flex h-16 shrink-0 items-center">
+                <div class="flex shrink-0 items-center">
                   <nuxt-link href="/">
                     <img
                       class="h-8 w-auto"
@@ -127,9 +127,11 @@
     >
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
-        class="m-3 flex grow flex-col gap-y-5 overflow-y-auto rounded-xl border border-zinc-200 bg-white px-2 pb-4 tracking-wide"
+        class="m-3 flex grow flex-col overflow-y-auto rounded-xl border border-zinc-200 bg-white pb-4 tracking-wide"
       >
-        <div class="flex h-16 shrink-0 items-center border-b border-zinc-200">
+        <div
+          class="flex shrink-0 items-center border-b border-zinc-200 px-2 py-3"
+        >
           <nuxt-link
             :href="'/' + route.params.workspace + '/cashflow'"
             class="flex cursor-default items-center rounded-md py-1 pe-3 ps-2 duration-100 hover:bg-gray-200/50 active:hover:bg-gray-200/80"
@@ -144,39 +146,14 @@
           </nuxt-link>
         </div>
 
-        <nav class="flex flex-1 flex-col px-2">
-          <ul role="list" class="flex flex-1 flex-col gap-y-7">
-            <li>
-              <ul role="list" class="-mx-2 space-y-1">
-                <li
-                  v-for="item in navigation"
-                  :key="item.name"
-                  :class="item.separate ? 'border-b border-zinc-200 pb-2' : ''"
-                >
-                  <NuxtLink
-                    :href="item.href"
-                    :active-class="'hover:bg-primary/90 bg-primary text-white'"
-                    class="group flex h-9 items-center gap-x-4 rounded-md px-3 text-base font-medium text-gray-800 duration-100 hover:bg-gray-200/60"
-                  >
-                    <component
-                      :is="item.icon"
-                      class="h-4 w-4 shrink-0"
-                      :active-class="'text-indigo-600'"
-                    />
-                    {{ item.name }}
-                  </NuxtLink>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
+        <sidebar></sidebar>
       </div>
     </div>
 
     <!-- Top navbar and content -->
     <div class="lg:pl-72">
       <div
-        class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-gray-50 px-4 sm:gap-x-6 sm:px-6 lg:px-8"
+        class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-gray-50 px-4 sm:gap-x-6 sm:px-6 lg:px-4"
       >
         <button
           type="button"
@@ -190,17 +167,47 @@
         <!-- Separator -->
         <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
 
-        <select
-            class="border-none bg-transparent py-0 focus:shadow-none cursor-pointer text-base focus:border-gray-200 focus:shadow-sm focus:ring-0"
-            v-model="active_workspace_url_slug"
-        >
-          <option v-for="workspace in workspaces" :value="workspace.url_slug">
-            {{ workspace.name }}
-          </option>
-        </select>
+        <Menu as="div" class="relative">
+          <MenuButton class="flex items-center">
+            <span class="hidden lg:flex lg:items-center">
+              <span
+                class="text-base leading-6 text-gray-700"
+                aria-hidden="true"
+                >{{ user.name }}</span
+              >
+              <ChevronDownIcon
+                class="ml-2 h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </span>
+          </MenuButton>
+          <transition
+            enter-active-class="transition ease-out duration-100"
+            enter-from-class="transform opacity-0 scale-95"
+            enter-to-class="transform opacity-100 scale-100"
+            leave-active-class="transition ease-in duration-75"
+            leave-from-class="transform opacity-100 scale-100"
+            leave-to-class="transform opacity-0 scale-95"
+          >
+            <MenuItems
+              class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+            >
+              <MenuItem v-slot="{ active }" v-for="workspace in workspaces">
+                <NuxtLink
+                  :href="'/' + route.params.workspace + '/cashflow'"
+                  :class="[
+                    active ? 'bg-gray-50' : '',
+                    'block px-3 py-1 text-base leading-6 text-gray-900',
+                  ]"
+                >
+                  {{ workspace.name }}
+                </NuxtLink>
+              </MenuItem>
+            </MenuItems>
+          </transition>
+        </Menu>
 
         <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-
           <form class="relative flex flex-1" action="#" method="GET">
             <label for="search-field" class="sr-only">Search</label>
             <!--            <MagnifyingGlassIcon class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"-->
@@ -210,20 +217,6 @@
             <!--                   placeholder="Vyhledávání" type="search" name="search"/>-->
           </form>
           <div class="flex items-center gap-x-4 lg:gap-x-6">
-            <!--            <button-->
-            <!--              type="button"-->
-            <!--              class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"-->
-            <!--            >-->
-            <!--              <span class="sr-only">View notifications</span>-->
-            <!--              <BellIcon class="h-6 w-6" aria-hidden="true" />-->
-            <!--            </button>-->
-
-            <!--            &lt;!&ndash; Separator &ndash;&gt;-->
-            <!--            <div-->
-            <!--              class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"-->
-            <!--              aria-hidden="true"-->
-            <!--            />-->
-
             <!-- Profile dropdown -->
             <Menu as="div" class="relative">
               <MenuButton class="-m-1.5 flex items-center p-1.5">
@@ -284,7 +277,7 @@
       </div>
 
       <main class="py-10">
-        <div class="px-4 sm:px-10">
+        <div class="px-4 sm:px-4">
           <slot />
         </div>
       </main>
@@ -306,16 +299,10 @@ import {
 } from "@headlessui/vue";
 import {
   Bars3Icon,
-  ChartBarIcon,
   ChevronDownIcon,
-  ClockIcon,
-  InboxIcon,
-  MinusCircleIcon,
-  PlusCircleIcon,
-  UsersIcon,
-  WalletIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/outline";
+import Sidebar from "~/components/ui/sidebar/Sidebar.vue";
 
 useHead({
   title: "Prognola",
@@ -325,58 +312,6 @@ useHead({
 });
 
 const route = useRoute();
-
-const navigation = [
-  {
-    name: "Cash flow",
-    href: "/" + route.params.workspace + "/cashflow",
-    icon: ChartBarIcon,
-    current: false,
-    separate: false,
-  },
-  {
-    name: "Nadcházející",
-    href: "/" + route.params.workspace + "/now",
-    icon: ClockIcon,
-    current: false,
-    separate: false,
-  },
-  {
-    name: "Schránka",
-    href: "/" + route.params.workspace + "/inbox",
-    icon: InboxIcon,
-    current: false,
-    separate: true,
-  },
-  {
-    name: "Příjmy",
-    href: "/" + route.params.workspace + "/income",
-    icon: PlusCircleIcon,
-    current: false,
-    separate: false,
-  },
-  {
-    name: "Výdaje",
-    href: "/" + route.params.workspace + "/expenses",
-    icon: MinusCircleIcon,
-    current: false,
-    separate: false,
-  },
-  {
-    name: "Účty",
-    href: "/" + route.params.workspace + "/bank_accounts",
-    icon: WalletIcon,
-    current: false,
-    separate: true,
-  },
-
-  {
-    name: "Firmy",
-    href: "/" + route.params.workspace + "/organisations",
-    icon: UsersIcon,
-    current: false,
-  },
-];
 
 const { user } = useSanctumAuth();
 

@@ -97,7 +97,7 @@ import ModalPaidAtInput from "~/components/ui/modals/expense_create_modal/ModalP
 
 const isOpen = ref(false);
 
-const props = defineProps(["default_organisation_uuid"]);
+const props = defineProps(["default_organisation_uuid", 'default_paid_at']);
 
 // Modal data
 const expense_name = ref("");
@@ -123,6 +123,10 @@ const emit = defineEmits(["expense-created"]);
 onMounted(() => {
   if (props.default_organisation_uuid !== null) {
     organisation_uuid.value = props.default_organisation_uuid;
+  }
+
+  if (props.default_paid_at !== null) {
+    paid_at.value = props.default_paid_at;
   }
 
   price.value = 0;

@@ -15,7 +15,7 @@
 
       <div class="mt-4 flex md:ml-4 md:mt-0">
         <div class="mt-3">
-        <button-secondary @click="downloadExport">Export</button-secondary>
+          <button-secondary @click="downloadExport">Export</button-secondary>
         </div>
 
         <div class="me-2">
@@ -94,27 +94,16 @@
     </div>
 
     <div class="flex justify-end">
-      <form @submit.prevent="createExpense">
-        <input
-          v-model="new_expense_name"
-          placeholder="Nový výdaj..."
-          required
-          class="me-2 rounded border border-gray-200 py-1 text-base"
-        />
-
-        <button
-          type="submit"
-          class="rounded bg-indigo-700 px-3 py-1 text-gray-100 transition hover:bg-indigo-900"
-        >
-          Přidat
-        </button>
-      </form>
+      <button-secondary @click="openModal">+ nový výdaj</button-secondary>
     </div>
+
+    <expense-create-modal ref="modal_create" :default_paid_at="from" @income-created="fetchData" />
   </div>
 </template>
 
 <script setup>
 import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
+import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
 
 useHead({
   title: "Výdaje - Prognola",
@@ -124,6 +113,12 @@ definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
+
+const modal_create = useTemplateRef("modal_create");
+
+function openModal() {
+  modal_create.value.openModal();
+}
 </script>
 
 <script>
@@ -251,17 +246,20 @@ export default {
       const route = useRoute();
 
       const { data } = await useAsyncData("export", () =>
-          client("/api/" + route.params.workspace + "/download/expenses/scans/url", {
+        client(
+          "/api/" + route.params.workspace + "/download/expenses/scans/url",
+          {
             method: "GET",
             query: {
               from: this.from,
               to: this.to,
             },
-          }),
+          },
+        ),
       );
 
-      window.open(data.value.export_url, '_blank');
-    }
+      window.open(data.value.export_url, "_blank");
+    },
   },
 };
 </script>
