@@ -123,7 +123,7 @@
 
     <!-- Static sidebar for desktop -->
     <div
-      class="hidden lg:fixed lg:inset-y-0 lg:z-30 lg:flex lg:w-72 lg:flex-col"
+      class="hidden lg:fixed lg:inset-y-0 lg:z-30 lg:flex lg:w-60 lg:flex-col"
     >
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
@@ -151,7 +151,7 @@
     </div>
 
     <!-- Top navbar and content -->
-    <div class="lg:pl-72">
+    <div class="lg:pl-60">
       <div
         class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-gray-50 px-4 sm:gap-x-6 sm:px-6 lg:px-4"
       >
