@@ -194,7 +194,7 @@
             >
               <MenuItem v-slot="{ active }" v-for="workspace in workspaces">
                 <NuxtLink
-                  :href="'/' + route.params.workspace + '/cashflow'"
+                  :href="'/' + workspace.url_slug + '/cashflow'"
                   :class="[
                     active ? 'bg-gray-50' : '',
                     'block px-3 py-1 text-base leading-6 text-gray-900',
