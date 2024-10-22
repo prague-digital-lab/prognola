@@ -313,7 +313,7 @@ export default {
     },
     async navigateToIncomes() {
       const route = useRoute()
-      await navigateTo('/' + route.params.workspace + '/incomes')
+      await navigateTo('/' + route.params.workspace + '/income')
     },
 
     formatPrice(value) {
