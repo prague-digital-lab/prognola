@@ -67,6 +67,7 @@ import {
   ChartBarIcon,
   InboxIcon,
   UserIcon,
+  UsersIcon,
 } from "@heroicons/vue/20/solid";
 
 useHead({
@@ -80,9 +81,15 @@ const route = useRoute();
 
 const navigation = [
   {
-    name: "Uživatel",
+    name: "Můj účet",
     href: "/" + route.params.workspace + "/settings/user",
     icon: UserIcon,
+    current: false,
+  },
+  {
+    name: "Uživatelé",
+    href: "/" + route.params.workspace + "/settings/users",
+    icon: UsersIcon,
     current: false,
   },
   {

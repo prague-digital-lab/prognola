@@ -3,12 +3,7 @@
     <div
       class="rounded-2xl border border-gray-800 bg-gray-700/20 px-5 py-5 text-center text-gray-200"
     >
-      <h1 class="mb-5 text-3xl">Ověření emailu</h1>
-
-      <p>
-        Právě jsme vám poslali odkaz na email <b>{{ user ? user.email : "" }}</b
-        >.
-      </p>
+      <p>Probíhá ověření účtu.</p>
     </div>
   </div>
 </template>
