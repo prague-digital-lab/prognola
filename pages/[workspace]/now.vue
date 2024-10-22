@@ -32,10 +32,10 @@
                   >Tyto příjmy a výdaje nebyly uhrazené v naplánovaném
                   termínu.</span
                 >
-                <span v-if="incomes_due.length > 0 || expenses_due.length === 0"
+                <span v-if="incomes_due.length > 0 && expenses_due.length === 0"
                   >Tyto příjmy nebyly uhrazené v naplánovaném termínu.</span
                 >
-                <span v-if="incomes_due.length === 0 || expenses_due.length > 0"
+                <span v-if="incomes_due.length === 0 && expenses_due.length > 0"
                   >Tyto výdaje nebyly uhrazené v naplánovaném termínu.</span
                 >
               </h3>
