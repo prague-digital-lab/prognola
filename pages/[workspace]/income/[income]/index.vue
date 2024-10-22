@@ -28,6 +28,7 @@
           v-model="input_description"
           class="mb-5 w-full border-none bg-transparent p-0 text-base text-slate-700 focus:ring-0"
           placeholder="Přidat popis..."
+          rows="4"
           v-on:blur="updateDescription"
         ></textarea>
 
