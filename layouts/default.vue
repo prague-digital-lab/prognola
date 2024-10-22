@@ -193,15 +193,15 @@
               class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
             >
               <MenuItem v-slot="{ active }" v-for="workspace in workspaces">
-                <NuxtLink
-                  :href="'/' + workspace.url_slug + '/cashflow'"
+                <div
+                @click="chooseWorkspace(workspace.url_slug)"
                   :class="[
                     active ? 'bg-gray-50' : '',
                     'block px-3 py-1 text-base leading-6 text-gray-900',
                   ]"
                 >
                   {{ workspace.name }}
-                </NuxtLink>
+                </div>
               </MenuItem>
             </MenuItems>
           </transition>
@@ -327,7 +327,7 @@ onMounted(async () => {
     return;
   }
 
-  findActiveWorkspace(route.params.workspace);
+  initializeWorkspace(route.params.workspace);
 });
 
 async function loadAvailableWorkspaces() {
@@ -343,7 +343,13 @@ async function loadAvailableWorkspaces() {
   workspaces.value = data.value;
 }
 
-function findActiveWorkspace(url_slug) {
+async function chooseWorkspace(url_slug){
+  initializeWorkspace(url_slug);
+
+  await navigateTo('/' + url_slug + '/cashflow')
+}
+
+function initializeWorkspace(url_slug) {
   let active_url_slug = url_slug;
 
   let workspace_by_slug = workspaces.value.find(
@@ -359,16 +365,6 @@ function findActiveWorkspace(url_slug) {
 }
 
 const sidebarOpen = ref(false);
-
-watch(active_workspace_url_slug, async (newUrlSlug, oldUrlSlug) => {
-  if (newUrlSlug === oldUrlSlug || oldUrlSlug === "") {
-    return;
-  }
-
-  console.log("Changing workspace to: " + newUrlSlug);
-
-  location.href = "/" + newUrlSlug + "/cashflow";
-});
 
 async function submitLogout() {
   const { logout } = useSanctumAuth();
