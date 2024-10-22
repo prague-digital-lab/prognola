@@ -118,6 +118,7 @@ import {
 } from "chart.js";
 import { Bar } from "vue-chartjs";
 import colors from "tailwindcss/colors";
+import { DateTime } from "luxon";
 
 ChartJS.register(
   CategoryScale,
@@ -149,6 +150,32 @@ export default {
 
       chartData: {},
       chartOptions: {
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {
+            const item_index = elements[0].index;
+            const dataset_index = elements[0].datasetIndex;
+
+            // alert(chart.data.labels[item_index] + ": " + chart.data.datasets[dataset_index].data[item_index]);
+
+            const date_from = DateTime.fromFormat(this.from, "yyyy-MM-dd")
+              .plus({ months: item_index })
+              .startOf("month");
+            const date_to = date_from.endOf("month");
+
+            // alert(date_from.toFormat("yyyy-MM-dd"));
+
+            localStorage.setItem("from", date_from.toFormat("yyyy-MM-dd"));
+            localStorage.setItem("to", date_to.toFormat("yyyy-MM-dd"));
+
+            if (dataset_index === 0 || dataset_index === 1) {
+              this.navigateToIncomes();
+            }
+            if (dataset_index === 2 || dataset_index === 3) {
+              this.navigateToExpenses();
+            }
+          }
+        },
+
         plugins: {
           legend: {
             display: false,
@@ -278,6 +305,15 @@ export default {
       this.profit_plan_sum = data.value.profit_plan_sum;
 
       this.loaded = true;
+    },
+
+    async navigateToExpenses() {
+      const route = useRoute()
+      await navigateTo('/' + route.params.workspace + '/expenses')
+    },
+    async navigateToIncomes() {
+      const route = useRoute()
+      await navigateTo('/' + route.params.workspace + '/incomes')
     },
 
     formatPrice(value) {
