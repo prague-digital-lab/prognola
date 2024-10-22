@@ -15,60 +15,72 @@
       <p class="mb-10">Hotovost na pokladnách: 0 Kč</p>
 
       <div
-        class="mb-4 rounded-md border border-red-200 bg-red-50 p-4"
+        class="mb-4 flex flex-col space-y-3 rounded-md border border-red-300 p-4"
         v-if="incomes_due.length > 0 || expenses_due.length > 0"
       >
-        <div class="flex">
-          <div class="flex-shrink-0">
-            <ExclamationCircleIcon
-              class="h-5 w-5 text-red-400"
-              aria-hidden="true"
-            />
-          </div>
-          <div class="ml-3">
-            <h3 class="text-sm font-medium text-red-800">
-              Tyto příjmy a výdaje nebyly uhrazené v naplánovaném termínu.
-            </h3>
-            <div class="mt-2 text-sm text-red-700">
-              Můžete je odložit do budoucna, podle toho, kdy očekáváte jejich
-              uhrazení.
+        <div class="space mb-4 rounded-md border border-red-200 bg-red-50 p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <ExclamationCircleIcon
+                class="h-5 w-5 text-red-400"
+                aria-hidden="true"
+              />
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">
+                <span v-if="incomes_due.length > 0 && expenses_due.length > 0"
+                  >Tyto příjmy a výdaje nebyly uhrazené v naplánovaném
+                  termínu.</span
+                >
+                <span v-if="incomes_due.length > 0 || expenses_due.length === 0"
+                  >Tyto příjmy nebyly uhrazené v naplánovaném termínu.</span
+                >
+                <span v-if="incomes_due.length === 0 || expenses_due.length > 0"
+                  >Tyto výdaje nebyly uhrazené v naplánovaném termínu.</span
+                >
+              </h3>
+              <div class="mt-2 text-sm text-red-700">
+                Můžete je odložit do budoucna, podle toho, kdy očekáváte jejich
+                uhrazení.
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="mb-4" v-if="incomes_due.length > 0">
-        <div class="mb-2 flex justify-between">
-          <div>Zpožděné příjmy</div>
-          <div>
-            <span
-              class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
-              >{{ formatPrice(incomes_due_sum) }} Kč</span
-            >
+        <div v-if="incomes_due.length > 0">
+          <div class="mb-2 flex justify-between">
+            <div>Zpožděné příjmy</div>
+            <div>
+              <span
+                class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
+                >{{ formatPrice(incomes_due_sum) }} Kč</span
+              >
+            </div>
+          </div>
+          <div class="divide-y divide-gray-200 border border-gray-200">
+            <income-row
+              :income="income"
+              v-for="income in incomes_due"
+            ></income-row>
           </div>
         </div>
-        <div class="divide-y divide-gray-200 border border-gray-200">
-          <income-row
-            :income="income"
-            v-for="income in incomes_due"
-          ></income-row>
-        </div>
-      </div>
 
-      <div class="mb-4" v-if="expenses_due.length > 0">
-        <div class="mb-2 flex justify-between">
-          <div>Zpožděné výdaje</div>
-          <div>
-            <span class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700"
-              >{{ formatPrice(expenses_due_sum) }} Kč</span
-            >
+        <div v-if="expenses_due.length > 0">
+          <div class="mb-2 flex justify-between">
+            <div>Zpožděné výdaje</div>
+            <div>
+              <span
+                class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700"
+                >{{ formatPrice(expenses_due_sum) }} Kč</span
+              >
+            </div>
           </div>
-        </div>
-        <div class="divide-y divide-gray-200 border border-gray-200">
-          <expense-row
-            :expense="expense"
-            v-for="expense in expenses_due"
-          ></expense-row>
+          <div class="divide-y divide-gray-200 border border-gray-200">
+            <expense-row
+              :expense="expense"
+              v-for="expense in expenses_due"
+            ></expense-row>
+          </div>
         </div>
       </div>
 
