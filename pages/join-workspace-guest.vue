@@ -7,20 +7,26 @@
     <div
       class="flex w-1/2 select-none flex-col space-y-4 rounded-2xl border border-gray-800 bg-gray-700/20 px-5 py-5 text-center text-gray-200"
     >
-      <p v-if="email" class="text-gray-300">Pro připojení k organizaci se musíte přihlásit jako <span class="text-white">{{ email }}</span>.</p>
+      <p v-if="email" class="text-gray-300">
+        Pro připojení k organizaci se musíte přihlásit jako
+        <span class="text-white">{{ email }}</span
+        >.
+      </p>
       <p v-else>Pro připojení k organizaci se musíte přihlásit.</p>
-      <div class="grid  gap-2 grid-cols-2">
-      <nuxt-link href="/login"
-        class="cursor-pointer rounded-md border border-gray-800 bg-gray-700 px-3 py-1 text-sm"
-      >
-        Přihlásit se
-      </nuxt-link>
+      <div class="grid grid-cols-2 gap-2">
+        <nuxt-link
+          href="/login"
+          class="cursor-pointer rounded-md border border-gray-800 bg-gray-700 px-3 py-1 text-sm"
+        >
+          Přihlásit se
+        </nuxt-link>
 
-      <nuxt-link href="/register"
-        class="cursor-pointer rounded-md border border-gray-800 bg-gray-700 px-3 py-1 text-sm"
-      >
-        Registrovat účet
-      </nuxt-link>
+        <nuxt-link
+          href="/register"
+          class="cursor-pointer rounded-md border border-gray-800 bg-gray-700 px-3 py-1 text-sm"
+        >
+          Registrovat účet
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -37,12 +43,14 @@ useHead({
 
 const email = ref("");
 
-onMounted( async () => {
+onMounted(async () => {
   const route = useRoute();
   email.value = route.query.email;
 
   const { isAuthenticated } = useSanctumAuth();
-  if(isAuthenticated === true) {
+  const user = useSanctumUser();
+
+  if (isAuthenticated.value === true && email.value === user.value.email) {
     await navigateTo("/join-workspace");
   }
 });
