@@ -62,7 +62,7 @@ async function joinWorkspace(workspace) {
 
 onMounted(async () => {
   if (workspaces.value.length === 0) {
-    await navigateTo("/entry");
+    await navigateTo("/create_workspace");
   }
 });
 </script>
