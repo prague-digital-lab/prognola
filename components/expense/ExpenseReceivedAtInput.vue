@@ -64,7 +64,7 @@ export default {
 <template>
   <div class="relative">
     <p
-      class="mb-3 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100"
+      class="mb-3 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100 dark:hover:bg-zinc-900 dark:text-zinc-400"
       @click="expanded ? close() : expand()"
     >
       <svg
@@ -73,7 +73,7 @@ export default {
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="me-2 inline-block size-5 text-gray-600"
+        class="me-2 inline-block size-5 text-gray-600 dark:text-zinc-500"
       >
         <path
           stroke-linecap="round"

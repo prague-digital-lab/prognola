@@ -90,7 +90,7 @@ export default {
 <template>
   <div class="relative">
     <p
-      class="text-xs mb-7 rounded px-1 py-1 text-gray-800 hover:bg-gray-100 dark:text-zinc-400"
+      class="text-xs mb-7 rounded px-1 py-1 text-gray-800 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
       @click="expanded ? close() : expand()"
     >
       <svg
