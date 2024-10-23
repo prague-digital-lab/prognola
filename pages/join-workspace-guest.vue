@@ -42,7 +42,7 @@ onMounted( async () => {
   email.value = route.query.email;
 
   const { isAuthenticated } = useSanctumAuth();
-  if(isAuthenticated){
+  if(isAuthenticated === true) {
     await navigateTo("/join-workspace");
   }
 });

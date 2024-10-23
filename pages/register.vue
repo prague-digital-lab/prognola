@@ -53,7 +53,7 @@
 
         <input
           v-model="password_confirmation"
-          id="password"
+          id="password_confirmation"
           name="password"
           type="password"
           autocomplete="current-password"
