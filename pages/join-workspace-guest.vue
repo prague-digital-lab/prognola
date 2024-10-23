@@ -15,14 +15,14 @@
       <p v-else>Pro připojení k organizaci se musíte přihlásit.</p>
       <div class="grid grid-cols-2 gap-2">
         <div
-            @click="login"
+          @click="login"
           class="cursor-pointer rounded-md border border-gray-800 bg-gray-700 px-3 py-1 text-sm"
         >
           Přihlásit se
         </div>
 
         <div
-            @click="register"
+          @click="register"
           class="cursor-pointer rounded-md border border-gray-800 bg-gray-700 px-3 py-1 text-sm"
         >
           Registrovat účet
@@ -55,18 +55,24 @@ onMounted(async () => {
   }
 });
 
-async function login(){
-  const { logout } = useSanctumAuth();
+async function login() {
+  const { isAuthenticated } = useSanctumAuth();
+  if (isAuthenticated.value === true) {
+    const { logout } = useSanctumAuth();
 
-  await logout();
+    await logout();
+  }
 
   await navigateTo("/login");
 }
 
-async function register(){
-  const { logout } = useSanctumAuth();
+async function register() {
+  const { isAuthenticated } = useSanctumAuth();
+  if (isAuthenticated.value === true) {
+    const { logout } = useSanctumAuth();
 
-  await logout();
+    await logout();
+  }
 
   await navigateTo("/register");
 }
