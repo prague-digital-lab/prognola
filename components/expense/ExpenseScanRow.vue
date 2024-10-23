@@ -1,7 +1,7 @@
 <template>
   <div class="w-full text-base text-slate-500">
     <div
-      class="mb-2 flex items-center justify-between rounded-md border border-gray-200 bg-white px-5 py-2 shadow-sm hover:bg-gray-hover active:bg-gray-100"
+      class="mb-2 flex items-center justify-between rounded-md border border-gray-200 bg-white px-5 py-2 shadow-sm hover:bg-gray-hover active:bg-gray-100 dark:bg-zinc-900 dark:text-zinc-400 dark:border-zinc-800 dark:hover:bg-zinc-800"
       @click="!expanded ? (expanded = true) : (expanded = false)"
     >
       <div class="flex items-center">
@@ -11,7 +11,7 @@
           :href="scan.file_url"
           title="Otevřít v novém panelu"
           target="_blank"
-          class="ms-2 inline-block rounded-md p-1 hover:bg-gray-100 active:bg-gray-200"
+          class="ms-2 inline-block rounded-md p-1 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-zinc-900"
         >
           <LinkIcon class="h-4 w-4" />
         </a>

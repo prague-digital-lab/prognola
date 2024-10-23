@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-black dark:text-zinc-300 dark:hover:bg-zinc-900"
+    class="flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/70"
     @click="navigateToIncome"
   >
     <div class="flex text-base">
