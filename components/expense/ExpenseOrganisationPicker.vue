@@ -4,16 +4,16 @@
       <div class="flex">
         <PopoverButton
           :class="open ? 'bg-gray-200' : ''"
-          class="text-xs mb-7 me-2 rounded py-1 pe-3 ps-1 text-gray-800 hover:bg-gray-100 active:bg-gray-200"
+          class="text-xs mb-7 me-2 rounded py-1 pe-3 ps-1 text-gray-800 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-zinc-900"
         >
-          <p class="flex text-gray-800">
+          <p class="flex text-gray-800 dark:text-zinc-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="me-2 inline-block size-5"
+              class="me-3 inline-block size-5"
             >
               <path
                 stroke-linecap="round"
@@ -22,10 +22,10 @@
               />
             </svg>
 
-            <span v-if="selected_organisation" class="text-left text-gray-700">
+            <span v-if="selected_organisation" class="text-left text-gray-700 dark:text-zinc-400">
               {{ selected_organisation.name }}
             </span>
-            <span v-else class="text-gray-500"> zvolit organizaci </span>
+            <span v-else class="text-gray-500 dark:text-zinc-500"> zvolit organizaci </span>
           </p>
         </PopoverButton>
 
@@ -36,7 +36,7 @@
             '/organisations/' +
             selected_organisation.uuid
           "
-          class="text-xs mb-7 flex cursor-default items-center rounded px-2 py-1 text-gray-500 duration-100 hover:bg-gray-100 active:bg-gray-200/80"
+          class="text-xs mb-7 flex cursor-default items-center rounded px-2 py-1 text-gray-500 duration-100 hover:bg-gray-100 active:bg-gray-200/80 dark:hover:bg-zinc-800"
           v-if="selected_organisation"
         >
           <chevron-double-right-icon class="h-4 w-4 text-gray-500" />
@@ -55,10 +55,10 @@
           v-slot="{ close }"
           class="absolute left-[-260px] top-0 z-10 w-[250px]"
         >
-          <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
-            <div class="relative bg-white p-2">
+          <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 dark:border dark:border-zinc-700">
+            <div class="relative bg-white dark:bg-zinc-950 p-2">
               <input
-                class="mb-2 w-full rounded border-gray-200 py-1 text-base text-gray-700 focus:border-gray-200 focus:ring-0"
+                class="mb-2 w-full rounded border-gray-200 dark:text-zinc-300 py-1 text-base text-gray-700 focus:border-gray-200 focus:ring-0 dark:bg-black dark:border-zinc-800"
                 type="text"
                 placeholder="Název organizace..."
                 v-model="organisation_name_filter"
@@ -66,7 +66,7 @@
 
               <div class="max-h-[50vh] overflow-auto">
                 <p
-                  class="rounded-md px-2 py-1 text-base text-gray-700 hover:bg-gray-hover active:bg-gray-100"
+                  class="rounded-md px-2 py-1 text-base text-gray-700 dark:text-zinc-400 hover:bg-gray-hover active:bg-gray-100 dark:hover:bg-zinc-900"
                   v-for="organisation in filtered_organisations"
                   @click="selectOrganisation(organisation, close)"
                 >
