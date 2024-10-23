@@ -27,23 +27,17 @@
 
       <form class="space-y-6" v-on:submit.prevent="submitRegister">
         <p class="mb-0 text-base text-gray-200">Emailová adresa</p>
-        <div class="relative -space-y-px rounded-md shadow-sm">
-          <div
-            class="pointer-events-none absolute inset-0 z-10 rounded-md ring-1 ring-inset ring-gray-300"
-          />
-          <div class="mb-4x">
-            <input
-              v-model="email"
-              id="email-address"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required=""
-              class="relative block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-              placeholder="Emailová adresa"
-            />
-          </div>
-        </div>
+
+        <input
+          v-model="email"
+          id="email-address"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required=""
+          class=" text-white mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base"
+          placeholder="Emailová adresa"
+        />
 
         <p class="mb-0 text-base text-gray-200">Heslo</p>
         <input
@@ -53,7 +47,7 @@
           type="password"
           autocomplete="current-password"
           required=""
-          class="relative block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+          class="text-white mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base"
           placeholder="Heslo"
         />
 
@@ -64,7 +58,7 @@
           type="password"
           autocomplete="current-password"
           required=""
-          class="relative block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+          class="text-white mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base"
           placeholder="Heslo znovu"
         />
 
@@ -100,10 +94,6 @@
         </div>
       </form>
 
-      <!--      <p class="text-center text-base leading-6 text-gray-500">-->
-      <!--        Not a member?-->
-      <!--        <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Start a 14-day free trial</a>-->
-      <!--      </p>-->
     </div>
   </div>
 </template>
