@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loaded">
+  <div>
     <page-content-header>
       <template v-slot:title>
         <div class="flex items-center justify-between">
@@ -12,7 +12,29 @@
       </template>
     </page-content-header>
 
-    <div></div>
+    <table class="mb-4 w-1/2 border-collapse">
+      <tbody class="gap-2 divide-y divide-zinc-200">
+        <tr class="" v-for="user in users">
+          <td class="py-2">
+            <span class="me-10">{{ user.name }}</span
+            ><br />
+            <span class="font-light text-gray-500">{{ user.email }}</span>
+          </td>
+
+          <td class="py-2">
+            <span v-if="user.pivot.role === 'owner'">vlastník</span>
+            <span v-if="user.pivot.role === 'admin'">správce</span>
+            <span v-if="user.pivot.role === 'member'">uživatel</span>
+            <span v-if="user.pivot.role === 'invited'">pozvaný</span>
+          </td>
+
+          <td>
+            <span @click="revokeInvite(user)" class="cursor-pointer" v-if="user.pivot.role === 'invited'">zrušit pozvánku</span>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
 
     <div class="mb-4">
       <form v-on:submit.prevent="invite">
@@ -63,20 +85,26 @@ const loaded = ref(false);
 
 const invited_user_email = ref("");
 
-onMounted(async () => {
-  // const { data } = await useAsyncData("user", () =>
-  //   client("/api/user/", {
-  //     method: "GET",
-  //   }),
-  // );
-  //
-  // user_name.value = data.value.name;
+const { data: users } = await useAsyncData("users", () =>
+  client("/api/" + route.params.workspace + "/users", {
+    method: "GET",
+  }),
+);
 
-  loaded.value = true;
-});
+// onMounted(async () => {
+//   // const { data } = await useAsyncData("user", () =>
+//   //   client("/api/user/", {
+//   //     method: "GET",
+//   //   }),
+//   // );
+//   //
+//   // user_name.value = data.value.name;
+//
+//   loaded.value = true;
+// });
 
 async function invite() {
-  const route = useRoute()
+  const route = useRoute();
 
   const { data } = await useAsyncData("user", () =>
     client("/api/" + route.params.workspace + "/users", {
@@ -86,5 +114,19 @@ async function invite() {
       },
     }),
   );
+
+  refreshNuxtData()
+}
+
+async function revokeInvite(user) {
+  const route = useRoute();
+
+  const { data } = await useAsyncData("user", () =>
+      client("/api/" + route.params.workspace + "/users/" + user.uuid + '/revoke-invite', {
+        method: "PATCH",
+      }),
+  );
+
+  refreshNuxtData()
 }
 </script>
