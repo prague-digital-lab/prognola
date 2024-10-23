@@ -3,7 +3,7 @@
     <Menu as="div" class="relative inline-block text-left">
       <div>
         <MenuButton
-          class="rounded-md px-2 py-1 text-sm text-gray-400 duration-100 hover:bg-gray-100 active:bg-gray-200"
+          class="rounded-md px-2 py-1 text-sm text-gray-400 duration-100 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-zinc-900"
           >+ přidat platbu
         </MenuButton>
       </div>
