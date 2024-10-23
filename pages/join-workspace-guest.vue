@@ -14,19 +14,19 @@
       </p>
       <p v-else>Pro připojení k organizaci se musíte přihlásit.</p>
       <div class="grid grid-cols-2 gap-2">
-        <nuxt-link
-          href="/login"
+        <div
+            @click="login"
           class="cursor-pointer rounded-md border border-gray-800 bg-gray-700 px-3 py-1 text-sm"
         >
           Přihlásit se
-        </nuxt-link>
+        </div>
 
-        <nuxt-link
-          href="/register"
+        <div
+            @click="register"
           class="cursor-pointer rounded-md border border-gray-800 bg-gray-700 px-3 py-1 text-sm"
         >
           Registrovat účet
-        </nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -54,4 +54,20 @@ onMounted(async () => {
     await navigateTo("/join-workspace");
   }
 });
+
+async function login(){
+  const { logout } = useSanctumAuth();
+
+  await logout();
+
+  await navigateTo("/login");
+}
+
+async function register(){
+  const { logout } = useSanctumAuth();
+
+  await logout();
+
+  await navigateTo("/register");
+}
 </script>
