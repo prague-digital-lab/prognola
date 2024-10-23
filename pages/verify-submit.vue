@@ -41,7 +41,10 @@ export default {
         }),
       );
 
-      await navigateTo("/entry");
+      const { refreshIdentity } = useSanctumAuth();
+      await refreshIdentity();
+
+      await navigateTo("/join-workspace");
     },
   },
 };
