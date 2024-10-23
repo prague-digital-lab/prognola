@@ -261,6 +261,18 @@
                     </NuxtLink>
                   </MenuItem>
 
+                  <MenuItem v-slot="{ active }">
+                    <NuxtLink
+                        href="/"
+                        :class="[
+                        active ? 'bg-gray-50' : '',
+                        'block px-3 py-1 text-base leading-6 text-gray-900',
+                      ]"
+                    >
+                      Úvod webu
+                    </NuxtLink>
+                  </MenuItem>
+
                   <a
                     @click="submitLogout"
                     :class="[
