@@ -4,23 +4,17 @@
   </Head>
 
   <div v-if="loaded">
-    <div class="mb-4 h-screen md:flex md:justify-between">
-      <div class="me-5 w-full">
-        <div class="flex justify-between">
-          <input
-            type="text"
-            class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
-            placeholder="Název"
-            v-model="input_name"
-            v-on:blur="updateName"
-          />
-
-          <div>
-            <!--            <organisation-options :organisation="organisation"/>-->
-          </div>
-        </div>
-
-        <!--        <p class="mb-5 text-base text-gray-500">{{ organisation.type }}</p>-->
+    <page-content-header>
+      <template v-slot:title>
+        <input
+          type="text"
+          class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight dark:text-zinc-200"
+          placeholder="Název"
+          v-model="input_name"
+          v-on:blur="updateName"
+        />
+      </template>
+      <template v-slot:subtitle>
         <p
           class="mb-5 text-base text-gray-500"
           v-if="
@@ -56,17 +50,23 @@
         >
           Dodavatel a zákazník
         </p>
+      </template>
+    </page-content-header>
 
+    <div class="mb-4 md:flex md:justify-between">
+      <div class="me-5 w-full">
         <textarea
           v-model="input_internal_note"
-          class="mb-5 w-full border-none bg-transparent p-0 text-base text-slate-700 focus:ring-0"
+          class="mb-5 w-full border-none bg-transparent p-0 text-base text-slate-700 focus:ring-0 dark:text-zinc-300"
           placeholder="Přidat popis..."
           v-on:blur="updateInternalNote"
         ></textarea>
 
-        <p class="mb-2 text-gray-700">Fakturační údaje</p>
-        <div class="mb-4 rounded-md border border-gray-200 p-5">
-          <p class="mb-2 text-red-500">
+        <p class="mb-2 text-gray-700 dark:text-zinc-400">Fakturační údaje</p>
+        <div
+          class="mb-4 rounded-md border border-zinc-200 p-5 dark:border-zinc-800 dark:text-zinc-300"
+        >
+          <p class="mb-2 text-red-500 dark:text-red-200">
             Údaje momentálně nelze upravit. Funkci připravujeme.
           </p>
 
@@ -80,7 +80,7 @@
 
         <div class="mb-2 flex justify-between">
           <div>
-            <p class="text-base text-gray-600">Výdaje</p>
+            <p class="text-base text-gray-600 dark:text-zinc-400">Výdaje</p>
           </div>
           <div>
             <button-secondary @click="openModal"
@@ -111,6 +111,7 @@
 <script setup>
 import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
 import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 
 definePageMeta({
   layout: "default",

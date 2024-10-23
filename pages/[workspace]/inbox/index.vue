@@ -1,14 +1,11 @@
 <template>
   <div>
-    <div class="mb-4 md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
-        <h4
-          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
-        >
-          Schránka
-        </h4>
-      </div>
-    </div>
+    <page-content-header>
+      <template v-slot:title>
+        <heading>Schránka</heading>
+      </template>
+    </page-content-header>
+
 
     <div
       class="mb-4 h-auto divide-y divide-gray-200 rounded border border-gray-200 bg-white"
@@ -39,6 +36,9 @@
 </template>
 
 <script setup>
+import Heading from "~/components/ui/Heading.vue";
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+
 useHead({
   title: "Ke zpracování - Prognola",
 });

@@ -4,7 +4,7 @@
       <page-content-header>
         <template v-slot:title>
           <h2
-            class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
+            class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight dark:text-zinc-200"
           >
             Cash flow
           </h2>
@@ -15,7 +15,7 @@
             <input
               type="date"
               v-model="from"
-              class="w-full rounded-md border border-gray-200 py-1.5 text-base text-gray-700 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:block sm:leading-6"
+              class="w-full rounded-md border border-gray-200 py-1.5 text-base text-gray-700 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:block sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
             />
           </div>
 
@@ -23,7 +23,7 @@
             <input
               type="date"
               v-model="to"
-              class="w-full rounded-md border border-gray-200 py-1.5 text-base text-gray-700 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:block sm:leading-6"
+              class="w-full rounded-md border border-gray-200 py-1.5 text-base text-gray-700 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:block sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
             />
           </div>
         </template>
@@ -32,10 +32,10 @@
       <div class="mb-7">
         <dl class="grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
           >
             <nuxt-link href="income">
-              <dt class="truncate text-gray-500">Příjmy</dt>
+              <dt class="truncate text-gray-500 dark:text-zinc-400">Příjmy</dt>
             </nuxt-link>
             <dd
               class="mt-1 text-xl font-semibold tracking-tight text-indigo-600"
@@ -49,10 +49,10 @@
             </dd>
           </div>
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
           >
             <nuxt-link href="expenses">
-              <dt class="truncate text-gray-500">Výdaje</dt>
+              <dt class="truncate text-gray-500 dark:text-zinc-400">Výdaje</dt>
             </nuxt-link>
             <dd class="mt-1 text-xl font-semibold tracking-tight text-red-600">
               {{ formatPrice(expense_sum) }} Kč
@@ -64,10 +64,12 @@
             </dd>
           </div>
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
           >
-            <dt class="truncate text-gray-500">Výsledek</dt>
-            <dd class="mt-1 text-xl font-semibold tracking-tight text-gray-900">
+            <dt class="truncate text-gray-500 dark:text-zinc-400">Výsledek</dt>
+            <dd
+              class="mt-1 text-xl font-semibold tracking-tight text-gray-900 dark:text-zinc-200"
+            >
               {{ formatPrice(profit_sum + profit_plan_sum) }} Kč
             </dd>
           </div>

@@ -11,7 +11,7 @@
           leave-from="opacity-100"
           leave-to="opacity-0"
         >
-          <div class="fixed inset-0 bg-gray-900/80" />
+          <div class="fixed inset-0 bg-zinc-900/80" />
         </TransitionChild>
 
         <div class="fixed inset-0 flex">
@@ -69,8 +69,8 @@
                             :href="item.href"
                             :class="[
                               item.current
-                                ? 'bg-gray-50 font-medium text-indigo-600'
-                                : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
+                                ? 'bg-zinc-50 font-medium text-indigo-600'
+                                : 'text-zinc-700 hover:bg-zinc-50 hover:text-indigo-600',
                               'group flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6',
                             ]"
                           >
@@ -79,7 +79,7 @@
                               :class="[
                                 item.current
                                   ? 'text-indigo-600'
-                                  : 'text-gray-400 group-hover:text-indigo-600',
+                                  : 'text-zinc-400 group-hover:text-indigo-600',
                                 'h-6 w-6 shrink-0',
                               ]"
                               aria-hidden="true"
@@ -90,13 +90,13 @@
                       </ul>
                     </li>
                     <li>
-                      <!--                      <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>-->
+                      <!--                      <div class="text-xs font-semibold leading-6 text-zinc-400">Your teams</div>-->
                       <!--                      <ul role="list" class="-mx-2 mt-2 space-y-1">-->
                       <!--                        <li v-for="team in teams" :key="team.name">-->
                       <!--                          <NuxtLink :href="team.href"-->
-                      <!--                                    :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6']">-->
+                      <!--                                    :class="[team.current ? 'bg-zinc-50 text-indigo-600' : 'text-zinc-700 hover:bg-zinc-50 hover:text-indigo-600', 'group flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6']">-->
                       <!--                            <span-->
-                      <!--                                :class="[team.current ? 'border-indigo-600 text-indigo-600' : 'border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium']">{{-->
+                      <!--                                :class="[team.current ? 'border-indigo-600 text-indigo-600' : 'border-zinc-200 text-zinc-400 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium']">{{-->
                       <!--                                team.initial-->
                       <!--                              }}</span>-->
                       <!--                            <span class="truncate">{{ team.name }}</span>-->
@@ -106,8 +106,8 @@
                     </li>
                     <li class="mt-auto">
                       <!--                      <NuxtLink href="#"-->
-                      <!--                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">-->
-                      <!--                        <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"-->
+                      <!--                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6 text-zinc-700 hover:bg-zinc-50 hover:text-indigo-600">-->
+                      <!--                        <Cog6ToothIcon class="h-6 w-6 shrink-0 text-zinc-400 group-hover:text-indigo-600"-->
                       <!--                                       aria-hidden="true"/>-->
                       <!--                        Settings-->
                       <!--                      </NuxtLink>-->
@@ -127,22 +127,22 @@
     >
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
-        class="m-3 flex grow flex-col overflow-y-auto rounded-xl border border-zinc-200 bg-white pb-4 tracking-wide"
+        class="m-3 flex grow flex-col overflow-y-auto rounded-xl border border-zinc-200 bg-white pb-4 tracking-wide dark:border-zinc-800 dark:bg-zinc-900"
       >
         <div
-          class="flex shrink-0 items-center border-b border-zinc-200 px-2 py-3"
+          class="flex shrink-0 items-center border-b border-zinc-200 px-2 py-3 dark:border-zinc-800"
         >
           <nuxt-link
             :href="'/' + route.params.workspace + '/cashflow'"
-            class="flex w-full cursor-default items-center rounded-md py-1 pe-3 ps-2 duration-100 hover:bg-gray-200/50 active:hover:bg-gray-200/80"
+            class="flex w-full cursor-default items-center rounded-md py-1 pe-3 ps-2 duration-100 hover:bg-zinc-200/50 active:hover:bg-zinc-200/80 dark:hover:bg-zinc-800 dark:active:hover:bg-zinc-700/80"
           >
             <nuxt-img
               src="/img/logo_prazska_laborator.png"
-              width="28"
-              class="me-3"
+              width="20"
+              class="me-4 ms-1"
             />
 
-            <p class="text-[15px] text-zinc-800">Prognola</p>
+            <p class="text-[15px] text-zinc-800 dark:text-zinc-200">Prognola</p>
           </nuxt-link>
         </div>
 
@@ -153,11 +153,11 @@
     <!-- Top navbar and content -->
     <div class="lg:pl-60">
       <div
-        class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-gray-50 px-4 sm:gap-x-6 sm:px-6 lg:px-4"
+        class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-b border-zinc-200 bg-zinc-50 px-4 sm:gap-x-6 sm:px-6 lg:px-4 dark:border-zinc-800 dark:bg-black"
       >
         <button
           type="button"
-          class="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+          class="-m-2.5 p-2.5 text-zinc-700 lg:hidden"
           @click="sidebarOpen = true"
         >
           <span class="sr-only">Open sidebar</span>
@@ -165,18 +165,18 @@
         </button>
 
         <!-- Separator -->
-        <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
+        <div class="h-6 w-px bg-zinc-200 lg:hidden" aria-hidden="true" />
 
         <Menu as="div" class="relative">
           <MenuButton class="flex items-center">
             <span class="hidden lg:flex lg:items-center">
               <span
-                class="text-base leading-6 text-gray-700"
+                class="text-base leading-6 text-zinc-700 dark:text-zinc-500"
                 aria-hidden="true"
                 >{{ active_workspace.name }}</span
               >
               <ChevronDownIcon
-                class="ml-2 h-5 w-5 text-gray-400"
+                class="ml-2 h-5 w-5 text-zinc-400"
                 aria-hidden="true"
               />
             </span>
@@ -190,14 +190,14 @@
             leave-to-class="transform opacity-0 scale-95"
           >
             <MenuItems
-              class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+              class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-zinc-900/5 focus:outline-none dark:bg-zinc-900 dark:ring-zinc-700"
             >
               <MenuItem v-slot="{ active }" v-for="workspace in workspaces">
                 <div
                   @click="chooseWorkspace(workspace.url_slug)"
                   :class="[
-                    active ? 'bg-gray-50' : '',
-                    'block px-3 py-1 text-base leading-6 text-gray-900',
+                    active ? 'bg-zinc-50' : '',
+                    'block px-3 py-1 text-base leading-6 text-zinc-900 dark:text-zinc-400',
                   ]"
                 >
                   {{ workspace.name }}
@@ -210,10 +210,10 @@
         <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
           <form class="relative flex flex-1" action="#" method="GET">
             <label for="search-field" class="sr-only">Search</label>
-            <!--            <MagnifyingGlassIcon class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"-->
+            <!--            <MagnifyingGlassIcon class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-zinc-400"-->
             <!--                                 aria-hidden="true"/>-->
             <!--            <input id="search-field"-->
-            <!--                   class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-base"-->
+            <!--                   class="block h-full w-full border-0 py-0 pl-8 pr-0 text-zinc-900 placeholder:text-zinc-400 focus:ring-0 sm:text-base"-->
             <!--                   placeholder="Vyhledávání" type="search" name="search"/>-->
           </form>
           <div class="flex items-center gap-x-4 lg:gap-x-6">
@@ -222,18 +222,18 @@
               <MenuButton class="-m-1.5 flex items-center p-1.5">
                 <span class="sr-only">Open user menu</span>
                 <!--                <img-->
-                <!--                  class="h-6 w-6 rounded-full bg-gray-50"-->
+                <!--                  class="h-6 w-6 rounded-full bg-zinc-50"-->
                 <!--                  :src="user.profile_photo_url"-->
                 <!--                  alt=""-->
                 <!--                />-->
                 <span class="hidden lg:flex lg:items-center">
                   <span
-                    class="ml-4 text-base leading-6 text-gray-700"
+                    class="ml-4 text-base leading-6 text-zinc-700 dark:text-zinc-500"
                     aria-hidden="true"
                     >{{ user.name }}</span
                   >
                   <ChevronDownIcon
-                    class="ml-2 h-5 w-5 text-gray-400"
+                    class="ml-2 h-5 w-5 text-zinc-400"
                     aria-hidden="true"
                   />
                 </span>
@@ -247,14 +247,14 @@
                 leave-to-class="transform opacity-0 scale-95"
               >
                 <MenuItems
-                  class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+                  class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-zinc-900/5 focus:outline-none"
                 >
                   <MenuItem v-slot="{ active }">
                     <NuxtLink
                       :href="'/' + route.params.workspace + '/settings'"
                       :class="[
-                        active ? 'bg-gray-50' : '',
-                        'block px-3 py-1 text-base leading-6 text-gray-900',
+                        active ? 'bg-zinc-50' : '',
+                        'block px-3 py-1 text-base leading-6 text-zinc-900',
                       ]"
                     >
                       Nastavení firmy
@@ -263,10 +263,10 @@
 
                   <MenuItem v-slot="{ active }">
                     <NuxtLink
-                        href="/"
-                        :class="[
-                        active ? 'bg-gray-50' : '',
-                        'block px-3 py-1 text-base leading-6 text-gray-900',
+                      href="/"
+                      :class="[
+                        active ? 'bg-zinc-50' : '',
+                        'block px-3 py-1 text-base leading-6 text-zinc-900',
                       ]"
                     >
                       Úvod webu
@@ -276,7 +276,7 @@
                   <a
                     @click="submitLogout"
                     :class="[
-                      'block cursor-pointer px-3 py-1 text-base leading-6 text-gray-900',
+                      'block cursor-pointer px-3 py-1 text-base leading-6 text-zinc-900',
                     ]"
                   >
                     Odhlásit se
@@ -319,7 +319,7 @@ import Sidebar from "~/components/ui/sidebar/Sidebar.vue";
 useHead({
   title: "Prognola",
   bodyAttrs: {
-    class: "bg-gray-50",
+    class: "bg-zinc-50 dark:bg-black",
   },
 });
 

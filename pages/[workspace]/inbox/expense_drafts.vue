@@ -1,16 +1,20 @@
 <template>
   <div>
-    <div class="mb-4 md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
-        <h4
-          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
-        >
-          Výdaje ke zpracování
-        </h4>
-
-        <p class="text-base text-gray-500">
+    <page-content-header>
+      <template v-slot:title>
+        <heading>Výdaje ke zpracování</heading>
+      </template>
+      <template v-slot:subtitle>
+        <p class="text-base text-gray-500 dark:text-zinc-400">
           Celkem výdajů ke zpracování: {{ expenses.length }}
         </p>
+      </template>
+    </page-content-header>
+
+    <div class="mb-4 md:flex md:items-center md:justify-between">
+      <div class="min-w-0 flex-1">
+
+
       </div>
     </div>
 
@@ -51,6 +55,9 @@
 </template>
 
 <script setup>
+import Heading from "~/components/ui/Heading.vue";
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+
 definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],

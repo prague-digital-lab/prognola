@@ -1,5 +1,7 @@
 <template>
-  <nav class="flex flex-1 flex-col divide-y divide-zinc-200">
+  <nav
+    class="flex flex-1 flex-col divide-y divide-zinc-200 dark:divide-zinc-800"
+  >
     <ul role="list" class="space-y-1 py-2">
       <MenuLink
         name="Cash flow"

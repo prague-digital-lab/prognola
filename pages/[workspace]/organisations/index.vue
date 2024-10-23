@@ -1,14 +1,10 @@
 <template>
   <div>
-    <div class="mb-4 md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
-        <h4
-          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
-        >
-          Osoby a firmy
-        </h4>
-      </div>
-    </div>
+    <page-content-header>
+      <template v-slot:title>
+        <heading>Osoby a firmy</heading>
+      </template>
+    </page-content-header>
 
     <div
       v-if="organisations.length === 0"
@@ -48,6 +44,9 @@
 </template>
 
 <script setup>
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+import Heading from "~/components/ui/Heading.vue";
+
 useHead({
   title: "Organizace - Prognola",
 });

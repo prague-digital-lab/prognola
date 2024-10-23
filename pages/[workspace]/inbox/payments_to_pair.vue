@@ -1,18 +1,15 @@
 <template>
   <div>
-    <div class="mb-4 md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
-        <h4
-          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
-        >
-          Platby ke spárování
-        </h4>
-
-        <p class="text-base text-gray-500" v-if="loaded">
+    <page-content-header>
+      <template v-slot:title>
+        <heading>Platby ke spárování</heading>
+      </template>
+      <template v-slot:subtitle>
+        <p class="text-base text-gray-500 dark:text-zinc-400" v-if="loaded">
           Celkem plateb ke spárování: {{ payments.length }}
         </p>
-      </div>
-    </div>
+      </template>
+    </page-content-header>
 
     <div
       class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
@@ -37,6 +34,9 @@
 </template>
 
 <script setup>
+import Heading from "~/components/ui/Heading.vue";
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+
 definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],

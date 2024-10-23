@@ -9,7 +9,7 @@
         <div class="flex items-center justify-between">
           <input
             type="text"
-            class="w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
+            class="w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight dark:text-zinc-200"
             placeholder="Název účtu"
             v-model="input_name"
             v-on:blur="updateName"
@@ -21,7 +21,7 @@
       <template v-slot:subtitle>
         <div class="mb-5">
           <span
-            class="me-2 rounded-md border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
+            class="me-2 rounded-md border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
           >
             Číslo účtu: {{ bank_account.account_number }}/{{
               bank_account.bank_number
@@ -29,7 +29,7 @@
           </span>
 
           <span
-            class="me-2 rounded-md border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600"
+            class="me-2 rounded-md border border-gray-300 bg-white px-[10px] py-1 text-sm text-gray-600 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
             v-if="bank_account.synced_at"
           >
             <span v-if="bank_account.bank === 'fio'">Platby staženy</span>
@@ -46,7 +46,7 @@
             <input
               type="date"
               v-model="from"
-              class="border-1 block w-full rounded-md border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+              class="border-1 block w-full rounded-md border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
             />
           </div>
 
@@ -54,7 +54,7 @@
             <input
               type="date"
               v-model="to"
-              class="border-1 block w-full rounded-md border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
+              class="border-1 block w-full rounded-md border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
             />
           </div>
         </div>

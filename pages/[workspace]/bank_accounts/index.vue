@@ -2,11 +2,7 @@
   <div>
     <page-content-header>
       <template v-slot:title>
-        <h4
-          class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
-        >
-          Účty
-        </h4>
+        <heading> Účty </heading>
       </template>
     </page-content-header>
 
@@ -55,6 +51,7 @@
 
 <script setup>
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+import Heading from "~/components/ui/Heading.vue";
 
 useHead({
   title: "Účty - Prognola",

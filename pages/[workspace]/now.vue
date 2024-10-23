@@ -3,16 +3,12 @@
     <div>
       <page-content-header>
         <template v-slot:title>
-          <h2
-            class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
-          >
-            Nadcházející platby
-          </h2>
+          <heading>Nadcházející platby</heading>
         </template>
       </page-content-header>
 
-      <p class="">Aktuální zůstatek napříč účty: 0 Kč</p>
-      <p class="mb-10">Hotovost na pokladnách: 0 Kč</p>
+      <p class="dark:text-zinc-400">Aktuální zůstatek napříč účty: 0 Kč</p>
+      <p class="mb-10 dark:text-zinc-400">Hotovost na pokladnách: 0 Kč</p>
 
       <div
         class="mb-4 flex flex-col space-y-3 rounded-md border border-red-300 p-4"
@@ -183,6 +179,7 @@
 import { DateTime } from "luxon";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import { ExclamationCircleIcon } from "@heroicons/vue/20/solid";
+import Heading from "~/components/ui/Heading.vue";
 
 useHead({
   title: "Nadcházející platby - Prognola",

@@ -1,56 +1,49 @@
 <template>
   <div>
-    <div class="mb-4 md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
-        <h4
-          class="mb-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight"
-        >
-          Výdaje
-        </h4>
-
-        <p class="text-base text-gray-500">
+    <page-content-header>
+      <template v-slot:title>
+        <heading>Výdaje</heading>
+      </template>
+      <template v-slot:subtitle>
+        <p class="text-base text-gray-500 dark:text-zinc-400" v-if="loaded">
           Celkem: {{ formatPrice(price_sum) }} Kč
         </p>
-      </div>
+      </template>
 
-      <div class="mt-4 flex md:ml-4 md:mt-0">
-        <div class="mt-3">
-          <button-secondary @click="downloadExport">Export</button-secondary>
-        </div>
+      <template v-slot:controls>
+        <div class="mt-4 flex md:ml-4 md:mt-0">
+          <div class="me-2 ">
+            <button-secondary class="h-full" @click="downloadExport">Export</button-secondary>
+          </div>
 
-        <div class="me-2">
-          <div class="mt-2">
-            <select
-              v-model="grouped_by"
-              class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-            >
-              <option :value="null">Seskupit</option>
-              <option value="expense_category">Kategorie</option>
-            </select>
+          <div class="me-2">
+              <select
+                v-model="grouped_by"
+                class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
+              >
+                <option :value="null">Seskupit</option>
+                <option value="expense_category">Kategorie</option>
+              </select>
+          </div>
+
+          <div class="me-2">
+              <input
+                type="date"
+                v-model="from"
+                class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
+              />
+          </div>
+
+          <div>
+              <input
+                type="date"
+                v-model="to"
+                class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
+              />
           </div>
         </div>
-
-        <div class="me-2">
-          <div class="mt-2">
-            <input
-              type="date"
-              v-model="from"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div>
-          <div class="mt-2">
-            <input
-              type="date"
-              v-model="to"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+      </template>
+    </page-content-header>
 
     <div
       v-if="expenses.length === 0"
@@ -108,6 +101,8 @@
 <script setup>
 import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
 import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
+import Heading from "~/components/ui/Heading.vue";
+import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 
 useHead({
   title: "Výdaje - Prognola",
