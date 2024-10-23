@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-between px-3 py-2 hover:bg-gray-hover duration-100"
+    class="flex items-center justify-between px-3 py-2 duration-100 hover:bg-gray-hover"
     @click="navigateToOrganisation"
   >
     <div class="flex text-base">

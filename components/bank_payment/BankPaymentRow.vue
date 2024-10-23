@@ -63,7 +63,7 @@
                 bank_payment.uuid +
                 '/pair'
               "
-              class="inline-block rounded-md border border-gray-200 hover:bg-gray-100 active:bg-gray-200 px-2 py-[2px] text-gray-500"
+              class="inline-block rounded-md border border-gray-200 px-2 py-[2px] text-gray-500 hover:bg-gray-100 active:bg-gray-200"
               >+
             </nuxt-link>
           </td>

@@ -98,7 +98,7 @@ async function unpairPayment(payment) {
     ),
   );
 
-  emit('income-updated');
+  emit("income-updated");
 }
 
 function formatPrice(value) {

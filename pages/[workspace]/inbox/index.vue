@@ -18,7 +18,7 @@
         class="block cursor-default"
       >
         <div
-          class="hover:bg-gray-hover px-3 py-2 text-base text-gray-700 duration-100"
+          class="px-3 py-2 text-base text-gray-700 duration-100 hover:bg-gray-hover"
         >
           Výdaje ke zpracování
         </div>
@@ -29,7 +29,7 @@
         class="block cursor-default"
       >
         <div
-          class="hover:bg-gray-hover px-3 py-2 text-base text-gray-700 duration-100"
+          class="px-3 py-2 text-base text-gray-700 duration-100 hover:bg-gray-hover"
         >
           Platby ke spárování
         </div>

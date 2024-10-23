@@ -17,10 +17,10 @@ definePageMeta({
     </h1>
 
     <p class="mb-[60px] text-[18px] text-gray-300">
-      Představte si, že už nejste nervózní z toho, jak vaše firma v
-      budoucnu vyjde s penězi. <br />
-      Prognola je digitální finanční centrum nové generace. Pro firmy, kterým už nestačí znát
-      zůstatek na firemním účtu.
+      Představte si, že už nejste nervózní z toho, jak vaše firma v budoucnu
+      vyjde s penězi. <br />
+      Prognola je digitální finanční centrum nové generace. Pro firmy, kterým už
+      nestačí znát zůstatek na firemním účtu.
     </p>
 
     <nuxt-link

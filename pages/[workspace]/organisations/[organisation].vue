@@ -117,7 +117,7 @@ definePageMeta({
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
 
-const modal_create = useTemplateRef('modal_create');
+const modal_create = useTemplateRef("modal_create");
 
 function openModal() {
   modal_create.value.openModal();

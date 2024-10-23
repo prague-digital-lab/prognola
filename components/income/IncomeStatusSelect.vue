@@ -111,7 +111,7 @@ export default {
   computed: {
     status() {
       return this.income.payment_status;
-    }
+    },
   },
 };
 </script>

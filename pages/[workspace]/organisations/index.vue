@@ -92,7 +92,9 @@ export default {
         }),
       );
 
-      this.organisations = data.value.sort((a, b) => a.name.localeCompare(b.name));
+      this.organisations = data.value.sort((a, b) =>
+        a.name.localeCompare(b.name),
+      );
 
       this.loaded = true;
     },

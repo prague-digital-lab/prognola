@@ -1,20 +1,20 @@
 <template>
   <div class="flex flex-col items-center text-center">
-    <h1 class="mb-3 text-2xl text-gray-200">Vytvořte novou firmu</h1>
+    <h1 class="mb-3 text-2xl text-gray-200">Vytvořte novou organizaci</h1>
 
     <p class="mb-5 text-gray-500">Později budete moci název změnit.</p>
 
     <div
       class="rounded-2xl border border-gray-800 bg-gray-700/20 px-7 py-7 text-start text-gray-200 md:w-1/2"
     >
-      <p class="mb-2 text-base text-gray-300">Název firmy</p>
+      <p class="mb-2 text-base text-gray-300">Název organizace</p>
 
       <input
         class="mb-10 w-full rounded border border-gray-500 bg-gray-900"
         v-model="name"
       />
 
-      <p class="mb-2 text-base text-gray-300">URL adresa firmy</p>
+      <p class="mb-2 text-base text-gray-300">URL adresa organizace</p>
 
       <input
         class="mb-10 w-full rounded border border-gray-500 bg-gray-900"

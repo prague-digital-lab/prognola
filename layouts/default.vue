@@ -194,7 +194,7 @@
             >
               <MenuItem v-slot="{ active }" v-for="workspace in workspaces">
                 <div
-                @click="chooseWorkspace(workspace.url_slug)"
+                  @click="chooseWorkspace(workspace.url_slug)"
                   :class="[
                     active ? 'bg-gray-50' : '',
                     'block px-3 py-1 text-base leading-6 text-gray-900',
@@ -343,10 +343,10 @@ async function loadAvailableWorkspaces() {
   workspaces.value = data.value;
 }
 
-async function chooseWorkspace(url_slug){
+async function chooseWorkspace(url_slug) {
   initializeWorkspace(url_slug);
 
-  await navigateTo('/' + url_slug + '/cashflow')
+  await navigateTo("/" + url_slug + "/cashflow");
 }
 
 function initializeWorkspace(url_slug) {

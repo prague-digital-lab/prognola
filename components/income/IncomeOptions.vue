@@ -67,7 +67,10 @@ export default {
         v-if="expanded"
         class="absolute left-[-150px] top-[-5px] w-[147px] rounded border border-slate-200 bg-white shadow-sm"
       >
-        <p class="px-3 py-2 text-gray-700 hover:bg-gray-hover duration-100" @click="deleteIncome">
+        <p
+          class="px-3 py-2 text-gray-700 duration-100 hover:bg-gray-hover"
+          @click="deleteIncome"
+        >
           Odstranit výdaj
         </p>
       </div>

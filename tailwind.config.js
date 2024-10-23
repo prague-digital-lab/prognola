@@ -20,9 +20,9 @@ module.exports = {
     },
     extend: {
       colors: {
-        'gray-hover': '#fafafa',
-        'primary': '#18181b',
-      }
+        "gray-hover": "#fafafa",
+        primary: "#18181b",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

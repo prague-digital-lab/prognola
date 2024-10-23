@@ -308,12 +308,12 @@ export default {
     },
 
     async navigateToExpenses() {
-      const route = useRoute()
-      await navigateTo('/' + route.params.workspace + '/expenses')
+      const route = useRoute();
+      await navigateTo("/" + route.params.workspace + "/expenses");
     },
     async navigateToIncomes() {
-      const route = useRoute()
-      await navigateTo('/' + route.params.workspace + '/income')
+      const route = useRoute();
+      await navigateTo("/" + route.params.workspace + "/income");
     },
 
     formatPrice(value) {

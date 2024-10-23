@@ -29,9 +29,13 @@
           </td>
 
           <td>
-            <span @click="revokeInvite(user)" class="cursor-pointer" v-if="user.pivot.role === 'invited'">zrušit pozvánku</span>
+            <span
+              @click="revokeInvite(user)"
+              class="cursor-pointer"
+              v-if="user.pivot.role === 'invited'"
+              >zrušit pozvánku</span
+            >
           </td>
-
         </tr>
       </tbody>
     </table>
@@ -115,18 +119,25 @@ async function invite() {
     }),
   );
 
-  refreshNuxtData()
+  refreshNuxtData();
 }
 
 async function revokeInvite(user) {
   const route = useRoute();
 
   const { data } = await useAsyncData("user", () =>
-      client("/api/" + route.params.workspace + "/users/" + user.uuid + '/revoke-invite', {
+    client(
+      "/api/" +
+        route.params.workspace +
+        "/users/" +
+        user.uuid +
+        "/revoke-invite",
+      {
         method: "PATCH",
-      }),
+      },
+    ),
   );
 
-  refreshNuxtData()
+  refreshNuxtData();
 }
 </script>

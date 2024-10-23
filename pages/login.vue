@@ -13,9 +13,7 @@
       </div>
       <form class="space-y-6" v-on:submit.prevent="submitLogin">
         <div class="">
-          <div
-            class=""
-          />
+          <div class="" />
           <div>
             <input
               v-model="email"
@@ -24,7 +22,7 @@
               type="email"
               autocomplete="email"
               required=""
-              class="mb-4 w-full rounded text-base border border-gray-500 bg-gray-900"
+              class="mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base"
               placeholder="Emailová adresa"
             />
           </div>
@@ -37,7 +35,7 @@
               type="password"
               autocomplete="current-password"
               required=""
-              class="mb-10 w-full rounded text-base border border-gray-500 bg-gray-900"
+              class="mb-10 w-full rounded border border-gray-500 bg-gray-900 text-base"
               placeholder="Heslo"
             />
           </div>

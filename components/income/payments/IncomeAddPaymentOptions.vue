@@ -31,16 +31,16 @@
                 Spárovat s existující platbou
               </button>
             </MenuItem>
-<!--            <MenuItem v-slot="{ active }">-->
-<!--              <button-->
-<!--                :class="[-->
-<!--                  active ? 'bg-gray-hover duration-100' : 'text-gray-900',-->
-<!--                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
-<!--                ]"-->
-<!--              >-->
-<!--                Vytvořit novou platbu-->
-<!--              </button>-->
-<!--            </MenuItem>-->
+            <!--            <MenuItem v-slot="{ active }">-->
+            <!--              <button-->
+            <!--                :class="[-->
+            <!--                  active ? 'bg-gray-hover duration-100' : 'text-gray-900',-->
+            <!--                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
+            <!--                ]"-->
+            <!--              >-->
+            <!--                Vytvořit novou platbu-->
+            <!--              </button>-->
+            <!--            </MenuItem>-->
           </div>
         </MenuItems>
       </transition>

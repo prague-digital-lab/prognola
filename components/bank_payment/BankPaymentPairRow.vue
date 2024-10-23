@@ -1,6 +1,6 @@
 <template>
   <div
-    class="hover:bg-gray-hover flex items-center justify-between bg-white px-3 py-2 duration-100"
+    class="flex items-center justify-between bg-white px-3 py-2 duration-100 hover:bg-gray-hover"
   >
     <!--    <div class="text-base flex">-->
     <!--      <p class="text-gray-500 w-[60px] font-light">{{ bank_payment.id }}</p>-->
@@ -20,7 +20,9 @@
               bank_payment.description
             }}</a>
 
-            <p class="text-sm font-light text-gray-600">{{bank_payment.sender_comment}}</p>
+            <p class="text-sm font-light text-gray-600">
+              {{ bank_payment.sender_comment }}
+            </p>
 
             <!--        @if($payment->received_invoices->count() > 0)-->
             <!--        <br>-->

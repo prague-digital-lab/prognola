@@ -123,15 +123,15 @@ export default {
       const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-          client(
-              "/api/" + route.params.workspace + "/incomes/" + this.income.id,
-              {
-                method: "PATCH",
-                body: {
-                  income_category_id: income_category.id,
-                },
-              },
-          ),
+        client(
+          "/api/" + route.params.workspace + "/incomes/" + this.income.id,
+          {
+            method: "PATCH",
+            body: {
+              income_category_id: income_category.id,
+            },
+          },
+        ),
       );
     },
 
@@ -140,9 +140,9 @@ export default {
       const route = useRoute();
 
       const { data } = await useAsyncData("income", () =>
-          client("/api/" + route.params.workspace + "/income_categories", {
-            method: "GET",
-          }),
+        client("/api/" + route.params.workspace + "/income_categories", {
+          method: "GET",
+        }),
       );
 
       this.income_categories = data.value;
@@ -154,10 +154,10 @@ export default {
       return this.income_categories.filter((category) => {
         // console.log(category.name, this.category_name_filter)
         return (
-            !this.category_name_filter ||
-            category.name
-                .toLowerCase()
-                .indexOf(this.category_name_filter.toLowerCase()) > -1
+          !this.category_name_filter ||
+          category.name
+            .toLowerCase()
+            .indexOf(this.category_name_filter.toLowerCase()) > -1
         );
       });
     },

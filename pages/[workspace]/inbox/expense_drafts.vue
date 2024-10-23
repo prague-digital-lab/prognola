@@ -15,7 +15,7 @@
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 bg-white rounded border border-gray-200"
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white"
       v-if="grouped_by === null"
     >
       <expense-row v-for="expense in expenses" :expense="expense"></expense-row>

@@ -30,15 +30,14 @@
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6"
               />
             </div>
-
           </div>
         </div>
-            <button
-              type="submit"
-              class="rounded-md bg-black px-5 py-2 text-white hover:bg-gray-800"
-            >
-              Uložit
-            </button>
+        <button
+          type="submit"
+          class="rounded-md bg-black px-5 py-2 text-white hover:bg-gray-800"
+        >
+          Uložit
+        </button>
       </form>
     </div>
   </div>

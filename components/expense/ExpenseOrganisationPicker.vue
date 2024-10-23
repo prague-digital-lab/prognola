@@ -22,7 +22,7 @@
               />
             </svg>
 
-            <span v-if="selected_organisation" class="text-gray-700 text-left">
+            <span v-if="selected_organisation" class="text-left text-gray-700">
               {{ selected_organisation.name }}
             </span>
             <span v-else class="text-gray-500"> zvolit organizaci </span>

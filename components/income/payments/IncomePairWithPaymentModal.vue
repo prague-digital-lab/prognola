@@ -37,7 +37,8 @@
                 <div>
                   <div class="flex items-center justify-between">
                     <h2 class="mb-4 mt-4 text-base text-gray-700">
-                     Vyhledejte platbu, kterou chcete přidat k příjmu {{income.name}}.
+                      Vyhledejte platbu, kterou chcete přidat k příjmu
+                      {{ income.name }}.
                     </h2>
                   </div>
 

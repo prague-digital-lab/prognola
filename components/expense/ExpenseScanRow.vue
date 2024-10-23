@@ -1,11 +1,11 @@
 <template>
   <div class="w-full text-base text-slate-500">
     <div
-      class="mb-2 flex border rounded-md border-gray-200 items-center justify-between bg-white px-5 py-2 shadow-sm hover:bg-gray-hover active:bg-gray-100"
+      class="mb-2 flex items-center justify-between rounded-md border border-gray-200 bg-white px-5 py-2 shadow-sm hover:bg-gray-hover active:bg-gray-100"
       @click="!expanded ? (expanded = true) : (expanded = false)"
     >
       <div class="flex items-center">
-        <DocumentIcon class="h-4 w-4 text-gray-700 me-2" />
+        <DocumentIcon class="me-2 h-4 w-4 text-gray-700" />
         {{ scan.title }}
         <a
           :href="scan.file_url"
