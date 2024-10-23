@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-between bg-white px-3 py-2 duration-100 hover:bg-gray-hover"
+    class="flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-black dark:text-zinc-300 dark:hover:bg-zinc-900"
     @click="navigateToExpense"
   >
     <div class="flex text-base">
@@ -13,7 +13,7 @@
     <div class="flex items-center text-base font-light text-slate-600">
       <div
         v-if="expense.organisation"
-        class="flex cursor-pointer items-center rounded-[20px] border border-gray-200 px-3 py-1 hover:border-gray-300 hover:bg-slate-100"
+        class="flex cursor-pointer items-center rounded-[20px] border border-gray-200 px-3 py-1 hover:border-gray-300 hover:bg-slate-100 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:border-zinc-800"
         @click="navigateToOrganisation(expense.organisation)"
       >
         <svg
@@ -37,13 +37,13 @@
       <!--      <p class="w-[90px] ps-4" v-if="expense.received_at">-->
       <!--        {{ formatDate(expense.received_at) }}-->
       <!--      </p>-->
-      <p class="w-[90px] ps-2" v-if="expense.paid_at">
+      <p class="w-[90px] ps-2 dark:text-zinc-400" v-if="expense.paid_at">
         {{ formatDate(expense.paid_at) }}
       </p>
 
       <div class="w-[120px]">
         <div v-if="expense.payment_status === 'paid'">
-          <p class="ms-2 text-end font-semibold text-slate-700">
+          <p class="ms-2 text-end font-semibold text-slate-700 dark:text-zinc-300">
             {{ formatPrice(expense.price) }} Kč
           </p>
         </div>

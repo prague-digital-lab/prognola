@@ -48,7 +48,7 @@
     </page-content-header>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200"
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
       v-if="incomes.length > 0 && grouped_by === null"
     >
       <income-row v-for="income in incomes" :income="income"></income-row>
@@ -56,10 +56,10 @@
 
     <div
       v-if="incomes.length > 0 && grouped_by === 'income_category'"
-      class="mb-4 rounded border border-gray-200"
+      class="mb-4 rounded border border-gray-200 dark:border-zinc-800"
     >
       <div
-        class="divide-y divide-gray-200"
+        class="divide-y divide-gray-200 dark:divide-zinc-800"
         v-for="category in incomes_by_category"
       >
         <div class="w-full bg-slate-100 py-2 ps-3 text-base text-gray-600">
@@ -75,9 +75,9 @@
 
     <div
       v-if="incomes.length === 0"
-      class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200"
+      class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200 dark:border-zinc-800"
     >
-      <p class="text-gray-600">Žádné odpovídající příjmy.</p>
+      <p class="text-gray-600 dark:text-zinc-400">Žádné odpovídající příjmy.</p>
     </div>
 
     <div class="flex justify-end">

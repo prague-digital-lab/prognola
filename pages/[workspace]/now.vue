@@ -11,19 +11,19 @@
       <p class="mb-10 dark:text-zinc-400">Hotovost na pokladnách: 0 Kč</p>
 
       <div
-        class="mb-4 flex flex-col space-y-3 rounded-md border border-red-300 p-4"
+        class="mb-4 flex flex-col space-y-3 rounded-md border border-red-300 dark:border-red-900 p-5"
         v-if="incomes_due.length > 0 || expenses_due.length > 0"
       >
-        <div class="space mb-4 rounded-md border border-red-200 bg-red-50 p-4">
+        <div class="space mb-4 rounded-md border border-red-200 bg-red-50 p-4 dark:bg-zinc-900 dark:border-zinc-800 ">
           <div class="flex">
             <div class="flex-shrink-0">
               <ExclamationCircleIcon
-                class="h-5 w-5 text-red-400"
+                class="h-5 w-5 text-red-400 dark:text-red-900"
                 aria-hidden="true"
               />
             </div>
             <div class="ml-3">
-              <h3 class="text-sm font-medium text-red-800">
+              <h3 class="text-sm font-medium text-red-800 dark:text-white">
                 <span v-if="incomes_due.length > 0 && expenses_due.length > 0"
                   >Tyto příjmy a výdaje nebyly uhrazené v naplánovaném
                   termínu.</span
@@ -35,7 +35,7 @@
                   >Tyto výdaje nebyly uhrazené v naplánovaném termínu.</span
                 >
               </h3>
-              <div class="mt-2 text-sm text-red-700">
+              <div class="mt-2 text-sm text-red-700 dark:text-zinc-400">
                 Můžete je odložit do budoucna, podle toho, kdy očekáváte jejich
                 uhrazení.
               </div>
@@ -45,15 +45,15 @@
 
         <div v-if="incomes_due.length > 0">
           <div class="mb-2 flex justify-between">
-            <div>Zpožděné příjmy</div>
+            <div class="dark:text-zinc-400">Zpožděné příjmy</div>
             <div>
               <span
-                class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
+                class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:text-blue-400 dark:bg-blue-400/10"
                 >{{ formatPrice(incomes_due_sum) }} Kč</span
               >
             </div>
           </div>
-          <div class="divide-y divide-gray-200 border border-gray-200">
+          <div class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800">
             <income-row
               :income="income"
               v-for="income in incomes_due"
@@ -63,15 +63,15 @@
 
         <div v-if="expenses_due.length > 0">
           <div class="mb-2 flex justify-between">
-            <div>Zpožděné výdaje</div>
+            <div class="dark:text-zinc-400">Zpožděné výdaje</div>
             <div>
               <span
-                class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700"
+                class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:text-red-400 dark:bg-red-400/10"
                 >{{ formatPrice(expenses_due_sum) }} Kč</span
               >
             </div>
           </div>
-          <div class="divide-y divide-gray-200 border border-gray-200">
+          <div class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800">
             <expense-row
               :expense="expense"
               v-for="expense in expenses_due"
@@ -82,17 +82,17 @@
 
       <div class="mb-4">
         <div class="mb-2 flex justify-between">
-          <div>Dnešní příjmy</div>
+          <div class="dark:text-zinc-400">Dnešní příjmy</div>
           <div>
             <span
-              class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
+              class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:text-blue-400 dark:bg-blue-400/10"
               >{{ formatPrice(incomes_today_sum) }} Kč</span
             >
           </div>
         </div>
 
         <div
-          class="divide-y divide-gray-200 border border-gray-200"
+          class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
           v-if="incomes_today.length > 0"
         >
           <income-row
@@ -105,16 +105,16 @@
 
       <div class="mb-4">
         <div class="mb-2 flex justify-between">
-          <div>Dnešní výdaje</div>
+          <div class="dark:text-zinc-400">Dnešní výdaje</div>
           <div>
-            <span class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700"
+            <span class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:text-red-400 dark:bg-red-400/10"
               >{{ formatPrice(expenses_today_sum) }} Kč</span
             >
           </div>
         </div>
 
         <div
-          class="divide-y divide-gray-200 border border-gray-200"
+          class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
           v-if="expenses_today.length > 0"
         >
           <expense-row
@@ -128,17 +128,17 @@
 
       <div class="mb-4">
         <div class="mb-2 flex justify-between">
-          <div>Nadcházející příjmy</div>
+          <div class="dark:text-zinc-400">Nadcházející příjmy</div>
           <div>
             <span
-              class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700"
+              class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:text-blue-400 dark:bg-blue-400/10"
               >{{ formatPrice(incomes_upcoming_sum) }} Kč</span
             >
           </div>
         </div>
 
         <div
-          class="divide-y divide-gray-200 border border-gray-200"
+          class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
           v-if="incomes_upcoming.length > 0"
         >
           <income-row
@@ -151,16 +151,16 @@
 
       <div class="mb-4">
         <div class="mb-2 flex justify-between">
-          <div>Nadcházející výdaje</div>
+          <div class="dark:text-zinc-400">Nadcházející výdaje</div>
           <div>
-            <span class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700"
+            <span class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:text-red-400 dark:bg-red-400/10"
               >{{ formatPrice(expenses_upcoming_sum) }} Kč</span
             >
           </div>
         </div>
 
         <div
-          class="divide-y divide-gray-200 border border-gray-200"
+          class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
           v-if="expenses_upcoming.length > 0"
         >
           <expense-row

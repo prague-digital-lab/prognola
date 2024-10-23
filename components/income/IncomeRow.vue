@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex items-center justify-between bg-white px-3 py-2 duration-100 hover:bg-gray-hover"
+    class="flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-black dark:text-zinc-300 dark:hover:bg-zinc-900"
     @click="navigateToIncome"
   >
     <div class="flex text-base">
-      <p class="w-[400px]">{{ income.name }}</p>
+      <p class="w-[400px] font-medium">{{ income.name }}</p>
     </div>
 
     <div class="flex items-center text-base font-light text-slate-600">
@@ -30,9 +30,14 @@
         {{ income.organisation.name }}
       </div>
 
-      <p class="pe-2">{{ formatDate(income.paid_at) }}</p>
+      <p class="pe-2 font-light dark:text-zinc-400">
+        {{ formatDate(income.paid_at) }}
+      </p>
 
-      <div v-if="income.payment_status === 'paid'" class="w-[120px]">
+      <div
+        v-if="income.payment_status === 'paid'"
+        class="w-[120px] dark:text-zinc-300"
+      >
         <p class="me-2 text-end">{{ formatPrice(income.amount) }} Kč</p>
       </div>
 
