@@ -180,7 +180,7 @@ export default {
 
         plugins: {
           legend: {
-            display: false,
+            display: true,
             position: "bottom",
           },
         },
