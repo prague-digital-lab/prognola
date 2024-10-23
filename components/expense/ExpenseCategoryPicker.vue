@@ -90,14 +90,14 @@ export default {
 <template>
   <div class="relative">
     <p
-      class="text-xs mb-7 rounded px-1 py-1 text-gray-800 hover:bg-gray-100"
+      class="text-xs mb-7 rounded px-1 py-1 text-gray-800 hover:bg-gray-100 dark:text-zinc-400"
       @click="expanded ? close() : expand()"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        class="me-2 inline-block size-5 text-gray-600"
+        class="me-2 inline-block size-5 text-gray-600 dark:text-zinc-400"
       >
         <path
           fill-rule="evenodd"

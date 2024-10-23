@@ -5,7 +5,7 @@
     </div>
 
     <div
-      class="mb-2 rounded-md border border-gray-200 bg-white px-3 py-1 shadow-sm"
+      class="mb-2 rounded-md border border-gray-200 bg-white px-3 py-1 shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
     >
       <p class="text-sm text-gray-400">Σ {{ formatPrice(paymentSum) }} Kč</p>
     </div>

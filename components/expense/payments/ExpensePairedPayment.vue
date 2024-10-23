@@ -3,7 +3,7 @@
     <div>
       <MenuButton class="w-full">
         <div
-          class="mb-1 flex justify-between rounded px-1 py-1 pe-2 text-sm text-gray-800 hover:bg-gray-100"
+          class="mb-1 flex justify-between rounded px-1 py-1 pe-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
         >
           <div>
             <svg
