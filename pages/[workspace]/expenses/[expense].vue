@@ -5,13 +5,13 @@
 
   <div v-if="loaded">
     <div
-      class="mb-4 h-screen divide-x divide-slate-100 md:flex md:justify-between"
+      class="mb-4 h-screen divide-x divide-slate-100 md:flex md:justify-between dark:divide-zinc-800"
     >
       <div class="me-5 w-full overflow-scroll">
         <div class="flex justify-between">
           <input
             type="text"
-            class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
+            class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight dark:text-zinc-200"
             placeholder="Název výdaje"
             v-model="input_description"
             v-on:blur="updateDescription"
@@ -26,13 +26,13 @@
 
         <textarea
           v-model="input_internal_note"
-          class="mb-5 w-full border-none bg-transparent p-0 text-base text-slate-700 focus:ring-0"
+          class="mb-5 w-full border-none bg-transparent p-0 text-base text-slate-700 focus:ring-0 dark:text-zinc-300"
           placeholder="Přidat popis..."
           v-on:blur="updateInternalNote"
         ></textarea>
 
         <!--        <div v-if="expense.scans.length > 0">-->
-        <p class="mb-2 text-base text-gray-600">Přílohy</p>
+        <p class="mb-2 text-base text-gray-600 dark:text-zinc-400">Přílohy</p>
 
         <div>
           <expense-scan-row
@@ -44,12 +44,11 @@
         <input
           @change="uploadFile($event)"
           type="file"
-          class="mt-2 rounded-md border bg-white px-2 py-1 text-sm text-gray-800 shadow-sm duration-75 hover:bg-gray-hover active:bg-gray-100"
+          class="mt-2 rounded-md border bg-white px-2 py-1 text-sm text-gray-800 shadow-sm duration-75 hover:bg-gray-hover active:bg-gray-100 dark:border dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-800"
         />
-        <!--        </div>-->
       </div>
 
-      <div class="w-[250px] ps-4">
+      <div class="w-[250px] ps-4 dark:text-zinc-400">
         <expense-price-input @expense-updated="fetchData" :expense="expense" />
 
         <expense-status-select
