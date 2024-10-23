@@ -290,7 +290,8 @@ export default {
           {
             label: "Konečný zůstatek",
             data: data.value.chart_data_balance,
-            backgroundColor: ["rgba(0,0,0,0.56)"],
+            backgroundColor: [colors.zinc[500]],
+            borderColor: [colors.zinc[500]],
             hidden: false,
             cubicInterpolationMode: "monotone",
             tension: 0.1,
