@@ -42,20 +42,21 @@
               :bank_payment="bank_payment"
             ></bank-payment-amount>
           </td>
-          <td class="w-[30%] space-x-1 space-y-2">
+          <td class="w-[30%] space-y-2">
             <div
               v-for="income in bank_payment.incomes"
-              class="inline-block text-sm text-gray-600"
+              class="inline-block text-sm text-gray-600 me-1"
             >
               <badge-income :income="income" class="" />
             </div>
 
             <div
               v-for="expense in bank_payment.expenses"
-              class="inline-block text-sm text-gray-600"
+              class="inline-block text-sm text-gray-600 me-1"
             >
               <badge-expense :expense="expense" class="" />
             </div>
+
 
             <nuxt-link
               :href="
@@ -65,8 +66,8 @@
                 bank_payment.uuid +
                 '/pair'
               "
-              class="inline-block rounded-md border border-gray-200 px-2 py-[2px] text-gray-500 hover:bg-gray-100 active:bg-gray-200"
-              >+
+              >
+              <button-secondary>+</button-secondary>
             </nuxt-link>
           </td>
         </tr>
@@ -76,6 +77,8 @@
 </template>
 
 <script setup>
+import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
+
 const route = useRoute();
 </script>
 

@@ -63,7 +63,7 @@
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        class="inline-block size-5 text-indigo-700"
+        class="inline-block size-5 text-indigo-700 dark:text-indigo-500"
       >
         <path
           fill-rule="evenodd"
