@@ -180,7 +180,7 @@ export default {
 
         plugins: {
           legend: {
-            display: true,
+            display: false,
             position: "bottom",
           },
         },
@@ -290,9 +290,9 @@ export default {
           {
             label: "Konečný zůstatek",
             data: data.value.chart_data_balance,
-            backgroundColor: [colors.zinc[500]],
-            borderColor: [colors.zinc[500]],
+            borderColor: [colors.indigo[200]],
             hidden: false,
+            borderWidth: 2,
             cubicInterpolationMode: "monotone",
             tension: 0.1,
             type: "line",
