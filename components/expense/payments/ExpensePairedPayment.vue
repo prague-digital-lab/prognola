@@ -7,7 +7,7 @@
         >
           <div class="flex items-center">
             <minus-circle-icon v-if="payment.type === 'expense'" class="h-4 w-4 me-1 inline-block text-red-500"></minus-circle-icon>
-            <plus-circle-icon v-if="payment.type === 'income'" class="h-4 w-4 me-1 inline-block text-blue-500"></plus-circle-icon>
+            <plus-circle-icon v-if="payment.type === 'income'" class="h-4 w-4 me-1 inline-block text-green-500"></plus-circle-icon>
 
             {{ formatPrice(payment.amount) }} Kč
           </div>
