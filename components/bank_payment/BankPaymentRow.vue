@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-between bg-white px-3 py-2 duration-100 hover:bg-gray-hover"
+    class="flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-zinc-900 dark:hover:bg-zinc-800"
   >
     <!--    <div class="text-base flex">-->
     <!--      <p class="text-gray-500 w-[60px] font-light">{{ bank_payment.id }}</p>-->
@@ -14,13 +14,18 @@
     <table class="w-full text-base">
       <tbody>
         <tr>
-          <td class="w-[7%]">{{ formatDate(bank_payment.issued_at) }}</td>
+          <td class="w-[7%] dark:text-zinc-400">
+            {{ formatDate(bank_payment.issued_at) }}
+          </td>
           <td class="w-[30%] pe-5">
-            <a class="text-dark text-decoration-none text-sm">{{
-              bank_payment.description
-            }}</a>
+            <a
+              class="text-dark text-decoration-none text-sm dark:text-zinc-200"
+              >{{ bank_payment.description }}</a
+            >
 
-            <div class="text-decoration-none text-sm text-gray-500">
+            <div
+              class="text-decoration-none text-sm font-light text-gray-500 dark:text-zinc-400"
+            >
               {{ bank_payment.sender_comment }}
             </div>
 
@@ -33,12 +38,9 @@
             <!--        @endif-->
           </td>
           <td class="w-[10%]">
-            <span v-if="bank_payment.type === 'income'"
-              >{{ formatPrice(bank_payment.amount) }} Kč</span
-            >
-            <span class="text-red-700" v-else
-              >{{ formatPrice(bank_payment.amount) }} Kč</span
-            >
+            <bank-payment-amount
+              :bank_payment="bank_payment"
+            ></bank-payment-amount>
           </td>
           <td class="w-[30%] space-x-1 space-y-2">
             <div

@@ -32,19 +32,7 @@
               <dd
                 class="mt-1 flex items-center text-base font-bold leading-6 sm:col-span-2 sm:mt-0"
               >
-                <minus-circle-icon
-                  v-if="bank_payment.type === 'expense'"
-                  class="me-2 inline-block h-4 w-4 text-red-500"
-                ></minus-circle-icon>
-                <plus-circle-icon
-                  v-if="bank_payment.type === 'income'"
-                  class="me-2 inline-block h-4 w-4 text-green-500"
-                ></plus-circle-icon>
-
-                <span v-if="bank_payment.amount < 0" class="text-red-500"
-                  >{{ formatPrice(bank_payment.amount * -1) }} Kč</span
-                >
-                <span v-else>{{ formatPrice(bank_payment.amount) }} Kč</span>
+               <bank-payment-amount :bank_payment="bank_payment"></bank-payment-amount>
               </dd>
             </div>
 
@@ -185,10 +173,7 @@ import BadgeExpense from "~/components/badges/BadgeExpense.vue";
 import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import Heading from "~/components/ui/Heading.vue";
-import {
-  MinusCircleIcon,
-  PlusCircleIcon,
-} from "@heroicons/vue/20/solid/index.js";
+import BankPaymentAmount from "~/components/bank_payment/BankPaymentAmount.vue";
 
 definePageMeta({
   layout: "default",

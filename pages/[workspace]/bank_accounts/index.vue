@@ -2,7 +2,7 @@
   <div>
     <page-content-header>
       <template v-slot:title>
-        <heading> Účty </heading>
+        <heading> Účty</heading>
       </template>
     </page-content-header>
 
