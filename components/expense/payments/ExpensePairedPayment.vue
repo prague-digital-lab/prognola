@@ -6,10 +6,19 @@
           class="mb-1 flex justify-between rounded px-1 py-1 pe-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
         >
           <div class="flex items-center">
-            <minus-circle-icon v-if="payment.type === 'expense'" class="h-4 w-4 me-1 inline-block text-red-500"></minus-circle-icon>
-            <plus-circle-icon v-if="payment.type === 'income'" class="h-4 w-4 me-1 inline-block text-green-500"></plus-circle-icon>
+            <minus-circle-icon
+              v-if="payment.type === 'expense'"
+              class="me-2 inline-block h-4 w-4 text-red-500"
+            ></minus-circle-icon>
+            <plus-circle-icon
+              v-if="payment.type === 'income'"
+              class="me-2 inline-block h-4 w-4 text-green-500"
+            ></plus-circle-icon>
 
-            {{ formatPrice(payment.amount) }} Kč
+            <span v-if="payment.type === 'expense'"
+              >{{ formatPrice(payment.amount * -1) }} Kč</span
+            >
+            <span v-else>{{ formatPrice(payment.amount) }} Kč</span>
           </div>
 
           <div class="text-sm font-light text-gray-500">
@@ -61,7 +70,7 @@
 
 <script setup>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import {MinusCircleIcon, PlusCircleIcon} from "@heroicons/vue/20/solid";
+import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/vue/20/solid";
 import { DateTime } from "luxon";
 
 defineProps(["payment"]);
