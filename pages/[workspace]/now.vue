@@ -56,7 +56,7 @@
             </div>
           </div>
           <div
-            class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
+            class=" mb-4 divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
           >
             <income-row
               :income="income"
@@ -89,7 +89,7 @@
       <div
         class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
       >
-        <div class="">
+        <div class="mb-4">
           <div class="mb-2 flex justify-between">
             <div class="dark:text-zinc-400">Dnešní příjmy</div>
             <div>
@@ -145,7 +145,7 @@
           class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
       >
 
-      <div class="">
+      <div class="mb-4">
         <div class="mb-4 flex justify-between">
           <div class="dark:text-zinc-400">Nadcházející příjmy</div>
           <div>
@@ -171,7 +171,7 @@
       </div>
 
       <div class="mb-4">
-        <div class="mb-2 flex justify-between">
+        <div class="mb-4 flex justify-between">
           <div class="dark:text-zinc-400">Nadcházející výdaje</div>
           <div>
             <span
