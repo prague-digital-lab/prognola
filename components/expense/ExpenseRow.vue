@@ -49,7 +49,7 @@
         </div>
 
         <div v-else-if="expense.payment_status === 'draft'">
-          <p class="me-2 text-end font-semibold text-purple-800">
+          <p class="me-2 text-end font-semibold text-purple-800 dark:text-indigo-500">
             ke zpracování
           </p>
         </div>

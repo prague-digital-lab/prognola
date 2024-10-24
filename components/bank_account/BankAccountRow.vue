@@ -1,18 +1,20 @@
 <template>
   <div
-    class="flex items-center justify-between px-5 py-4 duration-100 hover:bg-gray-hover"
+    class="flex items-center justify-between px-5 py-4 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"
     @click="navigateToBankAccount"
   >
     <div class="flex text-base">
       <!--      <p class="w-[60px] font-light text-gray-500">{{ bank_account.id }}</p>-->
-      <p class="w-[400px]">{{ bank_account.name }}</p>
-      <p class="w-[400px] font-light text-gray-500">
+      <p class="w-[400px] dark:text-zinc-200">{{ bank_account.name }}</p>
+      <p class="w-[400px] font-light text-zinc-500 dark:text-zinc-400">
         {{ bank_account.account_number }}/{{ bank_account.bank_number }}
       </p>
     </div>
 
     <div class="flex items-center text-base font-light text-slate-600">
-      <p class="font-bold">{{ formatPrice(bank_account.current_amount) }} Kč</p>
+      <p class="font-semibold dark:text-zinc-200">
+        {{ formatPrice(bank_account.current_amount) }} Kč
+      </p>
     </div>
   </div>
 </template>

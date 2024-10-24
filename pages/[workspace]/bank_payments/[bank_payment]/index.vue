@@ -185,7 +185,7 @@
 
           <div
             v-for="expense in bank_payment.expenses"
-            class="mt-2 text-gray-600"
+            class="mt-2 text-gray-600 dark:text-zinc-400"
           >
             Výdaj
             <badge-expense :expense="expense" class="mx-2" />

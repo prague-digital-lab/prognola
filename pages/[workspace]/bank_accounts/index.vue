@@ -2,12 +2,12 @@
   <div>
     <page-content-header>
       <template v-slot:title>
-        <heading> Účty</heading>
+        <heading>Účty</heading>
       </template>
     </page-content-header>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white"
+      class="mb-4 divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
       v-if="bank_accounts.length > 0"
     >
       <bank-account-row

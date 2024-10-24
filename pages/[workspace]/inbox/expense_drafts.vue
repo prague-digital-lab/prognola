@@ -19,7 +19,7 @@
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white"
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white  dark:divide-zinc-800 dark:border-zinc-800"
       v-if="grouped_by === null"
     >
       <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
