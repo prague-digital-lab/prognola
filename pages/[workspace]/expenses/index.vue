@@ -71,7 +71,7 @@
           class="divide-y divide-gray-200 dark:divide-zinc-800"
           v-for="category in expenses_by_category"
         >
-          <div class="w-full bg-slate-100 py-2 ps-3 text-base text-gray-600">
+          <div class="w-full bg-slate-100 py-1 ps-3 text-base text-gray-600 dark:bg-zinc-700 dark:text-zinc-200">
             {{
               category[0].expense_category
                 ? category[0].expense_category.name
