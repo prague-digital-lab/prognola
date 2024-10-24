@@ -6,8 +6,8 @@
           class="mb-1 flex justify-between rounded px-1 py-1 pe-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
         >
           <div class="flex items-center">
-            <minus-circle-icon v-if="payment.type === 'expense'" class="h-4 w-4 me-1 inline-block dark:text-red-500"></minus-circle-icon>
-            <plus-circle-icon v-if="payment.type === 'income'" class="h-4 w-4 me-1 inline-block dark:text-blue-500"></plus-circle-icon>
+            <minus-circle-icon v-if="payment.type === 'expense'" class="h-4 w-4 me-1 inline-block text-red-500"></minus-circle-icon>
+            <plus-circle-icon v-if="payment.type === 'income'" class="h-4 w-4 me-1 inline-block text-blue-500"></plus-circle-icon>
 
             {{ formatPrice(payment.amount) }} Kč
           </div>
