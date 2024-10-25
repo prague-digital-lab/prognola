@@ -10,11 +10,13 @@
       v-if="organisations.length === 0"
       class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200 dark:border-zinc-800"
     >
-      <p class="text-gray-600 dark:text-zinc-400">Žádné odpovídající organizace.</p>
+      <p class="text-gray-600 dark:text-zinc-400">
+        Žádné odpovídající organizace.
+      </p>
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white"
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
       v-if="organisations.length > 0"
     >
       <organisation-row

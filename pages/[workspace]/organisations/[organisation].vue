@@ -8,48 +8,14 @@
       <template v-slot:title>
         <input
           type="text"
-          class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight dark:text-zinc-200"
+          class="w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight dark:text-zinc-200"
           placeholder="Název"
           v-model="input_name"
           v-on:blur="updateName"
         />
       </template>
       <template v-slot:subtitle>
-        <p
-          class="mb-5 text-base text-gray-500"
-          v-if="
-            organisation.expenses.length === 0 &&
-            organisation.incomes.length === 0
-          "
-        >
-          Organizace
-        </p>
-        <p
-          class="mb-5 text-base text-gray-500"
-          v-if="
-            organisation.expenses.length > 0 &&
-            organisation.incomes.length === 0
-          "
-        >
-          Dodavatel
-        </p>
-        <p
-          class="mb-5 text-base text-gray-500"
-          v-if="
-            organisation.expenses.length === 0 &&
-            organisation.incomes.length > 0
-          "
-        >
-          Zákazník
-        </p>
-        <p
-          class="mb-5 text-base text-gray-500"
-          v-if="
-            organisation.expenses.length > 0 && organisation.incomes.length > 0
-          "
-        >
-          Dodavatel a zákazník
-        </p>
+        <organisation-label :organisation="organisation"></organisation-label>
       </template>
     </page-content-header>
 
@@ -96,7 +62,7 @@
         />
 
         <div
-          class="mb-4 divide-y divide-slate-200 rounded border border-slate-200"
+          class="mb-4 divide-y divide-slate-200 rounded border border-slate-200 dark:border-zinc-800"
         >
           <expense-row
             :expense="expense"
