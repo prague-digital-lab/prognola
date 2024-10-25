@@ -26,7 +26,7 @@
 
     <div
       v-if="bank_accounts.length === 0 && loaded"
-      class="flex h-[400px] w-full items-center rounded-2xl border border-gray-200 bg-white px-10 text-gray-700"
+      class="flex h-[400px] w-full items-center rounded-2xl border border-gray-200 bg-white px-10 text-gray-700 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-200"
     >
       <div class="md:w-1/2">
         <p class="mb-4 text-xl font-medium">
@@ -41,7 +41,7 @@
 
         <nuxt-link
           :href="'/' + route.params.workspace + '/bank_accounts/new'"
-          class="rounded-md bg-black px-4 py-2 text-base font-medium text-white duration-150 hover:bg-gray-700"
+          class="rounded-md bg-black px-4 py-2 text-base font-medium text-white duration-150 hover:bg-gray-700 dark:border dark:border-zinc-800"
           >Přidat účet
         </nuxt-link>
       </div>

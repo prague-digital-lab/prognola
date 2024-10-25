@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     },
   },
 
+  sanctum: {
+    mode: 'token',
+  },
+
   runtimeConfig: {
     public: {
       sanctum: {
@@ -26,7 +30,6 @@ export default defineNuxtConfig({
           logout: "/api/logout",
           user: "/api/user",
         },
-        mode: "token",
       },
     },
   },
