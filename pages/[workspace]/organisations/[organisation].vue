@@ -29,66 +29,24 @@
         ></textarea>
 
         <p class="mb-2 text-gray-700 dark:text-zinc-400">Fakturační údaje</p>
-        <div
-          class="mb-4 rounded-md border border-zinc-200 p-5 dark:border-zinc-800 dark:text-zinc-300"
-        >
-          <p class="mb-2 text-red-500 dark:text-red-200">
-            Údaje momentálně nelze upravit. Funkci připravujeme.
-          </p>
 
-          <p>IČ: {{ organisation.ic }}</p>
-          <p>DIČ: {{ organisation.dic }}</p>
-          <p>Ulice: {{ organisation.street }}</p>
-          <p>Město: {{ organisation.city }}</p>
-          <p>PSČ: {{ organisation.postal }}</p>
-          <p>Země: {{ organisation.country }}</p>
-        </div>
+        <organisation-data :organisation="organisation"></organisation-data>
 
-        <div class="mb-2 flex justify-between">
-          <div>
-            <p class="text-base text-gray-600 dark:text-zinc-400">Výdaje</p>
-          </div>
-          <div>
-            <button-secondary @click="openModal"
-              >+ přidat výdaj
-            </button-secondary>
-          </div>
-        </div>
-
-        <expense-create-modal
-          ref="modal_create"
-          :default_organisation_uuid="organisation.uuid"
-          @expense-created="fetchData"
-        />
-
-        <div
-          class="mb-4 divide-y divide-slate-200 rounded border border-slate-200 dark:border-zinc-800"
-        >
-          <expense-row
-            :expense="expense"
-            v-for="expense in organisation.expenses"
-          ></expense-row>
-        </div>
+        <organisation-expenses
+          :organisation="organisation"
+        ></organisation-expenses>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
-import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 
 definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
-
-const modal_create = useTemplateRef("modal_create");
-
-function openModal() {
-  modal_create.value.openModal();
-}
 </script>
 
 <script>
