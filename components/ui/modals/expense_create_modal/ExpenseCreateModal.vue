@@ -27,7 +27,7 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-2xl transform select-none rounded-2xl bg-white p-6 text-left align-middle shadow transition-all dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-400"
+              class="w-full max-w-2xl transform select-none rounded-2xl bg-white p-6 text-left align-middle shadow transition-all dark:bg-zinc-900 dark:border dark:border-zinc-800 dark:text-zinc-400"
             >
               <DialogTitle as="p" class="text-base leading-6 text-gray-700 dark:text-zinc-200">
                 Nový výdaj

@@ -6,7 +6,7 @@
           :class="open ? 'bg-gray-200' : ''"
           class="me-2 cursor-default rounded border border-gray-200 px-2 py-1 text-sm text-gray-800 shadow-sm hover:bg-gray-100 focus-visible:outline-0 active:bg-gray-200 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-800"
         >
-          <div class="flex items-center text-gray-800 dark:text-zinc-300">
+          <div class="flex items-center text-gray-800 dark:text-zinc-300 py-[2px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
