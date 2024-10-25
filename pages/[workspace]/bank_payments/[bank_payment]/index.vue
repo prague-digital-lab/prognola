@@ -67,8 +67,11 @@
                 class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-zinc-400"
               >
                 <badge-counter-bank-account
+                  v-if="bank_payment.counter_bank_account"
                   :counter_bank_account="bank_payment.counter_bank_account"
                 ></badge-counter-bank-account>
+
+                <span v-else>{{bank_payment.counter_account_number}}/{{bank_payment.counter_bank_number}}</span>
               </dd>
             </div>
 
