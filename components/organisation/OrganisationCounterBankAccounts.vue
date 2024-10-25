@@ -9,18 +9,18 @@
       </div>
     </div>
 
-    <expense-create-modal
-      ref="modal_create"
-      :default_organisation_uuid="props.organisation.uuid"
-      @expense-created="fetchData"
-    />
+<!--    <expense-create-modal-->
+<!--      ref="modal_create"-->
+<!--      :default_organisation_uuid="props.organisation.uuid"-->
+<!--      @expense-created="fetchData"-->
+<!--    />-->
 
     <div
       class="mb-4 divide-y divide-slate-200 rounded border border-slate-200 dark:border-zinc-800 dark:divide-zinc-800"
     >
       <expense-row
-        :expense="expense"
-        v-for="expense in expenses"
+        :expense="counter_bank_account"
+        v-for="counter_bank_account in counter_bank_accounts"
       ></expense-row>
     </div>
   </div>
@@ -35,7 +35,7 @@ const props = defineProps(["organisation"]);
 
 const modal_create = useTemplateRef("modal_create");
 
-const expenses = ref([]);
+const counter_bank_accounts = ref([]);
 
 function openModal() {
   modal_create.value.openModal();
@@ -49,7 +49,7 @@ async function fetchData() {
   const client = useSanctumClient();
   const route = useRoute();
 
-  const { data } = await useAsyncData("expenses", () =>
+  const { data } = await useAsyncData("counter_bank_accounts", () =>
     client("/api/" + route.params.workspace + "/counter_bank_accounts", {
       method: "GET",
       query: {
@@ -58,7 +58,7 @@ async function fetchData() {
     }),
   );
 
-  expenses.value = data.value.data;
+  counter_bank_accounts.value = data.value.data;
 }
 </script>
 
