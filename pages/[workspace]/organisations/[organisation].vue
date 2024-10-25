@@ -28,11 +28,37 @@
           v-on:blur="updateInternalNote"
         ></textarea>
 
-        <p class="mb-2 text-gray-700 dark:text-zinc-400">Fakturační údaje</p>
+        <div
+          class="mb-4 flex space-x-2 rounded-md border border-gray-200 px-3 py-2 dark:border-zinc-800"
+        >
+          <p
+            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            @click="tab = 'data'"
+          >
+            Fakturační údaje
+          </p>
+          <p
+            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            @click="tab = 'expenses'"
+          >
+            Výdaje
+          </p>
 
-        <organisation-data :organisation="organisation"></organisation-data>
+          <p
+            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            @click="tab = 'counter_bank_accounts'"
+          >
+            Účty
+          </p>
+        </div>
+
+        <organisation-data
+          :organisation="organisation"
+          v-if="tab === 'data'"
+        ></organisation-data>
 
         <organisation-expenses
+          v-if="tab === 'expenses'"
           :organisation="organisation"
         ></organisation-expenses>
       </div>
@@ -47,6 +73,8 @@ definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
+
+const tab = ref("data");
 </script>
 
 <script>
