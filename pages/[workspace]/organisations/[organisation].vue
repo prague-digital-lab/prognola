@@ -35,7 +35,7 @@
             class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
             @click="tab = 'data'"
           >
-            Fakturační údaje
+            Podrobnosti
           </p>
           <p
             class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
@@ -61,6 +61,11 @@
           v-if="tab === 'expenses'"
           :organisation="organisation"
         ></organisation-expenses>
+
+        <organisation-counter-bank-accounts
+          v-if="tab === 'counter_bank_accounts'"
+          :organisation="organisation"
+        ></organisation-counter-bank-accounts>
       </div>
     </div>
   </div>
@@ -68,6 +73,7 @@
 
 <script setup>
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+import OrganisationCounterBankAccounts from "~/components/organisation/OrganisationCounterBankAccounts.vue";
 
 definePageMeta({
   layout: "default",
