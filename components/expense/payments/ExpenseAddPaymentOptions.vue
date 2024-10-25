@@ -31,6 +31,18 @@
                 Spárovat s existující platbou
               </button>
             </MenuItem>
+
+            <MenuItem v-slot="{ active }">
+              <button
+                :class="[
+                  active ? 'bg-gray-hover duration-100' : 'text-gray-900',
+                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                ]"
+                @click="navigateToQr"
+              >
+                Uhradit pomocí QR platby
+              </button>
+            </MenuItem>
             <!--            <MenuItem v-slot="{ active }">-->
             <!--              <button-->
             <!--                :class="[-->
@@ -50,6 +62,15 @@
 
 <script setup>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import expenses from "~/pages/[workspace]/expenses/index.vue";
 
 defineProps(["income"]);
+
+async function navigateToQr() {
+  const route = useRoute();
+
+  await navigateTo(
+    "/" + route.params.workspace + "/expenses/" + route.params.expense + "/qr",
+  );
+}
 </script>
