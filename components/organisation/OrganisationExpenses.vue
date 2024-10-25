@@ -11,7 +11,7 @@
 
     <expense-create-modal
       ref="modal_create"
-      :default_organisation_uuid="organisation.uuid"
+      :default_organisation_uuid="props.organisation.uuid"
       @expense-created="fetchData"
     />
 
