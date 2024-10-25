@@ -51,7 +51,7 @@ definePageMeta({
 
 const loaded = ref(false);
 const counter_bank_account = ref(null);
-const organisation_uuid = ref();
+const organisation_uuid = ref(null);
 
 onMounted(() => {
   fetchData();
@@ -74,8 +74,35 @@ async function fetchData() {
   );
 
   counter_bank_account.value = data.value;
-  organisation_uuid.value = data.value.uuid;
+
+  if (counter_bank_account.value.organisation !== null) {
+    organisation_uuid.value = data.value.organisation.uuid;
+  }
 
   loaded.value = true;
 }
+
+watch(organisation_uuid, async (newX, oldX) => {
+  if (oldX === undefined) {
+    return;
+  }
+
+  const client = useSanctumClient();
+  const route = useRoute();
+
+  const { data } = await useAsyncData("counter_bank_accounts", () =>
+    client(
+      "/api/" +
+        route.params.workspace +
+        "/counter_bank_accounts/" +
+        route.params.counter_bank_account,
+      {
+        method: "PATCH",
+        body: {
+          organisation: organisation_uuid.value,
+        },
+      },
+    ),
+  );
+});
 </script>

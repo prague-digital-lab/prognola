@@ -18,10 +18,10 @@
     <div
       class="mb-4 divide-y divide-slate-200 rounded border border-slate-200 dark:border-zinc-800 dark:divide-zinc-800"
     >
-      <expense-row
-        :expense="counter_bank_account"
+      <counter-bank-account-row
+        :counter_bank_account="counter_bank_account"
         v-for="counter_bank_account in counter_bank_accounts"
-      ></expense-row>
+      ></counter-bank-account-row>
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ async function fetchData() {
     }),
   );
 
-  counter_bank_accounts.value = data.value.data;
+  counter_bank_accounts.value = data.value;
 }
 </script>
 
