@@ -8,48 +8,14 @@
       <template v-slot:title>
         <input
           type="text"
-          class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight dark:text-zinc-200"
+          class="w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight dark:text-zinc-200"
           placeholder="Název"
           v-model="input_name"
           v-on:blur="updateName"
         />
       </template>
       <template v-slot:subtitle>
-        <p
-          class="mb-5 text-base text-gray-500"
-          v-if="
-            organisation.expenses.length === 0 &&
-            organisation.incomes.length === 0
-          "
-        >
-          Organizace
-        </p>
-        <p
-          class="mb-5 text-base text-gray-500"
-          v-if="
-            organisation.expenses.length > 0 &&
-            organisation.incomes.length === 0
-          "
-        >
-          Dodavatel
-        </p>
-        <p
-          class="mb-5 text-base text-gray-500"
-          v-if="
-            organisation.expenses.length === 0 &&
-            organisation.incomes.length > 0
-          "
-        >
-          Zákazník
-        </p>
-        <p
-          class="mb-5 text-base text-gray-500"
-          v-if="
-            organisation.expenses.length > 0 && organisation.incomes.length > 0
-          "
-        >
-          Dodavatel a zákazník
-        </p>
+        <organisation-label :organisation="organisation"></organisation-label>
       </template>
     </page-content-header>
 
@@ -62,67 +28,59 @@
           v-on:blur="updateInternalNote"
         ></textarea>
 
-        <p class="mb-2 text-gray-700 dark:text-zinc-400">Fakturační údaje</p>
         <div
-          class="mb-4 rounded-md border border-zinc-200 p-5 dark:border-zinc-800 dark:text-zinc-300"
+          class="mb-4 flex space-x-2 rounded-md border border-gray-200 px-3 py-2 dark:border-zinc-800"
         >
-          <p class="mb-2 text-red-500 dark:text-red-200">
-            Údaje momentálně nelze upravit. Funkci připravujeme.
+          <p
+            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            @click="tab = 'data'"
+          >
+            Podrobnosti
+          </p>
+          <p
+            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            @click="tab = 'expenses'"
+          >
+            Výdaje
           </p>
 
-          <p>IČ: {{ organisation.ic }}</p>
-          <p>DIČ: {{ organisation.dic }}</p>
-          <p>Ulice: {{ organisation.street }}</p>
-          <p>Město: {{ organisation.city }}</p>
-          <p>PSČ: {{ organisation.postal }}</p>
-          <p>Země: {{ organisation.country }}</p>
+          <p
+            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            @click="tab = 'counter_bank_accounts'"
+          >
+            Účty
+          </p>
         </div>
 
-        <div class="mb-2 flex justify-between">
-          <div>
-            <p class="text-base text-gray-600 dark:text-zinc-400">Výdaje</p>
-          </div>
-          <div>
-            <button-secondary @click="openModal"
-              >+ přidat výdaj
-            </button-secondary>
-          </div>
-        </div>
+        <organisation-data
+          :organisation="organisation"
+          v-if="tab === 'data'"
+        ></organisation-data>
 
-        <expense-create-modal
-          ref="modal_create"
-          :default_organisation_uuid="organisation.uuid"
-          @expense-created="fetchData"
-        />
+        <organisation-expenses
+          v-if="tab === 'expenses'"
+          :organisation="organisation"
+        ></organisation-expenses>
 
-        <div
-          class="mb-4 divide-y divide-slate-200 rounded border border-slate-200"
-        >
-          <expense-row
-            :expense="expense"
-            v-for="expense in organisation.expenses"
-          ></expense-row>
-        </div>
+        <organisation-counter-bank-accounts
+          v-if="tab === 'counter_bank_accounts'"
+          :organisation="organisation"
+        ></organisation-counter-bank-accounts>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
-import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+import OrganisationCounterBankAccounts from "~/components/organisation/OrganisationCounterBankAccounts.vue";
 
 definePageMeta({
   layout: "default",
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
 
-const modal_create = useTemplateRef("modal_create");
-
-function openModal() {
-  modal_create.value.openModal();
-}
+const tab = ref("data");
 </script>
 
 <script>

@@ -49,7 +49,7 @@
       v-if="expenses.length === 0"
       class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200 dark:border-zinc-800 dark:text-zinc-400"
     >
-      <p class="text-gray-600">Žádné odpovídající výdaje.</p>
+      <p class="text-gray-600 dark:text-zinc-400">Žádné odpovídající výdaje.</p>
     </div>
 
     <div v-if="expenses.length > 0">

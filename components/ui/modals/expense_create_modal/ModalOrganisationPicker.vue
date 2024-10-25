@@ -4,9 +4,9 @@
       <div class="">
         <PopoverButton
           :class="open ? 'bg-gray-200' : ''"
-          class="me-2 cursor-default rounded border border-gray-200 px-2 py-1 text-sm text-gray-800 shadow-sm hover:bg-gray-100 focus-visible:outline-0 active:bg-gray-200"
+          class="me-2 cursor-default rounded border border-gray-200 px-2 py-1 text-sm text-gray-800 shadow-sm hover:bg-gray-100 focus-visible:outline-0 active:bg-gray-200 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-800"
         >
-          <div class="flex items-center text-gray-800">
+          <div class="flex items-center text-gray-800 dark:text-zinc-300 py-[2px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -22,7 +22,10 @@
               />
             </svg>
 
-            <span v-if="selected_organisation" class="text-left text-gray-700">
+            <span
+              v-if="selected_organisation"
+              class="text-left text-gray-700 dark:text-zinc-300"
+            >
               {{ selected_organisation.name }}
             </span>
             <span v-else class="text-gray-500"> zvolit organizaci </span>
@@ -42,10 +45,12 @@
           v-slot="{ close }"
           class="absolute top-[37px] z-50 w-[250px]"
         >
-          <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
-            <div class="relative bg-white p-2">
+          <div class="overflow-hidden rounded-lg shadow-lg border border-black/5 dark:border  dark:border-zinc-800">
+            <div
+              class="relative bg-white p-2  dark:bg-zinc-900 dark:text-zinc-300"
+            >
               <input
-                class="mb-2 w-full rounded border-gray-200 py-1 text-base text-gray-700 focus:border-gray-200 focus:ring-0"
+                class="mb-2 w-full rounded border-gray-200 py-1 text-base text-gray-700 focus:border-gray-200 focus:ring-0 dark:border-zinc-800 dark:bg-transparent dark:text-zinc-200"
                 type="text"
                 placeholder="Název organizace..."
                 v-model="organisation_name_filter"
@@ -53,7 +58,7 @@
 
               <div class="max-h-[50vh] overflow-auto">
                 <p
-                  class="rounded-md px-2 py-1 text-base text-gray-700 hover:bg-gray-hover active:bg-gray-100"
+                  class="rounded-md px-2 py-1 text-base text-gray-700 hover:bg-gray-hover dark:hover:bg-zinc-800 active:bg-gray-100 dark:text-zinc-400"
                   v-for="organisation in filtered_organisations"
                   @click="selectOrganisation(organisation, close)"
                 >

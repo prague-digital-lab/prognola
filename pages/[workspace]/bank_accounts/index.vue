@@ -33,7 +33,7 @@
           Mějte všechny platby na jednom místě
         </p>
 
-        <p class="mb-7 text-base font-light">
+        <p class="mb-7 text-base font-light dark:text-zinc-400">
           Přidejte bankovní účet nebo hotovostní pokladnu, abyste měli vždy
           přehled o&nbsp;uskutečněných platbách. Teď už vám žádná transakce
           neunikne.

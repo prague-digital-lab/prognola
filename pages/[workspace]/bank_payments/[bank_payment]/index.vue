@@ -54,6 +54,24 @@
               </dd>
             </div>
 
+            <div
+              class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              v-if="bank_payment.counter_account_number"
+            >
+              <dt
+                class="text-base font-medium text-gray-900 dark:text-zinc-300"
+              >
+                Protiúčet
+              </dt>
+              <dd
+                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-zinc-400"
+              >
+                <badge-counter-bank-account
+                  :counter_bank_account="bank_payment.counter_bank_account"
+                ></badge-counter-bank-account>
+              </dd>
+            </div>
+
             <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt
                 class="text-base font-medium text-gray-900 dark:text-zinc-300"
@@ -121,24 +139,6 @@
 
             <div
               class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-              v-if="bank_payment.counter_account_number"
-            >
-              <dt
-                class="text-base font-medium text-gray-900 dark:text-zinc-300"
-              >
-                Číslo protiúčtu
-              </dt>
-              <dd
-                class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-zinc-400"
-              >
-                {{ bank_payment.counter_account_number }}/{{
-                  bank_payment.counter_bank_number
-                }}
-              </dd>
-            </div>
-
-            <div
-              class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
               v-if="bank_payment.paired_at"
             >
               <dt
@@ -157,7 +157,7 @@
       </div>
 
       <div
-        class="mb-4 overflow-hidden border border-gray-200 bg-white p-6 sm:rounded-lg dark:bg-zinc-900 dark:border-zinc-800"
+        class="mb-4 overflow-hidden border border-gray-200 bg-white p-6 sm:rounded-lg dark:border-zinc-800 dark:bg-zinc-900"
       >
         <div
           v-if="
@@ -165,7 +165,9 @@
           "
         >
           <div class="mb-4 flex items-center justify-between">
-            <p class="font-medium text-gray-600 dark:text-zinc-200">Spárované příjmy a výdaje</p>
+            <p class="font-medium text-gray-600 dark:text-zinc-200">
+              Spárované příjmy a výdaje
+            </p>
 
             <div>
               <button-secondary @click="navigateToPair"
@@ -192,12 +194,11 @@
             {{ expense.pivot.amount }} Kč
           </div>
         </div>
-      <div v-else>
-        <button-secondary @click="navigateToPair"
-        >Spárovat příjem/výdaj
-        </button-secondary>
-      </div>
-
+        <div v-else>
+          <button-secondary @click="navigateToPair"
+            >Spárovat příjem/výdaj
+          </button-secondary>
+        </div>
       </div>
     </div>
   </div>
@@ -211,6 +212,7 @@ import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import Heading from "~/components/ui/Heading.vue";
 import BankPaymentAmount from "~/components/bank_payment/BankPaymentAmount.vue";
+import BadgeCounterBankAccount from "~/components/badges/BadgeCounterBankAccount.vue";
 
 definePageMeta({
   layout: "default",

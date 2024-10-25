@@ -27,16 +27,16 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-2xl transform select-none rounded-2xl bg-white p-6 text-left align-middle shadow transition-all"
+              class="w-full max-w-2xl transform select-none rounded-2xl bg-white p-6 text-left align-middle shadow transition-all dark:bg-zinc-900 dark:border dark:border-zinc-800 dark:text-zinc-400"
             >
-              <DialogTitle as="p" class="text-base leading-6 text-gray-700">
+              <DialogTitle as="p" class="text-base leading-6 text-gray-700 dark:text-zinc-200">
                 Nový výdaj
               </DialogTitle>
 
               <form v-on:submit.prevent="createExpense">
                 <div class="flex justify-between">
                   <input
-                    class="mb-2 flex-1 border-none px-0 py-2 font-medium focus:ring-0"
+                    class="mb-2 flex-1 border-none px-0 py-2 font-medium focus:ring-0 dark:bg-transparent dark:text-zinc-200"
                     placeholder="Název výdaje"
                     type="text"
                     required
@@ -44,7 +44,7 @@
                   />
                   <div>
                     <input
-                      class="mb-2 border-none px-0 py-2 text-end font-medium focus:ring-0"
+                      class="mb-2 border-none px-0 py-2 text-end font-medium focus:ring-0 dark:bg-transparent dark:text-zinc-200"
                       type="number"
                       step="0.01"
                       v-model="price"

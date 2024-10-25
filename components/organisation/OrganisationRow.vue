@@ -1,10 +1,9 @@
 <template>
   <div
-    class="flex items-center justify-between px-3 py-2 duration-100 hover:bg-gray-hover"
+    class="flex items-center justify-between px-3 py-2 duration-100 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800"
     @click="navigateToOrganisation"
   >
     <div class="flex text-base">
-      <!--      <p class="text-gray-500 w-[60px] font-light">{{ organisation.id }}</p>-->
       <p class="w-[400px]">
         {{ organisation.name ? organisation.name : "bez názvu" }}
       </p>
