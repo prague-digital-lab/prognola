@@ -100,12 +100,12 @@ async function fetchData() {
       }),
   );
 
-  console.log("Setting accounts")
+  console.log("Setting accounts");
 
   accounts.value = counter_bank_accounts.value;
 
   if (counter_bank_accounts.value.length > 0) {
-    console.log("Choosing default counter_bank_account")
+    console.log("Choosing default counter_bank_account");
 
     counter_bank_account.value = counter_bank_accounts.value[0];
   }
@@ -129,32 +129,63 @@ watch(message, (newX, oldX) => {
 });
 
 function updateQrCode() {
-  if (counter_bank_account.value === undefined || counter_bank_account.value === null) {
+  if (
+    counter_bank_account.value === undefined ||
+    counter_bank_account.value === null
+  ) {
     return;
   }
   const zeroPad = (num, places) => String(num).padStart(places, "0");
-  const bank_number_leading = zeroPad(counter_bank_account.value.account_number, 10);
 
-  console.log('huh:' + bank_number_leading);
+  // console.log('huh:' + bank_number_leading);
 
-  let iban = new IBANBuilder()
-    .countryCode(CountryCode.CZ)
-    .accountNumber(bank_number_leading)
-    .branchCode("000000")
-    .bankCode(counter_bank_account.value.bank_number)
-    .build()
-    .toString();
+  if (counter_bank_account.value.account_number.includes("-")) {
+    let account_number_arr =
+      counter_bank_account.value.account_number.split("-");
 
-  console.log(iban);
+    let brach_number_leading = zeroPad(account_number_arr[0], 6);
+    let bank_number_leading = zeroPad(account_number_arr[1], 10);
+
+    let iban = new IBANBuilder()
+      .countryCode(CountryCode.CZ)
+      .accountNumber(bank_number_leading)
+      .branchCode(brach_number_leading)
+      .bankCode(counter_bank_account.value.bank_number)
+      .build()
+      .toString();
+
+    qr_value.value =
+      "SPD*1.0*ACC:" +
+      iban +
+      "*AM:" +
+      price.value +
+      "*CC:CZK*MSG:" +
+      message.value;
+  } else {
+    let bank_number_leading = zeroPad(
+      counter_bank_account.value.account_number,
+      10,
+    );
+
+    let iban = new IBANBuilder()
+      .countryCode(CountryCode.CZ)
+      .accountNumber(bank_number_leading)
+      .branchCode("000000")
+      .bankCode(counter_bank_account.value.bank_number)
+      .build()
+      .toString();
+
+    qr_value.value =
+      "SPD*1.0*ACC:" +
+      iban +
+      "*AM:" +
+      price.value +
+      "*CC:CZK*MSG:" +
+      message.value;
+  }
 
   // return expense.value.amount;
-  qr_value.value =
-    "SPD*1.0*ACC:" +
-    iban +
-    "*AM:" +
-    price.value +
-    "*CC:CZK*MSG:" +
-    message.value;
+
 }
 </script>
 
