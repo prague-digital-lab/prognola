@@ -8,9 +8,9 @@
 
     <div
       v-if="organisations.length === 0"
-      class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200"
+      class="mb-4 flex h-[400px] w-full items-center justify-center rounded-md border border-gray-200 dark:border-zinc-800"
     >
-      <p class="text-gray-600">Žádné odpovídající organizace.</p>
+      <p class="text-gray-600 dark:text-zinc-400">Žádné odpovídající organizace.</p>
     </div>
 
     <div
