@@ -133,12 +133,13 @@ function updateQrCode() {
     return;
   }
   const zeroPad = (num, places) => String(num).padStart(places, "0");
-  // const bank_number_leading = zeroPad(counter_bank_account.account_number, 10);
-  // console.log(bank_number_leading);
+  const bank_number_leading = zeroPad(counter_bank_account.value.account_number, 10);
+
+  console.log('huh:' + bank_number_leading);
 
   let iban = new IBANBuilder()
     .countryCode(CountryCode.CZ)
-    .accountNumber(counter_bank_account.value.account_number)
+    .accountNumber(bank_number_leading)
     .branchCode("000000")
     .bankCode(counter_bank_account.value.bank_number)
     .build()
@@ -153,8 +154,7 @@ function updateQrCode() {
     "*AM:" +
     price.value +
     "*CC:CZK*MSG:" +
-    message.value +
-    "*X-VS:1234567890";
+    message.value;
 }
 </script>
 
