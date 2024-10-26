@@ -237,7 +237,7 @@ const { data: response_2 } = await useAsyncData("incomes_due", () =>
     method: "GET",
     params: {
       to: yesterday_end,
-      payment_status: "pending",
+      payment_status: "due",
     },
   }),
 );
