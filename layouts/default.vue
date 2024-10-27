@@ -315,6 +315,7 @@ import {
   XMarkIcon,
 } from "@heroicons/vue/24/outline";
 import Sidebar from "~/components/ui/sidebar/Sidebar.vue";
+// import { openDB } from "idb";
 
 useHead({
   title: "Prognola",
@@ -331,6 +332,8 @@ const workspaces = ref("");
 const active_workspace = ref("");
 const active_workspace_url_slug = ref("");
 
+let db;
+
 onMounted(async () => {
   await loadAvailableWorkspaces();
 
@@ -340,6 +343,10 @@ onMounted(async () => {
   }
 
   initializeWorkspace(route.params.workspace);
+
+  await openDatabase();
+
+  await bootstrapDatabaseData();
 });
 
 async function loadAvailableWorkspaces() {
@@ -382,6 +389,72 @@ async function submitLogout() {
   const { logout } = useSanctumAuth();
 
   await logout();
+}
+
+async function openDatabase() {
+  console.log("Opening IndexedDB store-" + route.params.workspace);
+
+  let store_name = "store-" + route.params.workspace;
+
+  const request = indexedDB.open(store_name, 1);
+
+  request.onupgradeneeded = (event) => {
+    db = event.target.result;
+
+    if (!db.objectStoreNames.contains("expenses")) {
+      db.createObjectStore("expenses", { keyPath: "uuid" });
+    }
+
+    if (!db.objectStoreNames.contains("incomes")) {
+      db.createObjectStore("incomes", { keyPath: "uuid" });
+    }
+
+    if (!db.objectStoreNames.contains("bank_payments")) {
+      db.createObjectStore("bank_payments", { keyPath: "uuid" });
+    }
+
+    if (!db.objectStoreNames.contains("bank_accounts")) {
+      db.createObjectStore("bank_accounts", { keyPath: "uuid" });
+    }
+  };
+
+  request.onsuccess = (event) => {
+    // Store the result of opening the database in the db variable. This is used a lot below
+    db = request.result;
+
+    return db;
+  };
+}
+
+async function bootstrapDatabaseData() {
+  console.log("Bootstrapping database.");
+
+  const client = useSanctumClient();
+  const route = useRoute();
+
+  const { data } = await useAsyncData("expenses", () =>
+    client("/api/" + route.params.workspace + "/expenses", {
+      method: "GET",
+    }),
+  );
+
+  console.log(db);
+
+  let expenses = data.value.data;
+
+  // db.truncate("expenses");
+  // await db.add("expenses", expenses[0]);
+
+  const transaction = db.transaction(["expenses"], "readwrite");
+  const objectStore = transaction.objectStore("expenses");
+  console.log(expenses[0]);
+
+  expenses.forEach((expense) => {
+    console.log(expense);
+    let expense_object = JSON.parse(JSON.stringify(expense));
+
+    const objectStoreRequest = objectStore.add(expense_object);
+  });
 }
 </script>
 
