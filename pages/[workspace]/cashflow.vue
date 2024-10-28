@@ -364,20 +364,23 @@ function formatPrice(value) {
   let val = (value / 1).toFixed(0).replace(".", ",");
   return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
+
+watch(from, (newValue, oldValue) => {
+  if(oldValue === null){
+    return
+  }
+  fetchData();
+})
+
+watch(to, (newValue, oldValue) => {
+  if(oldValue === null){
+    return
+  }
+
+  fetchData();
+})
 </script>
 
-<script>
-export default {
-  watch: {
-    from: function(newVal, oldVal) {
-      this.fetchData();
-    },
-    to: function(newVal, oldVal) {
-      this.fetchData();
-    },
-  },
-};
-</script>
 
 <style>
 .atom-spinner,
