@@ -344,9 +344,6 @@ onMounted(async () => {
   }
 
   initializeWorkspace(route.params.workspace);
-
-  const db = openDatabase();
-  await bootstrapDatabase(db, route.params.workspace);
 });
 
 async function loadAvailableWorkspaces() {
@@ -368,7 +365,7 @@ async function chooseWorkspace(url_slug) {
   await navigateTo("/" + url_slug + "/cashflow");
 }
 
-function initializeWorkspace(url_slug) {
+async function initializeWorkspace(url_slug) {
   let active_url_slug = url_slug;
 
   let workspace_by_slug = workspaces.value.find(
@@ -380,6 +377,9 @@ function initializeWorkspace(url_slug) {
   }
 
   localStorage.setItem("active_workspace_url_slug", active_url_slug);
+
+  const db = openDatabase();
+  await bootstrapDatabase(db, route.params.workspace);
 
   active_workspace.value = workspace_by_slug;
   active_workspace_url_slug.value = active_url_slug;
