@@ -284,7 +284,7 @@ const expenses_today = useObservable(
 );
 
 const expenses_today_sum = computed(() => {
-  return incomes_upcoming.value.reduce(function (a, b) {
+  return expenses_today.value.reduce(function (a, b) {
     return a + b.price;
   }, 0);
 });
