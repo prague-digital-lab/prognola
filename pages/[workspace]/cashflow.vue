@@ -217,7 +217,7 @@ async function fetchData() {
   let labels_data = [];
   let balance_data = [];
 
-  let old_balance = 0;
+  let current_balance = 0;
 
   while (range_end <= date_to) {
     let expenses = await getExpensesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
@@ -268,29 +268,17 @@ async function fetchData() {
     incomes_issued_data.push(income_issued_sum);
 
 
-    let balance = old_balance + income_plan_sum + income_issued_sum - expenses_plan_sum - expenses_issued_sum;
-    balance_data.push(balance);
-    old_balance = balance;
+    if (range_end >= DateTime.now()) {
+      current_balance = current_balance + income_plan_sum + income_issued_sum - expenses_plan_sum - expenses_issued_sum;
+    }
 
+    balance_data.push(current_balance);
 
     labels_data.push(range_start.toFormat('MM/yyyy'));
 
     range_start = range_start.plus({ "month": 1 });
     range_end = range_start.endOf("month");
   }
-
-
-  // const { data } = await useAsyncData("income", () =>
-  //   client("/api/" + route.params.workspace + "/stats/cashflow", {
-  //     method: "GET",
-  //     params: {
-  //       from: from.value,
-  //       to: to.value
-  //     }
-  //   })
-  // );
-
-  // console.log(data.value.chart_data_income)
 
   chartData.value = {
     labels: labels_data,
