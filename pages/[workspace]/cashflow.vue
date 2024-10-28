@@ -269,7 +269,7 @@ async function fetchData() {
 
 
     if (range_end >= DateTime.now()) {
-      current_balance = current_balance + income_plan_sum + income_issued_sum - expenses_plan_sum - expenses_issued_sum;
+      current_balance = current_balance + income_plan_sum - expenses_plan_sum
     }
 
     balance_data.push(current_balance);
