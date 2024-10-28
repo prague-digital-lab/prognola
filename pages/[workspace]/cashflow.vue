@@ -215,7 +215,9 @@ async function fetchData() {
   let incomes_planned_data = [];
   let incomes_issued_data = [];
   let labels_data = [];
-let balance_data = []
+  let balance_data = [];
+
+  let old_balance = 0;
 
   while (range_end <= date_to) {
     let expenses = await getExpensesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
@@ -265,6 +267,12 @@ let balance_data = []
 
     incomes_issued_data.push(income_issued_sum);
 
+
+    let balance = old_balance + income_plan_sum + income_issued_sum - expenses_plan_sum - expenses_issued_sum;
+    balance_data.push(balance);
+    old_balance = balance;
+
+
     labels_data.push(range_start.toFormat('MM/yyyy'));
 
     range_start = range_start.plus({ "month": 1 });
@@ -272,18 +280,15 @@ let balance_data = []
   }
 
 
-  const client = useSanctumClient();
-  const route = useRoute();
-
-  const { data } = await useAsyncData("income", () =>
-    client("/api/" + route.params.workspace + "/stats/cashflow", {
-      method: "GET",
-      params: {
-        from: from.value,
-        to: to.value
-      }
-    })
-  );
+  // const { data } = await useAsyncData("income", () =>
+  //   client("/api/" + route.params.workspace + "/stats/cashflow", {
+  //     method: "GET",
+  //     params: {
+  //       from: from.value,
+  //       to: to.value
+  //     }
+  //   })
+  // );
 
   // console.log(data.value.chart_data_income)
 
@@ -336,7 +341,7 @@ let balance_data = []
 
       {
         label: "Konečný zůstatek",
-        data: data.value.chart_data_balance,
+        data: balance_data,
         borderColor: [colors.indigo[200]],
         hidden: false,
         borderWidth: 2,
