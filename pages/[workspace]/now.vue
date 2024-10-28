@@ -236,8 +236,14 @@ const db = openDatabase(route.params.workspace);
 
 const expenses_due = useObservable(
   liveQuery(() => {
-    return db.expenses.where("paid_at").below(today_start).toArray();
-  })
+    return db.expenses
+      .where("paid_at")
+      .below(today_start)
+      .and((item) => {
+        return item.payment_status === 'plan' || item.payment_status === 'pending';
+      })
+      .toArray();
+  }),
 );
 
 const expenses_due_sum = computed(() => {

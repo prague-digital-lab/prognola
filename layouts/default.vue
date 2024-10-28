@@ -378,7 +378,7 @@ async function initializeWorkspace(url_slug) {
 
   localStorage.setItem("active_workspace_url_slug", active_url_slug);
 
-  const db = openDatabase();
+  let db = openDatabase();
   await bootstrapDatabase(db, route.params.workspace);
 
   active_workspace.value = workspace_by_slug;
