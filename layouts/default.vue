@@ -293,8 +293,17 @@
           <slot />
         </div>
 
-        <div class="px-4" v-else>
-          <p>Probíhá synchronizace dat organizace.</p>
+        <div
+          class="flex flex-col items-center justify-center space-y-10 px-4 h-[600px]"
+          v-else
+        >
+          <div class="block">
+            <nuxt-img src="/img/logo_prazska_laborator.png" width="80" />
+          </div>
+
+          <div>
+            <p class="text-zinc-700 dark:text-zinc-200">Probíhá synchronizace dat {{active_workspace.name}}.</p>
+          </div>
         </div>
       </main>
     </div>
@@ -372,7 +381,7 @@ async function chooseWorkspace(url_slug) {
 }
 
 async function initializeWorkspace(url_slug) {
-  loading_workspace.value = true
+  loading_workspace.value = true;
 
   let active_url_slug = url_slug;
 
@@ -392,7 +401,7 @@ async function initializeWorkspace(url_slug) {
   active_workspace.value = workspace_by_slug;
   active_workspace_url_slug.value = active_url_slug;
 
-  loading_workspace.value = false
+  loading_workspace.value = false;
 }
 
 const sidebarOpen = ref(false);
