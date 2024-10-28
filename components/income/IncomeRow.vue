@@ -9,25 +9,13 @@
 
     <div class="flex items-center text-base font-light text-slate-600">
       <div
-        v-if="income.organisation"
-        class="me-5 flex items-center rounded-[20px] border border-gray-200 px-3 py-1"
+        v-if="organisation"
+        class="me-2 flex cursor-pointer items-center rounded-md border border-gray-200 px-3 py-1 leading-5 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400"
+        @click="navigateToOrganisation(organisation)"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="me-2 inline-block size-4"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"
-          />
-        </svg>
+        <building-library-icon class="me-1 h-4 w-4"></building-library-icon>
 
-        {{ income.organisation.name }}
+        {{ organisation.name }}
       </div>
 
       <p class="pe-2 font-light dark:text-zinc-400">
@@ -67,10 +55,24 @@
 <script>
 import { defineComponent } from "vue";
 import { DateTime } from "luxon";
+import { BuildingLibraryIcon } from "@heroicons/vue/24/outline/index.js";
+import { findOrganisation } from "~/lib/dexie/repository/organisation_repository.js";
 
 export default defineComponent({
   name: "IncomeRow",
+  components: { BuildingLibraryIcon },
   props: ["income"],
+  data: () => {
+    return {
+      organisation: null
+    }
+  },
+  async mounted() {
+    if (this.income.organisation) {
+      this.organisation.value = await findOrganisation(props.expense.organisation);
+    }
+  },
+
   methods: {
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
@@ -81,6 +83,13 @@ export default defineComponent({
       let formatted = DateTime.fromJSDate(date);
 
       return formatted.toFormat("d.M.yyyy");
+    },
+
+    async navigateToOrganisation(organisation) {
+      const route = useRoute();
+      await navigateTo(
+        "/" + route.params.workspace + "/organisations/" + organisation.uuid,
+      );
     },
 
     async navigateToIncome() {
