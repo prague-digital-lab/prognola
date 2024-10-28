@@ -186,6 +186,8 @@ async function fetchExpenses() {
   let date_to = DateTime.fromISO(to.value).toJSDate();
 
   expenses.value = await getExpensesByPaidAt(date_from, date_to);
+
+  console.log(expenses.value)
 }
 
 const price_sum = computed(() => {

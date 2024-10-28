@@ -5,7 +5,7 @@
         <heading>Příjmy</heading>
       </template>
       <template v-slot:subtitle>
-        <p class="text-base text-gray-500 dark:text-zinc-400" v-if="loaded">
+        <p class="text-base text-gray-500 dark:text-zinc-400">
           Celkem: {{ formatPrice(price_sum) }} Kč
         </p>
       </template>
@@ -106,6 +106,10 @@ function openModal() {
 </script>
 
 <script>
+import { DateTime } from "luxon";
+import { getExpensesByPaidAt } from "~/lib/dexie/repository/expense_repository.js";
+import { getIncomesByPaidAt } from "~/lib/dexie/repository/income_repository.js";
+
 export default {
   data() {
     return {
@@ -122,7 +126,6 @@ export default {
 
       // Data
       incomes: [],
-      price_sum: 0,
     };
   },
 
@@ -157,6 +160,12 @@ export default {
         return r;
       }, Object.create(null));
     },
+
+    price_sum() {
+      return this.incomes.reduce(function (a, b) {
+        return a + b.amount;
+      }, 0);
+    },
   },
 
   watch: {
@@ -179,48 +188,17 @@ export default {
 
   methods: {
     async fetchData() {
-      const client = useSanctumClient();
-      const route = useRoute();
+      let date_from = DateTime.fromISO(this.from).toJSDate();
+      let date_to = DateTime.fromISO(this.to).toJSDate();
 
-      const { data } = await useAsyncData("income", () =>
-        client("/api/" + route.params.workspace + "/incomes", {
-          method: "GET",
-          params: {
-            from: this.from,
-            to: this.to,
-          },
-        }),
-      );
+      this.incomes = await getIncomesByPaidAt(date_from, date_to);
 
-      this.incomes = data.value.data;
-      this.price_sum = data.value.price_sum;
-
-      this.loaded = true;
+      console.log(this.incomes);
     },
 
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
-
-    async createIncome() {
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("income", () =>
-        client("/api/" + route.params.workspace + "/incomes", {
-          method: "POST",
-          body: {
-            name: this.new_income_name,
-            price: 0,
-            paid_at: this.from,
-          },
-        }),
-      );
-
-      let uuid = data.value.uuid;
-
-      await navigateTo("/" + route.params.workspace + "/income/" + uuid);
     },
   },
 };
