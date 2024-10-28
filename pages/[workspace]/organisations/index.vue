@@ -60,6 +60,9 @@ definePageMeta({
 </script>
 
 <script>
+import { getIncomesByPaidAt } from "~/lib/dexie/repository/income_repository.js";
+import { getOrganisations } from "~/lib/dexie/repository/organisation_repository.js";
+
 export default {
   data() {
     return {
@@ -83,17 +86,9 @@ export default {
 
   methods: {
     async fetchData() {
-      const client = useSanctumClient();
-      const route = useRoute();
+      this.organisations = await getOrganisations();
 
-      const { data } = await useAsyncData("organisations", () =>
-        client("/api/" + route.params.workspace + "/organisations", {
-          method: "GET",
-          params: {},
-        }),
-      );
-
-      this.organisations = data.value.sort((a, b) =>
+      this.organisations = this.organisations.sort((a, b) =>
         a.name.localeCompare(b.name),
       );
 
