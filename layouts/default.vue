@@ -377,7 +377,7 @@ async function loadAvailableWorkspaces() {
 }
 
 async function chooseWorkspace(url_slug) {
-  initializeWorkspace(url_slug);
+  await initializeWorkspace(url_slug);
 
   await navigateTo("/" + url_slug + "/cashflow");
 }
