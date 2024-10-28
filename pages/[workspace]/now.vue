@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div>
+    <div v-if="loaded">
       <page-content-header>
         <template v-slot:title>
           <heading>Nadcházející platby</heading>
         </template>
       </page-content-header>
 
-      <p class="dark:text-zinc-400">Aktuální zůstatek napříč účty: 0 Kč</p>
-      <p class="mb-10 dark:text-zinc-400">Hotovost na pokladnách: 0 Kč</p>
+      <!--      <p class="dark:text-zinc-400">Aktuální zůstatek napříč účty: 0 Kč</p>-->
+      <!--      <p class="mb-10 dark:text-zinc-400">Hotovost na pokladnách: 0 Kč</p>-->
 
       <div
         class="mb-4 flex flex-col space-y-3 rounded-md border border-red-300 p-5 dark:border-zinc-800 dark:bg-zinc-950"
-        v-if="incomes_due.length > 0 || expenses_due.length > 0"
+        v-if="expenses_due.length > 0 || incomes_due.length > 0"
       >
         <div
           class="space mb-4 rounded-md border border-red-200 bg-red-50 p-4 dark:border-zinc-800 dark:bg-zinc-900"
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div
-            class=" mb-4 divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
+            class="mb-4 divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
           >
             <income-row
               :income="income"
@@ -142,59 +142,58 @@
       </div>
 
       <div
-          class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
+        class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
       >
+        <div class="mb-4">
+          <div class="mb-4 flex justify-between">
+            <div class="dark:text-zinc-400">Nadcházející příjmy</div>
+            <div>
+              <span
+                class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400"
+                >{{ formatPrice(incomes_upcoming_sum) }} Kč</span
+              >
+            </div>
+          </div>
 
-      <div class="mb-4">
-        <div class="mb-4 flex justify-between">
-          <div class="dark:text-zinc-400">Nadcházející příjmy</div>
-          <div>
-            <span
-              class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400"
-              >{{ formatPrice(incomes_upcoming_sum) }} Kč</span
-            >
+          <div
+            class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
+            v-if="incomes_upcoming.length > 0"
+          >
+            <income-row
+              :income="income"
+              v-for="income in incomes_upcoming"
+            ></income-row>
+          </div>
+          <div v-if="incomes_upcoming.length === 0" class="dark:text-zinc-400">
+            -
           </div>
         </div>
 
-        <div
-          class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
-          v-if="incomes_upcoming.length > 0"
-        >
-          <income-row
-            :income="income"
-            v-for="income in incomes_upcoming"
-          ></income-row>
-        </div>
-        <div v-if="incomes_upcoming.length === 0" class="dark:text-zinc-400">
-          -
-        </div>
-      </div>
+        <div class="mb-4">
+          <div class="mb-4 flex justify-between">
+            <div class="dark:text-zinc-400">Nadcházející výdaje</div>
+            <div>
+              <span
+                class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
+                >{{ formatPrice(expenses_upcoming_sum) }} Kč</span
+              >
+            </div>
+          </div>
 
-      <div class="mb-4">
-        <div class="mb-4 flex justify-between">
-          <div class="dark:text-zinc-400">Nadcházející výdaje</div>
-          <div>
-            <span
-              class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
-              >{{ formatPrice(expenses_upcoming_sum) }} Kč</span
-            >
+          <div
+            class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
+            v-if="expenses_upcoming.length > 0"
+          >
+            <expense-row
+              :expense="expense"
+              v-for="expense in expenses_upcoming"
+            ></expense-row>
+          </div>
+
+          <div v-if="expenses_upcoming.length === 0" class="dark:text-zinc-400">
+            -
           </div>
         </div>
-
-        <div
-          class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
-          v-if="expenses_upcoming.length > 0"
-        >
-          <expense-row
-            :expense="expense"
-            v-for="expense in expenses_upcoming"
-          ></expense-row>
-        </div>
-
-        <div v-if="expenses_upcoming.length === 0" class="dark:text-zinc-400">
-          -
-        </div>
-      </div>
       </div>
     </div>
   </div>
@@ -203,8 +202,11 @@
 <script setup>
 import { DateTime } from "luxon";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
-import { ExclamationCircleIcon } from "@heroicons/vue/20/solid";
 import Heading from "~/components/ui/Heading.vue";
+import { useObservable } from "@vueuse/rxjs";
+import { liveQuery } from "dexie";
+import { openDatabase } from "~/lib/dexie/db.js";
+import { ExclamationCircleIcon } from "@heroicons/vue/20/solid/index.js";
 
 useHead({
   title: "Nadcházející platby - Prognola",
@@ -215,92 +217,117 @@ definePageMeta({
   middleware: ["sanctum:auth", "sanctum:verified"],
 });
 
-const client = useSanctumClient();
 const route = useRoute();
+const client = useSanctumClient();
 
-const yesterday_end = DateTime.now().minus({ days: 1 }).endOf("day").toISO();
+let today_start = DateTime.now().startOf("day").toJSDate();
+let today_end = DateTime.now().endOf("day").toJSDate();
+const yesterday_end = DateTime.now().minus({ days: 1 }).endOf("day").toJSDate();
+const tomorrow_start = DateTime.now()
+  .plus({ days: 1 })
+  .startOf("day")
+  .toJSDate();
+const month_from_now = DateTime.now()
+  .plus({ days: 31 })
+  .startOf("day")
+  .toJSDate();
 
-const { data: response } = await useAsyncData("expenses_due", () =>
-  client("/api/" + route.params.workspace + "/expenses", {
-    method: "GET",
-    params: {
-      to: yesterday_end,
-      payment_status: "due",
-    },
-  }),
-);
-const expenses_due = response.value.data;
-const expenses_due_sum = response.value.price_sum;
+const db = openDatabase(route.params.workspace);
 
-const { data: response_2 } = await useAsyncData("incomes_due", () =>
-  client("/api/" + route.params.workspace + "/incomes", {
-    method: "GET",
-    params: {
-      to: yesterday_end,
-      payment_status: "due",
-    },
-  }),
+const expenses_due = useObservable(
+  liveQuery(() => {
+    return db.expenses.where("paid_at").below(today_start).toArray();
+  })
 );
 
-const incomes_due = response_2.value.data;
-const incomes_due_sum = response_2.value.price_sum;
+const expenses_due_sum = computed(() => {
+  return expenses_due.value.reduce(function (a, b) {
+    return a + b.price;
+  }, 0);
+});
 
-// Today
-const today_start = DateTime.now().startOf("day").toISO();
-const today_end = DateTime.now().endOf("day").toISO();
-
-const { data: response_3 } = await useAsyncData("expenses_today", () =>
-  client("/api/" + route.params.workspace + "/expenses", {
-    method: "GET",
-    params: {
-      from: today_start,
-      to: today_end,
-    },
-  }),
-);
-const expenses_today = response_3.value.data;
-const expenses_today_sum = response_3.value.price_sum;
-
-const { data: response_4 } = await useAsyncData("incomes_today", () =>
-  client("/api/" + route.params.workspace + "/incomes", {
-    method: "GET",
-    params: {
-      from: today_start,
-      to: today_end,
-    },
+const incomes_due = useObservable(
+  liveQuery(() => {
+    return db.incomes.where("paid_at").below(today_start).toArray();
   }),
 );
 
-const incomes_today = response_4.value.data;
-const incomes_today_sum = response_4.value.price_sum;
+const incomes_due_sum = computed(() => {
+  return incomes_due.value.reduce(function (a, b) {
+    return a + b["amount"];
+  }, 0);
+});
 
-const tomorrow_start = DateTime.now().plus({ days: 1 }).startOf("day").toISO();
-const month_from_now = DateTime.now().plus({ days: 31 }).startOf("day").toISO();
-
-const { data: response_5 } = await useAsyncData("expenses_upcoming", () =>
-  client("/api/" + route.params.workspace + "/expenses", {
-    method: "GET",
-    params: {
-      from: tomorrow_start,
-      to: month_from_now,
-    },
-  }),
-);
-const expenses_upcoming = response_5.value.data;
-const expenses_upcoming_sum = response_5.value.price_sum;
-
-const { data: response_6 } = await useAsyncData("incomes_upcoming", () =>
-  client("/api/" + route.params.workspace + "/incomes", {
-    method: "GET",
-    params: {
-      from: tomorrow_start,
-      to: month_from_now,
-    },
+const expenses_today = useObservable(
+  liveQuery(() => {
+    return db.expenses
+      .where("paid_at")
+      .between(today_start, today_end)
+      .toArray();
   }),
 );
 
-const incomes_upcoming = response_6.value.data;
-const incomes_upcoming_sum = response_6.value.price_sum;
+const expenses_today_sum = computed(() => {
+  return incomes_upcoming.value.reduce(function (a, b) {
+    return a + b["price"];
+  }, 0);
+});
+
+const incomes_today = useObservable(
+  liveQuery(() => {
+    return db.incomes
+      .where("paid_at")
+      .between(today_start, today_end)
+      .toArray();
+  }),
+);
+
+const incomes_today_sum = computed(() => {
+  return incomes_today.value.reduce(function (a, b) {
+    return a + b["amount"];
+  }, 0);
+});
+
+const expenses_upcoming = useObservable(
+  liveQuery(() => {
+    return db.expenses
+      .where("paid_at")
+      .between(tomorrow_start, month_from_now)
+      .toArray();
+  }),
+);
+
+const expenses_upcoming_sum = computed(() => {
+  return expenses_upcoming.value.reduce(function (a, b) {
+    return a + b["price"];
+  }, 0);
+});
+
+const incomes_upcoming = useObservable(
+  liveQuery(() => {
+    return db.incomes
+      .where("paid_at")
+      .between(tomorrow_start, month_from_now)
+      .toArray();
+  }),
+);
+
+const incomes_upcoming_sum = computed(() => {
+  return incomes_upcoming.value.reduce(function (a, b) {
+    return a + b["amount"];
+  }, 0);
+});
+
+const loaded = computed(() => {
+  return (
+    expenses_due.value &&
+    incomes_due.value &&
+    expenses_today.value &&
+    incomes_today.value &&
+    expenses_upcoming.value &&
+    incomes_upcoming.value
+  );
+});
 
 function formatPrice(value) {
   let val = (value / 1).toFixed(2).replace(".", ",");

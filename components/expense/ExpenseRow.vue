@@ -89,7 +89,7 @@ function formatPrice(value) {
 }
 
 function formatDate(date) {
-  let formatted = DateTime.fromISO(date);
+  let formatted = DateTime.fromJSDate(date);
 
   return formatted.toFormat("d.M.yyyy");
 }
