@@ -42,7 +42,7 @@
           </div>
 
           <div
-            class="mb-4 divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
+            class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
           >
             <income-row
               :income="income"
