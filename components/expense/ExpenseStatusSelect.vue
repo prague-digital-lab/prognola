@@ -120,7 +120,7 @@ export default {
     },
 
     isDue() {
-      const today = DateTime.now().endOf("day");
+      const today = DateTime.now().startOf("day");
 
       const paid_at = DateTime.fromISO(this.expense.paid_at);
 

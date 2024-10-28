@@ -60,7 +60,7 @@
 
         <div v-else-if="expense.payment_status === 'plan'">
           <p class="ms-2 text-end font-semibold text-yellow-500">
-            ~{{ formatPrice(expense.price) }} Kč
+            {{ formatPrice(expense.price) }} Kč
           </p>
         </div>
 
@@ -113,9 +113,9 @@ async function navigateToOrganisation(organisation) {
 }
 
 const isDue = computed(() => {
-  const today = DateTime.now().endOf("day");
+  const today = DateTime.now().startOf("day");
 
-  const paid_at = DateTime.fromISO(props.expense.paid_at);
+  const paid_at = DateTime.fromJSDate(props.expense.paid_at);
   return paid_at < today;
 });
 </script>

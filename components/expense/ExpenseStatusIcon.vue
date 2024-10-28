@@ -81,9 +81,9 @@ import { DateTime } from "luxon";
 const props = defineProps(["expense", "payment_status"]);
 
 const isDue = computed(() => {
-  const today = DateTime.now().endOf("day");
+  const today = DateTime.now().startOf("day");
 
-  const paid_at = DateTime.fromISO(props.expense.paid_at);
+  const paid_at = DateTime.fromJSDate(props.expense.paid_at);
 
   return paid_at < today;
 });
