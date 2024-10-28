@@ -9,43 +9,28 @@
 
       <!--      <p class="dark:text-zinc-400">Aktuální zůstatek napříč účty: 0 Kč</p>-->
       <!--      <p class="mb-10 dark:text-zinc-400">Hotovost na pokladnách: 0 Kč</p>-->
-
       <div
-        class="mb-4 flex flex-col space-y-3 rounded-md border border-red-300 p-5 dark:border-zinc-800 dark:bg-zinc-950"
-        v-if="expenses_due.length > 0 || incomes_due.length > 0"
+        class="mb-4 flex space-x-2 rounded-md border border-gray-200 px-3 py-2 dark:border-zinc-800"
       >
-        <div
-          class="space mb-4 rounded-md border border-red-200 bg-red-50 p-4 dark:border-zinc-800 dark:bg-zinc-900"
+        <p
+          class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+          @click="tab = 'incomes'"
         >
-          <div class="flex">
-            <div class="flex-shrink-0">
-              <ExclamationCircleIcon
-                class="h-5 w-5 text-red-400 dark:text-red-900"
-                aria-hidden="true"
-              />
-            </div>
-            <div class="ml-3">
-              <h3 class="text-sm font-medium text-red-800 dark:text-white">
-                <span v-if="incomes_due.length > 0 && expenses_due.length > 0"
-                  >Tyto příjmy a výdaje nebyly uhrazené v naplánovaném
-                  termínu.</span
-                >
-                <span v-if="incomes_due.length > 0 && expenses_due.length === 0"
-                  >Tyto příjmy nebyly uhrazené v naplánovaném termínu.</span
-                >
-                <span v-if="incomes_due.length === 0 && expenses_due.length > 0"
-                  >Tyto výdaje nebyly uhrazené v naplánovaném termínu.</span
-                >
-              </h3>
-              <div class="mt-2 text-sm text-red-700 dark:text-zinc-400">
-                Můžete je odložit do budoucna, podle toho, kdy očekáváte jejich
-                uhrazení.
-              </div>
-            </div>
-          </div>
-        </div>
+          Příjmy
+        </p>
+        <p
+          class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+          @click="tab = 'expenses'"
+        >
+          Výdaje
+        </p>
+      </div>
 
-        <div v-if="incomes_due.length > 0">
+      <div v-if="tab === 'incomes'">
+        <div
+          class="mb-4 flex flex-col rounded-md border border-red-300 p-5 dark:border-zinc-800 dark:bg-zinc-950"
+          v-if="incomes_due.length > 0"
+        >
           <div class="mb-4 flex justify-between">
             <div class="dark:text-zinc-400">Zpožděné příjmy</div>
             <div>
@@ -55,6 +40,7 @@
               >
             </div>
           </div>
+
           <div
             class="mb-4 divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
           >
@@ -65,32 +51,10 @@
           </div>
         </div>
 
-        <div v-if="expenses_due.length > 0">
+        <div
+          class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950 rounded-md"
+        >
           <div class="mb-4 flex justify-between">
-            <div class="dark:text-zinc-400">Zpožděné výdaje</div>
-            <div>
-              <span
-                class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
-                >{{ formatPrice(expenses_due_sum) }} Kč</span
-              >
-            </div>
-          </div>
-          <div
-            class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
-          >
-            <expense-row
-              :expense="expense"
-              v-for="expense in expenses_due"
-            ></expense-row>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
-      >
-        <div class="mb-4">
-          <div class="mb-2 flex justify-between">
             <div class="dark:text-zinc-400">Dnešní příjmy</div>
             <div>
               <span
@@ -114,7 +78,60 @@
           </div>
         </div>
 
-        <div class="">
+        <div
+          class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950 rounded-md"
+        >
+          <div class="mb-4 flex justify-between">
+            <div class="dark:text-zinc-400">Nadcházející příjmy</div>
+            <div>
+              <span
+                class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400"
+                >{{ formatPrice(incomes_upcoming_sum) }} Kč</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
+            v-if="incomes_upcoming.length > 0"
+          >
+            <income-row
+              :income="income"
+              v-for="income in incomes_upcoming"
+            ></income-row>
+          </div>
+          <div v-if="incomes_upcoming.length === 0" class="dark:text-zinc-400">
+            -
+          </div>
+        </div>
+      </div>
+      <div v-if="tab === 'expenses'">
+        <div
+          class="mb-4 flex flex-col rounded-md border border-red-300 p-5 dark:border-zinc-800 dark:bg-zinc-950"
+          v-if="expenses_due.length > 0"
+        >
+          <div class="mb-4 flex justify-between">
+            <div class="dark:text-zinc-400">Zpožděné výdaje</div>
+            <div>
+              <span
+                class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
+                >{{ formatPrice(expenses_due_sum) }} Kč</span
+              >
+            </div>
+          </div>
+          <div
+            class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
+          >
+            <expense-row
+              :expense="expense"
+              v-for="expense in expenses_due"
+            ></expense-row>
+          </div>
+        </div>
+
+        <div
+          class="mb-4 rounded-md border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
+        >
           <div class="mb-4 flex justify-between">
             <div class="dark:text-zinc-400">Dnešní výdaje</div>
             <div>
@@ -139,37 +156,10 @@
             -
           </div>
         </div>
-      </div>
 
-      <div
-        class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
-      >
-        <div class="mb-4">
-          <div class="mb-4 flex justify-between">
-            <div class="dark:text-zinc-400">Nadcházející příjmy</div>
-            <div>
-              <span
-                class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400"
-                >{{ formatPrice(incomes_upcoming_sum) }} Kč</span
-              >
-            </div>
-          </div>
-
-          <div
-            class="divide-y divide-gray-200 border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
-            v-if="incomes_upcoming.length > 0"
-          >
-            <income-row
-              :income="income"
-              v-for="income in incomes_upcoming"
-            ></income-row>
-          </div>
-          <div v-if="incomes_upcoming.length === 0" class="dark:text-zinc-400">
-            -
-          </div>
-        </div>
-
-        <div class="mb-4">
+        <div
+          class="mb-4 rounded-md border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
+        >
           <div class="mb-4 flex justify-between">
             <div class="dark:text-zinc-400">Nadcházející výdaje</div>
             <div>
@@ -206,7 +196,6 @@ import Heading from "~/components/ui/Heading.vue";
 import { useObservable } from "@vueuse/rxjs";
 import { liveQuery } from "dexie";
 import { openDatabase } from "~/lib/dexie/db.js";
-import { ExclamationCircleIcon } from "@heroicons/vue/20/solid/index.js";
 
 useHead({
   title: "Nadcházející platby - Prognola",
@@ -219,6 +208,8 @@ definePageMeta({
 
 const route = useRoute();
 const client = useSanctumClient();
+
+const tab = ref("incomes");
 
 let today_start = DateTime.now().startOf("day").toJSDate();
 let today_end = DateTime.now().endOf("day").toJSDate();
