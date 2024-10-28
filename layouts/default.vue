@@ -289,8 +289,12 @@
       </div>
 
       <main class="py-10">
-        <div class="px-4 sm:px-4">
+        <div class="px-4 sm:px-4" v-if="!loading_workspace">
           <slot />
+        </div>
+
+        <div class="">
+          <p>Probíhá synchronizace dat organizace.</p>
         </div>
       </main>
     </div>
@@ -335,6 +339,8 @@ const workspaces = ref("");
 const active_workspace = ref("");
 const active_workspace_url_slug = ref("");
 
+const loading_workspace = ref(true);
+
 onMounted(async () => {
   await loadAvailableWorkspaces();
 
@@ -366,6 +372,8 @@ async function chooseWorkspace(url_slug) {
 }
 
 async function initializeWorkspace(url_slug) {
+  loading_workspace.value = true
+
   let active_url_slug = url_slug;
 
   let workspace_by_slug = workspaces.value.find(
@@ -383,6 +391,8 @@ async function initializeWorkspace(url_slug) {
 
   active_workspace.value = workspace_by_slug;
   active_workspace_url_slug.value = active_url_slug;
+
+  loading_workspace.value = false
 }
 
 const sidebarOpen = ref(false);
