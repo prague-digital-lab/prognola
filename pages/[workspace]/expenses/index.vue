@@ -187,7 +187,7 @@ async function fetchExpenses() {
 
   expenses.value = await getExpensesByPaidAt(date_from, date_to);
 
-  console.log(expenses.value)
+  console.log(expenses.value);
 }
 
 const price_sum = computed(() => {

@@ -99,14 +99,8 @@
 </template>
 
 <script setup>
-useHead({
-  title: "Cashflow - Prognola",
-});
-
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
-</script>
-
-<script>
+import { Bar } from "vue-chartjs";
 import {
   BarElement,
   CategoryScale,
@@ -116,11 +110,21 @@ import {
   LineElement,
   PointElement,
   Title,
-  Tooltip,
+  Tooltip
 } from "chart.js";
-import { Bar } from "vue-chartjs";
-import colors from "tailwindcss/colors";
 import { DateTime } from "luxon";
+import colors from "tailwindcss/colors";
+import { getExpensesByPaidAt } from "~/lib/dexie/repository/expense_repository.js";
+import { getIncomesByPaidAt } from "~/lib/dexie/repository/income_repository.js";
+
+useHead({
+  title: "Cashflow - Prognola"
+});
+
+definePageMeta({
+  layout: "default",
+  middleware: ["sanctum:auth", "sanctum:verified"]
+});
 
 ChartJS.register(
   CategoryScale,
@@ -133,195 +137,250 @@ ChartJS.register(
   Legend,
 );
 
-export default {
-  setup() {
-    definePageMeta({
-      layout: "default",
-      middleware: ["sanctum:auth", "sanctum:verified"],
-    });
+const loaded = ref(false);
+
+const from = ref("2024-01-01");
+const to = ref("2024-12-31");
+
+const chartData = ref({});
+const chartOptions = ref({
+  onClick: (event, elements, chart) => {
+    if (elements[0]) {
+      const item_index = elements[0].index;
+      const dataset_index = elements[0].datasetIndex;
+
+      const date_from = DateTime.fromFormat(from.value, "yyyy-MM-dd")
+        .plus({ months: item_index })
+        .startOf("month");
+      const date_to = date_from.endOf("month");
+
+      localStorage.setItem("from", date_from.toFormat("yyyy-MM-dd"));
+      localStorage.setItem("to", date_to.toFormat("yyyy-MM-dd"));
+
+      if (dataset_index === 0 || dataset_index === 1) {
+        navigateToIncomes();
+      }
+      if (dataset_index === 2 || dataset_index === 3) {
+        navigateToExpenses();
+      }
+    }
   },
 
-  components: { Bar },
+  plugins: {
+    legend: {
+      display: false,
+      position: "bottom"
+    }
+  },
 
-  data() {
-    return {
-      loaded: false,
+  responsive: true,
+  scales: {
+    y: {
+      grid: {
+        display: false
+      },
+      beginAtZero: true,
+      type: "linear",
+      position: "right"
+    },
+    x: {
+      grid: {
+        display: false
+      }
+    }
+  }
+});
 
-      from: "2024-01-01",
-      to: "2024-12-31",
+const income_sum = ref(0);
+const income_plan_sum = ref(0);
+const expense_sum = ref(0);
+const expense_plan_sum = ref(0);
+const profit_sum = ref(0);
+const profit_plan_sum = ref(0);
 
-      chartData: {},
-      chartOptions: {
-        onClick: (event, elements, chart) => {
-          if (elements[0]) {
-            const item_index = elements[0].index;
-            const dataset_index = elements[0].datasetIndex;
+onMounted(() => {
+  fetchData();
+});
 
-            // alert(chart.data.labels[item_index] + ": " + chart.data.datasets[dataset_index].data[item_index]);
+async function fetchData() {
+  const date_from = DateTime.fromFormat(from.value, "yyyy-MM-dd");
+  const date_to = DateTime.fromFormat(to.value, "yyyy-MM-dd").endOf("day");
 
-            const date_from = DateTime.fromFormat(this.from, "yyyy-MM-dd")
-              .plus({ months: item_index })
-              .startOf("month");
-            const date_to = date_from.endOf("month");
 
-            // alert(date_from.toFormat("yyyy-MM-dd"));
+  let range_start = date_from;
+  let range_end = date_from.endOf("month");
 
-            localStorage.setItem("from", date_from.toFormat("yyyy-MM-dd"));
-            localStorage.setItem("to", date_to.toFormat("yyyy-MM-dd"));
+  let expenses_planned_data = [];
+  let expenses_issued_data = [];
+  let incomes_planned_data = [];
+  let incomes_issued_data = [];
+  let labels_data = [];
+let balance_data = []
 
-            if (dataset_index === 0 || dataset_index === 1) {
-              this.navigateToIncomes();
-            }
-            if (dataset_index === 2 || dataset_index === 3) {
-              this.navigateToExpenses();
-            }
-          }
-        },
+  while (range_end <= date_to) {
+    let expenses = await getExpensesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
+    let incomes = await getIncomesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
 
-        plugins: {
-          legend: {
-            display: false,
-            position: "bottom",
-          },
-        },
+    // Issued expenses
+    let expenses_issued = expenses.filter((expense) => {
+      return expense.payment_status === "paid";
+    });
 
-        responsive: true,
-        scales: {
-          y: {
-            grid: {
-              display: false,
-            },
-            beginAtZero: true,
-            type: "linear",
-            position: "right",
-          },
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-        },
+    let expenses_issued_sum = expenses_issued.reduce(function(a, b) {
+      return a + b.price;
+    }, 0);
+
+    expenses_issued_data.push(expenses_issued_sum);
+
+    // Planned expenses
+    let expenses_plan = expenses.filter((expense) => {
+      return expense.payment_status === "plan" || expense.payment_status === "pending";
+    });
+
+    let expenses_plan_sum = expenses_plan.reduce(function(a, b) {
+      return a + b.price;
+    }, 0);
+
+    expenses_planned_data.push(expenses_plan_sum);
+
+    // Planned incomes
+    let incomes_plan = incomes.filter((income) => {
+      return income.payment_status === "plan" || income.payment_status === "pending";
+    });
+
+    let income_plan_sum = incomes_plan.reduce(function(a, b) {
+      return a + b.amount;
+    }, 0);
+
+    incomes_planned_data.push(income_plan_sum);
+
+    // Issued incomes
+    let incomes_issued = incomes.filter((income) => {
+      return income.payment_status === "paid";
+    });
+
+    let income_issued_sum = incomes_issued.reduce(function(a, b) {
+      return a + b.amount;
+    }, 0);
+
+    incomes_issued_data.push(income_issued_sum);
+
+    labels_data.push(range_start.toFormat('MM/yyyy'));
+
+    range_start = range_start.plus({ "month": 1 });
+    range_end = range_start.endOf("month");
+  }
+
+
+  const client = useSanctumClient();
+  const route = useRoute();
+
+  const { data } = await useAsyncData("income", () =>
+    client("/api/" + route.params.workspace + "/stats/cashflow", {
+      method: "GET",
+      params: {
+        from: from.value,
+        to: to.value
+      }
+    })
+  );
+
+  // console.log(data.value.chart_data_income)
+
+  chartData.value = {
+    labels: labels_data,
+    datasets: [
+      {
+        label: "Příjmy",
+        data: incomes_issued_data,
+        backgroundColor: [colors.indigo[400]],
+        hidden: false,
+        cubicInterpolationMode: "monotone",
+        tension: 0.1,
+        stack: "stack 0",
+        borderRadius: 4
       },
 
-      income_sum: 0,
-      income_plan_sum: 0,
-      expense_sum: 0,
-      expense_plan_sum: 0,
-      profit_sum: 0,
-      profit_plan_sum: 0,
-    };
-  },
+      {
+        label: "Plán příjmů",
+        data: incomes_planned_data,
+        backgroundColor: [colors.indigo[200]],
+        hidden: false,
+        cubicInterpolationMode: "monotone",
+        tension: 0.1,
+        stack: "stack 0",
+        borderRadius: 4
+      },
 
-  mounted() {
-    this.fetchData();
-  },
+      {
+        label: "Výdaje",
+        data: expenses_issued_data,
+        hidden: false,
+        backgroundColor: [colors.red[400]],
+        cubicInterpolationMode: "monotone",
+        tension: 0.1,
+        stack: "stack 1",
+        borderRadius: 4
+      },
 
+      {
+        label: "Plán výdajů",
+        data: expenses_planned_data,
+        backgroundColor: [colors.red[200]],
+        hidden: false,
+        cubicInterpolationMode: "monotone",
+        tension: 0.1,
+        stack: "stack 1",
+        borderRadius: 4
+      },
+
+      {
+        label: "Konečný zůstatek",
+        data: data.value.chart_data_balance,
+        borderColor: [colors.indigo[200]],
+        hidden: false,
+        borderWidth: 2,
+        cubicInterpolationMode: "monotone",
+        tension: 0.1,
+        type: "line"
+      }
+    ],
+  };
+
+  // income_sum = data.value.income_sum;
+  // income_plan_sum = data.value.income_plan_sum;
+  // this.expense_sum = data.value.expense_sum;
+  // this.expense_plan_sum = data.value.expense_plan_sum;
+  // this.profit_sum = data.value.profit_sum;
+  // this.profit_plan_sum = data.value.profit_plan_sum;
+  //
+  loaded.value = true;
+}
+
+async function navigateToExpenses() {
+  const route = useRoute();
+  await navigateTo("/" + route.params.workspace + "/expenses");
+}
+
+async function navigateToIncomes() {
+  const route = useRoute();
+  await navigateTo("/" + route.params.workspace + "/income");
+}
+
+function formatPrice(value) {
+  let val = (value / 1).toFixed(0).replace(".", ",");
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+</script>
+
+<script>
+export default {
   watch: {
-    from: function (newVal, oldVal) {
+    from: function(newVal, oldVal) {
       this.fetchData();
     },
-    to: function (newVal, oldVal) {
+    to: function(newVal, oldVal) {
       this.fetchData();
-    },
-  },
-
-  methods: {
-    async fetchData() {
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("income", () =>
-        client("/api/" + route.params.workspace + "/stats/cashflow", {
-          method: "GET",
-          params: {
-            from: this.from,
-            to: this.to,
-          },
-        }),
-      );
-
-      this.chartData = {
-        labels: data.value.chart_labels,
-        datasets: [
-          {
-            label: "Příjmy",
-            data: data.value.chart_data_income,
-            backgroundColor: [colors.indigo[400]],
-            hidden: false,
-            cubicInterpolationMode: "monotone",
-            tension: 0.1,
-            stack: "stack 0",
-            borderRadius: 4,
-          },
-
-          {
-            label: "Plán příjmů",
-            data: data.value.chart_data_income_plan,
-            backgroundColor: [colors.indigo[200]],
-            hidden: false,
-            cubicInterpolationMode: "monotone",
-            tension: 0.1,
-            stack: "stack 0",
-            borderRadius: 4,
-          },
-
-          {
-            label: "Výdaje",
-            data: data.value.chart_data_expense,
-            hidden: false,
-            backgroundColor: [colors.red[400]],
-            cubicInterpolationMode: "monotone",
-            tension: 0.1,
-            stack: "stack 1",
-            borderRadius: 4,
-          },
-
-          {
-            label: "Plán výdajů",
-            data: data.value.chart_data_expense_plan,
-            backgroundColor: [colors.red[200]],
-            hidden: false,
-            cubicInterpolationMode: "monotone",
-            tension: 0.1,
-            stack: "stack 1",
-            borderRadius: 4,
-          },
-
-          {
-            label: "Konečný zůstatek",
-            data: data.value.chart_data_balance,
-            borderColor: [colors.indigo[200]],
-            hidden: false,
-            borderWidth: 2,
-            cubicInterpolationMode: "monotone",
-            tension: 0.1,
-            type: "line",
-          },
-        ],
-      };
-
-      this.income_sum = data.value.income_sum;
-      this.income_plan_sum = data.value.income_plan_sum;
-      this.expense_sum = data.value.expense_sum;
-      this.expense_plan_sum = data.value.expense_plan_sum;
-      this.profit_sum = data.value.profit_sum;
-      this.profit_plan_sum = data.value.profit_plan_sum;
-
-      this.loaded = true;
-    },
-
-    async navigateToExpenses() {
-      const route = useRoute();
-      await navigateTo("/" + route.params.workspace + "/expenses");
-    },
-    async navigateToIncomes() {
-      const route = useRoute();
-      await navigateTo("/" + route.params.workspace + "/income");
-    },
-
-    formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
   },
 };

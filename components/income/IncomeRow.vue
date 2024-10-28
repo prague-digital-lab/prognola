@@ -64,12 +64,14 @@ export default defineComponent({
   props: ["income"],
   data: () => {
     return {
-      organisation: null
-    }
+      organisation: null,
+    };
   },
   async mounted() {
     if (this.income.organisation) {
-      this.organisation.value = await findOrganisation(props.expense.organisation);
+      this.organisation.value = await findOrganisation(
+        props.expense.organisation,
+      );
     }
   },
 

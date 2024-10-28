@@ -52,7 +52,7 @@
         </div>
 
         <div
-          class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950 rounded-md"
+          class="mb-4 rounded-md border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
         >
           <div class="mb-4 flex justify-between">
             <div class="dark:text-zinc-400">Dnešní příjmy</div>
@@ -79,7 +79,7 @@
         </div>
 
         <div
-          class="mb-4 border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950 rounded-md"
+          class="mb-4 rounded-md border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
         >
           <div class="mb-4 flex justify-between">
             <div class="dark:text-zinc-400">Nadcházející příjmy</div>

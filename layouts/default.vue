@@ -403,8 +403,6 @@ async function initializeWorkspace(url_slug) {
   let db = openDatabase();
   await bootstrapDatabase(db, route.params.workspace);
 
-
-
   loading_workspace.value = false;
 }
 
