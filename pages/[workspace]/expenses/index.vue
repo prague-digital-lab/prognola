@@ -182,8 +182,8 @@ const query = ref("");
 const expenses = ref();
 
 async function fetchExpenses() {
-  let date_from = DateTime.fromISO(from.value).toJSDate();
-  let date_to = DateTime.fromISO(to.value).toJSDate();
+  let date_from = DateTime.fromISO(from.value).startOf("day").toJSDate();
+  let date_to = DateTime.fromISO(to.value).endOf("day").toJSDate();
 
   expenses.value = await getExpensesByPaidAt(date_from, date_to);
 
