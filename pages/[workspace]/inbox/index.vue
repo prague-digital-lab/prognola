@@ -6,7 +6,6 @@
       </template>
     </page-content-header>
 
-
     <div
       class="mb-4 h-auto divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
     >
@@ -15,7 +14,7 @@
         class="block cursor-default"
       >
         <div
-          class="px-3 py-2 text-base text-gray-700  hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800"
+          class="px-3 py-2 text-base text-gray-700 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800"
         >
           Výdaje ke zpracování
         </div>

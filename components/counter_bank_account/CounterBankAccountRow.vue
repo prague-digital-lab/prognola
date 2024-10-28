@@ -5,17 +5,19 @@
   >
     <div class="flex text-base">
       <!--      <p class="w-[60px] font-light text-gray-500">{{ counter_bank_account.id }}</p>-->
-<!--      <p class="w-[400px] dark:text-zinc-200">{{ counter_bank_account.name }}</p>-->
+      <!--      <p class="w-[400px] dark:text-zinc-200">{{ counter_bank_account.name }}</p>-->
       <p class="w-[400px] font-light text-zinc-500 dark:text-zinc-400">
-        {{ counter_bank_account.account_number }}/{{ counter_bank_account.bank_number }}
+        {{ counter_bank_account.account_number }}/{{
+          counter_bank_account.bank_number
+        }}
       </p>
     </div>
 
-<!--    <div class="flex items-center text-base font-light text-slate-600">-->
-<!--      <p class="font-semibold dark:text-zinc-200">-->
-<!--        {{ formatPrice(counter_bank_account.current_amount) }} Kč-->
-<!--      </p>-->
-<!--    </div>-->
+    <!--    <div class="flex items-center text-base font-light text-slate-600">-->
+    <!--      <p class="font-semibold dark:text-zinc-200">-->
+    <!--        {{ formatPrice(counter_bank_account.current_amount) }} Kč-->
+    <!--      </p>-->
+    <!--    </div>-->
   </div>
 </template>
 

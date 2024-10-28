@@ -45,18 +45,17 @@
           <td class="w-[30%] space-y-2">
             <div
               v-for="income in bank_payment.incomes"
-              class="inline-block text-sm text-gray-600 me-1"
+              class="me-1 inline-block text-sm text-gray-600"
             >
               <badge-income :income="income" class="" />
             </div>
 
             <div
               v-for="expense in bank_payment.expenses"
-              class="inline-block text-sm text-gray-600 me-1"
+              class="me-1 inline-block text-sm text-gray-600"
             >
               <badge-expense :expense="expense" class="" />
             </div>
-
 
             <nuxt-link
               :href="
@@ -66,7 +65,7 @@
                 bank_payment.uuid +
                 '/pair'
               "
-              >
+            >
               <button-secondary>+</button-secondary>
             </nuxt-link>
           </td>

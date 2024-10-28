@@ -294,7 +294,7 @@
         </div>
 
         <div
-          class="flex flex-col items-center justify-center space-y-10 px-4 h-[600px]"
+          class="flex h-[600px] flex-col items-center justify-center space-y-10 px-4"
           v-else
         >
           <div class="block">
@@ -302,7 +302,9 @@
           </div>
 
           <div>
-            <p class="text-zinc-700 dark:text-zinc-200">Probíhá synchronizace dat {{active_workspace.name}}.</p>
+            <p class="text-zinc-700 dark:text-zinc-200">
+              Probíhá synchronizace dat {{ active_workspace.name }}.
+            </p>
           </div>
         </div>
       </main>

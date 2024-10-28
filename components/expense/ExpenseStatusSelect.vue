@@ -1,5 +1,7 @@
 <template>
-  <div class="relative mb-3 rounded text-base text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900">
+  <div
+    class="relative mb-3 rounded text-base text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
+  >
     <Transition>
       <div
         v-if="select_expanded"

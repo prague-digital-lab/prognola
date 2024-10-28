@@ -2,21 +2,23 @@
   <div>
     <div class="mb-2 flex justify-between">
       <div>
-        <p class="text-base text-gray-600 dark:text-zinc-400">Bankovní účty organizace</p>
+        <p class="text-base text-gray-600 dark:text-zinc-400">
+          Bankovní účty organizace
+        </p>
       </div>
       <div>
-<!--        <button-secondary @click="openModal">+ přidat výdaj</button-secondary>-->
+        <!--        <button-secondary @click="openModal">+ přidat výdaj</button-secondary>-->
       </div>
     </div>
 
-<!--    <expense-create-modal-->
-<!--      ref="modal_create"-->
-<!--      :default_organisation_uuid="props.organisation.uuid"-->
-<!--      @expense-created="fetchData"-->
-<!--    />-->
+    <!--    <expense-create-modal-->
+    <!--      ref="modal_create"-->
+    <!--      :default_organisation_uuid="props.organisation.uuid"-->
+    <!--      @expense-created="fetchData"-->
+    <!--    />-->
 
     <div
-      class="mb-4 divide-y divide-slate-200 rounded border border-slate-200 dark:border-zinc-800 dark:divide-zinc-800"
+      class="mb-4 divide-y divide-slate-200 rounded border border-slate-200 dark:divide-zinc-800 dark:border-zinc-800"
     >
       <counter-bank-account-row
         :counter_bank_account="counter_bank_account"

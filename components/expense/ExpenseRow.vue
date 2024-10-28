@@ -13,7 +13,7 @@
     <div class="flex items-center text-base font-light text-slate-600">
       <div
         v-if="expense.organisation"
-        class="flex cursor-pointer items-center rounded-[20px] border border-gray-200 px-3 py-1 hover:border-gray-300 hover:bg-slate-100 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:border-zinc-800"
+        class="flex cursor-pointer items-center rounded-[20px] border border-gray-200 px-3 py-1 hover:border-gray-300 hover:bg-slate-100 dark:border-zinc-800 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-800"
         @click="navigateToOrganisation(expense.organisation)"
       >
         <svg
@@ -43,13 +43,17 @@
 
       <div class="w-[120px]">
         <div v-if="expense.payment_status === 'paid'">
-          <p class="ms-2 text-end font-semibold text-slate-700 dark:text-zinc-300">
+          <p
+            class="ms-2 text-end font-semibold text-slate-700 dark:text-zinc-300"
+          >
             {{ formatPrice(expense.price) }} Kč
           </p>
         </div>
 
         <div v-else-if="expense.payment_status === 'draft'">
-          <p class="me-2 text-end font-semibold text-purple-800 dark:text-indigo-500">
+          <p
+            class="me-2 text-end font-semibold text-purple-800 dark:text-indigo-500"
+          >
             ke zpracování
           </p>
         </div>

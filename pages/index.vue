@@ -33,7 +33,7 @@ definePageMeta({
     <div class="mb-10 mt-[100px]">
       <img
         src="/img/dash_v2.jpg"
-        class="h-auto max-w-full rounded-2xl border-gray-800 opacity-100 shadow-blue-950 shadow-xl transition duration-500 hover:opacity-100"
+        class="h-auto max-w-full rounded-2xl border-gray-800 opacity-100 shadow-xl shadow-blue-950 transition duration-500 hover:opacity-100"
       />
     </div>
   </div>

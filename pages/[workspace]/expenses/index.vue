@@ -189,10 +189,9 @@ async function fetchExpenses() {
 }
 
 const price_sum = computed(() => {
-  // return expenses.value.reduce(function (a, b) {
-  //   return a + b.price;
-  // }, 0);
-  return 1;
+  return expenses.value.reduce(function (a, b) {
+    return a + b.price;
+  }, 0);
 });
 
 const expenses_by_category = computed(() => {

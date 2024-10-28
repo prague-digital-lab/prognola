@@ -31,7 +31,7 @@
           v-model="new_organisation_name"
           placeholder="Nová organizace..."
           required
-          class="me-2 rounded border border-gray-200 py-1 text-base dark:bg-zinc-900 dark:text-zinc-200 dark:border-zinc-800"
+          class="me-2 rounded border border-gray-200 py-1 text-base dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
         />
 
         <button

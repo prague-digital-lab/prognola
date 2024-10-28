@@ -240,7 +240,9 @@ const expenses_due = useObservable(
       .where("paid_at")
       .below(today_start)
       .and((item) => {
-        return item.payment_status === 'plan' || item.payment_status === 'pending';
+        return (
+          item.payment_status === "plan" || item.payment_status === "pending"
+        );
       })
       .toArray();
   }),
@@ -254,9 +256,15 @@ const expenses_due_sum = computed(() => {
 
 const incomes_due = useObservable(
   liveQuery(() => {
-    return db.incomes.where("paid_at").below(today_start) .and((item) => {
-      return item.payment_status === 'plan' || item.payment_status === 'pending';
-    }).toArray();
+    return db.incomes
+      .where("paid_at")
+      .below(today_start)
+      .and((item) => {
+        return (
+          item.payment_status === "plan" || item.payment_status === "pending"
+        );
+      })
+      .toArray();
   }),
 );
 

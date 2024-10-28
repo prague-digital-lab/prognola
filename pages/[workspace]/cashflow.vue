@@ -307,7 +307,6 @@ export default {
       this.profit_sum = data.value.profit_sum;
       this.profit_plan_sum = data.value.profit_plan_sum;
 
-
       this.loaded = true;
     },
 

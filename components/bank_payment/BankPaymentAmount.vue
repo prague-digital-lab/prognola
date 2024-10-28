@@ -12,7 +12,9 @@
     <span v-if="bank_payment.amount < 0" class="text-red-500"
       >{{ formatPrice(bank_payment.amount * -1) }} Kč</span
     >
-    <span v-else class="text-black dark:text-zinc-200">{{ formatPrice(bank_payment.amount) }} Kč</span>
+    <span v-else class="text-black dark:text-zinc-200"
+      >{{ formatPrice(bank_payment.amount) }} Kč</span
+    >
   </div>
 </template>
 

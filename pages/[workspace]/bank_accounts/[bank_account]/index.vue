@@ -62,11 +62,11 @@
     </page-content-header>
 
     <div
-      class="mb-4 h-auto divide-x divide-slate-100 md:flex md:justify-between "
+      class="mb-4 h-auto divide-x divide-slate-100 md:flex md:justify-between"
     >
       <div class="w-full">
         <div
-          class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 dark:border-zinc-800 dark:divide-zinc-800"
+          class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 dark:divide-zinc-800 dark:border-zinc-800"
         >
           <bank-payment-row
             v-for="bank_payment in bank_payments"
@@ -78,7 +78,9 @@
             v-if="bank_payments.length === 0"
             class="flex h-[400px] w-full items-center justify-center"
           >
-            <p class="text-base text-gray-600 dark:text-zinc-400">Žádné odpovídající platby.</p>
+            <p class="text-base text-gray-600 dark:text-zinc-400">
+              Žádné odpovídající platby.
+            </p>
           </div>
         </div>
       </div>

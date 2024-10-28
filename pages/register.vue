@@ -35,7 +35,7 @@
           type="email"
           autocomplete="email"
           required=""
-          class=" text-white mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base"
+          class="mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base text-white"
           placeholder="Emailová adresa"
         />
 
@@ -47,7 +47,7 @@
           type="password"
           autocomplete="current-password"
           required=""
-          class="text-white mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base"
+          class="mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base text-white"
           placeholder="Heslo"
         />
 
@@ -58,7 +58,7 @@
           type="password"
           autocomplete="current-password"
           required=""
-          class="text-white mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base"
+          class="mb-4 w-full rounded border border-gray-500 bg-gray-900 text-base text-white"
           placeholder="Heslo znovu"
         />
 
@@ -93,7 +93,6 @@
           </button>
         </div>
       </form>
-
     </div>
   </div>
 </template>

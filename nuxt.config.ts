@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   },
 
   sanctum: {
-    mode: 'token',
+    mode: "token",
   },
 
   runtimeConfig: {

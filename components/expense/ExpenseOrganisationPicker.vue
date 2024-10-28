@@ -22,10 +22,15 @@
               />
             </svg>
 
-            <span v-if="selected_organisation" class="text-left text-gray-700 dark:text-zinc-400">
+            <span
+              v-if="selected_organisation"
+              class="text-left text-gray-700 dark:text-zinc-400"
+            >
               {{ selected_organisation.name }}
             </span>
-            <span v-else class="text-gray-500 dark:text-zinc-500"> zvolit organizaci </span>
+            <span v-else class="text-gray-500 dark:text-zinc-500">
+              zvolit organizaci
+            </span>
           </p>
         </PopoverButton>
 
@@ -55,10 +60,12 @@
           v-slot="{ close }"
           class="absolute left-[-260px] top-0 z-10 w-[250px]"
         >
-          <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 dark:border dark:border-zinc-700">
-            <div class="relative bg-white dark:bg-zinc-950 p-2">
+          <div
+            class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 dark:border dark:border-zinc-700"
+          >
+            <div class="relative bg-white p-2 dark:bg-zinc-950">
               <input
-                class="mb-2 w-full rounded border-gray-200 dark:text-zinc-300 py-1 text-base text-gray-700 focus:border-gray-200 focus:ring-0 dark:bg-black dark:border-zinc-800"
+                class="mb-2 w-full rounded border-gray-200 py-1 text-base text-gray-700 focus:border-gray-200 focus:ring-0 dark:border-zinc-800 dark:bg-black dark:text-zinc-300"
                 type="text"
                 placeholder="Název organizace..."
                 v-model="organisation_name_filter"
@@ -66,7 +73,7 @@
 
               <div class="max-h-[50vh] overflow-auto">
                 <p
-                  class="rounded-md px-2 py-1 text-base text-gray-700 dark:text-zinc-400 hover:bg-gray-hover active:bg-gray-100 dark:hover:bg-zinc-900"
+                  class="rounded-md px-2 py-1 text-base text-gray-700 hover:bg-gray-hover active:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
                   v-for="organisation in filtered_organisations"
                   @click="selectOrganisation(organisation, close)"
                 >

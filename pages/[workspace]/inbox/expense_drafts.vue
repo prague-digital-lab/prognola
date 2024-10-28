@@ -12,14 +12,11 @@
     </page-content-header>
 
     <div class="mb-4 md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
-
-
-      </div>
+      <div class="min-w-0 flex-1"></div>
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white  dark:divide-zinc-800 dark:border-zinc-800"
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
       v-if="grouped_by === null"
     >
       <expense-row v-for="expense in expenses" :expense="expense"></expense-row>

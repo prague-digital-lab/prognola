@@ -26,7 +26,7 @@
 
     <div
       v-if="bank_accounts.length === 0 && loaded"
-      class="flex h-[400px] w-full items-center rounded-2xl border border-gray-200 bg-white px-10 text-gray-700 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-200"
+      class="flex h-[400px] w-full items-center rounded-2xl border border-gray-200 bg-white px-10 text-gray-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200"
     >
       <div class="md:w-1/2">
         <p class="mb-4 text-xl font-medium">

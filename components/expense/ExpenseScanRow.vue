@@ -1,7 +1,7 @@
 <template>
   <div class="w-full text-base text-slate-500">
     <div
-      class="mb-2 flex items-center justify-between rounded-md border border-gray-200 bg-white px-5 py-2 shadow-sm hover:bg-gray-hover active:bg-gray-100 dark:bg-zinc-900 dark:text-zinc-400 dark:border-zinc-800 dark:hover:bg-zinc-800"
+      class="mb-2 flex items-center justify-between rounded-md border border-gray-200 bg-white px-5 py-2 shadow-sm hover:bg-gray-hover active:bg-gray-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"
       @click="!expanded ? (expanded = true) : (expanded = false)"
     >
       <div class="flex items-center">

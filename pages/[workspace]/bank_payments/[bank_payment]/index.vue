@@ -71,7 +71,11 @@
                   :counter_bank_account="bank_payment.counter_bank_account"
                 ></badge-counter-bank-account>
 
-                <span v-else>{{bank_payment.counter_account_number}}/{{bank_payment.counter_bank_number}}</span>
+                <span v-else
+                  >{{ bank_payment.counter_account_number }}/{{
+                    bank_payment.counter_bank_number
+                  }}</span
+                >
               </dd>
             </div>
 

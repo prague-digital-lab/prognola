@@ -185,7 +185,6 @@ function updateQrCode() {
   }
 
   // return expense.value.amount;
-
 }
 </script>
 
