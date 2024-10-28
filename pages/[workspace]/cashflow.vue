@@ -218,6 +218,8 @@ async function fetchData() {
   let balance_data = [];
 
   let current_balance = 0;
+  let due_plans = 0
+  let due_plans_added = false
 
   while (range_end <= date_to) {
     let expenses = await getExpensesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
@@ -268,7 +270,14 @@ async function fetchData() {
     incomes_issued_data.push(income_issued_sum);
 
 
-    if (range_end >= DateTime.now()) {
+    if (range_end <= DateTime.now()) {
+      due_plans = due_plans + income_plan_sum - expenses_plan_sum
+    }
+    else {
+      if(!due_plans_added){
+        current_balance = current_balance + due_plans;
+      }
+
       current_balance = current_balance + income_plan_sum - expenses_plan_sum
     }
 
