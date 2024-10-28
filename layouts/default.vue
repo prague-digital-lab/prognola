@@ -293,7 +293,7 @@
           <slot />
         </div>
 
-        <div class="">
+        <div class="px-4" v-else>
           <p>Probíhá synchronizace dat organizace.</p>
         </div>
       </main>
