@@ -270,7 +270,7 @@ const incomes_due = useObservable(
 
 const incomes_due_sum = computed(() => {
   return incomes_due.value.reduce(function (a, b) {
-    return a + b["amount"];
+    return a + b.amount;
   }, 0);
 });
 
@@ -285,7 +285,7 @@ const expenses_today = useObservable(
 
 const expenses_today_sum = computed(() => {
   return incomes_upcoming.value.reduce(function (a, b) {
-    return a + b["price"];
+    return a + b.price;
   }, 0);
 });
 
@@ -300,7 +300,7 @@ const incomes_today = useObservable(
 
 const incomes_today_sum = computed(() => {
   return incomes_today.value.reduce(function (a, b) {
-    return a + b["amount"];
+    return a + b.amount;
   }, 0);
 });
 
@@ -315,7 +315,7 @@ const expenses_upcoming = useObservable(
 
 const expenses_upcoming_sum = computed(() => {
   return expenses_upcoming.value.reduce(function (a, b) {
-    return a + b["price"];
+    return a + b.price;
   }, 0);
 });
 
@@ -330,7 +330,7 @@ const incomes_upcoming = useObservable(
 
 const incomes_upcoming_sum = computed(() => {
   return incomes_upcoming.value.reduce(function (a, b) {
-    return a + b["amount"];
+    return a + b.amount;
   }, 0);
 });
 
