@@ -221,73 +221,63 @@ async function fetchData() {
   let due_plans = 0
   let due_plans_added = false
 
+
+  let income_sum_stats = 0;
+  let expense_sum_stats = 0;
+  let income_plan_sum_stats = 0;
+  let expense_plan_sum_stats = 0;
+
   while (range_end <= date_to) {
     let expenses = await getExpensesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
     let incomes = await getIncomesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
 
-    // Issued expenses
-    let expenses_issued = expenses.filter((expense) => {
-      return expense.payment_status === "paid";
-    });
+    let expenses_issued = filterPaid(expenses);
+    let expenses_plan = filterPlanned(expenses);
+    let incomes_issued = filterPaid(incomes);
+    let incomes_plan = filterPlanned(incomes);
 
-    let expenses_issued_sum = expenses_issued.reduce(function(a, b) {
-      return a + b.price;
-    }, 0);
+    let expenses_issued_range_sum = sumItemProp(expenses_issued, "price");
+    let expenses_plan_range_sum = sumItemProp(expenses_plan, "price");
+    let income_plan_range_sum = sumItemProp(incomes_plan, "amount");
+    let income_issued_range_sum = sumItemProp(incomes_issued, "amount");
 
-    expenses_issued_data.push(expenses_issued_sum);
-
-    // Planned expenses
-    let expenses_plan = expenses.filter((expense) => {
-      return expense.payment_status === "plan" || expense.payment_status === "pending";
-    });
-
-    let expenses_plan_sum = expenses_plan.reduce(function(a, b) {
-      return a + b.price;
-    }, 0);
-
-    expenses_planned_data.push(expenses_plan_sum);
-
-    // Planned incomes
-    let incomes_plan = incomes.filter((income) => {
-      return income.payment_status === "plan" || income.payment_status === "pending";
-    });
-
-    let income_plan_sum = incomes_plan.reduce(function(a, b) {
-      return a + b.amount;
-    }, 0);
-
-    incomes_planned_data.push(income_plan_sum);
-
-    // Issued incomes
-    let incomes_issued = incomes.filter((income) => {
-      return income.payment_status === "paid";
-    });
-
-    let income_issued_sum = incomes_issued.reduce(function(a, b) {
-      return a + b.amount;
-    }, 0);
-
-    incomes_issued_data.push(income_issued_sum);
-
+    expenses_issued_data.push(expenses_issued_range_sum);
+    expenses_planned_data.push(expenses_plan_range_sum);
+    incomes_planned_data.push(income_plan_range_sum);
+    incomes_issued_data.push(income_issued_range_sum);
 
     if (range_end <= DateTime.now()) {
-      due_plans = due_plans + income_plan_sum - expenses_plan_sum
+      due_plans = due_plans + income_plan_range_sum - expenses_plan_range_sum
     }
     else {
       if(!due_plans_added){
         current_balance = current_balance + due_plans;
       }
 
-      current_balance = current_balance + income_plan_sum - expenses_plan_sum
+      current_balance = current_balance + income_plan_range_sum - expenses_plan_range_sum
     }
 
     balance_data.push(current_balance);
 
     labels_data.push(range_start.toFormat('MM/yyyy'));
 
+    // Sums
+    income_sum_stats = income_sum_stats + income_issued_range_sum;
+    expense_sum_stats = expense_sum_stats + expenses_issued_range_sum;
+    income_plan_sum_stats = income_plan_sum_stats + income_plan_range_sum;
+    expense_plan_sum_stats = expense_plan_sum_stats + expenses_plan_range_sum;
+
     range_start = range_start.plus({ "month": 1 });
     range_end = range_start.endOf("month");
   }
+
+  income_sum.value = income_sum_stats;
+  expense_sum.value = expense_sum_stats;
+  income_plan_sum.value = income_plan_sum_stats;
+  expense_plan_sum.value = expense_plan_sum_stats;
+
+  profit_sum.value = income_sum_stats - expense_sum_stats;
+  profit_plan_sum.value = income_plan_sum_stats - expense_plan_sum_stats;
 
   chartData.value = {
     labels: labels_data,
@@ -349,14 +339,25 @@ async function fetchData() {
     ],
   };
 
-  // income_sum = data.value.income_sum;
-  // income_plan_sum = data.value.income_plan_sum;
-  // this.expense_sum = data.value.expense_sum;
-  // this.expense_plan_sum = data.value.expense_plan_sum;
-  // this.profit_sum = data.value.profit_sum;
-  // this.profit_plan_sum = data.value.profit_plan_sum;
-  //
   loaded.value = true;
+}
+
+function filterPaid(items) {
+  return items.filter((item) => {
+    return item.payment_status === "paid";
+  });
+}
+
+function filterPlanned(items) {
+  return items.filter((item) => {
+    return item.payment_status === "plan" || item.payment_status === "pending";
+  });
+}
+
+function sumItemProp(items, prop_name) {
+  return items.reduce(function(a, b) {
+    return a + b[prop_name];
+  }, 0);
 }
 
 async function navigateToExpenses() {
