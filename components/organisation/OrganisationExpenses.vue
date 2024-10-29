@@ -27,6 +27,7 @@
 import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
 import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
 import organisation from "~/pages/[workspace]/organisations/[organisation].vue";
+import { getExpensesByOrganisation, getExpensesByPaidAt } from "~/lib/dexie/repository/expense_repository.js";
 
 const props = defineProps(["organisation"]);
 
@@ -46,16 +47,7 @@ async function fetchData() {
   const client = useSanctumClient();
   const route = useRoute();
 
-  const { data } = await useAsyncData("expenses", () =>
-    client("/api/" + route.params.workspace + "/expenses", {
-      method: "GET",
-      query: {
-        organisation: props.organisation.uuid,
-      },
-    }),
-  );
-
-  expenses.value = data.value.data;
+  expenses.value = await getExpensesByOrganisation(props.organisation.uuid)
 }
 </script>
 
