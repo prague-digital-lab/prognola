@@ -69,6 +69,7 @@
 
 <script>
 import { DateTime } from "luxon";
+import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
   data: () => {
@@ -97,6 +98,9 @@ export default {
 
       const client = useSanctumClient();
       const route = useRoute();
+
+      this.expense.payment_status = status;
+      await updateExpense(this.expense.uuid, this.expense);
 
       const { data } = await useAsyncData("expense", () =>
         client(

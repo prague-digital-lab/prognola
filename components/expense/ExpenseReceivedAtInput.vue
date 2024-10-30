@@ -1,5 +1,6 @@
 <script>
 import { DateTime } from "luxon";
+import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
   props: ["expense"],
@@ -44,6 +45,10 @@ export default {
 
       const client = useSanctumClient();
       const route = useRoute();
+
+      let expense = this.expense;
+      expense.received_at = this.received_at;
+      await updateExpense(this.expense.uuid, expense);
 
       const { data } = await useAsyncData("expense", () =>
         client(

@@ -99,6 +99,7 @@
 <script setup>
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { ChevronDoubleRightIcon } from "@heroicons/vue/24/solid/index.js";
+import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
 
 const props = defineProps(["expense"]);
 
@@ -123,6 +124,10 @@ async function selectOrganisation(organisation, close) {
 
   const client = useSanctumClient();
   const route = useRoute();
+
+  let expense = props.expense;
+  expense.organisation.uuid = organisation.uuid;
+  await updateExpense(expense.uuid, expense);
 
   const { data } = await useAsyncData("expense", () =>
     client(
