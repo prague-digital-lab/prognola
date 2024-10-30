@@ -66,6 +66,7 @@
 
         <expense-payments-picker
           :expense="expense"
+          :bank_payments="bank_payments"
           @expense-updated="fetchData"
         />
 
@@ -119,7 +120,7 @@ definePageMeta({
 <script>
 import ExpenseStatusSelect from "~/components/expense/ExpenseStatusSelect.vue";
 import ExpensePaidAtInput from "~/components/expense/ExpensePaidAtInput.vue";
-import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
+import { getExpense, updateExpense } from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
   components: { ExpensePaidAtInput, ExpenseStatusSelect },
@@ -132,6 +133,7 @@ export default {
       input_internal_note: "",
 
       scans: [],
+      bank_payments: [],
     };
   },
 
@@ -152,6 +154,9 @@ export default {
       const client = useSanctumClient();
       const route = useRoute();
 
+      this.expense = await getExpense(route.params.expense);
+      console.log(this.expense)
+
       const { data } = await useAsyncData("expense", () =>
         client(
           "/api/" +
@@ -164,10 +169,11 @@ export default {
         ),
       );
 
-      this.expense = data.value;
-      this.input_description = data.value.description;
-      this.input_internal_note = data.value.internal_note;
+      // this.expense = data.value;
+      this.input_description = this.expense.description;
+      this.input_internal_note = this.expense.internal_note;
       this.scans = data.value.scans;
+      this.bank_payments = data.value.bank_payments;
 
       this.loaded = true;
     },

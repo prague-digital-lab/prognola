@@ -13,7 +13,7 @@
     <expense-paired-payment
       :payment="payment"
       @expense-updated="$emit('expense-updated')"
-      v-for="payment in expense.bank_payments"
+      v-for="payment in bank_payments"
     />
 
     <expense-add-payment-options
@@ -39,7 +39,7 @@ export default {
     ExpensePairWithPaymentModal,
     ExpenseAddPaymentOptions,
   },
-  props: ["expense"],
+  props: ["expense", "bank_payments"],
 
   data: () => {
     return {};
@@ -65,9 +65,9 @@ export default {
 
   computed: {
     paymentSum() {
-      const payments = this.expense.bank_payments;
+      // const payments = this.expense.bank_payments;
 
-      return payments.reduce((acc, o) => acc + parseInt(o.amount), 0);
+      return this.bank_payments.reduce((acc, o) => acc + parseInt(o.amount), 0);
     },
   },
 };
