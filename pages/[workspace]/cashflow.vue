@@ -249,7 +249,6 @@ async function fetchData() {
 
     if (range_end_balance) {
       balance_data.push(range_end_balance.balance);
-      console.log(range_end_balance);
     } else {
       balance_data.push(0);
     }
