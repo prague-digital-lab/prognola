@@ -14,7 +14,7 @@ export default {
   },
 
   mounted() {
-    this.received_at = DateTime.fromISO(this.expense.received_at).toFormat(
+    this.received_at = DateTime.fromJSDate(this.expense.received_at).toFormat(
       "yyyy-MM-dd",
     );
   },

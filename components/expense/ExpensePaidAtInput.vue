@@ -14,7 +14,7 @@ export default {
   },
 
   mounted() {
-    this.paid_at = DateTime.fromISO(this.expense.paid_at).toFormat(
+    this.paid_at = DateTime.fromJSDate(this.expense.paid_at).toFormat(
       "yyyy-MM-dd",
     );
   },
