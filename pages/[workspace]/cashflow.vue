@@ -116,6 +116,10 @@ import { DateTime } from "luxon";
 import colors from "tailwindcss/colors";
 import { getExpensesByPaidAt } from "~/lib/dexie/repository/expense_repository.js";
 import { getIncomesByPaidAt } from "~/lib/dexie/repository/income_repository.js";
+import {
+  countBalancePrognosisFromNow,
+  getBalancePrognosisByDate
+} from "~/lib/dexie/repository/balance_prognosis_repository.js";
 
 useHead({
   title: "Cashflow - Prognola"
@@ -203,9 +207,10 @@ onMounted(() => {
 });
 
 async function fetchData() {
+  await countBalancePrognosisFromNow();
+
   const date_from = DateTime.fromFormat(from.value, "yyyy-MM-dd");
   const date_to = DateTime.fromFormat(to.value, "yyyy-MM-dd").endOf("day");
-
 
   let range_start = date_from;
   let range_end = date_from.endOf("month");
@@ -217,11 +222,6 @@ async function fetchData() {
   let labels_data = [];
   let balance_data = [];
 
-  let current_balance = 0;
-  let due_plans = 0
-  let due_plans_added = false
-
-
   let income_sum_stats = 0;
   let expense_sum_stats = 0;
   let income_plan_sum_stats = 0;
@@ -230,6 +230,7 @@ async function fetchData() {
   while (range_end <= date_to) {
     let expenses = await getExpensesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
     let incomes = await getIncomesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
+    let range_end_balance = await getBalancePrognosisByDate(range_end.startOf("day").toJSDate());
 
     let expenses_issued = filterPaid(expenses);
     let expenses_plan = filterPlanned(expenses);
@@ -246,18 +247,12 @@ async function fetchData() {
     incomes_planned_data.push(income_plan_range_sum);
     incomes_issued_data.push(income_issued_range_sum);
 
-    if (range_end <= DateTime.now()) {
-      due_plans = due_plans + income_plan_range_sum - expenses_plan_range_sum
+    if (range_end_balance) {
+      balance_data.push(range_end_balance.balance);
+      console.log(range_end_balance);
+    } else {
+      balance_data.push(0);
     }
-    else {
-      if(!due_plans_added){
-        current_balance = current_balance + due_plans;
-      }
-
-      current_balance = current_balance + income_plan_range_sum - expenses_plan_range_sum
-    }
-
-    balance_data.push(current_balance);
 
     labels_data.push(range_start.toFormat('MM/yyyy'));
 
