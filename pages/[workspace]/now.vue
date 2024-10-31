@@ -14,13 +14,13 @@
       >
         <p
           class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
-          @click="tab = 'incomes'"
+          @click="switchTab('incomes')"
         >
           Příjmy
         </p>
         <p
           class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
-          @click="tab = 'expenses'"
+          @click="switchTab('expenses')"
         >
           Výdaje
         </p>
@@ -336,9 +336,22 @@ const loaded = computed(() => {
   );
 });
 
+onMounted(()=>{
+  let route = useRoute();
+  if (route.query.tab) {
+    switchTab(route.query.tab);
+  }
+})
+
 function formatPrice(value) {
   let val = (value / 1).toFixed(2).replace(".", ",");
   return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function switchTab(tab_name) {
+  const router = useRouter();
+  tab.value = tab_name;
+  router.replace({ query: { tab: tab_name } });
 }
 </script>
 
