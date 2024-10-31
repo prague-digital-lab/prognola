@@ -120,7 +120,11 @@ definePageMeta({
 <script>
 import ExpenseStatusSelect from "~/components/expense/ExpenseStatusSelect.vue";
 import ExpensePaidAtInput from "~/components/expense/ExpensePaidAtInput.vue";
-import { getExpense, updateExpense, updateExpenseFromLocalObject } from "~/lib/dexie/repository/expense_repository.js";
+import {
+  getExpense,
+  updateExpense,
+  updateExpenseFromLocalObject,
+} from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
   components: { ExpensePaidAtInput, ExpenseStatusSelect },
@@ -155,7 +159,7 @@ export default {
       const route = useRoute();
 
       this.expense = await getExpense(route.params.expense);
-      console.log(this.expense)
+      console.log(this.expense);
 
       const { data } = await useAsyncData("expense", () =>
         client(
@@ -201,8 +205,6 @@ export default {
           },
         ),
       );
-
-
     },
 
     async updateInternalNote() {

@@ -28,20 +28,20 @@
           class="mb-4 flex space-x-2 rounded-md border border-gray-200 px-3 py-2 dark:border-zinc-800"
         >
           <p
-            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            class="inline-block rounded-md p-2 py-1 text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
             @click="switchTab('data')"
           >
             Podrobnosti
           </p>
           <p
-            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            class="inline-block rounded-md p-2 py-1 text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
             @click="switchTab('expenses')"
           >
             Výdaje
           </p>
 
           <p
-            class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            class="inline-block rounded-md p-2 py-1 text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
             @click="switchTab('counter_bank_accounts')"
           >
             Účty
@@ -111,8 +111,8 @@ async function fetchData() {
       route.params.organisation,
       {
         method: "GET"
-      }
-    )
+      },
+    ),
   );
 
   organisation.value = data.value;
@@ -145,9 +145,9 @@ async function updateName() {
         method: "PATCH",
         body: {
           name: input_name.value
-        }
-      }
-    )
+        },
+      },
+    ),
   );
 }
 
@@ -165,9 +165,9 @@ async function updateInternalNote() {
         method: "PATCH",
         body: {
           internal_note: input_internal_note.value
-        }
-      }
-    )
+        },
+      },
+    ),
   );
 }
 </script>

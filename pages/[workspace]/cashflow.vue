@@ -110,7 +110,7 @@ import {
   LineElement,
   PointElement,
   Title,
-  Tooltip
+  Tooltip,
 } from "chart.js";
 import { DateTime } from "luxon";
 import colors from "tailwindcss/colors";
@@ -118,16 +118,16 @@ import { getExpensesByPaidAt } from "~/lib/dexie/repository/expense_repository.j
 import { getIncomesByPaidAt } from "~/lib/dexie/repository/income_repository.js";
 import {
   countBalancePrognosisFromNow,
-  getBalancePrognosisByDate
+  getBalancePrognosisByDate,
 } from "~/lib/dexie/repository/balance_prognosis_repository.js";
 
 useHead({
-  title: "Cashflow - Prognola"
+  title: "Cashflow - Prognola",
 });
 
 definePageMeta({
   layout: "default",
-  middleware: ["sanctum:auth", "sanctum:verified"]
+  middleware: ["sanctum:auth", "sanctum:verified"],
 });
 
 ChartJS.register(
@@ -173,26 +173,26 @@ const chartOptions = ref({
   plugins: {
     legend: {
       display: false,
-      position: "bottom"
-    }
+      position: "bottom",
+    },
   },
 
   responsive: true,
   scales: {
     y: {
       grid: {
-        display: false
+        display: false,
       },
       beginAtZero: true,
       type: "linear",
-      position: "right"
+      position: "right",
     },
     x: {
       grid: {
-        display: false
-      }
-    }
-  }
+        display: false,
+      },
+    },
+  },
 });
 
 const income_sum = ref(0);
@@ -228,9 +228,17 @@ async function fetchData() {
   let expense_plan_sum_stats = 0;
 
   while (range_end <= date_to) {
-    let expenses = await getExpensesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
-    let incomes = await getIncomesByPaidAt(range_start.toJSDate(), range_end.toJSDate());
-    let range_end_balance = await getBalancePrognosisByDate(range_end.startOf("day").toJSDate());
+    let expenses = await getExpensesByPaidAt(
+      range_start.toJSDate(),
+      range_end.toJSDate(),
+    );
+    let incomes = await getIncomesByPaidAt(
+      range_start.toJSDate(),
+      range_end.toJSDate(),
+    );
+    let range_end_balance = await getBalancePrognosisByDate(
+      range_end.startOf("day").toJSDate(),
+    );
 
     let expenses_issued = filterPaid(expenses);
     let expenses_plan = filterPlanned(expenses);
@@ -253,7 +261,7 @@ async function fetchData() {
       balance_data.push(0);
     }
 
-    labels_data.push(range_start.toFormat('MM/yyyy'));
+    labels_data.push(range_start.toFormat("MM/yyyy"));
 
     // Sums
     income_sum_stats = income_sum_stats + income_issued_range_sum;
@@ -261,7 +269,7 @@ async function fetchData() {
     income_plan_sum_stats = income_plan_sum_stats + income_plan_range_sum;
     expense_plan_sum_stats = expense_plan_sum_stats + expenses_plan_range_sum;
 
-    range_start = range_start.plus({ "month": 1 });
+    range_start = range_start.plus({ month: 1 });
     range_end = range_start.endOf("month");
   }
 
@@ -284,7 +292,7 @@ async function fetchData() {
         cubicInterpolationMode: "monotone",
         tension: 0.1,
         stack: "stack 0",
-        borderRadius: 4
+        borderRadius: 4,
       },
 
       {
@@ -295,7 +303,7 @@ async function fetchData() {
         cubicInterpolationMode: "monotone",
         tension: 0.1,
         stack: "stack 0",
-        borderRadius: 4
+        borderRadius: 4,
       },
 
       {
@@ -306,7 +314,7 @@ async function fetchData() {
         cubicInterpolationMode: "monotone",
         tension: 0.1,
         stack: "stack 1",
-        borderRadius: 4
+        borderRadius: 4,
       },
 
       {
@@ -317,7 +325,7 @@ async function fetchData() {
         cubicInterpolationMode: "monotone",
         tension: 0.1,
         stack: "stack 1",
-        borderRadius: 4
+        borderRadius: 4,
       },
 
       {
@@ -328,8 +336,8 @@ async function fetchData() {
         borderWidth: 2,
         cubicInterpolationMode: "monotone",
         tension: 0.1,
-        type: "line"
-      }
+        type: "line",
+      },
     ],
   };
 
@@ -349,7 +357,7 @@ function filterPlanned(items) {
 }
 
 function sumItemProp(items, prop_name) {
-  return items.reduce(function(a, b) {
+  return items.reduce(function (a, b) {
     return a + b[prop_name];
   }, 0);
 }
@@ -370,21 +378,20 @@ function formatPrice(value) {
 }
 
 watch(from, (newValue, oldValue) => {
-  if(oldValue === null){
-    return
+  if (oldValue === null) {
+    return;
   }
   fetchData();
-})
+});
 
 watch(to, (newValue, oldValue) => {
-  if(oldValue === null){
-    return
+  if (oldValue === null) {
+    return;
   }
 
   fetchData();
-})
+});
 </script>
-
 
 <style>
 .atom-spinner,

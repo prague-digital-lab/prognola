@@ -190,8 +190,8 @@ export default {
 
   methods: {
     async fetchData() {
-      let date_from = DateTime.fromISO(this.from).startOf('day').toJSDate();
-      let date_to = DateTime.fromISO(this.to).endOf('day').toJSDate();
+      let date_from = DateTime.fromISO(this.from).startOf("day").toJSDate();
+      let date_to = DateTime.fromISO(this.to).endOf("day").toJSDate();
 
       this.incomes = await getIncomesByPaidAt(date_from, date_to);
 

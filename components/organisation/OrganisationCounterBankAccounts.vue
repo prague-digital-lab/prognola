@@ -29,7 +29,6 @@
 </template>
 
 <script setup>
-
 const props = defineProps(["organisation"]);
 
 const modal_create = useTemplateRef("modal_create");

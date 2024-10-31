@@ -46,7 +46,7 @@ async function fetchData() {
   const client = useSanctumClient();
   const route = useRoute();
 
-  expenses.value = await getExpensesByOrganisation(props.organisation.uuid)
+  expenses.value = await getExpensesByOrganisation(props.organisation.uuid);
 }
 </script>
 

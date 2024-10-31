@@ -3,7 +3,11 @@
     <Popover v-slot="{ open }" class="relative">
       <div class="flex">
         <PopoverButton
-          :class="open ? 'bg-gray-200 dark:bg-zinc-900 dark:ring-zinc-800 dark:ring-1' : ''"
+          :class="
+            open
+              ? 'bg-gray-200 dark:bg-zinc-900 dark:ring-1 dark:ring-zinc-800'
+              : ''
+          "
           class="text-xs mb-7 me-2 rounded py-1 pe-3 ps-1 text-gray-800 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-zinc-900"
         >
           <p class="flex text-gray-800 dark:text-zinc-400">
@@ -100,7 +104,10 @@
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { ChevronDoubleRightIcon } from "@heroicons/vue/24/solid/index.js";
 import { updateExpenseFromLocalObject } from "~/lib/dexie/repository/expense_repository.js";
-import { getOrganisation, getOrganisations } from "~/lib/dexie/repository/organisation_repository.js";
+import {
+  getOrganisation,
+  getOrganisations,
+} from "~/lib/dexie/repository/organisation_repository.js";
 
 const props = defineProps(["expense"]);
 
@@ -114,7 +121,9 @@ const route = useRoute();
 
 onMounted(async () => {
   if (props.expense.organisation) {
-    selected_organisation.value = await getOrganisation(props.expense.organisation);
+    selected_organisation.value = await getOrganisation(
+      props.expense.organisation,
+    );
   }
 
   await loadOrganisations();
