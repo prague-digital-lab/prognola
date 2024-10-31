@@ -1,8 +1,4 @@
 <template>
-  <Head>
-    <Title>{{ title }}</Title>
-  </Head>
-
   <div v-if="loaded">
     <page-content-header>
       <template v-slot:title>
@@ -33,20 +29,20 @@
         >
           <p
             class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
-            @click="tab = 'data'"
+            @click="switchTab('data')"
           >
             Podrobnosti
           </p>
           <p
             class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
-            @click="tab = 'expenses'"
+            @click="switchTab('expenses')"
           >
             Výdaje
           </p>
 
           <p
             class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
-            @click="tab = 'counter_bank_accounts'"
+            @click="switchTab('counter_bank_accounts')"
           >
             Účty
           </p>
@@ -81,103 +77,97 @@ definePageMeta({
 });
 
 const tab = ref("data");
-</script>
 
-<script>
-export default {
-  data() {
-    return {
-      route: null,
-      loaded: false,
+const loaded = ref(false);
 
-      organisation: null,
-      input_name: "",
-      input_internal_note: "",
-    };
-  },
+const organisation = ref(null);
+const input_name = ref("");
+const input_internal_note = ref("");
 
-  mounted() {
-    this.route = useRoute();
+onMounted(() => {
+  let route = useRoute();
+  if (route.query.tab) {
+    switchTab(route.query.tab);
+  }
 
-    this.fetchData();
-  },
+  fetchData();
+});
 
-  computed: {
-    title() {
-      return this.organisation
-        ? this.organisation.name + " - Prognola"
-        : "Detail organizace - Prognola";
-    },
-  },
+function switchTab(tab_name) {
+  const router = useRouter();
+  tab.value = tab_name;
+  router.replace({ query: { tab: tab_name } });
+}
 
-  methods: {
-    async fetchData() {
-      const client = useSanctumClient();
-      const route = useRoute();
+async function fetchData() {
+  const client = useSanctumClient();
+  const route = useRoute();
 
-      const { data } = await useAsyncData("organisation", () =>
-        client(
-          "/api/" +
-            route.params.workspace +
-            "/organisations/" +
-            route.params.organisation,
-          {
-            method: "GET",
-          },
-        ),
-      );
+  const { data } = await useAsyncData("organisation", () =>
+    client(
+      "/api/" +
+      route.params.workspace +
+      "/organisations/" +
+      route.params.organisation,
+      {
+        method: "GET"
+      }
+    )
+  );
 
-      this.organisation = data.value;
-      this.input_name = data.value.name;
-      this.input_internal_note = data.value.internal_note;
+  organisation.value = data.value;
+  input_name.value = data.value.name;
+  input_internal_note.value = data.value.internal_note;
 
-      this.loaded = true;
-    },
+  useHead({
+    title: organisation.value.name
+  });
 
-    formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
+  loaded.value = true;
+}
 
-    async updateName() {
-      const client = useSanctumClient();
-      const route = useRoute();
+function formatPrice(value) {
+  let val = (value / 1).toFixed(0).replace(".", ",");
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
-      const { data } = await useAsyncData("organisation", () =>
-        client(
-          "/api/" +
-            route.params.workspace +
-            "/organisations/" +
-            route.params.organisation,
-          {
-            method: "PATCH",
-            body: {
-              name: this.input_name,
-            },
-          },
-        ),
-      );
-    },
+async function updateName() {
+  const client = useSanctumClient();
+  const route = useRoute();
 
-    async updateInternalNote() {
-      const client = useSanctumClient();
-      const route = useRoute();
+  const { data } = await useAsyncData("organisation", () =>
+    client(
+      "/api/" +
+      route.params.workspace +
+      "/organisations/" +
+      route.params.organisation,
+      {
+        method: "PATCH",
+        body: {
+          name: input_name.value
+        }
+      }
+    )
+  );
+}
 
-      const { data } = await useAsyncData("organisation", () =>
-        client(
-          "/api/" +
-            route.params.workspace +
-            "/organisations/" +
-            route.params.organisation,
-          {
-            method: "PATCH",
-            body: {
-              internal_note: this.input_internal_note,
-            },
-          },
-        ),
-      );
-    },
-  },
-};
+async function updateInternalNote() {
+  const client = useSanctumClient();
+  const route = useRoute();
+
+  const { data } = await useAsyncData("organisation", () =>
+    client(
+      "/api/" +
+      route.params.workspace +
+      "/organisations/" +
+      route.params.organisation,
+      {
+        method: "PATCH",
+        body: {
+          internal_note: input_internal_note.value
+        }
+      }
+    )
+  );
+}
 </script>

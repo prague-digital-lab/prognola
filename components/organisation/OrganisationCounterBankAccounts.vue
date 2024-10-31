@@ -29,9 +29,6 @@
 </template>
 
 <script setup>
-import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
-import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
-import organisation from "~/pages/[workspace]/organisations/[organisation].vue";
 
 const props = defineProps(["organisation"]);
 

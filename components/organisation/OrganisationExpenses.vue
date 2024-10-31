@@ -26,8 +26,7 @@
 <script setup>
 import ExpenseCreateModal from "~/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue";
 import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
-import organisation from "~/pages/[workspace]/organisations/[organisation].vue";
-import { getExpensesByOrganisation, getExpensesByPaidAt } from "~/lib/dexie/repository/expense_repository.js";
+import { getExpensesByOrganisation } from "~/lib/dexie/repository/expense_repository.js";
 
 const props = defineProps(["organisation"]);
 
