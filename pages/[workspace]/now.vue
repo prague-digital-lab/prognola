@@ -13,13 +13,13 @@
         class="mb-4 flex space-x-2 rounded-md border border-gray-200 px-3 py-2 dark:border-zinc-800"
       >
         <p
-          class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+          class="inline-block rounded-md p-2 py-1 text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           @click="switchTab('incomes')"
         >
           Příjmy
         </p>
         <p
-          class="inline-block rounded-md p-2 py-1 text-gray-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+          class="inline-block rounded-md p-2 py-1 text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           @click="switchTab('expenses')"
         >
           Výdaje
@@ -336,12 +336,12 @@ const loaded = computed(() => {
   );
 });
 
-onMounted(()=>{
+onMounted(() => {
   let route = useRoute();
   if (route.query.tab) {
     switchTab(route.query.tab);
   }
-})
+});
 
 function formatPrice(value) {
   let val = (value / 1).toFixed(2).replace(".", ",");
