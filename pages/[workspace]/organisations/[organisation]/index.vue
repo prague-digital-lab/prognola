@@ -70,6 +70,7 @@
 <script setup>
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import OrganisationCounterBankAccounts from "~/components/organisation/OrganisationCounterBankAccounts.vue";
+import { getOrganisation } from "~/lib/dexie/repository/organisation_repository.js";
 
 definePageMeta({
   layout: "default",
@@ -100,27 +101,14 @@ function switchTab(tab_name) {
 }
 
 async function fetchData() {
-  const client = useSanctumClient();
   const route = useRoute();
+  organisation.value = await getOrganisation(route.params.organisation);
 
-  const { data } = await useAsyncData("organisation", () =>
-    client(
-      "/api/" +
-      route.params.workspace +
-      "/organisations/" +
-      route.params.organisation,
-      {
-        method: "GET"
-      },
-    ),
-  );
-
-  organisation.value = data.value;
-  input_name.value = data.value.name;
-  input_internal_note.value = data.value.internal_note;
+  input_name.value = organisation.value.name;
+  input_internal_note.value = organisation.value.internal_note;
 
   useHead({
-    title: organisation.value.name
+    title: organisation.value.name,
   });
 
   loaded.value = true;
@@ -138,13 +126,13 @@ async function updateName() {
   const { data } = await useAsyncData("organisation", () =>
     client(
       "/api/" +
-      route.params.workspace +
-      "/organisations/" +
-      route.params.organisation,
+        route.params.workspace +
+        "/organisations/" +
+        route.params.organisation,
       {
         method: "PATCH",
         body: {
-          name: input_name.value
+          name: input_name.value,
         },
       },
     ),
@@ -158,13 +146,13 @@ async function updateInternalNote() {
   const { data } = await useAsyncData("organisation", () =>
     client(
       "/api/" +
-      route.params.workspace +
-      "/organisations/" +
-      route.params.organisation,
+        route.params.workspace +
+        "/organisations/" +
+        route.params.organisation,
       {
         method: "PATCH",
         body: {
-          internal_note: input_internal_note.value
+          internal_note: input_internal_note.value,
         },
       },
     ),

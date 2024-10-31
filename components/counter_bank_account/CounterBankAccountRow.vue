@@ -1,12 +1,12 @@
 <template>
   <div
-    class="flex items-center justify-between px-5 py-4 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"
+    class="flex items-center justify-between bg-white px-5 py-4 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"
     @click="navigateToBankAccount"
   >
     <div class="flex text-base">
       <!--      <p class="w-[60px] font-light text-gray-500">{{ counter_bank_account.id }}</p>-->
       <!--      <p class="w-[400px] dark:text-zinc-200">{{ counter_bank_account.name }}</p>-->
-      <p class="w-[400px] font-light text-zinc-500 dark:text-zinc-400">
+      <p class="w-[400px]  dark:text-zinc-400 text-gray-900">
         {{ counter_bank_account.account_number }}/{{
           counter_bank_account.bank_number
         }}
