@@ -1,5 +1,5 @@
 <script>
-import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
+import { updateExpense, updateExpenseFromLocalObject } from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
   props: ["expense"],
@@ -36,7 +36,7 @@ export default {
       const route = useRoute();
 
       this.expense.price = this.price;
-      await updateExpense(this.expense.uuid, this.expense);
+      await updateExpenseFromLocalObject(this.expense.uuid, this.expense);
 
       const { data } = await useAsyncData("expense", () =>
         client(

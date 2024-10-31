@@ -1,6 +1,6 @@
 <script>
 import { DateTime } from "luxon";
-import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
+import { updateExpenseFromLocalObject } from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
   props: ["expense"],
@@ -46,7 +46,7 @@ export default {
 
       let expense = this.expense;
       expense.paid_at = this.paid_at;
-      await updateExpense(this.expense.uuid, expense);
+      await updateExpenseFromLocalObject(this.expense.uuid, expense);
 
       const { data } = await useAsyncData("expense", () =>
         client(
