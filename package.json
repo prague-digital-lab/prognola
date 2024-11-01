@@ -13,6 +13,7 @@
     "@headlessui/tailwindcss": "^0.2.1",
     "@nuxt/fonts": "^0.10.0",
     "@nuxt/image": "^1.8.0",
+    "@sentry/nuxt": "^8.36.0",
     "@vuepic/vue-datepicker": "^9.0.3",
     "@vueuse/rxjs": "^11.1.0",
     "chart.js": "^4.4.4",
