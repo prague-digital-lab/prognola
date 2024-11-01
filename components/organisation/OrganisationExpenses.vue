@@ -5,7 +5,8 @@
         <p class="text-base text-gray-600 dark:text-zinc-400">Výdaje</p>
       </div>
       <div>
-        <select v-model="date_type" v-if="date_type" @change="changeDateType" class="border-gray-200 border text-sm py-0 me-2 rounded-md h-[30px]">
+        <select v-model="date_type" v-if="date_type" @change="changeDateType"
+                class="border-gray-200 border text-sm py-0 me-2 rounded-md h-[30px] dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 focus:ring-transparent">
           <option value="paid_at">Datum platby</option>
           <option value="received_at">Datum přijetí</option>
         </select>
