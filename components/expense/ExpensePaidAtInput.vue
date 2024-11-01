@@ -45,7 +45,9 @@ export default {
       const route = useRoute();
 
       let expense = this.expense;
-      expense.paid_at = this.paid_at;
+
+
+      expense.paid_at = DateTime.fromFormat(this.paid_at, "yyyy-MM-dd").toJSDate();
       await updateExpenseFromLocalObject(this.expense.uuid, expense);
 
       const { data } = await useAsyncData("expense", () =>
