@@ -5,6 +5,11 @@
         <p class="text-base text-gray-600 dark:text-zinc-400">Výdaje</p>
       </div>
       <div>
+        <select v-if="date_type" @change="changeDateType" class="border-gray-200 border text-sm py-0 me-2 rounded-md h-[30px]">
+          <option value="paid_at">Datum platby</option>
+          <option value="received_at">Datum přijetí</option>
+        </select>
+
         <button-secondary @click="openModal">+ přidat výdaj</button-secondary>
       </div>
     </div>
@@ -34,6 +39,8 @@ const modal_create = useTemplateRef("modal_create");
 
 const expenses = ref([]);
 
+const date_type = ref("paid_at");
+
 function openModal() {
   modal_create.value.openModal();
 }
@@ -43,10 +50,12 @@ onMounted(() => {
 });
 
 async function fetchData() {
-  const client = useSanctumClient();
-  const route = useRoute();
+  expenses.value = await getExpensesByOrganisation(props.organisation.uuid, date_type.value);
+}
 
-  expenses.value = await getExpensesByOrganisation(props.organisation.uuid);
+function changeDateType(event) {
+  date_type.value = event.target.value;
+  fetchData();
 }
 </script>
 
