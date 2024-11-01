@@ -4,6 +4,8 @@ export default defineNuxtConfig({
   css: ["~/assets/scss/app.scss"],
   ssr: false,
 
+  sourcemap: { client: true },
+
   sentry: {
     sourceMapsUploadOptions: {
       org: "prazska-laborator",
