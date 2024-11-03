@@ -140,8 +140,8 @@ export default {
     };
   },
 
-  mounted() {
-    this.fetchData();
+  async mounted() {
+    await this.fetchData();
   },
 
   computed: {
@@ -154,7 +154,8 @@ export default {
 
   methods: {
     async fetchData() {
-      const client = useSanctumClient();
+      console.debug("Fetching expense data");
+
       const route = useRoute();
 
       this.expense = await getExpense(route.params.expense);
@@ -164,20 +165,19 @@ export default {
 
       this.loaded = true;
 
-      const { data } = await useAsyncData("expense", () =>
-        client(
+      const client = useSanctumClient();
+      const data = await client(
           "/api/" +
             route.params.workspace +
             "/expenses/" +
             route.params.expense,
           {
             method: "GET",
-          },
-        ),
+          }
       );
 
-      this.scans = data.value.scans ? data.value.scans : [];
-      this.bank_payments = data.value.bank_payments ? data.value.bank_payments : [];
+      this.scans = data.scans;
+      this.bank_payments = data.bank_payments;
     },
 
     formatPrice(value) {
