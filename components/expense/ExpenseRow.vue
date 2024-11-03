@@ -21,10 +21,12 @@
         {{ organisation.name }}
       </div>
 
-      <p class="w-[90px] ps-4 me-2" v-if="expense.received_at">
-        {{ formatDate(expense.received_at) }}
-      </p>
+
       <p class="w-[90px] ps-2 dark:text-zinc-400" v-if="expense.paid_at">
+        <span class="w-[90px] text-gray-400 dark:text-zinc-500" v-if="expense.received_at && expense.payment_status !== 'plan'">
+          {{ formatDate(expense.received_at) }}
+        </span>
+
         {{ formatDate(expense.paid_at) }}
       </p>
 
