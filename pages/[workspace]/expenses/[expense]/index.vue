@@ -31,7 +31,6 @@
           v-on:blur="updateInternalNote"
         ></textarea>
 
-        <!--        <div v-if="expense.scans.length > 0">-->
         <p class="mb-2 text-base text-gray-600 dark:text-zinc-400">Přílohy</p>
 
         <div>
@@ -159,7 +158,11 @@ export default {
       const route = useRoute();
 
       this.expense = await getExpense(route.params.expense);
-      console.log(this.expense);
+
+      this.input_description = this.expense.description;
+      this.input_internal_note = this.expense.internal_note;
+
+      this.loaded = true;
 
       const { data } = await useAsyncData("expense", () =>
         client(
@@ -173,13 +176,8 @@ export default {
         ),
       );
 
-      // this.expense = data.value;
-      this.input_description = this.expense.description;
-      this.input_internal_note = this.expense.internal_note;
-      this.scans = data.value.scans;
-      this.bank_payments = data.value.bank_payments;
-
-      this.loaded = true;
+      this.scans = data.value.scans ? data.value.scans : [];
+      this.bank_payments = data.value.bank_payments ? data.value.bank_payments : [];
     },
 
     formatPrice(value) {

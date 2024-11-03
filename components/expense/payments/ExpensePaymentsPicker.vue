@@ -65,7 +65,9 @@ export default {
 
   computed: {
     paymentSum() {
-      // const payments = this.expense.bank_payments;
+      if (this.bank_payments.length === 0) {
+        return 0;
+      }
 
       return this.bank_payments.reduce((acc, o) => acc + parseInt(o.amount), 0);
     },
