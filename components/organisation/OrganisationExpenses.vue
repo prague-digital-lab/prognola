@@ -47,7 +47,7 @@ function openModal() {
 }
 
 onMounted(() => {
-  if(localStorage.getItem("date_type") !== undefined) {
+  if(localStorage.getItem("date_type") !== null) {
     date_type.value = localStorage.getItem("date_type")
   }
 
