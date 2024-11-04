@@ -10,7 +10,7 @@
 
       <p class="mb-[60px] text-center text-[19px] leading-8 text-zinc-400">
         Seznamte se! Prognola je vaše nové finanční oddělení.<br />
-        Převezměte kontrolu a řiďte firemní peníze s neskutečnou lehkostí.
+        Převezměte kontrolu a řiďte firemní peníze jako nikdy předtím.
       </p>
 
       <div class="flex justify-center">
