@@ -362,7 +362,7 @@ onMounted(async () => {
     return;
   }
 
-  initializeWorkspace(route.params.workspace);
+  await initializeWorkspace(route.params.workspace);
 });
 
 async function loadAvailableWorkspaces() {
@@ -403,7 +403,7 @@ async function initializeWorkspace(url_slug) {
   localStorage.setItem("active_workspace_url_slug", active_url_slug);
 
   let db = openDatabase();
-  await bootstrapDatabase(db, route.params.workspace);
+  await bootstrapDatabase(db, active_url_slug);
 
   loading_workspace.value = false;
 }
