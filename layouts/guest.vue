@@ -1,8 +1,8 @@
 <template>
   <div>
-    <main class="container mx-auto md:px-[120px]">
+    <main class="container mx-auto">
       <div
-        class="sticky mb-[100px] mt-5 w-full rounded-2xl border border-gray-800/80 bg-gray-900/50 px-5 py-3 text-white backdrop-blur-3xl"
+        class="sticky mb-[50px] mt-5 w-full rounded-2xl border border-gray-800/80 bg-gray-900/50 px-5 py-3 text-white backdrop-blur-3xl"
       >
         <div class="flex justify-between">
           <div>

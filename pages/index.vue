@@ -1,15 +1,3 @@
-<script lang="ts">
-export default {
-  name: "index.vue",
-};
-</script>
-
-<script setup lang="ts">
-definePageMeta({
-  layout: "guest",
-});
-</script>
-
 <template>
   <div>
     <h1 class="mb-[40px] text-[40px] font-medium text-white">
@@ -38,5 +26,10 @@ definePageMeta({
     </div>
   </div>
 </template>
+<script setup lang="ts">
+definePageMeta({
+  layout: "guest",
+});
+</script>
 
 <style scoped></style>
