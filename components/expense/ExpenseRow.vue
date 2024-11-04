@@ -21,7 +21,7 @@
         {{ organisation.name }}
       </div>
 
-      <p class="me-2 w-[90px] ps-4" v-if="expense.received_at">
+      <p class="me-2 w-[90px] ps-4 dark:text-zinc-400" v-if="expense.received_at">
         {{ formatDate(expense.received_at) }}
       </p>
       <p class="w-[90px] ps-2 dark:text-zinc-400" v-if="expense.paid_at">
