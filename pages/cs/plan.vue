@@ -9,7 +9,7 @@
       </div>
 
       <h1 class="mb-[40px] text-[45px] font-semibold text-white text-center">
-        Plánujte příjmy i výdaje.<br>Snadno a rychle.
+        Plánujte příjmy i výdaje.<br><span class="text-indigo-500">Snadno a rychle.</span>
       </h1>
 
       <p class="mb-[60px] text-[18px] text-zinc-400 text-center">
@@ -30,7 +30,7 @@
     <div class="grid grid-cols-2 border border-zinc-700 rounded-md mb-[100px] divide-x divide-zinc-800">
       <div class="p-10">
         <h2 class="text-[25px] font-medium text-white mb-5">
-          Nahlédněte do budoucnosti. <span class="text-zinc-400">Třeba hned!</span>
+          Nahlédněte do budoucnosti. <span class="text-indigo-500">Třeba hned!</span>
         </h2>
         <p class=" text-[18px] text-gray-300">
           Už žádné zdlouhavé výpočty a přepisování dat do Excelu. Díky tomu, že Prognola zná současný peněžní zůstatek
@@ -48,7 +48,7 @@
 
         <p class="text-[18px] text-gray-300">
           Abyste při plánování nikdy neztratili pojem o realitě, Prognola chytře kombinuje skutečná data vaší firmy o
-          uskutečněných příjmech a výdajích s budoucími plány. Určete strategii podle reálných čísel, nyní můžete plánovat
+          uskutečněných příjmech a výdajích s budoucími plány. Řiďte vaši firmu podle reálných čísel, nyní můžete plánovat
           snadno a rychle.
         </p>
       </div>
