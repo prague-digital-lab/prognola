@@ -79,7 +79,7 @@ definePageMeta({
 });
 
 useHead({
-  title: "Plánování",
+  title: "Plánování - Plánujte příjmy a výdaje. Snadno a rychle.",
 });
 </script>
 
