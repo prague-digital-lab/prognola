@@ -1,22 +1,24 @@
 <template>
   <div>
-    <h1 class="mb-[40px] text-[40px] font-medium text-white">
-      Budoucnost řízení firemních financí je tady.
-    </h1>
+    <div class="rounded-md border border-zinc-800 py-[100px] mb-[100px] ">
+      <h1 class="mb-[40px] text-[40px] font-semibold text-white text-center">
+        Váš nástroj pro řízení firemních financí.<br>
+      </h1>
 
-    <p class="mb-[60px] text-[18px] text-gray-300">
-      Představte si, že už nejste nervózní z toho, jak vaše firma v budoucnu
-      vyjde s penězi. <br />
-      Prognola je digitální finanční centrum nové generace. Pro firmy, kterým už
-      nestačí znát zůstatek na firemním účtu.
+      <p class="mb-[60px] text-[19px] text-zinc-400 leading-8 text-center">
+        Seznamte se! Prognola je vaše nové finanční oddělení.<br />
+        Převezměte kontrolu a řiďte firemní peníze s neskutečnou lehkostí.
     </p>
 
+      <div class="flex justify-center">
     <nuxt-link
       href="/register"
       class="cursor-pointer rounded-2xl bg-gray-200 px-5 py-3 font-medium text-gray-800 transition duration-150 hover:bg-white"
     >
-      Vyzkoušet na 30 dní zdarma
+      Vyzkoušet nyní
     </nuxt-link>
+      </div>
+    </div>
 
     <div class="mb-10 mt-[100px]">
       <img
