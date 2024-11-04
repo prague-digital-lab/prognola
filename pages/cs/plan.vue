@@ -77,6 +77,10 @@
 definePageMeta({
   layout: "guest"
 });
+
+useHead({
+  title: "Plánování",
+});
 </script>
 
 <style scoped>

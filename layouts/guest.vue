@@ -43,6 +43,9 @@ useHead({
   bodyAttrs: {
     class: "bg-grad-dark",
   },
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} | Prognola` : 'Prognola - Plánujte firemní finance s lehkostí.';
+  }
 });
 
 onMounted(() => {});
