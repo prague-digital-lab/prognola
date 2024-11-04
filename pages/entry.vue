@@ -46,8 +46,15 @@ export default {
       return;
     }
 
-    // Redirect to first workspace
-    let workspace_slug = this.workspaces.value[0].url_slug;
+    let last_url_slug = localStorage.getItem("active_workspace_url_slug");
+
+    let workspace_slug;
+    if (last_url_slug !== null) {
+      workspace_slug = last_url_slug;
+    } else {
+      // Redirect to first workspace
+      workspace_slug = this.workspaces.value[0].url_slug;
+    }
 
     // Redirect is made with native js location.
     // This is ugly workaround, because nuxt navigateTo
