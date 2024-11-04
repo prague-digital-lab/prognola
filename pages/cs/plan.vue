@@ -54,6 +54,11 @@
       </div>
     </div>
 
+    <h2 class="text-[25px] font-medium text-white mb-5">
+      Řiďte firmu sebevědomě. <span class="text-indigo-500">Získejte zpět klid.</span>
+    </h2>
+
+
     <p class="mb-[60px] text-[18px] text-gray-300">
       Zajímá vás jestli vám vyjdou peníze na blížící se výdaje? Nebo zvažujete další investice do vaší firmy? Moc dobře
       víme, že plánovat pouze pomocí zůstatku na účtu moc nejde.
