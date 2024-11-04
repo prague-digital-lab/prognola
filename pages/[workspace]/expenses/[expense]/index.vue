@@ -167,13 +167,10 @@ export default {
 
       const client = useSanctumClient();
       const data = await client(
-          "/api/" +
-            route.params.workspace +
-            "/expenses/" +
-            route.params.expense,
-          {
-            method: "GET",
-          }
+        "/api/" + route.params.workspace + "/expenses/" + route.params.expense,
+        {
+          method: "GET",
+        },
       );
 
       this.scans = data.scans;

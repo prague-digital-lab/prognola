@@ -50,7 +50,10 @@ export default {
       const route = useRoute();
 
       let expense = this.expense;
-      expense.received_at = DateTime.fromFormat(this.received_at, "yyyy-MM-dd").toJSDate();
+      expense.received_at = DateTime.fromFormat(
+        this.received_at,
+        "yyyy-MM-dd",
+      ).toJSDate();
       await updateExpenseFromLocalObject(this.expense.uuid, expense);
 
       const { data } = await useAsyncData("expense", () =>

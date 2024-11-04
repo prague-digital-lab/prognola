@@ -17,7 +17,7 @@ import {
   DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
-  UsersIcon
+  UsersIcon,
 } from "@heroicons/vue/24/outline";
 import Menu from "~/components/guest/Menu.vue";
 
@@ -44,8 +44,10 @@ useHead({
     class: "bg-grad-dark",
   },
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | Prognola` : 'Prognola: Plánujte a řiďte firemní finance s lehkostí.';
-  }
+    return titleChunk
+      ? `${titleChunk} | Prognola`
+      : "Prognola: Plánujte a řiďte firemní finance s lehkostí.";
+  },
 });
 
 onMounted(() => {});
