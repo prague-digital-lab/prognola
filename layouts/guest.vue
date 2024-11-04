@@ -1,69 +1,7 @@
 <template>
   <div>
     <main class="container mx-auto">
-      <div
-        class="sticky mb-[50px] mt-5 w-full rounded-2xl border border-gray-800/80 bg-gray-900/50 px-5 py-3 text-white backdrop-blur-3xl"
-      >
-        <div class="flex justify-between">
-          <div>
-            <nuxt-link href="/" class="flex items-center text-[15px]">
-              <img
-                class="me-2 inline-block h-6 w-auto"
-                src="/img/logo_prazska_laborator.png"
-                alt="Finance"
-              />
-
-              Prognola</nuxt-link
-            >
-          </div>
-
-          <div v-if="!authenticated">
-            <nuxt-link
-              href="/login"
-              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-base font-medium text-gray-200"
-            >
-              Přihlásit se
-            </nuxt-link>
-            <nuxt-link
-              href="/register"
-              class="rounded bg-gray-200 px-2.5 py-1.5 text-base font-medium text-gray-800"
-            >
-              Vyzkoušet
-            </nuxt-link>
-          </div>
-
-          <div v-if="authenticated && !verified">
-            <a
-              @click="logout"
-              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-base font-medium text-gray-200"
-            >
-              Odhlásit se</a
-            >
-
-            <nuxt-link
-              href="/entry"
-              class="rounded bg-gray-200 px-2.5 py-1.5 text-base font-medium text-gray-800"
-              >Ověřit email
-            </nuxt-link>
-          </div>
-
-          <div v-if="authenticated && verified">
-            <a
-              @click="logout"
-              class="me-2 rounded bg-gray-800 px-2.5 py-1.5 text-base font-medium text-gray-200"
-            >
-              Odhlásit se</a
-            >
-
-            <nuxt-link
-              href="/entry"
-              class="rounded bg-gray-200 px-2.5 py-1.5 text-base font-medium text-gray-800"
-            >
-              Přejít do aplikace
-            </nuxt-link>
-          </div>
-        </div>
-      </div>
+      <Menu></Menu>
 
       <div class="px-5">
         <slot />
@@ -73,15 +11,15 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import {
   CalendarIcon,
   ChartPieIcon,
   DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
-  UsersIcon,
+  UsersIcon
 } from "@heroicons/vue/24/outline";
+import Menu from "~/components/guest/Menu.vue";
 
 const navigation = [
   { name: "Nástěnka", href: "/", icon: HomeIcon, current: true },
@@ -108,24 +46,6 @@ useHead({
 });
 
 onMounted(() => {});
-
-const { user } = useSanctumAuth();
-
-const authenticated = computed(() => {
-  return user.value !== null;
-});
-
-const verified = computed(() => {
-  return authenticated && user.value.email_verified_at;
-});
-
-async function logout() {
-  const { logout } = useSanctumAuth();
-
-  await logout();
-}
-
-const sidebarOpen = ref(false);
 </script>
 
 <style lang="scss">
