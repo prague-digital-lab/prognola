@@ -3,7 +3,7 @@
     <div class="rounded-md border border-zinc-800 py-[100px] mb-[100px] ">
       <h1 class="mb-[40px] text-[45px] font-semibold text-white text-center">
         Váš nástroj pro finanční řízení.<br>
-        <span class="text-indigo-500 text-[45px]">Plánujte a řiďte firemní finance s lehkostí.</span>
+        <span class="text-indigo-500 text-[45px]">Plánujte firemní finance s lehkostí.</span>
       </h1>
 
       <p class="mb-[60px] text-[19px] text-zinc-400 leading-8 text-center">
