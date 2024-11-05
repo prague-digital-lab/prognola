@@ -1,7 +1,7 @@
 <template>
+  <nuxt-link :href="'/' + route.params.workspace + '/expenses/' + expense.uuid" class="block" :key="expense.uuid">
   <div
     class="flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-    @click="navigateToExpense"
   >
     <div class="flex text-base">
       <!--      <p class="w-[60px] font-light text-gray-500">V-{{ expense.id }}</p>-->
@@ -21,12 +21,15 @@
         {{ organisation.name }}
       </div>
 
-      <p class="me-2 w-[90px] ps-4 dark:text-zinc-400" v-if="expense.received_at">
+      <p
+        class="me-2 w-[90px] ps-4 dark:text-zinc-400"
+        v-if="expense.received_at"
+      >
         {{ formatDate(expense.received_at) }}
       </p>
-      <p class="w-[90px] ps-2 dark:text-zinc-400" v-if="expense.paid_at">
-        {{ formatDate(expense.paid_at) }}
-      </p>
+
+      <context-menu-paid-at-picker @expense-updated="$emit('expense-updated')" :expense="expense"></context-menu-paid-at-picker>
+
 
       <div class="w-[120px]">
         <div v-if="expense.payment_status === 'paid'">
@@ -67,14 +70,17 @@
       </div>
     </div>
   </div>
+  </nuxt-link>
 </template>
 
 <script setup>
 import { DateTime } from "luxon";
 import { BuildingLibraryIcon } from "@heroicons/vue/24/outline/index.js";
 import { findOrganisation } from "~/lib/dexie/repository/organisation_repository.js";
+import ContextMenuPaidAtPicker from "~/components/expense/expense_row/ContextMenuPaidAtPicker.vue";
 
 const props = defineProps(["expense"]);
+const route = useRoute()
 
 const organisation = ref(null);
 
@@ -115,6 +121,7 @@ const isDue = computed(() => {
   const paid_at = DateTime.fromJSDate(props.expense.paid_at);
   return paid_at < today;
 });
+
 </script>
 
 <style scoped></style>
