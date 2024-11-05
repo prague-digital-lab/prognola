@@ -11,10 +11,11 @@
       >
         <div>
           <h1 class="mb-4 text-xl font-normal text-white">Vylepšení</h1>
-          <p class="text-zinc-200">
+          <p>
             PRO-408 - Spárované platby v detailu výdaje se nově řadí podle toho
             kdy byly uhrazeny.
           </p>
+          <p>PRO-449 - Je možné smazat nahrané přílohy výdaje.</p>
         </div>
 
         <div>
