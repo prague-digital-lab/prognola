@@ -37,6 +37,7 @@
           <expense-scan-row
             :scan="scan"
             v-for="scan in scans"
+            @scan-deleted="fetchData"
           ></expense-scan-row>
         </div>
 

@@ -17,7 +17,12 @@
         </a>
       </div>
 
-      <div>
+      <div class="flex items-center">
+        <a @click="deleteScan"
+           class=" inline-block rounded-md p-1 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-zinc-900 me-2">
+          <TrashIcon class="h-4 w-4" />
+        </a>
+
         <div v-if="expanded">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,20 +71,34 @@
 </template>
 
 <script setup>
-import { DocumentIcon } from "@heroicons/vue/24/outline";
+import { DocumentIcon, TrashIcon } from "@heroicons/vue/24/outline";
 import { LinkIcon } from "@heroicons/vue/16/solid";
-</script>
 
-<script>
-export default {
-  props: ["scan"],
+const expanded = ref(false);
+const props = defineProps(["scan"]);
+const emit = defineEmits(["scan-deleted"]);
 
-  data: () => {
-    return {
-      expanded: false,
-    };
-  },
-};
+async function deleteScan() {
+  if (!confirm("Opravdu chcete odstranit tuto přílohu?")) {
+    return;
+  }
+
+  const client = useSanctumClient();
+  const route = useRoute();
+
+  const { data } = await useAsyncData("expense", () =>
+    client(
+      "/api/" + route.params.workspace + "/scans/" + props.scan.uuid,
+      {
+        method: "DELETE"
+      }
+    )
+  );
+
+  emit("scan-deleted");
+
+}
+
 </script>
 
 <style scoped></style>
