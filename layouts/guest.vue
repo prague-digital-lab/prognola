@@ -46,6 +46,7 @@ useHead({
   bodyAttrs: {
     class: "bg-grad-dark",
   },
+  meta: [{ name: "theme_color", content: "#000b32" }],
   titleTemplate: (titleChunk) => {
     return titleChunk
       ? `${titleChunk} | Prognola`
