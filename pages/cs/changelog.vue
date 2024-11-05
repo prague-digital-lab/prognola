@@ -30,7 +30,7 @@ definePageMeta({
 });
 
 useHead({
-  title: "Nová vydání"
+  title: "Co je nového v aplikaci"
 });
 </script>
 
