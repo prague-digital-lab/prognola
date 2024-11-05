@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col justify-between min-h-screen">
     <main class="container mx-auto">
       <Menu></Menu>
 
@@ -7,6 +7,8 @@
         <slot />
       </div>
     </main>
+
+    <Footer></Footer>
   </div>
 </template>
 
@@ -20,6 +22,7 @@ import {
   UsersIcon,
 } from "@heroicons/vue/24/outline";
 import Menu from "~/components/guest/Menu.vue";
+import Footer from "~/components/guest/Footer.vue";
 
 const navigation = [
   { name: "Nástěnka", href: "/", icon: HomeIcon, current: true },
