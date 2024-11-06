@@ -59,10 +59,23 @@ onMounted(() => {
 });
 
 async function fetchData() {
-  expenses.value = await getExpensesByOrganisation(
-    props.organisation.uuid,
-    date_type.value,
-  );
+
+  if(date_type.value === "received_at") {
+   let expenses_data = await getExpensesByOrganisation(
+      props.organisation.uuid,
+      'received_at',
+    );
+
+   expenses.value = expenses_data.filter((item)=>{
+     return item.payment_status !== 'plan'
+   })
+  }
+  else {
+    expenses.value = await getExpensesByOrganisation(
+      props.organisation.uuid,
+      'paid_at',
+    );
+  }
 }
 
 function changeDateType(event) {
