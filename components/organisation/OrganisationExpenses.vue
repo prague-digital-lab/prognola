@@ -28,7 +28,7 @@
     <div
       class="mb-4 divide-y divide-slate-200 rounded border border-slate-200 dark:divide-zinc-800 dark:border-zinc-800"
     >
-      <expense-row :expense="expense" v-for="expense in expenses"></expense-row>
+      <expense-row :expense="expense" v-for="expense in expenses" :key="expense.uuid"></expense-row>
     </div>
   </div>
 </template>

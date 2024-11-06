@@ -65,6 +65,7 @@
           <expense-row
             v-for="expense in expenses"
             :expense="expense"
+            :key="expense.uuid"
             @expense-updated="fetchExpenses"
           ></expense-row>
         </div>
@@ -89,6 +90,7 @@
             <expense-row
               @expense-updated="fetchExpenses"
               v-for="expense in category"
+              :key="expense.uuid"
               :expense="expense"
             ></expense-row>
           </div>

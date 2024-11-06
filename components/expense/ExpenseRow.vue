@@ -16,7 +16,7 @@
         class="me-2 flex cursor-pointer items-center rounded-md border border-gray-200 px-3 py-1 leading-5 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400"
         @click="navigateToOrganisation(organisation)"
       >
-        <building-library-icon class="me-1 h-4 w-4"></building-library-icon>
+        <building-library-icon :key="expense.uuid" class="me-1 h-4 w-4"></building-library-icon>
 
         {{ organisation.name }}
       </div>
@@ -28,7 +28,9 @@
         {{ formatDate(expense.received_at) }}
       </p>
 
-      <context-menu-paid-at-picker @expense-updated="$emit('expense-updated')" :expense="expense"></context-menu-paid-at-picker>
+      <context-menu-paid-at-picker :key="expense.uuid"
+                                   @expense-updated="$emit('expense-updated')"
+                                   :expense="expense"></context-menu-paid-at-picker>
 
 
       <div class="w-[120px]">
@@ -66,7 +68,7 @@
       </div>
 
       <div class="ms-2">
-        <expense-status-icon :expense="expense" />
+        <expense-status-icon :expense="expense" :key="expense.uuid" />
       </div>
     </div>
   </div>
