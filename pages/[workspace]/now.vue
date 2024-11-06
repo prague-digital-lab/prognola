@@ -47,6 +47,7 @@
             <income-row
               :income="income"
               v-for="income in incomes_due"
+              :key="income.uuid"
             ></income-row>
           </div>
         </div>
@@ -71,6 +72,7 @@
             <income-row
               :income="income"
               v-for="income in incomes_today"
+              :key="income.uuid"
             ></income-row>
           </div>
           <div v-if="incomes_today.length === 0" class="dark:text-zinc-400">
@@ -98,6 +100,7 @@
             <income-row
               :income="income"
               v-for="income in incomes_upcoming"
+              :key="income.uuid"
             ></income-row>
           </div>
           <div v-if="incomes_upcoming.length === 0" class="dark:text-zinc-400">
@@ -125,6 +128,7 @@
             <expense-row
               :expense="expense"
               v-for="expense in expenses_due"
+              :key="expense.uuid"
             ></expense-row>
           </div>
         </div>
@@ -149,6 +153,7 @@
             <expense-row
               :expense="expense"
               v-for="expense in expenses_today"
+              :key="expense.uuid"
             ></expense-row>
           </div>
 
@@ -177,6 +182,7 @@
             <expense-row
               :expense="expense"
               v-for="expense in expenses_upcoming"
+              :key="expense.uuid"
             ></expense-row>
           </div>
 

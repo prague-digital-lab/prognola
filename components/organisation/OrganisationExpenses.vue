@@ -28,7 +28,11 @@
     <div
       class="mb-4 divide-y divide-slate-200 rounded border border-slate-200 dark:divide-zinc-800 dark:border-zinc-800"
     >
-      <expense-row :expense="expense" v-for="expense in expenses" :key="expense.uuid"></expense-row>
+      <expense-row
+        :expense="expense"
+        v-for="expense in expenses"
+        :key="expense.uuid"
+      ></expense-row>
     </div>
   </div>
 </template>
@@ -59,21 +63,19 @@ onMounted(() => {
 });
 
 async function fetchData() {
-
-  if(date_type.value === "received_at") {
-   let expenses_data = await getExpensesByOrganisation(
+  if (date_type.value === "received_at") {
+    let expenses_data = await getExpensesByOrganisation(
       props.organisation.uuid,
-      'received_at',
+      "received_at",
     );
 
-   expenses.value = expenses_data.filter((item)=>{
-     return item.payment_status !== 'plan'
-   })
-  }
-  else {
+    expenses.value = expenses_data.filter((item) => {
+      return item.payment_status !== "plan";
+    });
+  } else {
     expenses.value = await getExpensesByOrganisation(
       props.organisation.uuid,
-      'paid_at',
+      "paid_at",
     );
   }
 }

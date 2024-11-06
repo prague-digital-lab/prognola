@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-between min-h-screen">
+  <div class="flex min-h-screen flex-col justify-between">
     <main class="container mx-auto">
       <Menu></Menu>
 

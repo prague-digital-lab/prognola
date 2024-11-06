@@ -18,8 +18,10 @@
       </div>
 
       <div class="flex items-center">
-        <a @click="deleteScan"
-           class=" inline-block rounded-md p-1 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-zinc-900 me-2">
+        <a
+          @click="deleteScan"
+          class="me-2 inline-block rounded-md p-1 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-zinc-900"
+        >
           <TrashIcon class="h-4 w-4" />
         </a>
 
@@ -87,18 +89,13 @@ async function deleteScan() {
   const route = useRoute();
 
   const { data } = await useAsyncData("expense", () =>
-    client(
-      "/api/" + route.params.workspace + "/scans/" + props.scan.uuid,
-      {
-        method: "DELETE"
-      }
-    )
+    client("/api/" + route.params.workspace + "/scans/" + props.scan.uuid, {
+      method: "DELETE",
+    }),
   );
 
   emit("scan-deleted");
-
 }
-
 </script>
 
 <style scoped></style>
