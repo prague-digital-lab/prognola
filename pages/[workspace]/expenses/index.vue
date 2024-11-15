@@ -225,8 +225,8 @@ async function downloadExport() {
     client("/api/" + route.params.workspace + "/download/expenses/scans/url", {
       method: "GET",
       query: {
-        from: this.from,
-        to: this.to,
+        from: from.value,
+        to: to.value,
       },
     }),
   );
