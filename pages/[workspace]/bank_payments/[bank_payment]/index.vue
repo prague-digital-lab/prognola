@@ -22,7 +22,7 @@
 
     <div class="grid grid-cols-2 gap-3">
       <div
-        class="b g-white mb-4 overflow-hidden bg-white border border-gray-200 sm:rounded-lg dark:border-zinc-800 dark:bg-zinc-900"
+        class="b g-white mb-4 overflow-hidden border border-gray-200 bg-white sm:rounded-lg dark:border-zinc-800 dark:bg-zinc-900"
       >
         <div class="">
           <dl class="divide-y divide-gray-100 dark:divide-zinc-800">
