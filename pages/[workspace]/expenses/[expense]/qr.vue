@@ -170,7 +170,7 @@ function updateQrCode() {
       iban +
       "*AM:" +
       price.value +
-      "*VS:" +
+      "*X-VS:" +
       variable_symbol.value +
       "*CC:CZK*MSG:" +
       message.value;
@@ -193,7 +193,7 @@ function updateQrCode() {
       iban +
       "*AM:" +
       price.value +
-      "*VS:" +
+      "*X-VS:" +
       variable_symbol.value +
       "*CC:CZK*MSG:" +
       message.value;
