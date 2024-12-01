@@ -105,6 +105,8 @@
         </div>
 
         <expense-paid-at-input :expense="expense" />
+
+        <expense-variable-symbol-input @expense-updated="fetchData" :expense="expense" />
       </div>
     </div>
   </div>
