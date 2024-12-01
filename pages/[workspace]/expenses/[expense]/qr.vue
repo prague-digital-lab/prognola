@@ -16,6 +16,15 @@
           />
         </div>
 
+
+        <div class="mb-4">
+          <label class="block">Variabilní symbol</label>
+          <input
+            v-model="variable_symbol"
+            class="rounded-md dark:border dark:border-zinc-800 dark:bg-zinc-900"
+          />
+        </div>
+
         <div class="mb-4">
           <label class="block">Zpráva pro příjemce</label>
           <input
@@ -59,13 +68,13 @@ import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import Heading from "~/components/ui/Heading.vue";
 import QrcodeVue from "qrcode.vue";
 import { CountryCode, IBANBuilder } from "ibankit";
-import bank_account from "~/pages/[workspace]/bank_accounts/[bank_account]/index.vue";
 
 const loaded = ref(false);
 
 const expense = ref(null);
 
 const price = ref(null);
+const variable_symbol = ref(null);
 const message = ref(null);
 const counter_bank_account = ref(null);
 
@@ -80,13 +89,14 @@ async function fetchData() {
     client(
       "/api/" + route.params.workspace + "/expenses/" + route.params.expense,
       {
-        method: "GET",
-      },
-    ),
+        method: "GET"
+      }
+    )
   );
 
   expense.value = data.value;
   price.value = expense.value.price;
+  variable_symbol.value = expense.value.variable_symbol;
   message.value = expense.value.description;
 
   const { data: counter_bank_accounts } = await useAsyncData(
@@ -95,9 +105,9 @@ async function fetchData() {
       client("/api/" + route.params.workspace + "/counter_bank_accounts", {
         method: "GET",
         query: {
-          organisation: expense.value.organisation.uuid,
-        },
-      }),
+          organisation: expense.value.organisation.uuid
+        }
+      })
   );
 
   console.log("Setting accounts");
@@ -159,12 +169,14 @@ function updateQrCode() {
       iban +
       "*AM:" +
       price.value +
+      "*VS:" +
+      variable_symbol.value +
       "*CC:CZK*MSG:" +
       message.value;
   } else {
     let bank_number_leading = zeroPad(
       counter_bank_account.value.account_number,
-      10,
+      10
     );
 
     let iban = new IBANBuilder()
