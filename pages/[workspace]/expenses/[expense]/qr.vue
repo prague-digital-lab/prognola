@@ -130,6 +130,10 @@ onMounted(async () => {
 watch(counter_bank_account, (newX, oldX) => {
   updateQrCode();
 });
+watch(variable_symbol, (newX, oldX) => {
+  updateQrCode();
+});
+
 
 watch(price, (newX, oldX) => {
   updateQrCode();
