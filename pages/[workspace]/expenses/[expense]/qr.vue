@@ -134,7 +134,6 @@ watch(variable_symbol, (newX, oldX) => {
   updateQrCode();
 });
 
-
 watch(price, (newX, oldX) => {
   updateQrCode();
 });
@@ -150,8 +149,6 @@ function updateQrCode() {
     return;
   }
   const zeroPad = (num, places) => String(num).padStart(places, "0");
-
-  // console.log('huh:' + bank_number_leading);
 
   if (counter_bank_account.value.account_number.includes("-")) {
     let account_number_arr =
@@ -196,6 +193,8 @@ function updateQrCode() {
       iban +
       "*AM:" +
       price.value +
+      "*VS:" +
+      variable_symbol.value +
       "*CC:CZK*MSG:" +
       message.value;
   }
