@@ -58,6 +58,14 @@
 
         <expense-organisation-picker :expense="expense" />
 
+        <p
+          class="mb-2 px-1 text-sm font-medium text-gray-500"
+        >
+          Variabilní symbol
+        </p>
+
+        <expense-variable-symbol-input @expense-updated="fetchData" :expense="expense" />
+
         <p class="mb-2 px-1 text-sm font-medium text-gray-500">
           Kategorie výdaje
         </p>
@@ -105,8 +113,6 @@
         </div>
 
         <expense-paid-at-input :expense="expense" />
-
-        <expense-variable-symbol-input @expense-updated="fetchData" :expense="expense" />
       </div>
     </div>
   </div>
