@@ -17,7 +17,6 @@
 
     <div
       class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
-      v-if="grouped_by === null"
     >
       <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
 
@@ -30,114 +29,84 @@
         </p>
       </div>
     </div>
-
-    <div class="flex justify-end">
-      <form @submit.prevent="createExpense">
-        <input
-          v-model="new_expense_name"
-          placeholder="Nový výdaj..."
-          required
-          class="me-2 rounded border border-gray-200 py-1 text-base"
-        />
-
-        <button
-          type="submit"
-          class="rounded bg-indigo-700 px-3 py-1 text-gray-100 transition hover:bg-indigo-900"
-        >
-          Přidat
-        </button>
-      </form>
-    </div>
   </div>
 </template>
 
 <script setup>
 import Heading from "~/components/ui/Heading.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+import { DateTime } from "luxon";
+import { getExpensesByPaymentStatus} from "~/lib/dexie/repository/expense_repository.js";
 
 definePageMeta({
   layout: "default",
-  middleware: ["sanctum:auth", "sanctum:verified"],
+  middleware: ["sanctum:auth", "sanctum:verified"]
 });
-</script>
 
-<script>
-export default {
-  data() {
-    return {
-      // Page UI data
-      loaded: false,
-      new_expense_name: "",
+useHead({
+  title: "Výdaje ke zpracování"
+});
 
-      // Data table params
-      grouped_by: null,
-      filter_category_id: null,
-      filter_organisation_id: null,
+// Page UI data
+const loaded = ref(false);
+const new_expense_name = ref("");
 
-      // Data
-      expenses: [],
-      price_sum: 0,
-    };
-  },
+const expenses = ref([]);
+const price_sum = ref(0);
 
-  mounted() {
-    this.fetchData();
-  },
+onMounted(async () => {
+  fetchData();
+});
 
-  computed: {
-    expenses_by_category() {
-      return this.expenses.reduce(function (r, expense) {
-        r[expense.expense_category_id] = r[expense.expense_category_id] || [];
-        r[expense.expense_category_id].push(expense);
-        return r;
-      }, Object.create(null));
-    },
-  },
+// async function fetchData() {
+//   const client = useSanctumClient();
+//   const route = useRoute();
+//
+//   const { data } = await useAsyncData("expense_drafts", () =>
+//     client("/api/" + route.params.workspace + "/expenses", {
+//       method: "GET",
+//       params: {
+//         payment_status: "draft"
+//       }
+//     })
+//   );
+//
+//   this.expenses = data.value.data;
+//   this.price_sum = data.value.price_sum;
+//
+//   this.loaded = true;
+// }
 
-  methods: {
-    async fetchData() {
-      const client = useSanctumClient();
-      const route = useRoute();
+async function fetchData() {
+  expenses.value = await getExpensesByPaymentStatus('draft');
 
-      const { data } = await useAsyncData("expense_drafts", () =>
-        client("/api/" + route.params.workspace + "/expenses", {
-          method: "GET",
-          params: {
-            payment_status: "draft",
-          },
-        }),
-      );
+  loaded.value = true;
+}
 
-      this.expenses = data.value.data;
-      this.price_sum = data.value.price_sum;
+function formatPrice(value) {
+  let val = (value / 1).toFixed(0).replace(".", ",");
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
-      this.loaded = true;
-    },
+async function createExpense() {
+  const client = useSanctumClient();
+  const route = useRoute();
 
-    formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
+  const { data } = await useAsyncData("expense", () =>
+    client("/api/" + route.params.workspace + "/expenses", {
+      method: "POST",
+      body: {
+        description: new_expense_name.value,
+        price: 0,
+        paid_at: this.from
+      }
+    })
+  );
 
-    async createExpense() {
-      const client = useSanctumClient();
-      const route = useRoute();
+  let uuid = data.value.uuid;
 
-      const { data } = await useAsyncData("expense", () =>
-        client("/api/" + route.params.workspace + "/expenses", {
-          method: "POST",
-          body: {
-            description: this.new_expense_name,
-            price: 0,
-            paid_at: this.from,
-          },
-        }),
-      );
+  await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
+}
 
-      let uuid = data.value.uuid;
 
-      await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
-    },
-  },
-};
 </script>

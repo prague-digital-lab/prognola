@@ -119,7 +119,7 @@ import { DateTime } from "luxon";
 import { getExpensesByPaidAt } from "~/lib/dexie/repository/expense_repository.js";
 
 useHead({
-  title: "Výdaje - Prognola",
+  title: "Výdaje",
 });
 
 definePageMeta({

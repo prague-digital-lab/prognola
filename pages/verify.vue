@@ -27,7 +27,7 @@ definePageMeta({
 });
 
 useHead({
-  title: "Ověření účtu - Prognola",
+  title: "Ověření účtu",
 });
 </script>
 

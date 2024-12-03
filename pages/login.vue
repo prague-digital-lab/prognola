@@ -80,7 +80,7 @@ export default {
     });
 
     useHead({
-      title: "Přihlášení - Prognola",
+      title: "Přihlášení",
     });
   },
 

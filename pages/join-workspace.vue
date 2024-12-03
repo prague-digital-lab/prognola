@@ -36,7 +36,7 @@ definePageMeta({
 });
 
 useHead({
-  title: "Volba organizace - Prognola",
+  title: "Volba organizace",
 });
 
 const client = useSanctumClient();

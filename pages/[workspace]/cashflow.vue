@@ -122,7 +122,7 @@ import {
 } from "~/lib/dexie/repository/balance_prognosis_repository.js";
 
 useHead({
-  title: "Cashflow - Prognola",
+  title: "Cashflow",
 });
 
 definePageMeta({
