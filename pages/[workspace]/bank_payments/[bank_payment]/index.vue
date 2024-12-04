@@ -66,6 +66,7 @@
               <dd
                 class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-zinc-400"
               >
+                <div v-if="bank_payment.transfer_bank_account_id === null">
                 <badge-counter-bank-account
                   v-if="bank_payment.counter_bank_account"
                   :counter_bank_account="bank_payment.counter_bank_account"
@@ -76,6 +77,11 @@
                     bank_payment.counter_bank_number
                   }}</span
                 >
+                </div>
+
+                <div v-else>
+                  <badge-bank-account :bank_account="bank_payment.transfer_bank_account" />
+                </div>
               </dd>
             </div>
 
