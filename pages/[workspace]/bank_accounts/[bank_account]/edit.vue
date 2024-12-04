@@ -314,12 +314,6 @@ export default {
             "/sync-moneta",
           {
             method: "POST",
-            body: {
-              name: this.name,
-              account_number: this.account_number,
-              bank_number: this.bank_number,
-              api_token: this.api_token,
-            },
           },
         ),
       );
