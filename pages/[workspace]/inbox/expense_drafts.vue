@@ -16,13 +16,13 @@
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:bg-transparent dark:divide-zinc-800 dark:border-zinc-800"
     >
       <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
 
       <div
         v-if="expenses.length === 0"
-        class="flex h-[400px] w-full items-center justify-center bg-white"
+        class="flex h-[400px] w-full items-center justify-center bg-white dark:bg-transparent"
       >
         <p class="text-center text-base text-gray-500">
           Všechny výdaje jsou zpracované.<br />
