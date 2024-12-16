@@ -9,19 +9,18 @@
     <div v-if="accounts.length > 0" class="grid grid-cols-2">
       <div class="dark:text-zinc-300">
         <div class="mb-4">
-          <label class="block">Částka</label>
+          <label class="block">Částka v Kč</label>
           <input
             v-model="price"
-            class="rounded-md dark:border dark:border-zinc-800 dark:bg-zinc-900"
+            class="rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
           />
         </div>
-
 
         <div class="mb-4">
           <label class="block">Variabilní symbol</label>
           <input
             v-model="variable_symbol"
-            class="rounded-md dark:border dark:border-zinc-800 dark:bg-zinc-900"
+            class="rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
           />
         </div>
 
@@ -29,7 +28,7 @@
           <label class="block">Zpráva pro příjemce</label>
           <input
             v-model="message"
-            class="rounded-md dark:border dark:border-zinc-800 dark:bg-zinc-900"
+            class="w-full rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
           />
         </div>
 
@@ -37,7 +36,7 @@
           <label class="block">Bankovní účet</label>
           <select
             v-model="counter_bank_account"
-            class="rounded-md dark:border dark:border-zinc-800 dark:bg-zinc-900"
+            class="rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
           >
             <option v-for="account in accounts" :value="account">
               {{ account.account_number }}/{{ account.bank_number }}
@@ -89,15 +88,16 @@ async function fetchData() {
     client(
       "/api/" + route.params.workspace + "/expenses/" + route.params.expense,
       {
-        method: "GET"
-      }
-    )
+        method: "GET",
+      },
+    ),
   );
 
   expense.value = data.value;
   price.value = expense.value.price;
   variable_symbol.value = expense.value.variable_symbol;
-  message.value = expense.value.description;
+  message.value =
+    expense.value.organisation.name + " - " + expense.value.description;
 
   const { data: counter_bank_accounts } = await useAsyncData(
     "counter_bank_accounts",
@@ -105,9 +105,9 @@ async function fetchData() {
       client("/api/" + route.params.workspace + "/counter_bank_accounts", {
         method: "GET",
         query: {
-          organisation: expense.value.organisation.uuid
-        }
-      })
+          organisation: expense.value.organisation.uuid,
+        },
+      }),
   );
 
   console.log("Setting accounts");
@@ -177,7 +177,7 @@ function updateQrCode() {
   } else {
     let bank_number_leading = zeroPad(
       counter_bank_account.value.account_number,
-      10
+      10,
     );
 
     let iban = new IBANBuilder()

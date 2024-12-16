@@ -4,13 +4,13 @@
       class="text-xs mb-7 rounded px-1 py-1 text-gray-800 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
       @click="expanded ? close() : expand()"
     >
-      <tag-icon class="w-5 h-5 me-2 inline-block"></tag-icon>
+      <tag-icon class="me-2 inline-block h-5 w-5"></tag-icon>
 
       <span class="">{{
-          selected_expense_category
-            ? selected_expense_category.department.name + ":"
-            : ""
-        }}</span>
+        selected_expense_category
+          ? selected_expense_category.department.name + ":"
+          : ""
+      }}</span>
 
       {{
         selected_expense_category
@@ -83,7 +83,7 @@ export default {
       category_name_filter: null,
 
       expense_categories: [],
-      selected_expense_category: null
+      selected_expense_category: null,
     };
   },
 
@@ -117,10 +117,10 @@ export default {
           {
             method: "PATCH",
             body: {
-              expense_category_id: expense_category.uuid
-            }
-          }
-        )
+              expense_category_id: expense_category.uuid,
+            },
+          },
+        ),
       );
     },
 
@@ -130,12 +130,12 @@ export default {
 
       const { data } = await useAsyncData("expense", () =>
         client("/api/" + route.params.workspace + "/expense_categories", {
-          method: "GET"
-        })
+          method: "GET",
+        }),
       );
 
       this.expense_categories = data.value;
-    }
+    },
   },
 
   computed: {
@@ -152,13 +152,13 @@ export default {
     },
 
     filtered_categories_grouped_by_department() {
-      return this.filtered_categories.reduce(function(r, category) {
+      return this.filtered_categories.reduce(function (r, category) {
         r[category.department_id] = r[category.department_id] || [];
         r[category.department_id].push(category);
         return r;
       }, Object.create(null));
-    }
-  }
+    },
+  },
 };
 </script>
 

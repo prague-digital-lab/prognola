@@ -4,7 +4,7 @@
       class="mb-3 rounded px-1 py-1 text-base text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
       @click="expanded ? close() : expand()"
     >
-      <FingerPrintIcon class="w-5 h-5 me-2 inline-block"> </FingerPrintIcon>
+      <FingerPrintIcon class="me-2 inline-block h-5 w-5"> </FingerPrintIcon>
 
       {{ variable_symbol }}
     </p>
@@ -33,7 +33,7 @@ import { FingerPrintIcon } from "@heroicons/vue/24/outline/index.js";
 <script>
 import {
   updateExpense,
-  updateExpenseFromLocalObject
+  updateExpenseFromLocalObject,
 } from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
@@ -43,7 +43,7 @@ export default {
     return {
       expanded: false,
 
-      variable_symbol: null
+      variable_symbol: null,
     };
   },
 
@@ -74,14 +74,14 @@ export default {
           {
             method: "PATCH",
             body: {
-              variable_symbol: this.variable_symbol
-            }
-          }
-        )
+              variable_symbol: this.variable_symbol,
+            },
+          },
+        ),
       );
 
       this.$emit("expense-updated");
-    }
-  }
+    },
+  },
 };
 </script>

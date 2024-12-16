@@ -134,7 +134,7 @@
           <div class="">
             <label
               for="email"
-              class="block text-base font-medium leading-6  dark:text-zinc-300 text-gray-900"
+              class="block text-base font-medium leading-6 text-gray-900 dark:text-zinc-300"
               >Token pro synchronizaci s Moneta bankou</label
             >
 
@@ -155,7 +155,9 @@
               Platby staženy {{ formatDate(bank_account.synced_at) }}.
             </p>
 
-            <a @click="syncMonetaNow()" class="me-2 cursor-pointer dark:text-zinc-300"
+            <a
+              @click="syncMonetaNow()"
+              class="me-2 cursor-pointer dark:text-zinc-300"
               >Synchronizovat nyní</a
             >
           </div>

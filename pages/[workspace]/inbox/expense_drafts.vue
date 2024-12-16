@@ -16,7 +16,7 @@
     </div>
 
     <div
-      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:bg-transparent dark:divide-zinc-800 dark:border-zinc-800"
+      class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800 dark:bg-transparent"
     >
       <expense-row v-for="expense in expenses" :expense="expense"></expense-row>
 
@@ -36,15 +36,15 @@
 import Heading from "~/components/ui/Heading.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import { DateTime } from "luxon";
-import { getExpensesByPaymentStatus} from "~/lib/dexie/repository/expense_repository.js";
+import { getExpensesByPaymentStatus } from "~/lib/dexie/repository/expense_repository.js";
 
 definePageMeta({
   layout: "default",
-  middleware: ["sanctum:auth", "sanctum:verified"]
+  middleware: ["sanctum:auth", "sanctum:verified"],
 });
 
 useHead({
-  title: "Výdaje ke zpracování"
+  title: "Výdaje ke zpracování",
 });
 
 // Page UI data
@@ -78,7 +78,7 @@ onMounted(async () => {
 // }
 
 async function fetchData() {
-  expenses.value = await getExpensesByPaymentStatus('draft');
+  expenses.value = await getExpensesByPaymentStatus("draft");
 
   loaded.value = true;
 }
@@ -98,15 +98,13 @@ async function createExpense() {
       body: {
         description: new_expense_name.value,
         price: 0,
-        paid_at: this.from
-      }
-    })
+        paid_at: this.from,
+      },
+    }),
   );
 
   let uuid = data.value.uuid;
 
   await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
 }
-
-
 </script>
