@@ -12,7 +12,7 @@
           <label class="block">Částka v Kč</label>
           <input
             v-model="price"
-            class="rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
+            class="w-full rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
           />
         </div>
 
@@ -20,7 +20,7 @@
           <label class="block">Variabilní symbol</label>
           <input
             v-model="variable_symbol"
-            class="rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
+            class="w-full rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
           />
         </div>
 
@@ -36,7 +36,7 @@
           <label class="block">Bankovní účet</label>
           <select
             v-model="counter_bank_account"
-            class="rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
+            class="w-full rounded-md border-zinc-300 dark:border dark:border-zinc-800 dark:bg-zinc-900"
           >
             <option v-for="account in accounts" :value="account">
               {{ account.account_number }}/{{ account.bank_number }}
