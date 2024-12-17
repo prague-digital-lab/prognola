@@ -1,4 +1,6 @@
 <script>
+import { deleteExpense } from "~/lib/dexie/repository/expense_repository.js";
+
 export default {
   props: ["expense"],
 
@@ -33,6 +35,8 @@ export default {
           },
         ),
       );
+
+      await deleteExpense(this.expense.uuid)
 
       await navigateTo("/" + route.params.workspace + "/expenses");
     },
