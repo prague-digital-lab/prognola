@@ -6,9 +6,13 @@
           <heading>Výdaje</heading>
         </template>
         <template v-slot:subtitle>
+          <div class="flex justify-between">
           <p class="text-base text-gray-500 dark:text-zinc-400">
             Celkem: {{ formatPrice(price_sum) }} Kč
           </p>
+
+            <button-secondary @click="openModal">+ nový výdaj</button-secondary>
+          </div>
         </template>
 
         <template v-slot:controls>
