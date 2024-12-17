@@ -11,7 +11,7 @@
             Celkem: {{ formatPrice(price_sum) }} Kč
           </p>
 
-            <button-secondary @click="openModal">+ nový výdaj</button-secondary>
+
           </div>
         </template>
 
@@ -41,13 +41,15 @@
               />
             </div>
 
-            <div>
+            <div class="me-2">
               <input
                 type="date"
                 v-model="to"
                 class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
               />
             </div>
+
+            <button-primary @click="openModal">+ nový výdaj</button-primary>
           </div>
         </template>
       </page-content-header>
@@ -102,7 +104,7 @@
       </div>
 
       <div class="flex justify-end">
-        <button-secondary @click="openModal">+ nový výdaj</button-secondary>
+        <button-primary @click="openModal">+ nový výdaj</button-primary>
       </div>
 
       <expense-create-modal
@@ -121,6 +123,7 @@ import Heading from "~/components/ui/Heading.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import { DateTime } from "luxon";
 import { getExpensesByPaidAt } from "~/lib/dexie/repository/expense_repository.js";
+import ButtonPrimary from "~/components/ui/ButtonPrimary.vue";
 
 useHead({
   title: "Výdaje",
