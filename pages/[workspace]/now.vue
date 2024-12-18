@@ -3,14 +3,12 @@
     <div v-if="loaded">
       <page-content-header>
         <template v-slot:title>
-          <heading>Nadcházející platby</heading>
+          <heading>Plán plateb</heading>
         </template>
       </page-content-header>
 
-      <!--      <p class="dark:text-zinc-400">Aktuální zůstatek napříč účty: 0 Kč</p>-->
-      <!--      <p class="mb-10 dark:text-zinc-400">Hotovost na pokladnách: 0 Kč</p>-->
       <div
-        class="mb-4 flex space-x-2 rounded-md border border-gray-200 px-3 py-2 dark:border-zinc-800"
+        class="mb-7 flex space-x-2 rounded-md border border-gray-200 px-3 py-2 dark:border-zinc-800"
       >
         <p
           class="inline-block rounded-md p-2 py-1 text-gray-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
@@ -36,7 +34,7 @@
             <div>
               <span
                 class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400"
-                >{{ formatPrice(incomes_due_sum) }} Kč</span
+              >{{ formatPrice(incomes_due_sum) }} Kč</span
               >
             </div>
           </div>
@@ -60,7 +58,7 @@
             <div>
               <span
                 class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400"
-                >{{ formatPrice(incomes_today_sum) }} Kč</span
+              >{{ formatPrice(incomes_today_sum) }} Kč</span
               >
             </div>
           </div>
@@ -88,7 +86,7 @@
             <div>
               <span
                 class="rounded-md bg-blue-100 px-3 py-1 font-bold text-blue-700 dark:border dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400"
-                >{{ formatPrice(incomes_upcoming_sum) }} Kč</span
+              >{{ formatPrice(incomes_upcoming_sum) }} Kč</span
               >
             </div>
           </div>
@@ -108,17 +106,18 @@
           </div>
         </div>
       </div>
+
       <div v-if="tab === 'expenses'">
         <div
-          class="mb-4 flex flex-col rounded-md border border-red-300 p-5 dark:border-zinc-800 dark:bg-zinc-950"
+          class="mb-7"
           v-if="expenses_due.length > 0"
         >
-          <div class="mb-4 flex justify-between">
-            <div class="dark:text-zinc-400">Zpožděné výdaje</div>
+          <div class="mb-4 flex items-center justify-between rounded-md">
+            <div class="dark:text-zinc-400 font-normal">Po splatnosti</div>
             <div>
               <span
                 class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
-                >{{ formatPrice(expenses_due_sum) }} Kč</span
+              >{{ formatPrice(expenses_due_sum) }} Kč</span
               >
             </div>
           </div>
@@ -133,15 +132,13 @@
           </div>
         </div>
 
-        <div
-          class="mb-4 rounded-md border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
-        >
-          <div class="mb-4 flex justify-between">
-            <div class="dark:text-zinc-400">Dnešní výdaje</div>
+        <div class="mb-7">
+          <div class="mb-4 flex items-center justify-between rounded-md">
+            <div class="dark:text-zinc-400 font-normal">Dnešní výdaje</div>
             <div>
               <span
                 class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
-                >{{ formatPrice(expenses_today_sum) }} Kč</span
+              >{{ formatPrice(expenses_today_sum) }} Kč</span
               >
             </div>
           </div>
@@ -162,15 +159,13 @@
           </div>
         </div>
 
-        <div
-          class="mb-4 rounded-md border border-gray-200 p-5 dark:border-zinc-800 dark:bg-zinc-950"
-        >
-          <div class="mb-4 flex justify-between">
-            <div class="dark:text-zinc-400">Nadcházející výdaje</div>
+        <div class="mb-7">
+          <div class="mb-4 flex items-center justify-between rounded-md">
+            <div class="dark:text-zinc-400 font-normal">Nadcházející (nejbližších 30 dní)</div>
             <div>
               <span
                 class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
-                >{{ formatPrice(expenses_upcoming_sum) }} Kč</span
+              >{{ formatPrice(expenses_upcoming_sum) }} Kč</span
               >
             </div>
           </div>
@@ -204,18 +199,18 @@ import { liveQuery } from "dexie";
 import { openDatabase } from "~/lib/dexie/db.js";
 
 useHead({
-  title: "Nadcházející platby - Prognola",
+  title: "Plán plateb"
 });
 
 definePageMeta({
   layout: "default",
-  middleware: ["sanctum:auth", "sanctum:verified"],
+  middleware: ["sanctum:auth", "sanctum:verified"]
 });
 
 const route = useRoute();
 const client = useSanctumClient();
 
-const tab = ref("incomes");
+const tab = ref("expenses");
 
 let today_start = DateTime.now().startOf("day").toJSDate();
 let today_end = DateTime.now().endOf("day").toJSDate();
@@ -242,11 +237,11 @@ const expenses_due = useObservable(
         );
       })
       .toArray();
-  }),
+  })
 );
 
 const expenses_due_sum = computed(() => {
-  return expenses_due.value.reduce(function (a, b) {
+  return expenses_due.value.reduce(function(a, b) {
     return a + b.price;
   }, 0);
 });
@@ -262,11 +257,11 @@ const incomes_due = useObservable(
         );
       })
       .toArray();
-  }),
+  })
 );
 
 const incomes_due_sum = computed(() => {
-  return incomes_due.value.reduce(function (a, b) {
+  return incomes_due.value.reduce(function(a, b) {
     return a + b.amount;
   }, 0);
 });
@@ -277,11 +272,11 @@ const expenses_today = useObservable(
       .where("paid_at")
       .between(today_start, today_end)
       .toArray();
-  }),
+  })
 );
 
 const expenses_today_sum = computed(() => {
-  return expenses_today.value.reduce(function (a, b) {
+  return expenses_today.value.reduce(function(a, b) {
     return a + b.price;
   }, 0);
 });
@@ -292,11 +287,11 @@ const incomes_today = useObservable(
       .where("paid_at")
       .between(today_start, today_end)
       .toArray();
-  }),
+  })
 );
 
 const incomes_today_sum = computed(() => {
-  return incomes_today.value.reduce(function (a, b) {
+  return incomes_today.value.reduce(function(a, b) {
     return a + b.amount;
   }, 0);
 });
@@ -307,11 +302,11 @@ const expenses_upcoming = useObservable(
       .where("paid_at")
       .between(tomorrow_start, month_from_now)
       .toArray();
-  }),
+  })
 );
 
 const expenses_upcoming_sum = computed(() => {
-  return expenses_upcoming.value.reduce(function (a, b) {
+  return expenses_upcoming.value.reduce(function(a, b) {
     return a + b.price;
   }, 0);
 });
@@ -322,11 +317,11 @@ const incomes_upcoming = useObservable(
       .where("paid_at")
       .between(tomorrow_start, month_from_now)
       .toArray();
-  }),
+  })
 );
 
 const incomes_upcoming_sum = computed(() => {
-  return incomes_upcoming.value.reduce(function (a, b) {
+  return incomes_upcoming.value.reduce(function(a, b) {
     return a + b.amount;
   }, 0);
 });

@@ -39,7 +39,7 @@ import Heading from "~/components/ui/Heading.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 
 useHead({
-  title: "Ke zpracování - Prognola",
+  title: "Schránka",
 });
 
 definePageMeta({

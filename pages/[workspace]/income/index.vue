@@ -97,7 +97,7 @@ import Heading from "~/components/ui/Heading.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 
 useHead({
-  title: "Příjmy - Prognola",
+  title: "Příjmy",
 });
 
 const modal_create = useTemplateRef("modal_create");

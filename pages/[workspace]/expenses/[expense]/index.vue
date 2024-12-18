@@ -157,8 +157,8 @@ export default {
   computed: {
     title() {
       return this.expense
-        ? this.expense.description + " - Prognola"
-        : "Detail výdaje - Prognola";
+        ? this.expense.description
+        : "Detail výdaje";
     },
   },
 

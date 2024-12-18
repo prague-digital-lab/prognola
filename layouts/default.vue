@@ -289,7 +289,7 @@ import bootstrapDatabase from "~/lib/dexie/bootstrap_db.js";
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - Prognola` : "Prognola";
+    return titleChunk ? `${titleChunk} | Prognola` : "Prognola";
   },
   bodyAttrs: {
     class: "bg-zinc-50 dark:bg-black",

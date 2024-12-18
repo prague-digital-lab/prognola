@@ -54,7 +54,7 @@ import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import Heading from "~/components/ui/Heading.vue";
 
 useHead({
-  title: "Účty - Prognola",
+  title: "Účty",
 });
 
 definePageMeta({

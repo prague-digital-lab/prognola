@@ -50,7 +50,7 @@ import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import Heading from "~/components/ui/Heading.vue";
 
 useHead({
-  title: "Organizace - Prognola",
+  title: "Firmy",
 });
 
 definePageMeta({

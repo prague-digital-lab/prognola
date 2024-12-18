@@ -9,7 +9,7 @@
         :href="'/' + route.params.workspace + '/cashflow'"
       ></MenuLink>
       <MenuLink
-        name="Nadcházející"
+        name="Plán"
         :icon="ClockIcon"
         :href="'/' + route.params.workspace + '/now'"
       ></MenuLink>
