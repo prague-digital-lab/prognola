@@ -12,7 +12,7 @@
     </page-content-header>
 
     <div
-      class="dark: mb-4 divide-y divide-gray-200 divide-zinc-800 rounded border border-gray-200 dark:border-zinc-800"
+      class="dark: mb-4 divide-y divide-gray-200 dark:divide-zinc-800 rounded border border-gray-200 dark:border-zinc-800"
       v-if="loaded"
     >
       <bank-payment-row
