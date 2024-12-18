@@ -161,7 +161,7 @@
 
         <div class="mb-7">
           <div class="mb-4 flex items-center justify-between rounded-md">
-            <div class="dark:text-zinc-400 font-normal">Nadcházející (nejbližších 30 dní)</div>
+            <div class="dark:text-zinc-400 font-normal">Nadcházející výdaje <span class="text-zinc-500 font-normal">- nejbližších 30 dní</span></div>
             <div>
               <span
                 class="rounded-md bg-red-100 px-3 py-1 font-bold text-red-700 dark:border dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
