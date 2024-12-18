@@ -49,7 +49,7 @@
               />
             </div>
 
-            <button-primary @click="openModal" class="hidden md:block">+ nový výdaj</button-primary>
+            <button-primary @click="openModal" class="hidden md:flex">+ nový výdaj</button-primary>
           </div>
 
 
