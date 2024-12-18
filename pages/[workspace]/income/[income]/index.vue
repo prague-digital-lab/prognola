@@ -11,7 +11,7 @@
         <div class="flex justify-between">
           <input
             type="text"
-            class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight"
+            class="mb-3 w-full border-none bg-transparent p-0 text-2xl font-bold leading-7 text-gray-900 focus:ring-0 sm:truncate sm:tracking-tight dark:text-zinc-200"
             placeholder="Název příjmu"
             v-model="input_name"
             v-on:blur="updateName"
@@ -26,7 +26,7 @@
 
         <textarea
           v-model="input_description"
-          class="mb-5 w-full border-none bg-transparent p-0 text-base text-slate-700 focus:ring-0"
+          class="mb-5 w-full border-none bg-transparent p-0 text-base text-slate-700 focus:ring-0 dark:text-zinc-300"
           placeholder="Přidat popis..."
           rows="4"
           v-on:blur="updateDescription"

@@ -5,44 +5,46 @@
         <heading>Příjmy</heading>
       </template>
       <template v-slot:subtitle>
-        <p class="text-base text-gray-500 dark:text-zinc-400">
-          Celkem: {{ formatPrice(price_sum) }} Kč
-        </p>
+        <div class="flex justify-between items-center">
+          <p class="text-base text-gray-500 dark:text-zinc-400">
+            Celkem: {{ formatPrice(price_sum) }} Kč
+          </p>
+
+          <button-primary @click="openModal" class="block md:hidden">+ nový příjem</button-primary>
+        </div>
       </template>
 
       <template v-slot:controls>
         <div class="mt-4 flex md:ml-4 md:mt-0">
+<!--          <div class="me-2">-->
+<!--            <div class="mt-2">-->
+<!--              <select-->
+<!--                v-model="grouped_by"-->
+<!--                class="block rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"-->
+<!--              >-->
+<!--                <option :value="null">Seskupit</option>-->
+<!--                <option value="income_category">Kategorie</option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--          </div>-->
+
           <div class="me-2">
-            <div class="mt-2">
-              <select
-                v-model="grouped_by"
-                class="block rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
-              >
-                <option :value="null">Seskupit</option>
-                <option value="income_category">Kategorie</option>
-              </select>
-            </div>
+            <input
+              type="date"
+              v-model="from"
+              class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
+            />
           </div>
 
           <div class="me-2">
-            <div class="mt-2">
-              <input
-                type="date"
-                v-model="from"
-                class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
-              />
-            </div>
+            <input
+              type="date"
+              v-model="to"
+              class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
+            />
           </div>
 
-          <div>
-            <div class="mt-2">
-              <input
-                type="date"
-                v-model="to"
-                class="block w-full rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
-              />
-            </div>
-          </div>
+          <button-primary @click="openModal" class="hidden md:flex">+ nový příjem</button-primary>
         </div>
       </template>
     </page-content-header>
@@ -95,6 +97,7 @@ import ButtonSecondary from "~/components/ui/ButtonSecondary.vue";
 import IncomeCreateModal from "~/components/ui/modals/income_create_modal/IncomeCreateModal.vue";
 import Heading from "~/components/ui/Heading.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
+import ButtonPrimary from "~/components/ui/ButtonPrimary.vue";
 
 useHead({
   title: "Příjmy",
