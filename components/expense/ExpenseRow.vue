@@ -5,11 +5,10 @@
     :key="expense.uuid"
   >
     <div
-      class="flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+      class="hidden md:flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
     >
       <div class="flex text-base">
-        <!--      <p class="w-[60px] font-light text-gray-500">V-{{ expense.id }}</p>-->
-        <p class="w-[400px]">
+        <p class="md:w-[400px]">
           {{ expense.description ? expense.description : "nový výdaj" }}
         </p>
       </div>
@@ -42,43 +41,56 @@
         ></context-menu-paid-at-picker>
 
         <div class="w-[120px]">
-          <div v-if="expense.payment_status === 'paid'">
-            <p
-              class="ms-2 text-end font-semibold text-slate-700 dark:text-zinc-300"
-            >
-              {{ formatPrice(expense.price) }} Kč
-            </p>
-          </div>
-
-          <div v-else-if="expense.payment_status === 'draft'">
-            <p
-              class="me-2 text-end font-semibold text-purple-800 dark:text-indigo-500"
-            >
-              ke zpracování
-            </p>
-          </div>
-
-          <div v-else-if="expense.payment_status === 'plan'">
-            <p class="ms-2 text-end font-semibold text-yellow-500">
-              {{ formatPrice(expense.price) }} Kč
-            </p>
-          </div>
-
-          <div v-else>
-            <p class="ms-2 text-end font-bold text-red-700" v-if="isDue">
-              {{ formatPrice(expense.price) }} Kč
-            </p>
-
-            <p class="ms-2 text-end font-bold text-orange-400" v-else>
-              {{ formatPrice(expense.price) }} Kč
-            </p>
-          </div>
+          <expense-status-badge :expense="expense"></expense-status-badge>
         </div>
 
         <div class="ms-2">
           <expense-status-icon :expense="expense" :key="expense.uuid" />
         </div>
       </div>
+    </div>
+
+    <div class="block md:hidden p-3">
+      <div class="flex mb-2 justify-between items-center">
+        <p class="md:w-[400px]">
+          {{ expense.description ? expense.description : "nový výdaj" }}
+        </p>
+
+        <div class="flex items-center">
+          <div class="w-[120px]">
+            <expense-status-badge :expense="expense"></expense-status-badge>
+          </div>
+
+          <div class="ms-2">
+            <expense-status-icon :expense="expense" :key="expense.uuid" />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between">
+        <div
+          v-if="organisation"
+          class="me-2 flex cursor-pointer items-center rounded-md border border-gray-200 px-2 py-[1px] leading-5  text-[12px] dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 text-zinc-500"
+          @click="navigateToOrganisation(organisation)"
+        >
+          <building-library-icon
+            :key="expense.uuid"
+            class="me-1 h-4 w-4"
+          ></building-library-icon>
+
+          {{ organisation.name }}
+        </div>
+        <div v-else></div>
+
+        <div class="flex justify-between items-center">
+          <context-menu-paid-at-picker
+            :key="expense.uuid"
+            @expense-updated="$emit('expense-updated')"
+            :expense="expense"
+          ></context-menu-paid-at-picker>
+        </div>
+      </div>
+
     </div>
   </nuxt-link>
 </template>
@@ -88,6 +100,7 @@ import { DateTime } from "luxon";
 import { BuildingLibraryIcon } from "@heroicons/vue/24/outline/index.js";
 import { findOrganisation } from "~/lib/dexie/repository/organisation_repository.js";
 import ContextMenuPaidAtPicker from "~/components/expense/expense_row/ContextMenuPaidAtPicker.vue";
+import ExpenseStatusBadge from "~/components/expense/expense_row/ExpenseStatusBadge.vue";
 
 const props = defineProps(["expense"]);
 const route = useRoute();
@@ -108,14 +121,14 @@ function formatDate(date) {
 async function navigateToExpense() {
   const route = useRoute();
   await navigateTo(
-    "/" + route.params.workspace + "/expenses/" + props.expense.uuid,
+    "/" + route.params.workspace + "/expenses/" + props.expense.uuid
   );
 }
 
 async function navigateToOrganisation(organisation) {
   const route = useRoute();
   await navigateTo(
-    "/" + route.params.workspace + "/organisations/" + organisation.uuid,
+    "/" + route.params.workspace + "/organisations/" + organisation.uuid
   );
 }
 
@@ -123,13 +136,6 @@ onMounted(async () => {
   if (props.expense.organisation) {
     organisation.value = await findOrganisation(props.expense.organisation);
   }
-});
-
-const isDue = computed(() => {
-  const today = DateTime.now().startOf("day");
-
-  const paid_at = DateTime.fromJSDate(props.expense.paid_at);
-  return paid_at < today;
 });
 </script>
 

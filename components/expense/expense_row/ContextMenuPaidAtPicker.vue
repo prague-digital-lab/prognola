@@ -3,7 +3,7 @@
     <Popover class="relative">
       <PopoverButton>
         <p
-          class="w-[90px] ps-2 dark:text-zinc-400"
+          class="w-[90px] ps-2 text-zinc-500 dark:text-zinc-400"
           @contextmenu="openPaidAtContextMenu"
           v-if="expense.paid_at"
         >
