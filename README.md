@@ -10,6 +10,6 @@ You can sync multiple organisation bank accounts to Prognola, so you can manage 
 
 
 ## Supported banks 
-- Moneta - automatic API sync
-- Fio Banka - automatic API sync
-- Komerční banka - manual CSV import (API sync coming in the future)
+- Moneta (Czech republic) - automatic API sync
+- Fio Banka (Czech republic) - automatic API sync
+- Komerční banka (Czech republic) - manual CSV import (API sync coming in the future)
