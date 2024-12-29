@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf99062d-d3e0-4297-9cc1-6f513483a756" name="Changes" comment="merge repositories to monorepo">
-      <change afterPath="$PROJECT_DIR$/docs/dash_v2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="bf99062d-d3e0-4297-9cc1-6f513483a756" name="Changes" comment="add screenshot to README.md">
+      <change beforePath="$PROJECT_DIR$/server/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env.example" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,11 +274,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$/components/ui" />
       <recent name="$PROJECT_DIR$/lib/dexie/repository" />
       <recent name="$PROJECT_DIR$/components/expense" />
       <recent name="$PROJECT_DIR$/components/expense/expense_row" />
-      <recent name="$PROJECT_DIR$/pages/cs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server" />
@@ -329,15 +328,7 @@
       <workItem from="1734357473836" duration="3879000" />
       <workItem from="1734459183131" duration="947000" />
       <workItem from="1734477874190" duration="17870000" />
-      <workItem from="1735489464062" duration="809000" />
-    </task>
-    <task id="LOCAL-00103" summary="fix PRO-438: remember workspace">
-      <option name="closed" value="true" />
-      <created>1730749485772</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1730749485772</updated>
+      <workItem from="1735489464062" duration="1123000" />
     </task>
     <task id="LOCAL-00104" summary="ui, prettier">
       <option name="closed" value="true" />
@@ -723,7 +714,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735490161389</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="add screenshot to README.md">
+      <option name="closed" value="true" />
+      <created>1735490285020</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1735490285020</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -752,7 +751,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix PRO-468: org badge didnt sort properly" />
     <MESSAGE value="fix PRO-477: now expenses did not sort propertly" />
     <MESSAGE value="ui" />
     <MESSAGE value="fix PRO-452: expense paid_at inline edit - update rows in org detail" />
@@ -777,7 +775,8 @@
     <MESSAGE value="update now" />
     <MESSAGE value="ref PRO-402: income dark mode" />
     <MESSAGE value="merge repositories to monorepo" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge repositories to monorepo" />
+    <MESSAGE value="add screenshot to README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="add screenshot to README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
