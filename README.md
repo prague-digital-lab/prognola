@@ -6,7 +6,7 @@ The application allows you to record income and expenses and plan your organizat
 <img src="docs/dash_v2.jpg">
 
 # Sync bank transactions
-You can sync multiple organisation bank accounts to Prognola. 
+You can sync multiple organisation bank accounts to Prognola, so you can manage transactions and see current account balance.
 
 
 ## Supported banks 
