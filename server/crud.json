@@ -1,0 +1,21 @@
+{
+    "opening_time": {
+        "name_attribute": "date_from",
+        "friendly_name": "Otevírací doba",
+        "friendly_name_plural": "Otevírací doby",
+        "attributes": {
+            "date_from": {
+                "column_name": "date_from",
+                "friendly_name": "Čas od",
+                "type": "datetime",
+                "required": true
+            },
+            "date_to": {
+                "column_name": "date_to",
+                "friendly_name": "Čas do",
+                "type": "datetime",
+                "required": true
+            }
+        }
+    }
+}

@@ -1,3 +1,6 @@
-# Prognola - web app
+# What's Prognola?
 
-SPA frontend pro aplikaci Prognola.
+Prognola is an open source financial application for organizations that want to be in control of their money.
+The application allows you to record income and expenses and plan your organization's budget for the future.
+
+

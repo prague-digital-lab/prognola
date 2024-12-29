@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bf99062d-d3e0-4297-9cc1-6f513483a756" name="Changes" comment="merge repositories to monorepo">
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.styleci.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/CountBalancePrognosis.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/CreateTokenForUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/DiscordTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/FixInvoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/FixPaymentDate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/PairStripeBankPaymentsWithInvoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/PairWorldlineBankPaymentsWithIncomes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/SyncBankPaymentCounterBankAccounts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/SyncFioBankAccounts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/SyncInvoicesToIncome.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/SyncMoneta.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/UpdateDateOfIssue.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/UpdateDuePayments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Commands/UpdateReservationPrices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Console/Kernel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/CrudGenerator/CrudControllerService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/CrudGenerator/CrudService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/CrudGenerator/CrudViewService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/CrudGenerator/Dto/Attribute.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/CrudGenerator/Dto/CrudDto.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/CrudGenerator/Generators/ControllerGenerator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/CrudGenerator/Generators/ViewGenerator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Exceptions/Handler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Exceptions/VoucherUsageException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/ApiClient/AresApi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/ApiClient/FioBankClient.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Auth/Login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Auth/Logout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Auth/Register.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Auth/ResendVerificationEmail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankAccount/BankAccountDestroy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankAccount/BankAccountIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankAccount/BankAccountShow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankAccount/BankAccountStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankAccount/BankAccountSyncFio.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankAccount/BankAccountSyncMoneta.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankAccount/BankAccountUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankPayment/BankPaymentDestroy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankPayment/BankPaymentIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankPayment/BankPaymentShow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankPayment/BankPaymentStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankPayment/BankPaymentUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/BankPayment/Import/ImportKbCsv.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/CRM/ConnectAgent.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/CRM/GetTwilioCallRecording.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/CRM/IncomingCallQueueWait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/CRM/IncomingCallWebhook.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/CRM/TwilioIncomingEmail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/CounterBankAccount/CounterBankAccountIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/CounterBankAccount/CounterBankAccountShow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/CounterBankAccount/CounterBankAccountUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Expense/ExpenseDestroy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Expense/ExpenseIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Expense/ExpensePairWithBankPayment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Expense/ExpenseScanStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Expense/ExpenseShow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Expense/ExpenseStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Expense/ExpenseUnpairBankPayment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Expense/ExpenseUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/ExpenseCategory/ExpenseCategoryIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/ExportExpensesScans.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/ExportExpensesScansUrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Finance/Cashflow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Finance/StatsIncome.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Finance/TwilioIncomingDocument.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Income/IncomeDestroy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Income/IncomeIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Income/IncomePairWithBankPayment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Income/IncomeShow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Income/IncomeStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Income/IncomeUnpairBankPayment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Income/IncomeUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/IncomeCategory/IncomeCategoryIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Organisation/OrganisationIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Organisation/OrganisationShow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Organisation/OrganisationStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Organisation/OrganisationUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Reservation/ReservationApiController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Scan/ScanDestroy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Scan/ScanIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Scan/ScanShow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Scan/ScanStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Scan/ScanUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/User/UserUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/RefreshInboxEmail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/User/UserIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/User/UserInvite.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/User/UserJoinWorkspace.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/User/UserRevokeInvite.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/User/UserUpdate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/WorkspaceDiscordSettingsTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/WorkspaceIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/WorkspaceShow.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/WorkspaceStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/WorkspaceUpdateDiscordSettings.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Api/Workspace/WorkspaceUpdateEmailSettings.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Auth/ConfirmPasswordController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/CalendarController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/CampaignController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/DashboardController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/GroupReservationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/HomepageController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/InvoiceController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/PersonalAccessToken/PersonalAccessTokenDestroy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/PersonalAccessToken/PersonalAccessTokenIndex.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/PersonalAccessToken/PersonalAccessTokenStore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/ReservationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/TwilioCallReceiveStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Controllers/VoucherController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Kernel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/EncryptCookies.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/PreventRequestsDuringMaintenance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/RequireTwingateWhitelistedIP.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/SaveAdsCookie.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/SaveUuidCookie.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/TrimStrings.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/TrustHosts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/TrustProxies.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/UserMustBeAccountant.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/UserMustBeAdmin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Jobs/Balance/CountBalance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Jobs/CheckUpcomingUnassignedReadinessTimes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Jobs/PairFioTransactionsWithVouchers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Jobs/RemindNextWeekReadinessTimes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Jobs/SyncCustomerToEcomailContact.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Jobs/SyncReadinessTimesWithReservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/BalancePrognosisRecord.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/BankAccount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/BankPayment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/CashBalanceCheck.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/CashRegister.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/CashTransfer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/CounterBankAccount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Customer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Department.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Document.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Expense.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/ExpenseCategory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Income.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/IncomeCategory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Invoice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/InvoiceItem.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/InvoiceItemPreset.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/NumberSerie.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Organisation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/PersonalAccessToken.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/ReadinessTime.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Reservation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Scan.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/User.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/WorkTimeRecord.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Models/Workspace.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/CashBalanceCheck/DiscordCashBalanceCheckCreated.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/DiscordTestNotification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/EmailVerificationNotification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Invoice/DiscordInvoiceCreated.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Invoice/DiscordInvoiceSent.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Invoice/EmailInvoiceCreated.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/ReadinessTime/DiscordRemindNextWeekReadinessTimesFriday.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/ReadinessTime/DiscordRemindNextWeekReadinessTimesSaturday.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/ReadinessTime/DiscordUpcomingUnassignedReadinessTime.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/ReadinessTime/DiscordUserAssignedToReadinessTime.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/ReceivedInvoice/DiscordExpenseStatusChanged.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/ReceivedInvoice/DiscordExpenseUploadedByEmail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Reservation/CustomerReservationCancelled.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Reservation/CustomerReservationFinished.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Reservation/CustomerReservationStored.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Reservation/DiscordReservationCancelled.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Ticket/CustomerOutgoingTicketMessage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Ticket/DiscordGenericMessage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/Ticket/DiscordTicketUpdated.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Notifications/User/UserInviteToWorkspace.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Policies/WorkspacePolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Providers/BroadcastServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Providers/EventServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Providers/HorizonServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Providers/TelescopeServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Services/BankPayment/BankPaymentInternalTransferService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Services/BankPayment/Fio/FioBankPaymentService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Services/BankPayment/Moneta/MonetaBankPaymentService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Services/BankPaymentPairingService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Services/CustomerService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Services/InvoiceService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Services/StatsService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/Validators/ReCaptcha.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/artisan" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bootstrap/app.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/bootstrap/cache/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/composer.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/app.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/auth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/broadcasting.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/cache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/cors.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/filesystems.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/growthbook.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/hashing.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/horizon.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/logging.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/mail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/queue.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/recaptcha.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/sanctum.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/sentry.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/services.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/session.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/telescope.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/web.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/crud.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/factories/ReservationFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/factories/UserFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/factories/VoucherFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2018_08_08_100000_create_telescope_entries_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_06_15_050902_create_reservations_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_06_15_051659_create_teams_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_06_15_054952_create_vouchers_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_07_06_171103_add_assigned_user_id_to_reservations_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_07_11_110707_create_opening_times_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_02_160919_create_campaigns_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_02_164906_create_campaign_reservation_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_08_152228_create_affiliate_partners_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_08_154335_create_affiliate_partner_reservation_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_08_154454_add_affiliate_code_to_reservation_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_08_155011_create_affiliate_code_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_13_180159_add_marketing_note_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_13_181146_add_price_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_16_225355_create_jobs_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_28_141439_create_invoices_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_28_141515_create_invoice_items_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_28_142050_create_invoice_item_presets_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_09_28_232801_add_cookie_aw_to_reservations_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_11_04_160144_create_voucher_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_11_16_114401_add_voucher_id_to_invoice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_11_16_195036_add_variable_symbol_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_11_16_201512_add_is_used_to_vouchers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_11_16_212730_add_soft_delete_to_invoice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_11_16_224317_remove_name_from_vouchers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_11_23_214537_add_internal_note_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_07_114033_add_soft_delete_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_07_114039_add_soft_delete_to_vouchers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_18_193004_add_need_reaction_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_20_121500_add_custom_price_to_vouchers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_20_135112_create_cash_registers_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_20_154434_create_cash_transfers_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_20_171838_add_cash_register_id_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_22_164415_add_role_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_23_124633_add_initial_amount_to_cash_registers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_23_140514_add_logged_at_to_users_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_23_223023_add_profile_photo_path_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_25_154603_add_custom_content_to_vouchers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_25_162356_create_reservation_voucher_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_25_184338_create_customers_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2022_12_28_182754_add_reason_for_cancellation_in_vouchers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_01_01_223636_add_sales_amount_to_customers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_01_01_225222_add_customer_id_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_01_01_225408_add_customer_id_to_vouchers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_01_02_073801_add_category_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_01_02_213845_create_work_time_records_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_01_03_155406_add_hour_rate_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_02_15_070720_create_bank_accounts_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_02_15_070738_create_bank_payments_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_03_14_145221_add_performer_user_id_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_03_28_185550_fix_expires_at_in_personal_access_tokens.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_05_15_162320_add_status_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_05_22_164031_add_flexi_id_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_06_01_160601_make_date_of_issue_nullable_in_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_06_02_164026_add_status_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_07_20_104315_add_flexi_number_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_07_22_194007_add_payment_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_08_02_144016_add_is_vat_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_08_18_163304_create_readiness_times_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_08_18_182403_add_phone_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_09_04_185740_add_customer_type_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_09_15_195438_add_flexi_id_to_cash_transfers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_09_16_090120_add_flexi_code_to_cash_register.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_09_25_092756_add_active_at_reception_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_09_26_110304_add_discord_id_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_09_26_153952_create_readiness_time_reservation_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_09_26_154726_add_is_active_to_readiness_times.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_07_204847_add_dates_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_07_222709_add_customer_data_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_07_235627_create_number_series_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_07_235932_add_number_serie_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_08_223755_add_vat_rate_to_invoice_items.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_10_090338_create_received_invoices_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_10_104354_create_organisations_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_10_105019_add_organisation_id_to_customers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_10_105243_add_type_to_organisations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_10_161842_add_organisation_id_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_10_173200_add_organisation_id_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_10_210232_make_organisation_id_nullable_in_customers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_10_215221_create_scans_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_18_115823_add_invoice_id_to_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_18_122223_add_sender_comment_to_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_18_124412_add_counter_bank_account_bank_number_to_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_18_125821_add_is_paired_to_received_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_21_124412_create_bank_payment_received_invoice_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_21_124519_remove_received_invoice_id_from_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_21_130006_add_amount_to_bank_payment_received_invoice_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_21_131138_add_paired_at_to_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_21_141629_add_paired_at_to_received_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_21_200458_add_variable_symbol_to_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_25_225904_create_balance_prognosis_records_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_10_26_233000_add_income_prognosis_to_balance_prognosis_records.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_11_04_201107_add_processed_by_user_id_to_received_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_11_10_154346_create_bank_payment_invoice_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_11_10_223216_add_paired_at_to_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2023_11_12_220315_add_received_by_accountant_at_to_received_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_01_31_143458_add_birth_date_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_02_01_094620_create_documents_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_02_01_095129_add_document_id_to_scans.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_02_03_184335_assignables.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_02_06_171947_add_active_dpp_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_02_07_140846_pricing_variant_to_reservations_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_02_08_103318_add_posthog_uuid_to_customers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_07_093412_add_related_user_id_to_received_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_07_144623_make_related_user_id_nullable_in_received_invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_08_092837_create_departments_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_08_092933_create_expense_categories_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_16_163144_create_tickets_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_16_171825_add_name_to_customers_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_16_175727_create_ticket_messages_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_18_170040_add_sender_email_to_ticket_messages.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_18_172847_make_assidned_user_id_nullable_in_tickets.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_21_125130_make_email_nullable_in_customers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_21_150035_add_call_status_columns_to_ticket_message.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_21_213556_add_on_call_to_users_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_04_22_080058_add_recording_url_to_ticket_messages.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_07_08_151043_add_prices_to_reservations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_07_21_133555_add_is_processed_to_scans.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_07_21_133613_add_sender_email_to_scans.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_08_08_165644_create_incomes_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_08_08_170212_create_income_categories_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_08_21_135230_change_external_id_to_string_in_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_19_153931_create_cash_balance_checks_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_114602_create_workspaces_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_115912_create_user_workspace_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_122421_rename_received_invoices_to_expenses.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_122422_add_workspace_id_to_expenses.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_123418_add_workspace_id_to_incomes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_124514_add_workspace_id_to_organisations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_124939_add_workspace_id_to_scans.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_125324_add_workspace_id_to_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_25_125738_add_workspace_id_to_bank_accounts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_26_162238_add_uuid_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_29_134630_add_workspace_id_to_balance_prognosis_records.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_29_141657_rename_received_invoice_id_to_expense_id_in_scans.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_29_142131_rename_bank_payment_received_invoice_to_bank_payment_expense.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_29_142356_change_received_invoice_to_expense_in_bank_payment_expense_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_29_143923_add_workspace_id_to_expense_categories.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_09_29_143923_add_workspace_id_to_income_categories.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_01_230259_change_api_token_to_nullable_in_bank_accounts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_02_143927_add_account_number_to_bank_accounts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_06_123552_create_bank_payment_income_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_07_174458_add_email_inbox_hash_to_workspaces_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_09_120450_add_uuid_to_personal_access_tokens.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_09_122328_add_type_to_personal_access_tokens.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_11_113358_add_discord_channel_id_to_workspaces.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_23_141248_add_is_registered_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_25_180630_create_counter_bank_accounts_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_25_183600_add_organisation_id_to_counter_bank_accounts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_25_230419_add_transfer_bank_account_id_to_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_10_31_115131_update_amount_in_bank_payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_12_01_114601_add_variable_symbol_to_expenses.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_12_04_115735_add_external_id_to_bank_accounts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/migrations/2024_12_04_141921_update_current_amount_in_bank_accounts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/seeders/CampaignSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/seeders/ReservationSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/seeders/UserSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/database/seeders/VoucherSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/lang/en.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/lang/en/auth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/lang/en/pagination.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/lang/en/passwords.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/lang/en/validation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/phpunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/browserconfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/img/prognola_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/mix-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/horizon/app-dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/horizon/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/horizon/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/horizon/img/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/horizon/img/horizon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/horizon/img/sprite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/horizon/mix-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/telescope/app-dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/telescope/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/telescope/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/telescope/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/vendor/telescope/mix-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/api.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/channels.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/console.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/web.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/app/public/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/framework/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/framework/cache/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/framework/cache/data/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/framework/sessions/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/framework/testing/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/framework/views/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/storage/logs/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/tests/CreatesApplication.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/tests/Feature/ExampleTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/tests/TestCase.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/tests/Unit/ExampleTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/web/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/web/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/scss/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LineChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/LineChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/badges/BadgeBankAccount.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/badges/BadgeBankAccount.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/badges/BadgeCounterBankAccount.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/badges/BadgeCounterBankAccount.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/badges/BadgeExpense.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/badges/BadgeExpense.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/badges/BadgeIncome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/badges/BadgeIncome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bank_account/BankAccountOptions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/bank_account/BankAccountOptions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bank_account/BankAccountRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/bank_account/BankAccountRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bank_account/new/ChooseAccountType.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/bank_account/new/ChooseAccountType.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bank_account/new/ChooseBankButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/bank_account/new/ChooseBankButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bank_payment/BankPaymentAmount.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/bank_payment/BankPaymentAmount.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bank_payment/BankPaymentPairRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/bank_payment/BankPaymentPairRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bank_payment/BankPaymentRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/bank_payment/BankPaymentRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/counter_bank_account/CounterBankAccountRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/counter_bank_account/CounterBankAccountRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseCategoryPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseCategoryPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseOptions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseOptions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseOrganisationPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseOrganisationPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpensePaidAtInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpensePaidAtInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpensePriceInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpensePriceInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseReceivedAtInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseReceivedAtInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseRowPair.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseRowPair.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseScanRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseScanRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseStatusIcon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseStatusIcon.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseStatusSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseStatusSelect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/ExpenseVariableSymbolInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/ExpenseVariableSymbolInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/expense_row/ContextMenuPaidAtPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/expense_row/ContextMenuPaidAtPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/expense_row/ExpenseStatusBadge.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/expense_row/ExpenseStatusBadge.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/payments/ExpenseAddPaymentOptions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/payments/ExpenseAddPaymentOptions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/payments/ExpensePairWithPaymentModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/payments/ExpensePairWithPaymentModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/payments/ExpensePairedPayment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/payments/ExpensePairedPayment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/payments/ExpensePaymentsPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/payments/ExpensePaymentsPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/expense/qr/ExpenseQRPayment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/expense/qr/ExpenseQRPayment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/guest/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/guest/Footer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/guest/Menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/guest/Menu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/IncomeCategoryPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/IncomeCategoryPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/IncomeOptions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/IncomeOptions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/IncomePaidAtInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/IncomePaidAtInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/IncomePriceInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/IncomePriceInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/IncomeRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/IncomeRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/IncomeStatusIcon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/IncomeStatusIcon.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/IncomeStatusSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/IncomeStatusSelect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/payments/IncomeAddPaymentOptions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/payments/IncomeAddPaymentOptions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/payments/IncomePairWithPaymentModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/payments/IncomePairWithPaymentModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/payments/IncomePairedPayment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/payments/IncomePairedPayment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/income/payments/IncomePaymentsPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/income/payments/IncomePaymentsPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/organisation/OrganisationCounterBankAccounts.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/organisation/OrganisationCounterBankAccounts.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/organisation/OrganisationData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/organisation/OrganisationData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/organisation/OrganisationExpenses.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/organisation/OrganisationExpenses.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/organisation/OrganisationLabel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/organisation/OrganisationLabel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/organisation/OrganisationRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/organisation/OrganisationRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/ButtonPrimary.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/ButtonPrimary.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/ButtonSecondary.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/ButtonSecondary.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/Heading.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/Heading.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/PageContentHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/PageContentHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/UiManual.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/UiManual.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/modals/expense_create_modal/ExpenseCreateModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/modals/expense_create_modal/ModalOrganisationPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/modals/expense_create_modal/ModalOrganisationPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/modals/expense_create_modal/ModalPaidAtInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/modals/expense_create_modal/ModalPaidAtInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/modals/income_create_modal/IncomeCreateModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/modals/income_create_modal/IncomeCreateModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/modals/income_create_modal/ModalOrganisationPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/modals/income_create_modal/ModalOrganisationPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/modals/income_create_modal/ModalPaidAtInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/modals/income_create_modal/ModalPaidAtInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/sidebar/MenuLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/sidebar/MenuLink.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/sidebar/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/ui/sidebar/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/guest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/layouts/guest.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/settings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/layouts/settings.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dexie/bootstrap_db.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/lib/dexie/bootstrap_db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dexie/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/lib/dexie/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dexie/repository/balance_prognosis_repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/lib/dexie/repository/balance_prognosis_repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dexie/repository/bank_account_repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/lib/dexie/repository/bank_account_repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dexie/repository/expense_repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/lib/dexie/repository/expense_repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dexie/repository/income_repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/lib/dexie/repository/income_repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dexie/repository/organisation_repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/lib/dexie/repository/organisation_repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/sanctum:not-verified.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/middleware/sanctum:not-verified.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/sanctum:verified.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/middleware/sanctum:verified.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/bank_accounts/[bank_account]/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/bank_accounts/[bank_account]/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/bank_accounts/[bank_account]/import-kb-csv.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/bank_accounts/[bank_account]/import-kb-csv.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/bank_accounts/[bank_account]/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/bank_accounts/[bank_account]/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/bank_accounts/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/bank_accounts/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/bank_accounts/new.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/bank_accounts/new.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/bank_payments/[bank_payment]/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/bank_payments/[bank_payment]/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/bank_payments/[bank_payment]/pair.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/bank_payments/[bank_payment]/pair.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/cashflow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/cashflow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/counter_bank_accounts/[counter_bank_account]/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/counter_bank_accounts/[counter_bank_account]/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/expenses/[expense]/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/expenses/[expense]/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/expenses/[expense]/qr.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/expenses/[expense]/qr.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/expenses/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/expenses/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/inbox/expense_drafts.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/inbox/expense_drafts.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/inbox/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/inbox/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/inbox/payments_to_pair.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/inbox/payments_to_pair.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/income/[income]/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/income/[income]/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/income/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/income/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/invoices.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/invoices.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/now.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/now.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/organisations/[organisation]/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/organisations/[organisation]/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/organisations/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/organisations/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/settings/api.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/settings/api.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/settings/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/settings/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/settings/notifications.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/settings/notifications.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/settings/user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/settings/user.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/[workspace]/settings/users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/[workspace]/settings/users.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create_workspace.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/create_workspace.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/cs/changelog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/cs/changelog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/cs/plan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/cs/plan.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/entry.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/entry.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/join-workspace-guest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/join-workspace-guest.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/join-workspace.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/join-workspace.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/verify-submit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/verify-submit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/verify.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/pages/verify.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon-16x16.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/public/favicon-16x16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon-32x32.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/public/favicon-32x32.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon-96x96.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/public/favicon-96x96.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/web/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/dash_v1.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/public/img/dash_v1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/dash_v2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/web/public/img/dash_v2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/logo_horizontal_sm.webp" beforeDir="false" afterPath="$PROJECT_DIR$/web/public/img/logo_horizontal_sm.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/logo_prazska_laborator.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/public/img/logo_prazska_laborator.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sentry.client.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/sentry.client.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/server/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/tsconfig.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/server/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Vue Composition API Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_COMMON_BRANCH" value="michaeldojcar/pro-332-sprava-protiuctu" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMHbXqc5_8ZEg&quot;,
+        &quot;number&quot;: 2
+      },
+      &quot;lastSeen&quot;: 1729889902794
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMHbXqc52o53m&quot;,
+        &quot;number&quot;: 1
+      },
+      &quot;lastSeen&quot;: 1729889914799
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOM1Yqfc5_7ar_&quot;,
+        &quot;number&quot;: 1
+      },
+      &quot;lastSeen&quot;: 1729889933093
+    }
+  ]
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/prague-digital-lab/prognola-web.git",
+    "accountId": "d89fb827-59d9-4f40-b29f-afed993e4446"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "prague-digital-lab",
+    "repository": "prognola-web"
+  }
+}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP Herd">
+    <include_path>
+      <path value="$PROJECT_DIR$/../prognola-api/vendor/_laravel_idea" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/server/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/prompts" />
+      <path value="$PROJECT_DIR$/server/vendor/stechstudio/laravel-zipstream" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/telescope" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/sanctum" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/horizon" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/sail" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/pint" />
+      <path value="$PROJECT_DIR$/server/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/server/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/server/vendor/spatie/flare-client-php" />
+      <path value="$PROJECT_DIR$/server/vendor/spatie/error-solutions" />
+      <path value="$PROJECT_DIR$/server/vendor/spatie/backtrace" />
+      <path value="$PROJECT_DIR$/server/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/server/vendor/spatie/laravel-package-tools" />
+      <path value="$PROJECT_DIR$/server/vendor/spatie/ignition" />
+      <path value="$PROJECT_DIR$/server/vendor/spatie/laravel-ignition" />
+      <path value="$PROJECT_DIR$/server/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/server/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/server/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/server/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/server/vendor/carbonphp/carbon-doctrine-types" />
+      <path value="$PROJECT_DIR$/server/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/server/vendor/barryvdh/laravel-dompdf" />
+      <path value="$PROJECT_DIR$/server/vendor/composer" />
+      <path value="$PROJECT_DIR$/server/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/server/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/server/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/server/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/server/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/server/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/server/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/server/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/server/vendor/nunomaduro/termwind" />
+      <path value="$PROJECT_DIR$/server/vendor/ecomailcz/ecomail" />
+      <path value="$PROJECT_DIR$/server/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/server/vendor/fruitcake/php-cors" />
+      <path value="$PROJECT_DIR$/server/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/server/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/server/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/server/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/server/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/server/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/server/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/server/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/server/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/server/vendor/textalk/websocket" />
+      <path value="$PROJECT_DIR$/server/vendor/giggsey/libphonenumber-for-php-lite" />
+      <path value="$PROJECT_DIR$/server/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/server/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/server/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/server/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/server/vendor/eluceo/ical" />
+      <path value="$PROJECT_DIR$/server/vendor/nyholm/psr7" />
+      <path value="$PROJECT_DIR$/server/vendor/aws/aws-sdk-php" />
+      <path value="$PROJECT_DIR$/server/vendor/aws/aws-crt-php" />
+      <path value="$PROJECT_DIR$/server/vendor/twilio/sdk" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/clock" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/server/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/psr-http-message-bridge" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/server/vendor/propaganistas/laravel-phone" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/server/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/server/vendor/logtail/monolog-logtail" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/server/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/server/vendor/facebook/php-business-sdk" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/server/vendor/sentry/sentry-laravel" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/server/vendor/sentry/sentry" />
+      <path value="$PROJECT_DIR$/server/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/server/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/server/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/server/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/server/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/server/vendor/laravel-notification-channels/discord" />
+      <path value="$PROJECT_DIR$/server/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/server/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/server/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/server/vendor/mtdowling/jmespath.php" />
+      <path value="$PROJECT_DIR$/server/vendor/posthog/posthog-php" />
+      <path value="$PROJECT_DIR$/server/vendor/setasign/fpdi" />
+      <path value="$PROJECT_DIR$/server/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/server/vendor/setasign/tfpdf" />
+      <path value="$PROJECT_DIR$/server/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/server/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/server/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/server/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/server/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/server/vendor/guzzlehttp/uri-template" />
+      <path value="$PROJECT_DIR$/server/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/server/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/server/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/server/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/server/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/server/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/server/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/server/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/server/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/server/vendor/league/flysystem-path-prefixing" />
+      <path value="$PROJECT_DIR$/server/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/server/vendor/league/config" />
+      <path value="$PROJECT_DIR$/server/vendor/league/csv" />
+      <path value="$PROJECT_DIR$/server/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/server/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/server/vendor/league/flysystem-aws-s3-v3" />
+      <path value="$PROJECT_DIR$/server/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/server/vendor/league/flysystem-local" />
+      <path value="$PROJECT_DIR$/server/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/server/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/server/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/server/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/server/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/server/vendor/sebastian/type" />
+    </include_path>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2nvHNkujj91rBeAiU47a1hGAfqU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/michaeldojcar/PhpstormProjects/prognola-web",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/michaeldojcar/Library/Application Support/Herd/config/nvm/versions/node/v22.10.0/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/michaeldojcar/PhpstormProjects/prognola-web/web/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/michaeldojcar/Applications/PhpStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
+    "vue.recent.templates": [
+      "Vue Composition API Component"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/ui" />
+      <recent name="$PROJECT_DIR$/lib/dexie/repository" />
+      <recent name="$PROJECT_DIR$/components/expense" />
+      <recent name="$PROJECT_DIR$/components/expense/expense_row" />
+      <recent name="$PROJECT_DIR$/pages/cs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
+      <recent name="$PROJECT_DIR$/ui" />
+      <recent name="$PROJECT_DIR$/pages/[workspace]/organisations/[organisation]" />
+      <recent name="$PROJECT_DIR$/pages/[workspace]/expenses/[expense]" />
+      <recent name="$PROJECT_DIR$/pages/[workspace]/expenses/index.vue" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/server/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PS-243.22562.164" />
+        <option value="bundled-php-predefined-a98d8de5180a-7980c7aaca61-com.jetbrains.php.sharedIndexes-PS-243.22562.164" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bf99062d-d3e0-4297-9cc1-6f513483a756" name="Changes" comment="" />
+      <created>1729846592008</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729846592008</updated>
+      <workItem from="1729846593204" duration="3581000" />
+      <workItem from="1729870579317" duration="1645000" />
+      <workItem from="1729872431971" duration="11761000" />
+      <workItem from="1729886267614" duration="44473000" />
+      <workItem from="1730118281820" duration="20772000" />
+      <workItem from="1730139459532" duration="10138000" />
+      <workItem from="1730302518122" duration="17158000" />
+      <workItem from="1730456286854" duration="56600000" />
+      <workItem from="1731063736075" duration="3137000" />
+      <workItem from="1731089862411" duration="627000" />
+      <workItem from="1731100135194" duration="1316000" />
+      <workItem from="1731680357382" duration="2559000" />
+      <workItem from="1731908370882" duration="5437000" />
+      <workItem from="1732886375360" duration="39000" />
+      <workItem from="1732896658493" duration="42567000" />
+      <workItem from="1734357473836" duration="3879000" />
+      <workItem from="1734459183131" duration="947000" />
+      <workItem from="1734477874190" duration="17870000" />
+      <workItem from="1735489464062" duration="393000" />
+    </task>
+    <task id="LOCAL-00102" summary="debug logging">
+      <option name="closed" value="true" />
+      <created>1730744223534</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1730744223534</updated>
+    </task>
+    <task id="LOCAL-00103" summary="fix PRO-438: remember workspace">
+      <option name="closed" value="true" />
+      <created>1730749485772</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1730749485772</updated>
+    </task>
+    <task id="LOCAL-00104" summary="ui, prettier">
+      <option name="closed" value="true" />
+      <created>1730750383767</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1730750383767</updated>
+    </task>
+    <task id="LOCAL-00105" summary="fix PRO-443: changelog page">
+      <option name="closed" value="true" />
+      <created>1730798676137</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1730798676137</updated>
+    </task>
+    <task id="LOCAL-00106" summary="fix PRO-443: changelog page">
+      <option name="closed" value="true" />
+      <created>1730798894680</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1730798894680</updated>
+    </task>
+    <task id="LOCAL-00107" summary="fix PRO-445: public footer">
+      <option name="closed" value="true" />
+      <created>1730800289881</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1730800289881</updated>
+    </task>
+    <task id="LOCAL-00108" summary="fix PRO-445: public footer">
+      <option name="closed" value="true" />
+      <created>1730802030806</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1730802030806</updated>
+    </task>
+    <task id="LOCAL-00109" summary="fix PRO-449: expense scan deletion">
+      <option name="closed" value="true" />
+      <created>1730808291174</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1730808291174</updated>
+    </task>
+    <task id="LOCAL-00110" summary="update changelog">
+      <option name="closed" value="true" />
+      <created>1730808884367</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1730808884367</updated>
+    </task>
+    <task id="LOCAL-00111" summary="theme color">
+      <option name="closed" value="true" />
+      <created>1730809021772</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1730809021772</updated>
+    </task>
+    <task id="LOCAL-00112" summary="theme color">
+      <option name="closed" value="true" />
+      <created>1730809039923</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1730809039923</updated>
+    </task>
+    <task id="LOCAL-00113" summary="fix PRO-452: inline paid at edit">
+      <option name="closed" value="true" />
+      <created>1730821356957</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1730821356957</updated>
+    </task>
+    <task id="LOCAL-00114" summary="fix PRO-471: filter plans when sorting expenses by received_at">
+      <option name="closed" value="true" />
+      <created>1730895436594</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1730895436594</updated>
+    </task>
+    <task id="LOCAL-00115" summary="fix PRO-468: org badge didnt sort properly">
+      <option name="closed" value="true" />
+      <created>1730897806841</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1730897806841</updated>
+    </task>
+    <task id="LOCAL-00116" summary="fix PRO-477: now expenses did not sort propertly">
+      <option name="closed" value="true" />
+      <created>1730898203465</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1730898203465</updated>
+    </task>
+    <task id="LOCAL-00117" summary="ui">
+      <option name="closed" value="true" />
+      <created>1730899463848</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1730899463848</updated>
+    </task>
+    <task id="LOCAL-00118" summary="fix PRO-452: expense paid_at inline edit - update rows in org detail">
+      <option name="closed" value="true" />
+      <created>1730963722366</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1730963722366</updated>
+    </task>
+    <task id="LOCAL-00119" summary="update sentry config">
+      <option name="closed" value="true" />
+      <created>1731680736649</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1731680736649</updated>
+    </task>
+    <task id="LOCAL-00120" summary="fix PRO-483: export fix">
+      <option name="closed" value="true" />
+      <created>1731680960419</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1731680960420</updated>
+    </task>
+    <task id="LOCAL-00121" summary="refactor, moneta wip">
+      <option name="closed" value="true" />
+      <created>1733049582329</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1733049582329</updated>
+    </task>
+    <task id="LOCAL-00122" summary="fix PRO-494: expense variable symbol">
+      <option name="closed" value="true" />
+      <created>1733050725638</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1733050725638</updated>
+    </task>
+    <task id="LOCAL-00123" summary="fix PRO-494: expense variable symbol">
+      <option name="closed" value="true" />
+      <created>1733051417960</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1733051417960</updated>
+    </task>
+    <task id="LOCAL-00124" summary="ref OPS-67: qr code include variable symbol wip">
+      <option name="closed" value="true" />
+      <created>1733051645808</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1733051645808</updated>
+    </task>
+    <task id="LOCAL-00125" summary="ref OPS-67: qr code include variable symbol wip">
+      <option name="closed" value="true" />
+      <created>1733051963175</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1733051963175</updated>
+    </task>
+    <task id="LOCAL-00126" summary="ref OPS-67: qr code include variable symbol wip">
+      <option name="closed" value="true" />
+      <created>1733052249249</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1733052249249</updated>
+    </task>
+    <task id="LOCAL-00127" summary="ref OPS-67: qr code include variable symbol wip">
+      <option name="closed" value="true" />
+      <created>1733052435552</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1733052435552</updated>
+    </task>
+    <task id="LOCAL-00128" summary="fix PRO-497: local expense drafts">
+      <option name="closed" value="true" />
+      <created>1733237869529</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1733237869529</updated>
+    </task>
+    <task id="LOCAL-00129" summary="ref">
+      <option name="closed" value="true" />
+      <created>1733316213319</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1733316213319</updated>
+    </task>
+    <task id="LOCAL-00130" summary="ref PRO-490: moneta API sync wip">
+      <option name="closed" value="true" />
+      <created>1733316959592</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1733316959592</updated>
+    </task>
+    <task id="LOCAL-00131" summary="ref PRO-490: moneta API sync wip">
+      <option name="closed" value="true" />
+      <created>1733318488817</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1733318488817</updated>
+    </task>
+    <task id="LOCAL-00132" summary="ref PRO-490: moneta API sync wip">
+      <option name="closed" value="true" />
+      <created>1733318720960</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1733318720960</updated>
+    </task>
+    <task id="LOCAL-00133" summary="ref PRO-490: moneta API sync wip">
+      <option name="closed" value="true" />
+      <created>1733318834483</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1733318834483</updated>
+    </task>
+    <task id="LOCAL-00134" summary="ref PRO-511: add current balance to balance prognosis">
+      <option name="closed" value="true" />
+      <created>1733320580697</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1733320580697</updated>
+    </task>
+    <task id="LOCAL-00135" summary="update ui">
+      <option name="closed" value="true" />
+      <created>1733343362608</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1733343362608</updated>
+    </task>
+    <task id="LOCAL-00136" summary="update ui">
+      <option name="closed" value="true" />
+      <created>1733343450154</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1733343450154</updated>
+    </task>
+    <task id="LOCAL-00137" summary="fix PRO-526: add org name to sender message">
+      <option name="closed" value="true" />
+      <created>1734358498360</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1734358498360</updated>
+    </task>
+    <task id="LOCAL-00138" summary="fix PRO-526: add org name to sender message">
+      <option name="closed" value="true" />
+      <created>1734358603293</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1734358603293</updated>
+    </task>
+    <task id="LOCAL-00139" summary="fix PRO-527: local expense delete">
+      <option name="closed" value="true" />
+      <created>1734437175213</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1734437175213</updated>
+    </task>
+    <task id="LOCAL-00140" summary="fix PRO-528: add expense create button above records">
+      <option name="closed" value="true" />
+      <created>1734478063640</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1734478063640</updated>
+    </task>
+    <task id="LOCAL-00141" summary="fix PRO-528: add expense create button above records">
+      <option name="closed" value="true" />
+      <created>1734478690474</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1734478690474</updated>
+    </task>
+    <task id="LOCAL-00142" summary="fix expense store">
+      <option name="closed" value="true" />
+      <created>1734479036604</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1734479036605</updated>
+    </task>
+    <task id="LOCAL-00143" summary="fix ui">
+      <option name="closed" value="true" />
+      <created>1734527618966</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1734527618966</updated>
+    </task>
+    <task id="LOCAL-00144" summary="fix PRO-126: responsive menu">
+      <option name="closed" value="true" />
+      <created>1734528988947</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1734528988947</updated>
+    </task>
+    <task id="LOCAL-00145" summary="ref PRO-530: responsive expense index">
+      <option name="closed" value="true" />
+      <created>1734530814471</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1734530814471</updated>
+    </task>
+    <task id="LOCAL-00146" summary="ref PRO-530: responsive expense index">
+      <option name="closed" value="true" />
+      <created>1734531767548</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1734531767548</updated>
+    </task>
+    <task id="LOCAL-00147" summary="fix ui">
+      <option name="closed" value="true" />
+      <created>1734533116820</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1734533116820</updated>
+    </task>
+    <task id="LOCAL-00148" summary="update now">
+      <option name="closed" value="true" />
+      <created>1734534833415</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1734534833415</updated>
+    </task>
+    <task id="LOCAL-00149" summary="update now">
+      <option name="closed" value="true" />
+      <created>1734535079084</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1734535079084</updated>
+    </task>
+    <task id="LOCAL-00150" summary="ref PRO-402: income dark mode">
+      <option name="closed" value="true" />
+      <created>1734539562924</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1734539562924</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix PRO-468: org badge didnt sort properly" />
+    <MESSAGE value="fix PRO-477: now expenses did not sort propertly" />
+    <MESSAGE value="ui" />
+    <MESSAGE value="fix PRO-452: expense paid_at inline edit - update rows in org detail" />
+    <MESSAGE value="update sentry config" />
+    <MESSAGE value="fix PRO-483: export fix" />
+    <MESSAGE value="refactor, moneta wip" />
+    <MESSAGE value="fix PRO-494: expense variable symbol" />
+    <MESSAGE value="ref OPS-67: qr code include variable symbol wip" />
+    <MESSAGE value="fix PRO-497: local expense drafts" />
+    <MESSAGE value="ref PRO-490: moneta API sync wip" />
+    <MESSAGE value="ref PRO-490: moneta API sync wip" />
+    <MESSAGE value="ref PRO-490: moneta API sync wip" />
+    <MESSAGE value="ref PRO-511: add current balance to balance prognosis" />
+    <MESSAGE value="update ui" />
+    <MESSAGE value="fix PRO-526: add org name to sender message" />
+    <MESSAGE value="fix PRO-527: local expense delete" />
+    <MESSAGE value="fix PRO-528: add expense create button above records" />
+    <MESSAGE value="fix expense store" />
+    <MESSAGE value="fix PRO-126: responsive menu" />
+    <MESSAGE value="ref PRO-530: responsive expense index" />
+    <MESSAGE value="fix ui" />
+    <MESSAGE value="update now" />
+    <MESSAGE value="ref PRO-402: income dark mode" />
+    <MESSAGE value="merge repositories to monorepo" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge repositories to monorepo" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
