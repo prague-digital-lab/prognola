@@ -1,8 +1,6 @@
 <script>
 import { DateTime } from "luxon";
-import {
-  updateExpense,
-} from "~/lib/dexie/repository/expense_repository.js";
+import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
   props: ["expense"],
