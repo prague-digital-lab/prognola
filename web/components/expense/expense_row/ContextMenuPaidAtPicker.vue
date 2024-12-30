@@ -45,7 +45,7 @@
 <script setup>
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { DateTime } from "luxon";
-import { updateExpenseFromLocalObject } from "~/lib/dexie/repository/expense_repository.js";
+import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
 
 const props = defineProps(["expense"]);
 const emit = defineEmits(["expense-updated"]);
@@ -83,7 +83,7 @@ async function updateDate() {
   console.log("expense", expense);
   expense.paid_at = DateTime.fromFormat(paid_at.value, "yyyy-MM-dd").toJSDate();
 
-  await updateExpenseFromLocalObject(expense.uuid, expense);
+  await updateExpense(expense.uuid, expense);
 
   emit("expense-updated");
 

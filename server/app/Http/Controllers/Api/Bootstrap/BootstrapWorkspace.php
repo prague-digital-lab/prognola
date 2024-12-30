@@ -22,6 +22,8 @@ class BootstrapWorkspace extends Controller
 
         $date_from = Carbon::parse($request->input('date_from'));
 
+//        dd($date_from);
+
         $expenses = $workspace->expenses()
 //            ->withTrashed()
             ->where('updated_at', '>=', $date_from)

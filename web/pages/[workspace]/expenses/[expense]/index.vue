@@ -132,7 +132,6 @@ import ExpensePaidAtInput from "~/components/expense/ExpensePaidAtInput.vue";
 import {
   getExpense,
   updateExpense,
-  updateExpenseFromLocalObject,
 } from "~/lib/dexie/repository/expense_repository.js";
 
 export default {
@@ -195,18 +194,16 @@ export default {
       const route = useRoute();
 
       this.expense.description = this.input_description;
-      await updateExpenseFromLocalObject(this.expense.uuid, this.expense);
+      await updateExpense(this.expense.uuid, this.expense);
 
-      const { data } = await useAsyncData("expense", () =>
-        client(
-          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-          {
-            method: "PATCH",
-            body: {
-              description: this.input_description,
-            },
+      await client(
+        "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+        {
+          method: "PATCH",
+          body: {
+            description: this.input_description,
           },
-        ),
+        },
       );
     },
 
@@ -215,19 +212,17 @@ export default {
       const route = useRoute();
 
       this.expense.internal_note = this.input_internal_note;
-      await updateExpenseFromLocalObject(this.expense.uuid, this.expense);
+      await updateExpense(this.expense.uuid, this.expense);
 
       const endpoint =
         "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid;
 
-      const { data } = await useAsyncData("expense", () =>
-        client(endpoint, {
-          method: "PATCH",
-          body: {
-            internal_note: this.input_internal_note,
-          },
-        }),
-      );
+      await client(endpoint, {
+        method: "PATCH",
+        body: {
+          internal_note: this.input_internal_note,
+        },
+      });
     },
 
     async uploadFile(event) {
@@ -244,12 +239,10 @@ export default {
       let formData = new FormData();
       formData.append("file", event.target.files[0]);
 
-      const { data } = await useAsyncData("expense", () =>
-        client(endpoint, {
-          method: "POST",
-          body: formData,
-        }),
-      );
+      await client(endpoint, {
+        method: "POST",
+        body: formData,
+      });
 
       await this.fetchData();
     },

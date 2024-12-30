@@ -111,16 +111,14 @@ export default {
       const client = useSanctumClient();
       const route = useRoute();
 
-      const { data } = await useAsyncData("expense", () =>
-        client(
-          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-          {
-            method: "PATCH",
-            body: {
-              expense_category_id: expense_category.uuid,
-            },
+      await client(
+        "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+        {
+          method: "PATCH",
+          body: {
+            expense_category_id: expense_category.uuid,
           },
-        ),
+        },
       );
     },
 
@@ -128,13 +126,12 @@ export default {
       const client = useSanctumClient();
       const route = useRoute();
 
-      const { data } = await useAsyncData("expense", () =>
-        client("/api/" + route.params.workspace + "/expense_categories", {
+      this.expense_categories = await client(
+        "/api/" + route.params.workspace + "/expense_categories",
+        {
           method: "GET",
-        }),
+        },
       );
-
-      this.expense_categories = data.value;
     },
   },
 

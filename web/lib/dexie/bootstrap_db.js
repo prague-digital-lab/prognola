@@ -1,15 +1,20 @@
 import {
   addExpense,
+  createExpenseObjectFromApiData,
   syncExpense,
 } from "~/lib/dexie/repository/expense_repository.js";
 import { addIncome } from "~/lib/dexie/repository/income_repository.js";
-import { addOrganisation } from "~/lib/dexie/repository/organisation_repository.js";
+import {
+  addOrganisation,
+  createOrganisationObjectFromApiData,
+  syncOrganisation,
+} from "~/lib/dexie/repository/organisation_repository.js";
 import { addBankAccount } from "~/lib/dexie/repository/bank_account_repository.js";
 import {
   getLastSyncedAt,
   setLastSyncedAt,
 } from "~/lib/dexie/repository/options_repository.js";
-import {DateTime} from "luxon";
+import { DateTime } from "luxon";
 
 function truncateStores(db) {
   console.debug("Truncating old IndexedDB stores.");
@@ -54,7 +59,8 @@ async function bootstrapDatabaseFull(db, workspace_url_slug) {
   let organisations = await fetchOrganisations(workspace_url_slug);
 
   for (let organisation of organisations) {
-    await addOrganisation(organisation);
+    let organisation_object = createOrganisationObjectFromApiData(organisation);
+    await addOrganisation(organisation_object);
   }
 
   let bank_accounts = await fetchBankAccounts(workspace_url_slug);
@@ -87,7 +93,15 @@ async function bootstrapDatabaseIncremental(
   const expenses = data.expenses;
 
   for (let expense of expenses) {
-    await syncExpense(expense);
+    let expense_object = createExpenseObjectFromApiData(expense);
+    await syncExpense(expense_object);
+  }
+
+  const organisations = data.organisations;
+
+  for (let organisation of organisations) {
+    let organisation_object = createOrganisationObjectFromApiData(organisation);
+    await syncOrganisation(organisation_object);
   }
 
   console.debug("Incremental database bootstrap completed.");

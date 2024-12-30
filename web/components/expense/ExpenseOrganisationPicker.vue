@@ -103,7 +103,7 @@
 <script setup>
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { ChevronDoubleRightIcon } from "@heroicons/vue/24/solid/index.js";
-import { updateExpenseFromLocalObject } from "~/lib/dexie/repository/expense_repository.js";
+import { updateExpense } from "~/lib/dexie/repository/expense_repository.js";
 import {
   getOrganisation,
   getOrganisations,
@@ -137,7 +137,7 @@ async function selectOrganisation(organisation, close) {
 
   let expense = props.expense;
   expense.organisation = organisation.uuid;
-  await updateExpenseFromLocalObject(expense.uuid, expense);
+  await updateExpense(expense.uuid, expense);
 
   const { data } = await useAsyncData("expense", () =>
     client(
