@@ -54,4 +54,4 @@ We welcome contributions from the community! Feel free to:
 [//]: # (---)
 
 ## License
-Prognola is released under the [MIT License](LICENSE).
+Prognola is released under the [MIT License](LICENSE.md).
