@@ -5,28 +5,30 @@
         <heading>Příjmy</heading>
       </template>
       <template v-slot:subtitle>
-        <div class="flex justify-between items-center">
+        <div class="flex items-center justify-between">
           <p class="text-base text-gray-500 dark:text-zinc-400">
             Celkem: {{ formatPrice(price_sum) }} Kč
           </p>
 
-          <button-primary @click="openModal" class="block md:hidden">+ nový příjem</button-primary>
+          <button-primary @click="openModal" class="block md:hidden"
+            >+ nový příjem</button-primary
+          >
         </div>
       </template>
 
       <template v-slot:controls>
         <div class="mt-4 flex md:ml-4 md:mt-0">
-<!--          <div class="me-2">-->
-<!--            <div class="mt-2">-->
-<!--              <select-->
-<!--                v-model="grouped_by"-->
-<!--                class="block rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"-->
-<!--              >-->
-<!--                <option :value="null">Seskupit</option>-->
-<!--                <option value="income_category">Kategorie</option>-->
-<!--              </select>-->
-<!--            </div>-->
-<!--          </div>-->
+          <!--          <div class="me-2">-->
+          <!--            <div class="mt-2">-->
+          <!--              <select-->
+          <!--                v-model="grouped_by"-->
+          <!--                class="block rounded-md border border-gray-200 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-base sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"-->
+          <!--              >-->
+          <!--                <option :value="null">Seskupit</option>-->
+          <!--                <option value="income_category">Kategorie</option>-->
+          <!--              </select>-->
+          <!--            </div>-->
+          <!--          </div>-->
 
           <div class="me-2">
             <input
@@ -44,7 +46,9 @@
             />
           </div>
 
-          <button-primary @click="openModal" class="hidden md:flex">+ nový příjem</button-primary>
+          <button-primary @click="openModal" class="hidden md:flex"
+            >+ nový příjem</button-primary
+          >
         </div>
       </template>
     </page-content-header>

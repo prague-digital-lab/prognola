@@ -48,12 +48,10 @@
                 </div>
               </TransitionChild>
               <!-- Sidebar component, swap this element with another sidebar if you like -->
-              <div
-                class="flex grow flex-col overflow-y-auto bg-white py-4"
-              >
+              <div class="flex grow flex-col overflow-y-auto bg-white py-4">
                 <nuxt-link
                   :href="'/' + route.params.workspace + '/cashflow'"
-                  class="flex w-full cursor-default items-center rounded-md py-1 pe-3 ps-4 mb-5 duration-100 hover:bg-zinc-200/50 active:hover:bg-zinc-200/80 dark:hover:bg-zinc-800 dark:active:hover:bg-zinc-700/80"
+                  class="mb-5 flex w-full cursor-default items-center rounded-md py-1 pe-3 ps-4 duration-100 hover:bg-zinc-200/50 active:hover:bg-zinc-200/80 dark:hover:bg-zinc-800 dark:active:hover:bg-zinc-700/80"
                 >
                   <nuxt-img
                     src="/img/logo_prazska_laborator.png"
@@ -61,9 +59,10 @@
                     class="me-4 ms-1"
                   />
 
-                  <p class="text-[15px] text-zinc-800 dark:text-zinc-200">Prognola</p>
+                  <p class="text-[15px] text-zinc-800 dark:text-zinc-200">
+                    Prognola
+                  </p>
                 </nuxt-link>
-
 
                 <sidebar></sidebar>
               </div>
@@ -285,7 +284,7 @@ import {
 import Sidebar from "~/components/ui/sidebar/Sidebar.vue";
 
 import { openDatabase } from "~/lib/dexie/db.js";
-import bootstrapDatabase from "~/lib/dexie/bootstrap_db.js";
+import { bootstrapDatabase } from "~/lib/dexie/bootstrap_db.js";
 
 useHead({
   titleTemplate: (titleChunk) => {

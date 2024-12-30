@@ -14,6 +14,7 @@ function openDatabase() {
     organisations: "++uuid, name",
     balance_prognosis: "++date",
     bank_accounts: "++uuid",
+    options: "++key",
   });
 
   return db;

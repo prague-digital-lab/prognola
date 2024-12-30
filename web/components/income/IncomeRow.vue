@@ -69,7 +69,7 @@ export default defineComponent({
   },
   async mounted() {
     if (this.income.organisation) {
-      this.organisation.value = await findOrganisation(
+      this.organisation.value = await getOrganisation(
         props.expense.organisation,
       );
     }

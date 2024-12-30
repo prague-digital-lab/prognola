@@ -28,19 +28,7 @@ export async function getExpensesByPaymentStatus(payment_status) {
     .toArray();
 }
 
-async function updateExpense(uuid, expense) {
-  let expense_object = createExpenseObject(expense);
-
-  return await db.expenses.update(uuid, expense_object);
-}
-
-async function updateExpenseFromLocalObject(uuid, expense_object) {
-  return await db.expenses.update(uuid, expense_object);
-}
-
-async function updateExpenseOrganisation(uuid, expense) {
-  let expense_object = createExpenseObject(expense);
-
+async function updateExpense(uuid, expense_object) {
   return await db.expenses.update(uuid, expense_object);
 }
 
@@ -52,7 +40,7 @@ async function deleteExpense(uuid) {
   return await db.expenses.delete(uuid);
 }
 
-function createExpenseObject(expense) {
+function createExpenseObjectFromApiData(expense) {
   return {
     uuid: expense.uuid,
     payment_status: expense.payment_status,
@@ -68,19 +56,45 @@ function createExpenseObject(expense) {
 }
 
 async function addExpense(expense) {
-  // console.debug("Storing expense:", expense);
-
-  let expense_object = createExpenseObject(expense);
+  let expense_object = createExpenseObjectFromApiData(expense);
 
   const uuid = db.expenses.add(expense_object);
+}
+
+/**
+ * Sync expense
+ *
+ * @param expense
+ * @returns {Promise<void>}
+ */
+async function syncExpense(expense) {
+  console.debug("Syncing expense from API:", expense);
+
+  if (typeof expense.deleted_at !== "undefined") {
+    console.debug("Expense marked as deleted, deleting it.");
+    await deleteExpense(expense.uuid);
+
+    return;
+  }
+
+  const existing_local_record = getExpense(expense.uuid);
+
+  if (existing_local_record === null) {
+    console.debug("Expense not found in local database, adding it.");
+    await addExpense(expense);
+  } else {
+    console.debug("Expense found in local database, updating it.");
+    await updateExpense(expense.uuid, expense);
+  }
 }
 
 export {
   deleteExpense,
   getExpensesByPaidAt,
-  updateExpenseFromLocalObject,
+  updateExpense,
   getExpense,
   addExpense,
-  updateExpense,
   getExpensesByOrganisation,
+  createExpenseObjectFromApiData,
+  syncExpense,
 };

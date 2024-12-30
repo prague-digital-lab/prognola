@@ -14,8 +14,8 @@ async function findOrganisation(uuid) {
   return await db.organisations.get(uuid);
 }
 
-async function addOrganisation(organisation) {
-  let organisation_object = {
+function createOrganisationObjectFromApiData(organisation) {
+  return {
     uuid: organisation.uuid,
     name: organisation.name,
     type: organisation.type,
@@ -27,8 +27,47 @@ async function addOrganisation(organisation) {
     dic: organisation.dic,
     internal_note: organisation.internal_note,
   };
-
-  const uuid = db.organisations.add(organisation_object);
 }
 
-export { addOrganisation, getOrganisations, getOrganisation, findOrganisation };
+async function addOrganisation(organisation) {
+  const uuid = db.organisations.add(organisation);
+}
+
+async function updateOrganisation(uuid, organisation) {
+  return await db.organisations.update(uuid, organisation);
+}
+
+async function deleteOrganisation(uuid) {
+  return await db.organisations.delete(uuid);
+}
+
+async function syncOrganisation(organisation) {
+  console.debug("Syncing organisation from API:", organisation);
+
+  if (typeof organisation.deleted_at !== "undefined") {
+    console.debug("Organisation marked as deleted, deleting it.");
+    await deleteOrganisation(organisation.uuid);
+
+    return;
+  }
+
+  const existing_local_record = getOrganisation(organisation.uuid);
+
+  if (existing_local_record === null) {
+    console.debug("Organisation not found in local database, adding it.");
+    await addOrganisation(organisation);
+  } else {
+    console.debug("Organisation found in local database, updating it.");
+    await updateOrganisation(organisation.uuid, organisation);
+  }
+}
+
+export {
+  addOrganisation,
+  getOrganisations,
+  updateOrganisation,
+  getOrganisation,
+  findOrganisation,
+  syncOrganisation,
+  createOrganisationObjectFromApiData,
+};

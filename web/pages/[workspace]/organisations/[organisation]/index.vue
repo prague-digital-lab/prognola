@@ -70,7 +70,10 @@
 <script setup>
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import OrganisationCounterBankAccounts from "~/components/organisation/OrganisationCounterBankAccounts.vue";
-import { getOrganisation } from "~/lib/dexie/repository/organisation_repository.js";
+import {
+  getOrganisation,
+  updateOrganisation,
+} from "~/lib/dexie/repository/organisation_repository.js";
 
 definePageMeta({
   layout: "default",
@@ -123,19 +126,21 @@ async function updateName() {
   const client = useSanctumClient();
   const route = useRoute();
 
-  const { data } = await useAsyncData("organisation", () =>
-    client(
-      "/api/" +
-        route.params.workspace +
-        "/organisations/" +
-        route.params.organisation,
-      {
-        method: "PATCH",
-        body: {
-          name: input_name.value,
-        },
+  organisation.value.name = input_name.value;
+
+  await updateOrganisation(organisation.value.uuid, organisation.value);
+
+  await client(
+    "/api/" +
+      route.params.workspace +
+      "/organisations/" +
+      route.params.organisation,
+    {
+      method: "PATCH",
+      body: {
+        name: input_name.value,
       },
-    ),
+    },
   );
 }
 
@@ -143,19 +148,21 @@ async function updateInternalNote() {
   const client = useSanctumClient();
   const route = useRoute();
 
-  const { data } = await useAsyncData("organisation", () =>
-    client(
-      "/api/" +
-        route.params.workspace +
-        "/organisations/" +
-        route.params.organisation,
-      {
-        method: "PATCH",
-        body: {
-          internal_note: input_internal_note.value,
-        },
+  organisation.value.internal_note = input_internal_note.value;
+
+  await updateOrganisation(organisation.value.uuid, organisation.value);
+
+  await client(
+    "/api/" +
+      route.params.workspace +
+      "/organisations/" +
+      route.params.organisation,
+    {
+      method: "PATCH",
+      body: {
+        internal_note: input_internal_note.value,
       },
-    ),
+    },
   );
 }
 </script>
