@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\BankPayment\BankPaymentShow;
 use App\Http\Controllers\Api\BankPayment\BankPaymentStore;
 use App\Http\Controllers\Api\BankPayment\BankPaymentUpdate;
 use App\Http\Controllers\Api\BankPayment\Import\ImportKbCsv;
+use App\Http\Controllers\Api\Bootstrap\BootstrapWorkspace;
 use App\Http\Controllers\Api\CounterBankAccount\CounterBankAccountIndex;
 use App\Http\Controllers\Api\CounterBankAccount\CounterBankAccountShow;
 use App\Http\Controllers\Api\CounterBankAccount\CounterBankAccountUpdate;
@@ -112,6 +113,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/personal_access_tokens', PersonalAccessTokenIndex::class);
     Route::post('/personal_access_tokens', PersonalAccessTokenStore::class);
     Route::delete('/personal_access_tokens/{uuid}', PersonalAccessTokenDestroy::class);
+
+    // Bootstrap data
+    Route::get('/{workspace}/bootstrap', BootstrapWorkspace::class);
 
     // Stats
     Route::get('/{workspace}/stats/cashflow', Cashflow::class);
