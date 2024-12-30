@@ -47,6 +47,7 @@ class BootstrapWorkspace extends Controller
             ->where('updated_at', '>=', $date_from)
             ->get();
 
+
         return response()->json(
             [
                 'expenses' => $expenses,
