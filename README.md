@@ -43,12 +43,15 @@ We welcome contributions from the community! Feel free to:
 - Report bugs or suggest features via [GitHub Issues](https://github.com/prague-digital-lab/prognola/issues).
 - Submit pull requests to improve the app or documentation.
 
----
+[//]: # (---)
 
-## Getting Started
-To try Prognola, visit our [landing page](https://prognola.com) and create an account. Installation guides and further documentation can be found in the [Wiki section](https://github.com/prague-digital-lab/prognola/wiki).
+[//]: # ()
+[//]: # (## Getting Started)
 
----
+[//]: # (To try Prognola, visit our [landing page]&#40;https://prognola.com&#41; and create an account. Installation guides and further documentation can be found in the [Wiki section]&#40;https://github.com/prague-digital-lab/prognola/wiki&#41;.)
+
+[//]: # ()
+[//]: # (---)
 
 ## License
 Prognola is released under the [MIT License](LICENSE).
