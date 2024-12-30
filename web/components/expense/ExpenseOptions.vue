@@ -36,7 +36,7 @@ export default {
         ),
       );
 
-      await deleteExpense(this.expense.uuid)
+      await deleteExpense(this.expense.uuid);
 
       await navigateTo("/" + route.params.workspace + "/expenses");
     },

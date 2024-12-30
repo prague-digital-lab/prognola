@@ -5,7 +5,7 @@
     :key="expense.uuid"
   >
     <div
-      class="hidden md:flex items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+      class="hidden items-center justify-between bg-white px-3 py-2 hover:bg-gray-hover md:flex dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
     >
       <div class="flex text-base">
         <p class="md:w-[400px]">
@@ -50,9 +50,9 @@
       </div>
     </div>
 
-    <div class="block md:hidden p-3">
-      <div class="flex mb-2 justify-between items-center">
-        <p class="md:w-[400px]">
+    <div class="block p-3 md:hidden dark:bg-zinc-900">
+      <div class="mb-2 flex items-center justify-between">
+        <p class="md:w-[400px] dark:text-white">
           {{ expense.description ? expense.description : "nový výdaj" }}
         </p>
 
@@ -70,7 +70,7 @@
       <div class="flex justify-between">
         <div
           v-if="organisation"
-          class="me-2 flex cursor-pointer items-center rounded-md border border-gray-200 px-2 py-[1px] leading-5  text-[12px] dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 text-zinc-500"
+          class="me-2 flex cursor-pointer items-center rounded-md border border-gray-200 px-2 py-[1px] text-[12px] leading-5 text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400"
           @click="navigateToOrganisation(organisation)"
         >
           <building-library-icon
@@ -82,7 +82,7 @@
         </div>
         <div v-else></div>
 
-        <div class="flex justify-between items-center">
+        <div class="flex items-center justify-between">
           <context-menu-paid-at-picker
             :key="expense.uuid"
             @expense-updated="$emit('expense-updated')"
@@ -90,7 +90,6 @@
           ></context-menu-paid-at-picker>
         </div>
       </div>
-
     </div>
   </nuxt-link>
 </template>
@@ -121,14 +120,14 @@ function formatDate(date) {
 async function navigateToExpense() {
   const route = useRoute();
   await navigateTo(
-    "/" + route.params.workspace + "/expenses/" + props.expense.uuid
+    "/" + route.params.workspace + "/expenses/" + props.expense.uuid,
   );
 }
 
 async function navigateToOrganisation(organisation) {
   const route = useRoute();
   await navigateTo(
-    "/" + route.params.workspace + "/organisations/" + organisation.uuid
+    "/" + route.params.workspace + "/organisations/" + organisation.uuid,
   );
 }
 

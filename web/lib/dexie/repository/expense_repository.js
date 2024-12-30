@@ -75,6 +75,32 @@ async function addExpense(expense) {
   const uuid = db.expenses.add(expense_object);
 }
 
+/**
+ * Sync expense
+ *
+ * @param expense
+ * @returns {Promise<void>}
+ */
+async function syncExpense(expense) {
+  console.debug("Syncing expense from API:", expense);
+  const existing_local_record = getExpense(expense.uuid);
+
+  if (typeof expense.deleted_at !== "undefined") {
+    console.debug("Expense marked as deleted, deleting it.");
+    await deleteExpense(expense.uuid);
+
+    return;
+  }
+
+  if (existing_local_record === null) {
+    console.debug("Expense not found in local database, adding it.");
+    await addExpense(expense);
+  } else {
+    console.debug("Expense found in local database, updating it.");
+    await updateExpense(expense.uuid, expense);
+  }
+}
+
 export {
   deleteExpense,
   getExpensesByPaidAt,
@@ -83,4 +109,5 @@ export {
   addExpense,
   updateExpense,
   getExpensesByOrganisation,
+  syncExpense,
 };
