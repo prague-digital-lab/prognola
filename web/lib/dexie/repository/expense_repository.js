@@ -56,8 +56,6 @@ async function deleteExpense(uuid) {
 }
 
 async function addExpense(expense) {
-  let expense_object = createExpenseObjectFromApiData(expense);
-
   db.expenses.add(expense_object);
 }
 
