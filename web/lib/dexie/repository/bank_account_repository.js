@@ -7,6 +7,8 @@ function createBankAccountObjectFromApiData(data) {
     uuid: data.uuid,
     name: data.name,
     current_amount: parseFloat(data.current_amount),
+    account_number: data.account_number,
+    bank_number: data.bank_number,
   };
 }
 
@@ -61,6 +63,7 @@ async function syncBankAccount(bank_account) {
 }
 
 export {
+  getBankAccounts,
   addBankAccount,
   getCurrentBalance,
   updateBankAccount,

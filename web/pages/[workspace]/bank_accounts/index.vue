@@ -52,6 +52,7 @@
 <script setup>
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
 import Heading from "~/components/ui/Heading.vue";
+import {getBankAccounts} from "~/lib/dexie/repository/bank_account_repository.js";
 
 useHead({
   title: "Účty",
@@ -63,41 +64,22 @@ definePageMeta({
 });
 
 const route = useRoute();
-</script>
 
-<script>
-export default {
-  data() {
-    return {
-      // Page UI data
-      loaded: false,
-      bank_accounts: [],
-    };
-  },
+const loaded = ref(false);
+const bank_accounts = ref([]);
 
-  mounted() {
-    this.fetchData();
-  },
+onMounted(async () => {
+  await fetchData();
+})
 
-  methods: {
-    async fetchData() {
-      const client = useSanctumClient();
-      const route = useRoute();
+async function fetchData() {
+  bank_accounts.value = await getBankAccounts()
 
-      this.bank_accounts = await client(
-        "/api/" + route.params.workspace + "/bank_accounts",
-        {
-          method: "GET",
-        },
-      );
+  loaded.value = true;
+}
 
-      this.loaded = true;
-    },
-
-    formatPrice(value) {
-      let val = (value / 1).toFixed(0).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
-  },
-};
+function formatPrice(value) {
+  let val = (value / 1).toFixed(0).replace(".", ",");
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 </script>
