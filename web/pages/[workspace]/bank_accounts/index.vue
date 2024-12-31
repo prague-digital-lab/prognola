@@ -84,13 +84,12 @@ export default {
       const client = useSanctumClient();
       const route = useRoute();
 
-      const { data } = await useAsyncData("bank_accounts", () =>
-        client("/api/" + route.params.workspace + "/bank_accounts", {
+      this.bank_accounts = await client(
+        "/api/" + route.params.workspace + "/bank_accounts",
+        {
           method: "GET",
-        }),
+        },
       );
-
-      this.bank_accounts = data.value;
 
       this.loaded = true;
     },
@@ -98,26 +97,6 @@ export default {
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
-
-    async createBankAccount() {
-      const client = useSanctumClient();
-      const route = useRoute();
-
-      const { data } = await useAsyncData("expense", () =>
-        client("/api/" + route.params.workspace + "/bank_accounts", {
-          method: "POST",
-          body: {
-            description: this.new_expense_name,
-            price: 0,
-            paid_at: this.from,
-          },
-        }),
-      );
-
-      let id = data.value.id;
-
-      await navigateTo("/finance/expenses/" + id);
     },
   },
 };

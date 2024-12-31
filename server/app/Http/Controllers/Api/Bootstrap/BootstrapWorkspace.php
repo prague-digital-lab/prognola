@@ -22,30 +22,28 @@ class BootstrapWorkspace extends Controller
 
         $date_from = Carbon::parse($request->input('date_from'));
 
-//        dd($date_from);
-
         $expenses = $workspace->expenses()
-//            ->withTrashed()
+            ->withTrashed()
             ->where('updated_at', '>=', $date_from)
             ->get();
 
         $incomes = $workspace->incomes()
-//            ->withTrashed()
+            ->withTrashed()
             ->where('updated_at', '>=', $date_from)
             ->get();
 
         $bank_accounts = $workspace->bank_accounts()
-//            ->withTrashed()
+            ->withTrashed()
             ->where('updated_at', '>=', $date_from)
             ->get();
 
         $bank_payments = $workspace->bank_payments()
-//            ->withTrashed()
+            ->withTrashed()
             ->where('updated_at', '>=', $date_from)
             ->get();
 
         $organisations = $workspace->organisations()
-//            ->withTrashed()
+            ->withTrashed()
             ->where('updated_at', '>=', $date_from)
             ->get();
 

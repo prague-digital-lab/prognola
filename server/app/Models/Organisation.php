@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Organisation
@@ -13,22 +14,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Organisation extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    const ORGANISATION_TYPE_FREELANCER = 'freelancer';
+    const ORGANISATION_TYPE_SCHOOL = 'school';
+    const ORGANISATION_TYPE_COMPANY = 'company';
+    const ORGANISATION_TYPE_NONPROFIT = 'nonprofit_organisation';
+    const ORGANISATION_TYPE_FREE_TIME_ORGANISATION = 'free_time_organisation';
+    const ORGANISATION_TYPE_SPORT_ORGANISATION = 'sport_organisation';
 
     protected $hidden = [
         'id',
     ];
-
-    const ORGANISATION_TYPE_FREELANCER = 'freelancer';
-
-    const ORGANISATION_TYPE_SCHOOL = 'school';
-
-    const ORGANISATION_TYPE_COMPANY = 'company';
-
-    const ORGANISATION_TYPE_NONPROFIT = 'nonprofit_organisation';
-
-    const ORGANISATION_TYPE_FREE_TIME_ORGANISATION = 'free_time_organisation';
-
-    const ORGANISATION_TYPE_SPORT_ORGANISATION = 'sport_organisation';
 
     public function workspace(): BelongsTo
     {

@@ -20,7 +20,7 @@ class BankPaymentIndex extends Controller
         $workspace = $this->findAndAuthorizeWorkspace($workspace);
 
         $bank_payments = $workspace->bank_payments()
-            ->with(['incomes', 'expenses']);
+            ->with(['incomes', 'expenses', 'bank_account']);
 
         if ($request->has('bank_account')) {
             $bank_account = $workspace->bank_accounts()

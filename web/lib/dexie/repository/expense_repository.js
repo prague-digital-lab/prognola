@@ -3,6 +3,21 @@ import { DateTime } from "luxon";
 
 let db = openDatabase();
 
+function createExpenseObjectFromApiData(expense) {
+  return {
+    uuid: expense.uuid,
+    payment_status: expense.payment_status,
+    organisation: expense.organisation ? expense.organisation.uuid : null,
+    description: expense.description,
+    variable_symbol: expense.variable_symbol,
+    received_at: expense.received_at
+      ? DateTime.fromISO(expense.received_at).toJSDate()
+      : null,
+    paid_at: DateTime.fromISO(expense.paid_at).toJSDate(),
+    price: parseInt(expense.price),
+  };
+}
+
 async function getExpensesByPaidAt(date_from, date_to) {
   return await db.expenses
     .where("paid_at")
@@ -40,33 +55,12 @@ async function deleteExpense(uuid) {
   return await db.expenses.delete(uuid);
 }
 
-function createExpenseObjectFromApiData(expense) {
-  return {
-    uuid: expense.uuid,
-    payment_status: expense.payment_status,
-    organisation: expense.organisation ? expense.organisation.uuid : null,
-    description: expense.description,
-    variable_symbol: expense.variable_symbol,
-    received_at: expense.received_at
-      ? DateTime.fromISO(expense.received_at).toJSDate()
-      : null,
-    paid_at: DateTime.fromISO(expense.paid_at).toJSDate(),
-    price: parseInt(expense.price),
-  };
-}
-
 async function addExpense(expense) {
   let expense_object = createExpenseObjectFromApiData(expense);
 
-  const uuid = db.expenses.add(expense_object);
+  db.expenses.add(expense_object);
 }
 
-/**
- * Sync expense
- *
- * @param expense
- * @returns {Promise<void>}
- */
 async function syncExpense(expense) {
   console.debug("Syncing expense from API:", expense);
 
