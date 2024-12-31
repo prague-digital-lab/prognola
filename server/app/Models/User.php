@@ -75,16 +75,6 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withPivot(['role', 'is_active']);
     }
 
-    public function work_time_records(): HasMany
-    {
-        return $this->hasMany(WorkTimeRecord::class);
-    }
-
-    public function getPendingWorkTimeRecord()
-    {
-        return $this->work_time_records->where('date_to', null)->first();
-    }
-
     public function documents(): MorphToMany
     {
         return $this->morphedByMany(Document::class, 'assignable');
