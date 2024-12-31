@@ -33,6 +33,7 @@
             v-if="bank_account.synced_at"
           >
             <span v-if="bank_account.bank === 'fio'">Platby staženy</span>
+            <span v-if="bank_account.bank === 'moneta'">Platby staženy</span>
             <span v-if="bank_account.bank === 'komercni_banka_csv'"
               >Importováno z CSV do</span
             >
@@ -100,6 +101,7 @@ definePageMeta({
 <script>
 import bank_payment from "~/pages/[workspace]/bank_payments/[bank_payment]/index.vue";
 import { DateTime } from "luxon";
+import { getBankAccount } from "~/lib/dexie/repository/bank_account_repository.js";
 
 export default {
   data() {
@@ -154,9 +156,7 @@ export default {
       return bank_payment;
     },
     title() {
-      return this.bank_account
-        ? this.bank_account.name + " - Prognola"
-        : "Detail platby - Prognola";
+      return this.bank_account ? this.bank_account.name : "Detail účtu";
     },
   },
 
@@ -169,23 +169,9 @@ export default {
     },
 
     async fetchData() {
-      const client = useSanctumClient();
       const route = useRoute();
-
-      const { data } = await useAsyncData("bank_account", () =>
-        client(
-          "/api/" +
-            route.params.workspace +
-            "/bank_accounts/" +
-            route.params.bank_account,
-          {
-            method: "GET",
-          },
-        ),
-      );
-
-      this.bank_account = data.value;
-      this.input_name = data.value.name;
+      this.bank_account = await getBankAccount(route.params.bank_account)
+      this.input_name = this.bank_account.name;
     },
 
     async fetchPayments() {
@@ -212,7 +198,7 @@ export default {
     },
 
     formatDate(date) {
-      let formatted = DateTime.fromISO(date);
+      let formatted = DateTime.fromJSDate(date);
 
       return formatted.toFormat("d.M.yyyy");
     },

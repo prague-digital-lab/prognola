@@ -202,7 +202,7 @@
                 >
                   <MenuItem v-slot="{ active }">
                     <NuxtLink
-                      :href="'/' + route.params.workspace + '/settings'"
+                      :href="'/' + route.params.workspace + '/settings/user'"
                       :class="[
                         active ? 'bg-zinc-50' : '',
                         'block px-3 py-1 text-base leading-6 text-zinc-900',

@@ -1,4 +1,5 @@
 import { openDatabase } from "~/lib/dexie/db.js";
+import {DateTime} from "luxon";
 
 let db = openDatabase();
 
@@ -9,6 +10,10 @@ function createBankAccountObjectFromApiData(data) {
     current_amount: parseFloat(data.current_amount),
     account_number: data.account_number,
     bank_number: data.bank_number,
+    bank: data.bank,
+    synced_at: data.synced_at
+        ? DateTime.fromISO(data.synced_at).toJSDate()
+        : null,
   };
 }
 
@@ -66,6 +71,7 @@ export {
   getBankAccounts,
   addBankAccount,
   getCurrentBalance,
+  getBankAccount,
   updateBankAccount,
   deleteBankAccount,
   syncBankAccount,
