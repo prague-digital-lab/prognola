@@ -32,13 +32,9 @@ export default {
     // Load available workspaces
     const client = useSanctumClient();
 
-    const { data } = await useAsyncData("workspaces", () =>
-      client("/api/workspaces", {
-        method: "GET",
-      }),
-    );
-
-    this.workspaces.value = data.value;
+    this.workspaces.value = await client("/api/workspaces", {
+      method: "GET",
+    });
 
     // If user has no workspaces, redirect to workspace create guide
     if (this.workspaces.value.length === 0) {

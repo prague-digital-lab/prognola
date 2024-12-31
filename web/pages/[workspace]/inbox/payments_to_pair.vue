@@ -70,29 +70,18 @@ export default {
       const client = useSanctumClient();
       const route = useRoute();
 
-      const { data } = await useAsyncData("bank_payments_to_pair", () =>
-        client("/api/" + route.params.workspace + "/bank_payments", {
+      this.payments = await client(
+        "/api/" + route.params.workspace + "/bank_payments",
+        {
           method: "GET",
           params: {
             from: "2024-01-01",
             is_paired: false,
             type: "expense",
           },
-        }),
+        },
       );
 
-      // const income_data = await useAsyncData("bank_payments_to_pair", () =>
-      //   client("/api/" + route.params.workspace + "/bank_payments", {
-      //     method: "GET",
-      //     params: {
-      //       from: "2024-01-01",
-      //       is_paired: false,
-      //       type: "income",
-      //     },
-      //   }),
-      // );
-
-      this.payments = data.value;
       this.loaded = true;
     },
 

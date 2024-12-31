@@ -102,16 +102,14 @@ export default {
       this.expense.payment_status = status;
       await updateExpense(this.expense.uuid, this.expense);
 
-      const { data } = await useAsyncData("expense", () =>
-        client(
-          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-          {
-            method: "PATCH",
-            body: {
-              payment_status: status,
-            },
+      await client(
+        "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+        {
+          method: "PATCH",
+          body: {
+            payment_status: status,
           },
-        ),
+        },
       );
 
       this.$emit("expense-updated");
