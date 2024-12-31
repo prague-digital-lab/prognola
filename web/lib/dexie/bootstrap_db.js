@@ -193,4 +193,4 @@ async function fetchBankPayments(workspace_url_slug) {
   });
 }
 
-export { bootstrapDatabase };
+export { bootstrapDatabase, bootstrapDatabaseFull };
