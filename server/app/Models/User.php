@@ -94,33 +94,11 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    public function getRoleString(): string
-    {
-        if ($this->role == self::USER_ROLE_RECEPTION) {
-            return 'recepční';
-        } elseif ($this->role == self::USER_ROLE_ADMIN) {
-            return 'admin';
-        } elseif ($this->role == self::USER_ROLE_ACCOUNTANT) {
-            return 'účetní';
-        } else {
-            return 'neznámý typ uživatele';
-        }
-    }
-
     public function isRole($role): bool
     {
         return $this->role == $role;
     }
 
-    public function isReception(): bool
-    {
-        return $this->isRole(self::USER_ROLE_RECEPTION) || $this->isRole(self::USER_ROLE_ADMIN);
-    }
-
-    public function isAccountant(): bool
-    {
-        return $this->isRole(self::USER_ROLE_ACCOUNTANT) || $this->isRole(self::USER_ROLE_ADMIN);
-    }
 
     /**
      * We override the default notification and will use our own
