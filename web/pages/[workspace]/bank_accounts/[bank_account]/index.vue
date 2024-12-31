@@ -101,7 +101,7 @@ definePageMeta({
 <script>
 import bank_payment from "~/pages/[workspace]/bank_payments/[bank_payment]/index.vue";
 import { DateTime } from "luxon";
-import { getBankAccount } from "~/lib/dexie/repository/bank_account_repository.js";
+import {getBankAccount, updateBankAccount} from "~/lib/dexie/repository/bank_account_repository.js";
 
 export default {
   data() {
@@ -170,7 +170,7 @@ export default {
 
     async fetchData() {
       const route = useRoute();
-      this.bank_account = await getBankAccount(route.params.bank_account)
+      this.bank_account = await getBankAccount(route.params.bank_account);
       this.input_name = this.bank_account.name;
     },
 
@@ -207,19 +207,20 @@ export default {
       const client = useSanctumClient();
       const route = useRoute();
 
-      const { data } = await useAsyncData("bank_account", () =>
-        client(
-          "/api/" +
-            route.params.workspace +
-            "/bank_accounts/" +
-            route.params.bank_account,
-          {
-            method: "PATCH",
-            body: {
-              name: this.input_name,
-            },
+      this.bank_account.name = this.input_name;
+      await updateBankAccount(this.bank_account.uuid, this.bank_account);
+
+      await client(
+        "/api/" +
+          route.params.workspace +
+          "/bank_accounts/" +
+          route.params.bank_account,
+        {
+          method: "PATCH",
+          body: {
+            name: this.input_name,
           },
-        ),
+        },
       );
     },
   },
