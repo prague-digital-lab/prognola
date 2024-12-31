@@ -9,7 +9,11 @@ import {
   createOrganisationObjectFromApiData,
   syncOrganisation,
 } from "~/lib/dexie/repository/organisation_repository.js";
-import { addBankAccount } from "~/lib/dexie/repository/bank_account_repository.js";
+import {
+  addBankAccount,
+  createBankAccountObjectFromApiData,
+  syncBankAccount,
+} from "~/lib/dexie/repository/bank_account_repository.js";
 import {
   getLastSyncedAt,
   setLastSyncedAt,
@@ -102,6 +106,13 @@ async function bootstrapDatabaseIncremental(
   for (let organisation of organisations) {
     let organisation_object = createOrganisationObjectFromApiData(organisation);
     await syncOrganisation(organisation_object);
+  }
+
+  const bank_accounts = data.bank_accounts;
+
+  for (let bank_account of bank_accounts) {
+    let bank_account_object = createBankAccountObjectFromApiData(bank_account);
+    await syncBankAccount(bank_account_object);
   }
 
   console.debug("Incremental database bootstrap completed.");
