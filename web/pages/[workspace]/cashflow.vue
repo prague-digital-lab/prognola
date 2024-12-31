@@ -336,7 +336,7 @@ async function fetchData() {
         borderWidth: 2,
         cubicInterpolationMode: "monotone",
         tension: 0.1,
-        type: "line",
+        // type: "line",
       },
     ],
   };
