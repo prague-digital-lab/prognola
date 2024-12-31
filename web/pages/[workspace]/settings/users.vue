@@ -96,18 +96,6 @@ const { data: users } = await useAsyncData("users", () =>
   }),
 );
 
-// onMounted(async () => {
-//   // const { data } = await useAsyncData("user", () =>
-//   //   client("/api/user/", {
-//   //     method: "GET",
-//   //   }),
-//   // );
-//   //
-//   // user_name.value = data.value.name;
-//
-//   loaded.value = true;
-// });
-
 async function invite() {
   const route = useRoute();
 

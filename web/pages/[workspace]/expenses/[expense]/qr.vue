@@ -84,16 +84,13 @@ async function fetchData() {
   const client = useSanctumClient();
   const route = useRoute();
 
-  const { data } = await useAsyncData("expense", () =>
-    client(
-      "/api/" + route.params.workspace + "/expenses/" + route.params.expense,
-      {
-        method: "GET",
-      },
-    ),
+  expense.value = await client(
+    "/api/" + route.params.workspace + "/expenses/" + route.params.expense,
+    {
+      method: "GET",
+    },
   );
 
-  expense.value = data.value;
   price.value = expense.value.price;
   variable_symbol.value = expense.value.variable_symbol;
   message.value =

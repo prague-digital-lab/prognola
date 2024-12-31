@@ -41,8 +41,6 @@ export default {
     async updateDate() {
       this.expanded = false;
 
-      console.log("Updating");
-
       const client = useSanctumClient();
       const route = useRoute();
 
@@ -53,16 +51,14 @@ export default {
       ).toJSDate();
       await updateExpense(this.expense.uuid, expense);
 
-      const { data } = await useAsyncData("expense", () =>
-        client(
-          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-          {
-            method: "PATCH",
-            body: {
-              received_at: this.received_at,
-            },
+      await client(
+        "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+        {
+          method: "PATCH",
+          body: {
+            received_at: this.received_at,
           },
-        ),
+        },
       );
     },
   },

@@ -38,16 +38,14 @@ export default {
       this.expense.price = this.price;
       await updateExpense(this.expense.uuid, this.expense);
 
-      const { data } = await useAsyncData("expense", () =>
-        client(
-          "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
-          {
-            method: "PATCH",
-            body: {
-              price: this.price,
-            },
+      await client(
+        "/api/" + route.params.workspace + "/expenses/" + this.expense.uuid,
+        {
+          method: "PATCH",
+          body: {
+            price: this.price,
           },
-        ),
+        },
       );
 
       this.$emit("expense-updated");
