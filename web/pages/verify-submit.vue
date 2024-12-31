@@ -35,13 +35,11 @@ export default {
     async verifyEmail(url) {
       const client = useSanctumClient();
 
-      const { data } = await useAsyncData("verify-submit", () =>
-        client(url, {
-          method: "GET",
-        }),
-      );
+      await client(url, {
+        method: "GET",
+      })
 
-      const { refreshIdentity } = useSanctumAuth();
+      const {refreshIdentity} = useSanctumAuth();
       await refreshIdentity();
 
       await navigateTo("/join-workspace");

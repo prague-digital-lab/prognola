@@ -15,15 +15,15 @@ async function getBankAccounts() {
 }
 
 async function addBankAccount(bank_account) {
-  const uuid = db.bank_accounts.add(bank_account_object);
+  const uuid = db.bank_accounts.add(bank_account);
 }
 
 async function getBankAccount(uuid) {
   return await db.bank_accounts.get(uuid);
 }
 
-async function updateBankAccount(uuid, bank_account_object) {
-  return await db.bank_accounts.update(uuid, bank_account_object);
+async function updateBankAccount(uuid, bank_account) {
+  return await db.bank_accounts.update(uuid, bank_account);
 }
 
 async function deleteBankAccount(uuid) {

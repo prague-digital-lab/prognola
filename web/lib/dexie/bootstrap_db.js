@@ -3,7 +3,11 @@ import {
   createExpenseObjectFromApiData,
   syncExpense,
 } from "~/lib/dexie/repository/expense_repository.js";
-import { addIncome } from "~/lib/dexie/repository/income_repository.js";
+import {
+  addIncome,
+  createIncomeObjectFromApiData,
+  syncIncome,
+} from "~/lib/dexie/repository/income_repository.js";
 import {
   addOrganisation,
   createOrganisationObjectFromApiData,
@@ -19,6 +23,10 @@ import {
   setLastSyncedAt,
 } from "~/lib/dexie/repository/options_repository.js";
 import { DateTime } from "luxon";
+import {
+  addBankPayment,
+  createBankPaymentObjectFromApiData,
+} from "~/lib/dexie/repository/bank_payment_repository.js";
 
 function truncateStores(db) {
   console.debug("Truncating old IndexedDB stores.");
@@ -37,7 +45,7 @@ async function bootstrapDatabase(db, workspace_url_slug) {
 
     await setLastSyncedAt(new Date());
   } else {
-    await bootstrapDatabaseIncremental(db, workspace_url_slug, last_synced_at);
+    await bootstrapDatabaseIncremental(workspace_url_slug, last_synced_at);
 
     await setLastSyncedAt(new Date());
   }
@@ -51,13 +59,15 @@ async function bootstrapDatabaseFull(db, workspace_url_slug) {
   let expenses = await fetchExpenses(workspace_url_slug);
 
   for (let expense of expenses) {
-    await addExpense(expense);
+    let expense_object = createExpenseObjectFromApiData(expense);
+    await addExpense(expense_object);
   }
 
   let incomes = await fetchIncomes(workspace_url_slug);
 
   for (let income of incomes) {
-    await addIncome(income);
+    let income_object = createIncomeObjectFromApiData(income);
+    await addIncome(income_object);
   }
 
   let organisations = await fetchOrganisations(workspace_url_slug);
@@ -70,14 +80,22 @@ async function bootstrapDatabaseFull(db, workspace_url_slug) {
   let bank_accounts = await fetchBankAccounts(workspace_url_slug);
 
   for (let bank_account of bank_accounts) {
-    await addBankAccount(bank_account);
+    let bank_account_object = createBankAccountObjectFromApiData(bank_account);
+    await addBankAccount(bank_account_object);
   }
 
-  console.debug("Bootstrapping database completed.");
+  let bank_payments = await fetchBankPayments(workspace_url_slug);
+
+  for (let bank_payment of bank_payments) {
+    let bank_payment_object = createBankPaymentObjectFromApiData(bank_payment);
+    console.log(bank_payment_object);
+    await addBankPayment(bank_payment_object);
+  }
+
+  console.debug("Full bootstrap of database completed.");
 }
 
 async function bootstrapDatabaseIncremental(
-  db,
   workspace_url_slug,
   last_synced_at,
 ) {
@@ -99,6 +117,13 @@ async function bootstrapDatabaseIncremental(
   for (let expense of expenses) {
     let expense_object = createExpenseObjectFromApiData(expense);
     await syncExpense(expense_object);
+  }
+
+  const incomes = data.incomes;
+
+  for (let income of incomes) {
+    let income_object = createIncomeObjectFromApiData(income);
+    await syncIncome(income_object);
   }
 
   const organisations = data.organisations;
@@ -160,4 +185,12 @@ async function fetchBankAccounts(workspace_url_slug) {
   });
 }
 
-export { bootstrapDatabase, bootstrapDatabaseIncremental };
+async function fetchBankPayments(workspace_url_slug) {
+  const client = useSanctumClient();
+
+  return await client("/api/" + workspace_url_slug + "/bank_payments", {
+    method: "GET",
+  });
+}
+
+export { bootstrapDatabase };

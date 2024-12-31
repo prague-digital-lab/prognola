@@ -35,7 +35,6 @@
 <script setup>
 import Heading from "~/components/ui/Heading.vue";
 import PageContentHeader from "~/components/ui/PageContentHeader.vue";
-import { DateTime } from "luxon";
 import { getExpensesByPaymentStatus } from "~/lib/dexie/repository/expense_repository.js";
 
 definePageMeta({
@@ -55,27 +54,8 @@ const expenses = ref([]);
 const price_sum = ref(0);
 
 onMounted(async () => {
-  fetchData();
+  await fetchData();
 });
-
-// async function fetchData() {
-//   const client = useSanctumClient();
-//   const route = useRoute();
-//
-//   const { data } = await useAsyncData("expense_drafts", () =>
-//     client("/api/" + route.params.workspace + "/expenses", {
-//       method: "GET",
-//       params: {
-//         payment_status: "draft"
-//       }
-//     })
-//   );
-//
-//   this.expenses = data.value.data;
-//   this.price_sum = data.value.price_sum;
-//
-//   this.loaded = true;
-// }
 
 async function fetchData() {
   expenses.value = await getExpensesByPaymentStatus("draft");
@@ -92,18 +72,16 @@ async function createExpense() {
   const client = useSanctumClient();
   const route = useRoute();
 
-  const { data } = await useAsyncData("expense", () =>
-    client("/api/" + route.params.workspace + "/expenses", {
-      method: "POST",
-      body: {
-        description: new_expense_name.value,
-        price: 0,
-        paid_at: this.from,
-      },
-    }),
-  );
+  const data = client("/api/" + route.params.workspace + "/expenses", {
+    method: "POST",
+    body: {
+      description: new_expense_name.value,
+      price: 0,
+      paid_at: this.from,
+    },
+  });
 
-  let uuid = data.value.uuid;
+  let uuid = data.uuid;
 
   await navigateTo("/" + route.params.workspace + "/expenses/" + uuid);
 }
