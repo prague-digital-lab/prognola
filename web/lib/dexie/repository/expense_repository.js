@@ -56,7 +56,7 @@ async function deleteExpense(uuid) {
 }
 
 async function addExpense(expense) {
-  db.expenses.add(expense_object);
+  db.expenses.add(expense);
 }
 
 async function syncExpense(expense) {
