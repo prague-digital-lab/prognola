@@ -12,7 +12,7 @@
       </template>
     </page-content-header>
 
-    <div class="mb-4">
+    <div class="mb-6">
       <form v-on:submit.prevent="save">
         <div
           class="mb-3 rounded-md border border-gray-200 bg-white px-5 py-5 text-gray-700 md:w-1/2"
@@ -39,6 +39,14 @@
           Uložit
         </button>
       </form>
+    </div>
+
+    <div>
+      <p class="mb-4">Lokální synchronizace dat</p>
+
+      <ui-button-secondary @click="wipeLocalData" class="cursor-pointer"
+        >Smazat lokální data aplikace
+      </ui-button-secondary>
     </div>
   </div>
 </template>
@@ -85,5 +93,22 @@ async function save() {
       },
     }),
   );
+}
+
+async function wipeLocalData() {
+  confirm(
+    "Tato možnost SMAŽE z prohlížeče všechna lokálně stažená data a stáhne je znovu. Chcete pokračovat?",
+  );
+
+  window.indexedDB
+    .databases()
+    .then((r) => {
+      for (var i = 0; i < r.length; i++)
+        window.indexedDB.deleteDatabase(r[i].name);
+    })
+    .then(() => {
+      alert("Lokální data byla smazána.")
+      window.location.reload();
+    });
 }
 </script>
