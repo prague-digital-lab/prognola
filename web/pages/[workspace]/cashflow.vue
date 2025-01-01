@@ -1,6 +1,23 @@
 <template>
   <div>
     <div v-if="loaded">
+      <div class="mb-7">
+        <dl class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+          <div
+              class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
+          >
+            <nuxt-link href="bank_accounts">
+              <dt class="truncate text-gray-500 dark:text-zinc-400">Dostupný zůstatek</dt>
+            </nuxt-link>
+            <dd
+                class="mt-1 text-xl font-semibold tracking-tight"
+            >
+              {{ formatPrice(current_balance) }} Kč
+            </dd>
+          </div>
+        </dl>
+      </div>
+
       <page-content-header>
         <template v-slot:title>
           <h2
@@ -120,6 +137,7 @@ import {
   countBalancePrognosisFromNow,
   getBalancePrognosisByDate,
 } from "~/lib/dexie/repository/balance_prognosis_repository.js";
+import {getCurrentBalance} from "~/lib/dexie/repository/bank_account_repository.js";
 
 useHead({
   title: "Cashflow",
@@ -203,12 +221,16 @@ const expense_plan_sum = ref(0);
 const profit_sum = ref(0);
 const profit_plan_sum = ref(0);
 
+const current_balance = ref(0);
+
 onMounted(() => {
   fetchData();
 });
 
 async function fetchData() {
   await countBalancePrognosisFromNow();
+
+  current_balance.value = await getCurrentBalance()
 
   const date_from = DateTime.fromFormat(from.value, "yyyy-MM-dd");
   const date_to = DateTime.fromFormat(to.value, "yyyy-MM-dd").endOf("day");
