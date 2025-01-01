@@ -4,17 +4,22 @@
       <div class="mb-7">
         <dl class="grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
-              class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
           >
             <nuxt-link href="bank_accounts">
-              <dt class="truncate text-gray-500 dark:text-zinc-400">Dostupný zůstatek</dt>
+              <dt class="truncate text-gray-500 dark:text-zinc-400">
+                Dostupný zůstatek
+              </dt>
             </nuxt-link>
-            <dd
-                class="mt-1 text-xl font-semibold tracking-tight"
-            >
+            <dd class="mt-1 text-xl font-semibold tracking-tight">
               {{ formatPrice(current_balance) }} Kč
             </dd>
           </div>
+
+          <income-widget></income-widget>
+
+          <expense-widget></expense-widget>
+
         </dl>
       </div>
 
@@ -123,7 +128,8 @@ import {
   CategoryScale,
   Chart as ChartJS,
   Legend,
-  LinearScale, LineController,
+  LinearScale,
+  LineController,
   LineElement,
   PointElement,
   Title,
@@ -137,7 +143,9 @@ import {
   countBalancePrognosisFromNow,
   getBalancePrognosisByDate,
 } from "~/lib/dexie/repository/balance_prognosis_repository.js";
-import {getCurrentBalance} from "~/lib/dexie/repository/bank_account_repository.js";
+import { getCurrentBalance } from "~/lib/dexie/repository/bank_account_repository.js";
+import IncomeWidget from "~/components/dashboard/IncomeWidget.vue";
+import ExpenseWidget from "~/components/dashboard/ExpenseWidget.vue";
 
 useHead({
   title: "Cashflow",
@@ -230,7 +238,7 @@ onMounted(() => {
 async function fetchData() {
   await countBalancePrognosisFromNow();
 
-  current_balance.value = await getCurrentBalance()
+  current_balance.value = await getCurrentBalance();
 
   const date_from = DateTime.fromFormat(from.value, "yyyy-MM-dd");
   const date_to = DateTime.fromFormat(to.value, "yyyy-MM-dd").endOf("day");
