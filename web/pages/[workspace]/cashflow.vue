@@ -103,7 +103,7 @@
 
       <Bar
         id="my-chart-id"
-        height="130%"
+        height="55%"
         :options="chartOptions"
         :data="chartData"
       />
