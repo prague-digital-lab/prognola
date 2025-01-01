@@ -6,7 +6,7 @@
       <div
         class="mb-3 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 px-4 pb-2 pt-3"
       >
-        <div class="truncate text-gray-600 dark:text-zinc-400">
+        <div class="truncate text-gray-600 dark:text-zinc-300">
           Výdaje <span class="text-gray-400">- tento měsíc</span>
         </div>
         <div class="text-xl font-semibold tracking-tight text-red-600">
