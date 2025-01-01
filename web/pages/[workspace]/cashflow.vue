@@ -12,12 +12,12 @@
           >
             <nuxt-link href="bank_accounts">
               <div
-                class="mb-3 flex items-center justify-between border-b border-gray-200 px-4 pb-2 pt-3"
+                class="mb-3 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 px-4 pb-2 pt-3"
               >
-                <div class="truncate text-gray-600 dark:text-zinc-400">
+                <div class="truncate text-gray-600 dark:text-zinc-300">
                   Dostupné peníze
                 </div>
-                <div class="text-xl font-semibold tracking-tight">
+                <div class="text-xl font-semibold tracking-tight dark:text-zinc-200">
                   {{ formatPrice(current_balance) }} Kč
                 </div>
               </div>

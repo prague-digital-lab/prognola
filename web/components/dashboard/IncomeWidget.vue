@@ -3,11 +3,11 @@
     class="overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"
   >
     <nuxt-link href="income">
-      <div class="mb-3 flex items-center justify-between border-b border-gray-200 pt-3 pb-2 px-4">
-        <div class="truncate text-gray-600 dark:text-zinc-400">
+      <div class="mb-3 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 pt-3 pb-2 px-4">
+        <div class="truncate text-gray-600 dark:text-zinc-300">
           Příjmy <span class="text-gray-400">- tento měsíc</span>
         </div>
-        <div class="text-xl font-semibold tracking-tight text-green-700">
+        <div class="text-xl font-semibold tracking-tight text-green-700 dark:text-green-500">
           {{ formatPrice(sum) }} Kč
         </div>
       </div>

@@ -4,7 +4,7 @@
   >
     <nuxt-link href="expenses">
       <div
-        class="mb-3 flex items-center justify-between border-b border-gray-200 px-4 pb-2 pt-3"
+        class="mb-3 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 px-4 pb-2 pt-3"
       >
         <div class="truncate text-gray-600 dark:text-zinc-400">
           Výdaje <span class="text-gray-400">- tento měsíc</span>
