@@ -2,7 +2,7 @@
   <div
     class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
   >
-    <nuxt-link href="bank_accounts">
+    <nuxt-link href="income">
       <dt class="truncate text-gray-500 dark:text-zinc-400">
         Uhrazené příjmy <span class="text-gray-400">- tento měsíc</span>
       </dt>
