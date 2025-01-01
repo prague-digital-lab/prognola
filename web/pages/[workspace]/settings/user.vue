@@ -44,9 +44,9 @@
     <div>
       <p class="mb-4">Lokální synchronizace dat</p>
 
-      <ui-button-secondary @click="wipeLocalData" class="cursor-pointer"
+      <div  @click="wipeLocalData" class="cursor-pointer text-red-700"
         >Smazat lokální data aplikace
-      </ui-button-secondary>
+      </div>
     </div>
   </div>
 </template>
