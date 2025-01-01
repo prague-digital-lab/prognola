@@ -56,9 +56,9 @@ async function syncBankAccount(bank_account) {
     return;
   }
 
-  const existing_local_record = getBankAccount(bank_account.uuid);
+  const existing_local_record = await getBankAccount(bank_account.uuid);
 
-  if (existing_local_record === null) {
+  if (typeof existing_local_record === 'undefined') {
     console.debug("Bank account not found in local database, adding it.");
     await addBankAccount(bank_account);
   } else {

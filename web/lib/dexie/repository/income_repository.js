@@ -56,9 +56,10 @@ async function syncIncome(income) {
     return;
   }
 
-  const existing_local_record = getIncome(income.uuid);
+  const existing_local_record = await getIncome(income.uuid);
+  console.log("found existing", existing_local_record);
 
-  if (existing_local_record === null) {
+  if (typeof existing_local_record === 'undefined') {
     console.debug("Income not found in local database, adding it.");
     await addIncome(income);
   } else {

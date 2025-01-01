@@ -42,9 +42,9 @@ async function syncBankPayment(bank_payment) {
     return;
   }
 
-  const existing_local_record = getBankPayment(bank_payment.uuid);
+  const existing_local_record = await getBankPayment(bank_payment.uuid);
 
-  if (existing_local_record === null) {
+  if (existing_local_record === 'undefined') {
     console.debug("Bank payment not found in local database, adding it.");
     await addBankPayment(bank_payment);
   } else {

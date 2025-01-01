@@ -69,9 +69,9 @@ async function syncExpense(expense) {
     return;
   }
 
-  const existing_local_record = getExpense(expense.uuid);
+  const existing_local_record = await getExpense(expense.uuid);
 
-  if (existing_local_record === null) {
+  if (typeof existing_local_record === "undefined") {
     console.debug("Expense not found in local database, adding it.");
     await addExpense(expense);
   } else {

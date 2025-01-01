@@ -51,9 +51,9 @@ async function syncOrganisation(organisation) {
     return;
   }
 
-  const existing_local_record = getOrganisation(organisation.uuid);
+  const existing_local_record = await getOrganisation(organisation.uuid);
 
-  if (existing_local_record === null) {
+  if (typeof existing_local_record === "undefined") {
     console.debug("Organisation not found in local database, adding it.");
     await addOrganisation(organisation);
   } else {
