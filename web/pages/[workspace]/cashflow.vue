@@ -3,8 +3,12 @@
     <div v-if="loaded">
       <div class="mb-7">
         <dl class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+          <income-widget></income-widget>
+
+          <expense-widget></expense-widget>
+
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
+              class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
           >
             <nuxt-link href="bank_accounts">
               <dt class="truncate text-gray-500 dark:text-zinc-400">
@@ -15,10 +19,6 @@
               {{ formatPrice(current_balance) }} Kč
             </dd>
           </div>
-
-          <income-widget></income-widget>
-
-          <expense-widget></expense-widget>
 
         </dl>
       </div>
