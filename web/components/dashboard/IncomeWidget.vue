@@ -1,15 +1,21 @@
 <template>
   <div
-    class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
+    class="overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"
   >
     <nuxt-link href="income">
-      <dt class="truncate text-gray-500 dark:text-zinc-400">
-        Uhrazené příjmy <span class="text-gray-400">- tento měsíc</span>
-      </dt>
+      <div class="mb-3 flex items-center justify-between border-b border-gray-200 pt-3 pb-2 px-4">
+        <div class="truncate text-gray-600 dark:text-zinc-400">
+          Příjmy <span class="text-gray-400">- tento měsíc</span>
+        </div>
+        <div class="text-xl font-semibold tracking-tight text-green-700">
+          {{ formatPrice(sum) }} Kč
+        </div>
+      </div>
     </nuxt-link>
-    <dd class="mt-1 text-xl font-semibold tracking-tight text-green-700">
-      {{ formatPrice(sum) }} Kč
-    </dd>
+
+    <div class="px-4 py-1">
+    <p class="mb-2 text-sm text-zinc-500">Poslední uhrazené</p>
+    </div>
   </div>
 </template>
 

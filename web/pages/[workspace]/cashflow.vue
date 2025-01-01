@@ -8,18 +8,21 @@
           <expense-widget></expense-widget>
 
           <div
-              class="overflow-hidden rounded-lg border border-gray-200 bg-white px-3 py-4 sm:p-5 dark:border-zinc-800 dark:bg-zinc-900"
+            class="overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"
           >
             <nuxt-link href="bank_accounts">
-              <dt class="truncate text-gray-500 dark:text-zinc-400">
-                Dostupné peníze
-              </dt>
+              <div
+                class="mb-3 flex items-center justify-between border-b border-gray-200 px-4 pb-2 pt-3"
+              >
+                <div class="truncate text-gray-600 dark:text-zinc-400">
+                  Dostupné peníze
+                </div>
+                <div class="text-xl font-semibold tracking-tight">
+                  {{ formatPrice(current_balance) }} Kč
+                </div>
+              </div>
             </nuxt-link>
-            <dd class="mt-1 text-xl font-semibold tracking-tight">
-              {{ formatPrice(current_balance) }} Kč
-            </dd>
           </div>
-
         </dl>
       </div>
 
