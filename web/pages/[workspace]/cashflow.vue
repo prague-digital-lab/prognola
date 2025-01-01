@@ -8,7 +8,7 @@
           >
             <nuxt-link href="bank_accounts">
               <dt class="truncate text-gray-500 dark:text-zinc-400">
-                Dostupný zůstatek
+                Dostupné peníze
               </dt>
             </nuxt-link>
             <dd class="mt-1 text-xl font-semibold tracking-tight">
