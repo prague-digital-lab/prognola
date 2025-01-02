@@ -19,23 +19,31 @@
       <p class="mb-2 text-sm text-zinc-500">Bankovní účty</p>
 
       <div class="divide-y">
-        <div
+        <nuxt-link
+            class="block"
+          :href="
+            '/' + route.params.workspace + '/bank_accounts/' + bank_account.uuid
+          "
           v-for="bank_account in bank_accounts"
-          :key="bank_account.uuid"
-          class="flex justify-between py-2"
         >
-          <div>{{ bank_account.name }}</div>
-          <div class="text-zinc-600 dark:text-zinc-400">{{ formatPrice(bank_account.current_amount) }} Kč</div>
-        </div>
+          <div :key="bank_account.uuid" class="flex justify-between py-2">
+            <div>{{ bank_account.name }}</div>
+            <div class="text-zinc-600 dark:text-zinc-400">
+              {{ formatPrice(bank_account.current_amount) }} Kč
+            </div>
+          </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { formatPrice } from "~/lib/dexie/data_helpers";
 import { getBankAccounts } from "~/lib/dexie/repository/bank_account_repository";
 import { getCurrentBalance } from "~/lib/dexie/repository/bank_account_repository.js";
+import {formatPrice} from "~/lib/dexie/data_helpers";
+
+const route = useRoute();
 
 const current_balance = ref(0);
 const bank_accounts = ref([]);
