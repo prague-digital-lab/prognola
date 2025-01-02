@@ -4,7 +4,7 @@
   >
     <ul role="list" class="space-y-1 py-2">
       <MenuLink
-        name="Cash flow"
+        name="Nástěnka"
         :icon="ChartBarIcon"
         :href="'/' + route.params.workspace + '/cashflow'"
       ></MenuLink>
