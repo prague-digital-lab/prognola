@@ -7,22 +7,7 @@
 
           <expense-widget></expense-widget>
 
-          <div
-            class="overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"
-          >
-            <nuxt-link href="bank_accounts">
-              <div
-                class="mb-3 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 px-4 pb-2 pt-3"
-              >
-                <div class="truncate text-gray-600 dark:text-zinc-300">
-                  Dostupné peníze
-                </div>
-                <div class="text-xl font-semibold tracking-tight dark:text-zinc-200">
-                  {{ formatPrice(current_balance) }} Kč
-                </div>
-              </div>
-            </nuxt-link>
-          </div>
+          <bank-account-widget></bank-account-widget>
         </dl>
       </div>
 
@@ -146,9 +131,10 @@ import {
   countBalancePrognosisFromNow,
   getBalancePrognosisByDate,
 } from "~/lib/dexie/repository/balance_prognosis_repository.js";
-import { getCurrentBalance } from "~/lib/dexie/repository/bank_account_repository.js";
+
 import IncomeWidget from "~/components/dashboard/IncomeWidget.vue";
 import ExpenseWidget from "~/components/dashboard/ExpenseWidget.vue";
+import BankAccountWidget from "~/components/dashboard/BankAccountWidget.vue";
 
 useHead({
   title: "Cashflow",
@@ -232,16 +218,12 @@ const expense_plan_sum = ref(0);
 const profit_sum = ref(0);
 const profit_plan_sum = ref(0);
 
-const current_balance = ref(0);
-
 onMounted(() => {
   fetchData();
 });
 
 async function fetchData() {
   await countBalancePrognosisFromNow();
-
-  current_balance.value = await getCurrentBalance();
 
   const date_from = DateTime.fromFormat(from.value, "yyyy-MM-dd");
   const date_to = DateTime.fromFormat(to.value, "yyyy-MM-dd").endOf("day");
