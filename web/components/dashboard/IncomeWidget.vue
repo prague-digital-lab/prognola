@@ -3,18 +3,41 @@
     class="overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"
   >
     <nuxt-link href="income">
-      <div class="mb-3 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 pt-3 pb-2 px-4">
+      <div
+        class="mb-3 flex items-center justify-between border-b border-gray-200 px-4 pb-2 pt-3 dark:border-zinc-800"
+      >
         <div class="truncate text-gray-600 dark:text-zinc-300">
           Příjmy <span class="text-gray-400">- tento měsíc</span>
         </div>
-        <div class="text-xl font-semibold tracking-tight text-green-700 dark:text-green-500">
+        <div
+          class="text-xl font-semibold tracking-tight text-green-700 dark:text-green-500"
+        >
           {{ formatPrice(sum) }} Kč
         </div>
       </div>
     </nuxt-link>
 
     <div class="px-4 py-1">
-    <p class="mb-2 text-sm text-zinc-500">Poslední uhrazené</p>
+      <p class="mb-2 text-sm text-zinc-500">Poslední uhrazené</p>
+
+      <div
+        class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
+      >
+        <nuxt-link
+          v-for="income in incomes_paid"
+          :href="'/' + route.params.workspace + '/income/' + income.uuid"
+          class="block"
+          :key="income.uuid"
+        >
+          <income-row-mobile
+            class="bg-zinc-50"
+            :income="income"
+            :key="income.uuid"
+            :organisation="income.organisation"
+            :force_mobile="true"
+          ></income-row-mobile>
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +46,7 @@
 import { sumItemProp } from "~/lib/dexie/data_helpers.js";
 import { DateTime } from "luxon";
 import { getIncomesByPaidAt } from "~/lib/dexie/repository/income_repository.js";
+import IncomeRowMobile from "~/components/income/income_row/IncomeRowMobile.vue";
 
 function formatPrice(value) {
   let val = (value / 1).toFixed(0).replace(".", ",");
@@ -38,6 +62,9 @@ function filterPaid(items) {
 const sum = ref(0);
 const range_from = ref();
 const range_to = ref();
+const incomes_paid = ref([]);
+
+const route = useRoute()
 
 onMounted(async () => {
   range_from.value = DateTime.now().startOf("month");
@@ -50,8 +77,8 @@ onMounted(async () => {
 
   console.log("incomes", incomes);
 
-  let incomes_paid = filterPaid(incomes);
-  sum.value = sumItemProp(incomes_paid, "amount");
+  incomes_paid.value = filterPaid(incomes);
+  sum.value = sumItemProp(incomes_paid.value, "amount");
 });
 </script>
 

@@ -7,7 +7,9 @@
       <p class="w-[400px] font-medium">{{ income.name }}</p>
     </div>
 
-    <div class="flex items-center text-base font-light text-slate-600">
+    <div
+      class="hidden items-center text-base font-light text-slate-600 md:flex"
+    >
       <div
         v-if="organisation"
         class="me-2 flex cursor-pointer items-center rounded-md border border-gray-200 px-3 py-1 leading-5 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400"
@@ -49,6 +51,13 @@
         <income-status-icon :payment_status="income.payment_status" />
       </div>
     </div>
+
+    <div class="block md:hidden">
+      <income-row-mobile
+        :income="income"
+        :organisation="organisation"
+      ></income-row-mobile>
+    </div>
   </div>
 </template>
 
@@ -57,10 +66,12 @@ import { defineComponent } from "vue";
 import { DateTime } from "luxon";
 import { BuildingLibraryIcon } from "@heroicons/vue/24/outline/index.js";
 import { findOrganisation } from "~/lib/dexie/repository/organisation_repository.js";
+import ExpenseRowMobile from "~/components/expense/expense_row/ExpenseRowMobile.vue";
+import IncomeRowMobile from "~/components/income/income_row/IncomeRowMobile.vue";
 
 export default defineComponent({
   name: "IncomeRow",
-  components: { BuildingLibraryIcon },
+  components: {IncomeRowMobile, ExpenseRowMobile, BuildingLibraryIcon },
   props: ["income"],
   data: () => {
     return {
