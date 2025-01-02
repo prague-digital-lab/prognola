@@ -2,7 +2,7 @@
   <div class="p-3 dark:bg-zinc-900">
     <div class="mb-2 flex items-center justify-between">
       <p class="md:w-[400px] dark:text-white">
-        {{ income.description ? income.description : "nový příjem" }}
+        {{ income.name ? income.name : "nový příjem" }}
       </p>
 
       <div class="flex items-center">
