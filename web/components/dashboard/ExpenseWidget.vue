@@ -4,7 +4,7 @@
   >
     <nuxt-link href="expenses">
       <div
-        class="mb-3 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 px-4 pb-2 pt-3"
+        class="mb-3 flex items-center justify-between border-b border-gray-200 px-4 pb-2 pt-3 dark:border-zinc-800"
       >
         <div class="truncate text-gray-600 dark:text-zinc-300">
           Výdaje <span class="text-gray-400">- tento měsíc</span>
@@ -16,28 +16,27 @@
     </nuxt-link>
 
     <div class="px-4 py-1">
+      <p class="mb-2 text-sm text-zinc-500">Poslední uhrazené</p>
 
-    <p class="mb-2 text-sm text-zinc-500">Poslední uhrazené</p>
-
-    <div
-      class="mb-4 divide-y divide-gray-200 rounded border  border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
-    >
-      <nuxt-link
-        v-for="expense in paid_expenses"
-        :href="'/' + route.params.workspace + '/expenses/' + expense.uuid"
-        class="block"
-        :key="expense.uuid"
+      <div
+        class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
       >
-        <expense-row-mobile
-          class="bg-zinc-50"
-          :expense="expense"
+        <nuxt-link
+          v-for="expense in latest_expenses"
+          :href="'/' + route.params.workspace + '/expenses/' + expense.uuid"
+          class="block"
           :key="expense.uuid"
-          :organisation="expense.organisation"
-          :force_mobile="true"
-        ></expense-row-mobile>
-      </nuxt-link>
+        >
+          <expense-row-mobile
+            class="bg-zinc-50"
+            :expense="expense"
+            :key="expense.uuid"
+            :organisation="expense.organisation"
+            :force_mobile="true"
+          ></expense-row-mobile>
+        </nuxt-link>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -61,10 +60,15 @@ function filterPaid(items) {
   });
 }
 
-const sum = ref(0);
 const range_from = ref();
 const range_to = ref();
-const paid_expenses = ref([]);
+
+const sum = ref(0);
+const latest_expenses = ref([]);
+
+function limitItems(items, count) {
+  return items.slice(0, count);
+}
 
 onMounted(async () => {
   range_from.value = DateTime.now().startOf("month");
@@ -75,15 +79,19 @@ onMounted(async () => {
     range_to.value.toJSDate(),
   );
 
-  paid_expenses.value = filterPaid(expenses);
+  let paid_expenses = filterPaid(expenses).reverse();
 
-  paid_expenses.value.map(async (expense) => {
+  console.debug("paid_expenses", paid_expenses)
+
+  sum.value = sumItemProp(paid_expenses, "price");
+
+  paid_expenses.map(async (expense) => {
     if (expense.organisation) {
       expense.organisation = await findOrganisation(expense.organisation);
     }
   });
 
-  sum.value = sumItemProp(paid_expenses.value, "price");
+  latest_expenses.value = limitItems(paid_expenses, 3);
 });
 </script>
 

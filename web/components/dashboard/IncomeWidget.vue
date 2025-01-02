@@ -24,7 +24,7 @@
         class="mb-4 divide-y divide-gray-200 rounded border border-gray-200 bg-white dark:divide-zinc-800 dark:border-zinc-800"
       >
         <nuxt-link
-          v-for="income in incomes_paid"
+          v-for="income in latest_incomes"
           :href="'/' + route.params.workspace + '/income/' + income.uuid"
           class="block"
           :key="income.uuid"
@@ -59,10 +59,14 @@ function filterPaid(items) {
   });
 }
 
+function limitItems(items, count){
+  return items.slice(0, count);
+}
+
 const sum = ref(0);
 const range_from = ref();
 const range_to = ref();
-const incomes_paid = ref([]);
+const latest_incomes = ref([]);
 
 const route = useRoute()
 
@@ -75,10 +79,10 @@ onMounted(async () => {
     range_to.value.toJSDate(),
   );
 
-  console.log("incomes", incomes);
+  let incomes_paid = filterPaid(incomes).reverse()
 
-  incomes_paid.value = filterPaid(incomes);
-  sum.value = sumItemProp(incomes_paid.value, "amount");
+  sum.value = sumItemProp(incomes_paid, "amount");
+  latest_incomes.value = limitItems(incomes_paid, 3);
 });
 </script>
 
