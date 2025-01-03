@@ -147,7 +147,7 @@ const chartOptions = ref({
       const item_index = elements[0].index;
       const dataset_index = elements[0].datasetIndex;
 
-      const date_from = DateTime.fromFormat(from.value, "yyyy-MM-dd")
+      const date_from = from.value
           .plus({ months: item_index })
           .startOf("month");
       const date_to = date_from.endOf("month");
