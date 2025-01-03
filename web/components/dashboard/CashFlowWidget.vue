@@ -13,7 +13,7 @@
       <div class="me-2">
         <input
             type="date"
-            v-model="from"
+            v-model="from_picker"
             class="w-full rounded-md border border-gray-200 py-1.5 text-base text-gray-700 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:block sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
         />
       </div>
@@ -21,7 +21,7 @@
       <div>
         <input
             type="date"
-            v-model="to"
+            v-model="to_picker"
             class="w-full rounded-md border border-gray-200 py-1.5 text-base text-gray-700 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:block sm:leading-6 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400"
         />
       </div>
@@ -134,8 +134,11 @@ ChartJS.register(
 
 const loaded = ref(false);
 
-const from = ref("2024-01-01");
-const to = ref("2024-12-31");
+const from = ref();
+const to = ref();
+
+const from_picker = ref();
+const to_picker = ref();
 
 const chartData = ref({});
 const chartOptions = ref({
@@ -194,17 +197,20 @@ const profit_sum = ref(0);
 const profit_plan_sum = ref(0);
 
 onMounted(() => {
+  from.value =  DateTime.now().startOf("year")
+  to.value =  DateTime.now().endOf("year")
+
+  from_picker.value = from.value.toFormat("yyyy-MM-dd");
+  to_picker.value = to.value.toFormat("yyyy-MM-dd");
+
   fetchData();
 });
 
 async function fetchData() {
   await countBalancePrognosisFromNow();
 
-  const date_from = DateTime.fromFormat(from.value, "yyyy-MM-dd");
-  const date_to = DateTime.fromFormat(to.value, "yyyy-MM-dd").endOf("day");
-
-  let range_start = date_from;
-  let range_end = date_from.endOf("month");
+  let range_start = from.value;
+  let range_end = from.value.endOf("month");
 
   let expenses_planned_data = [];
   let expenses_issued_data = [];
@@ -218,7 +224,7 @@ async function fetchData() {
   let income_plan_sum_stats = 0;
   let expense_plan_sum_stats = 0;
 
-  while (range_end <= date_to) {
+  while (range_end <= to.value) {
     let expenses = await getExpensesByPaidAt(
         range_start.toJSDate(),
         range_end.toJSDate(),
@@ -370,17 +376,22 @@ function formatPrice(value) {
   return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-watch(from, (newValue, oldValue) => {
+watch(from_picker, (newValue, oldValue) => {
   if (oldValue === null) {
     return;
   }
+
+  from.value = DateTime.fromFormat(from_picker, "yyyy-MM-dd");
+
   fetchData();
 });
 
-watch(to, (newValue, oldValue) => {
+watch(to_picker, (newValue, oldValue) => {
   if (oldValue === null) {
     return;
   }
+
+  to.value = DateTime.fromFormat(to_picker, "yyyy-MM-dd");
 
   fetchData();
 });
