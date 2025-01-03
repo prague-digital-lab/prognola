@@ -11,7 +11,7 @@
         </dl>
       </div>
 
-      <CashFlowWidget></CashFlowWidget>
+      <cash-flow-widget></cash-flow-widget>
     </div>
   </div>
 </template>
