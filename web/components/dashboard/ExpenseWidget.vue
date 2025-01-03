@@ -86,15 +86,19 @@ onMounted(async () => {
 
   sum.value = sumItemProp(paid_expenses, "price");
 
-  await paid_expenses.map(async (expense) => {
-    if (expense.organisation) {
-      expense.organisation = await findOrganisation(expense.organisation);
-    }
-  });
+  await Promise.all(
+    paid_expenses.map(async (expense) => {
+      if (expense.organisation) {
+        expense.organisation = await findOrganisation(expense.organisation);
+        console.debug("map iter");
+      }
+    }),
+  );
 
   latest_expenses.value = limitItems(paid_expenses, 3);
 
   loaded.value = true;
+  console.debug("loaded");
 });
 </script>
 
