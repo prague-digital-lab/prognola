@@ -381,7 +381,7 @@ watch(from_picker, (newValue, oldValue) => {
     return;
   }
 
-  from.value = DateTime.fromFormat(from_picker, "yyyy-MM-dd");
+  from.value = DateTime.fromFormat(newValue, "yyyy-MM-dd");
 
   fetchData();
 });
@@ -391,7 +391,7 @@ watch(to_picker, (newValue, oldValue) => {
     return;
   }
 
-  to.value = DateTime.fromFormat(to_picker, "yyyy-MM-dd");
+  to.value = DateTime.fromFormat(newValue, "yyyy-MM-dd");
 
   fetchData();
 });
