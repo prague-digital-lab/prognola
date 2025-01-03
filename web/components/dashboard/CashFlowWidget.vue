@@ -198,7 +198,7 @@ const profit_plan_sum = ref(0);
 
 onMounted(() => {
   from.value =  DateTime.now().startOf("year")
-  to.value =  DateTime.now().endOf("year")
+  to.value =  DateTime.now().endOf("year").endOf("day")
 
   from_picker.value = from.value.toFormat("yyyy-MM-dd");
   to_picker.value = to.value.toFormat("yyyy-MM-dd");
@@ -391,7 +391,7 @@ watch(to_picker, (newValue, oldValue) => {
     return;
   }
 
-  to.value = DateTime.fromFormat(newValue, "yyyy-MM-dd");
+  to.value = DateTime.fromFormat(newValue, "yyyy-MM-dd").endOf("day");
 
   fetchData();
 });

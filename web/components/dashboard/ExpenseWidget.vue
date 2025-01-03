@@ -2,6 +2,7 @@
   <div
     class="overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"
   >
+    <div v-if="loaded">
     <nuxt-link href="expenses">
       <div
         class="mb-3 flex items-center justify-between border-b border-gray-200 px-4 pb-2 pt-3 dark:border-zinc-800"
@@ -37,6 +38,9 @@
         </nuxt-link>
       </div>
     </div>
+
+    </div>
+
   </div>
 </template>
 
@@ -66,6 +70,8 @@ const range_to = ref();
 const sum = ref(0);
 const latest_expenses = ref([]);
 
+const loaded = ref(false)
+
 function limitItems(items, count) {
   return items.slice(0, count);
 }
@@ -92,6 +98,8 @@ onMounted(async () => {
   });
 
   latest_expenses.value = limitItems(paid_expenses, 3);
+
+  loaded.value = true
 });
 </script>
 
