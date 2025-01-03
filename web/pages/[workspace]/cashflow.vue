@@ -11,7 +11,7 @@
         </dl>
       </div>
 
-      <cashflow-widget></cashflow-widget>
+      <CashFlowWidget></CashFlowWidget>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@
 import IncomeWidget from "~/components/dashboard/IncomeWidget.vue";
 import ExpenseWidget from "~/components/dashboard/ExpenseWidget.vue";
 import BankAccountWidget from "~/components/dashboard/BankAccountWidget.vue";
-import CashflowWidget from "~/components/dashboard/CashflowWidget.vue";
+import CashFlowWidget from "~/components/dashboard/CashFlowWidget.vue";
 
 useHead({
   title: "Cashflow",
