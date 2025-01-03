@@ -90,7 +90,6 @@ onMounted(async () => {
     paid_expenses.map(async (expense) => {
       if (expense.organisation) {
         expense.organisation = await findOrganisation(expense.organisation);
-        console.debug("map iter");
       }
     }),
   );
@@ -98,7 +97,6 @@ onMounted(async () => {
   latest_expenses.value = limitItems(paid_expenses, 3);
 
   loaded.value = true;
-  console.debug("loaded");
 });
 </script>
 
